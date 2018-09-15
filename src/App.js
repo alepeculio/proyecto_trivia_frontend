@@ -3,6 +3,8 @@ import './App.css';
 //import Usuario from './Usuario';
 import ObtenerUsuarios from './ObtenerUsuarios';
 
+import PreguntasDiarias from './PreguntasDiarias';
+
 
 class App extends Component {
   constructor(){
@@ -15,6 +17,7 @@ class App extends Component {
     return (
       <div className="App">
         <ObtenerUsuarios/>
+        <PreguntasDiarias />
       </div>
       );
     }
