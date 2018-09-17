@@ -157,4 +157,4 @@ class PreguntasDiarias extends Component {
 	}
 };
 
-		export default PreguntasDiarias;
+export default PreguntasDiarias;
