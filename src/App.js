@@ -3,6 +3,7 @@ import './App.css';
 import ObtenerUsuarios from './ObtenerUsuarios';
 import RegistrarUsuarioForm from './RegistrarUsuarioForm';
 import IniciarSesionForm from './IniciarSesionForm';
+import PreguntasDiarias from './PreguntasDiarias';
 
 class App extends Component {
   constructor(){
