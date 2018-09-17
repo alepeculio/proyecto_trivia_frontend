@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Usuario from './Usuario';
 
+const usuariosListaURL = 'http://localhost:1234/usuarios/listar?cantidad=10';
+const usuarioObtener = 'http://localhost:1234/usuarios/obtener?correo=';
+
 class ObtenerUsuarios extends Component{
 	constructor(){
 		super();
@@ -10,20 +13,26 @@ class ObtenerUsuarios extends Component{
 	}
 
 	componentDidMount(){
-		fetch('http://localhost:1234/usuarios/listar',{
-  			method: 'GET',
-  			headers:{
-  				'Content-Type': 'application/json; charset=utf-8'
-  			},
-		})
-		.then(response => {
-			return response.json();
-		})
-		.then(data => {
-			console.log(data.usuarios);
-			let usuarios = data.usuarios.map(u => {
-				return(
-						<Usuario
+		if(this.props.correo === undefined){
+			fetch(usuariosListaURL,{
+				method: 'GET',
+				headers:{
+					'Content-Type': 'application/json; charset=utf-8'
+				},
+			})
+			.then(response => {
+				return response.json();
+			})
+			.then(data => {
+				if(data.Error !== undefined){
+					console.log(data.Error);
+				}else if(data.Mensaje !== undefined){
+					console.log(data.Mensaje);
+				}else{
+					let usuarios = data.usuarios.map(u => {
+						return(
+							<Usuario
+							key = {u.id}
 							id = {u.id}
 							img = {u.img}
 							correo = {u.correo}
@@ -33,25 +42,67 @@ class ObtenerUsuarios extends Component{
 							tipo = {u.tipo}
 							mmrestantes = {u.mmrestantes}
 							puntaje = {u.puntaje}
-						/>
-					);
-				})
-			this.setState({usuarios: usuarios});
-		})
-		.catch(err => {
-			console.log(err);
-		});
+							/>
+							);
+					})
+					this.setState({usuarios: usuarios});
+				}})
+			.catch(err => {
+				console.log(err);
+			});
+		}else{
+			let correo = this.props.correo;
+
+			fetch(usuarioObtener+correo,{
+				method: 'GET',
+				headers:{
+					'Content-Type': 'application/json; charset=utf-8'
+				},
+			})
+			.then(response => {
+				return response.json();
+			})
+			.then(u => {
+				let usuario = devolverUsuario(u);
+				this.setState({usuario: usuario});
+			})
+			.catch(err => {
+				console.log(err);
+			});
+
+		}
 	}
 
 	render(){
 		return(
-			<table>
-				<thead>
-					<tr><th>Imagen</th><th>Id</th><th>Correo</th><th>Nombre</th><th>Apellido</th><th>Contraseña</th><th>Suscripción</th><th>Mano a mano restantes</th><th>Puntaje</th></tr>
-				</thead>
-				{this.state.usuarios}
-			</table>
-		);
+			<div className="usuarios_ranking">
+			<span className="titulo">Top 10 Ranking</span>
+			{this.state.usuario}
+			{this.state.usuarios}
+			</div>
+			);
+	}
+}
+
+function devolverUsuario(u){
+	if(u.Mensaje === undefined){
+		return (
+			<Usuario
+			id = {u.id}
+			img = {u.img}
+			correo = {u.correo}
+			nombre = {u.nombre}
+			apellido = {u.apellido}
+			pass = {u.pass}
+			tipo = {u.tipo}
+			mmrestantes = {u.mmrestantes}
+			puntaje = {u.puntaje}
+			/>
+			);
+	}else{
+		return (<Usuario
+			id= {u.Mensaje}
+			/>);
 	}
 }
 
