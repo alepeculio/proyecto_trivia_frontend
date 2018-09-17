@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Pregunta from './Pregunta';
+
 
 class PreguntasDiarias extends Component {
 
 	constructor () {
 		super();
-
 		let categorias = [
 			[ 'Geografía', { color: 'white', backgroundColor: '#1575cf' } ],
 			[ 'Historia', { color: 'white', backgroundColor: '#a6911b' } ],
@@ -31,7 +32,8 @@ class PreguntasDiarias extends Component {
 		
 		this.state = {
 			preguntas: preguntas,
-			cantPregs: categorias.length * preguntasPorCategoria
+			cantPregs: categorias.length * preguntasPorCategoria,
+			preguntas: preguntas
 		};
 	}
 
@@ -44,7 +46,7 @@ class PreguntasDiarias extends Component {
 		fetch( 'http://localhost:1234/preguntas/generarPreguntaDiaria', {
 			method: 'POST',
 			headers: {
-  				'Content-Type': 'application/json; charset=utf-8'
+				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify( {
 				ID_Usuario: "5b930d67dd0a701d6889bf98",
@@ -54,7 +56,18 @@ class PreguntasDiarias extends Component {
 		} ).then( res => {
 			return res.json();
 		} ).then( pregunta => {
-			// TODO: Quiza quitar por rendimiento
+
+			let a = pregunta.nueva.respuestas[0].split(",");
+
+			var b = <Pregunta
+			pregunta = {pregunta.nueva.pregunta}
+			correcta = {a[0]}
+			respuesta1 = {a[0]}
+			respuesta2 = {a[1]}
+			respuesta3 = {a[2]}
+			respuesta4 = {a[3]}
+			/>
+			this.setState({pregunta: b});
 			this.cargarPreguntasDiarias();
 		} ).catch( err => {
 			console.log( err );
@@ -116,6 +129,7 @@ class PreguntasDiarias extends Component {
 	render () {
 		return (
 			<div id="pdLista">
+			{this.state.pregunta}
 				<table>
 					{ this.state.preguntas.map( p => {
 						return (
@@ -141,4 +155,4 @@ class PreguntasDiarias extends Component {
 	}
 };
 
-export default PreguntasDiarias;
+		export default PreguntasDiarias;

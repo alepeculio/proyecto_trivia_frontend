@@ -10,10 +10,10 @@ class Usuario extends Component{
 			<span className="puntaje">{this.props.puntaje} pts.</span>
 			</div>
 			);
-		}
 	}
+}
 
-	export default Usuario;
+export default Usuario;
 
 	/*
 	<td><span>{this.props.id}</span></td>
