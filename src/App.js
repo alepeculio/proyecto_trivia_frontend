@@ -16,11 +16,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ObtenerUsuarios/>
-        <PreguntasDiarias />
+
+      <PreguntasDiarias />
       </div>
       );
-    }
   }
+}
 
-  export default App;
+export default App;
+

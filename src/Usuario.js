@@ -4,7 +4,7 @@ class Usuario extends Component{
 	
 	render(){ 
 		return(
-			<tbody>
+			<tbody >
 				<tr>
 					<td><img src={this.props.img} alt="imagen usuario"/></td>
 					<td><span>{this.props.id}</span></td>
