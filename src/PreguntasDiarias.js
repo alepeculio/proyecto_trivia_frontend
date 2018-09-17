@@ -117,24 +117,26 @@ class PreguntasDiarias extends Component {
 		return (
 			<div id="pdLista">
 				<table>
-					{ this.state.preguntas.map( p => {
-						return (
-							<tr>
-								<td>
-									{ p.posicion }
-								</td>
-								<td style = { p.estilo }>
-									{ p.categoria }
-								</td>
-								<td className="pdEstado">
-									{ p.estado }
-								</td>
-								<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
-									Responder
-								</td>
-							</tr>
-						);
-					} ) }
+					<tbody>
+						{ this.state.preguntas.map( p => {
+							return (
+								<tr>
+									<td>
+										{ p.posicion }
+									</td>
+									<td style = { p.estilo }>
+										{ p.categoria }
+									</td>
+									<td className="pdEstado">
+										{ p.estado }
+									</td>
+									<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
+										Responder
+									</td>
+								</tr>
+							);
+						} ) }
+					</tbody>
 				</table>
 			</div>
 		);
