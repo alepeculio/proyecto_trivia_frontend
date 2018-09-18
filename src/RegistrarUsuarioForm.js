@@ -14,11 +14,19 @@ class RegistrarUsuarioForm extends Component{
 	registrarUsuario(event){
 		event.preventDefault();
 
+		let pass = event.target.pass.value;
+		let confPass = event.target.confPass.value
+
+		if(pass !== confPass){
+			this.setState({error: 'Las contraseñas no coinciden'});
+			return;
+		}
+
 		const datos = new FormData();
 		datos.append('correo', event.target.correo.value);
 		datos.append('nombre',event.target.nombre.value);
 		datos.append('apellido', event.target.apellido.value);
-		datos.append('pass', event.target.pass.value);
+		datos.append('pass', pass);
 		datos.append('img', event.target.img.files[0]);
 
 		fetch(registrarUsuarioURL,{
@@ -30,7 +38,11 @@ class RegistrarUsuarioForm extends Component{
 		})
 		.then(data => {
 			if(data.Error !== undefined){
-				this.setState({error: 'El correo ingresado ya existe'});
+				if(data.Error.includes('duplicate key error')){
+					this.setState({error: 'El correo ingresado ya existe.'});
+				}else if(data.Error.includes('validation failed')){
+					this.setState({error: 'El correo ingresado es incorrecto.'});
+				}
 			}else{
 				this.props.registradoOk();
 			}
@@ -52,10 +64,11 @@ class RegistrarUsuarioForm extends Component{
 			<div className="registrar_usuario_form">
 			<h2>Registrarse</h2>
 			<form method="post" encType="multipart/form-data" onSubmit = {this.registrarUsuario.bind(this)}>
-			<input required type="email" placeholder="Correo" name="correo"/>
+			<input autoFocus required type="email" placeholder="Correo" name="correo"/>
 			<input required type="text" placeholder="Nombre" name="nombre"/>
 			<input required type="text" placeholder="Apellido" name="apellido"/>
 			<input required type="password" placeholder="Contraseña" name="pass"/>
+			<input required type="password" placeholder="Confirmar contraseña" name="confPass"/>
 			<input type="file" placeholder="Imagen" name="img"/>
 			{error}
 			<button>Registrarse</button>

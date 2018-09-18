@@ -66,4 +66,14 @@ header button:hover{
  background-color: #071a6c;
  padding: 0;
 }
+
+@media screen and (max-width: 700px) {
+  header{
+    height: 70px;
+  }
+
+  .header-puntuacion{
+    top:40px;
+  }
+}
 /*[FIN Header] =================================================================*/

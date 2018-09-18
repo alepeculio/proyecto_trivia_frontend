@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 class Usuario extends Component{
 	
-	render(){ 
+	render(){
+		let usuario = this.props.usuario;
 		return(
 			<div className="usuario">
-			<img src={this.props.img} alt="Imagen usuario"/>
-			<span className="nombre">{this.props.nombre} {this.props.apellido}</span>
-			<span className="puntaje">{this.props.puntaje} pts.</span>
+			<img src={usuario.img} alt="Imagen usuario"/>
+			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
+			<span className="puntaje">{usuario.puntaje} pts.</span>
 			</div>
 			);
 	}
@@ -16,10 +17,9 @@ class Usuario extends Component{
 export default Usuario;
 
 	/*
-	<td><span>{this.props.id}</span></td>
-	<td><span>{this.props.correo}</span></td>
-
-	<td><span>{this.props.pass}</span></td>
-	<td><span>{this.props.tipo}</span></td>
-	<td><span>{this.props.mmrestantes}</span></td>
+	<td><span>{usuario.id}</span></td>
+	<td><span>{usuario.correo}</span></td>
+	<td><span>{usuario.pass}</span></td>
+	<td><span>{usuario.tipo}</span></td>
+	<td><span>{usuario.mmrestantes}</span></td>
 	*/

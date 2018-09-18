@@ -5,13 +5,12 @@ import RegistrarUsuarioForm from './RegistrarUsuarioForm';
 import IniciarSesionForm from './IniciarSesionForm';
 import PreguntasDiarias from './PreguntasDiarias';
 import Header from './Header';
+import Mensaje from './Mensaje';
 
 class App extends Component {
   constructor(){
     super();
-    this.state = {
-      mensaje:false
-    }
+    this.state = {};
   }
 
   componentDidMount(){
@@ -28,11 +27,8 @@ class App extends Component {
           iniciarSesion: false
         });
       }else{
-        this.setState({
-          usuario: undefined,
-          registrarse: false,
-          iniciarSesion: true
-        });
+        this.setState({usuario: undefined});
+        this.mostrarIniciarSesion();
       }
     }else{
       this.setState({
@@ -46,12 +42,9 @@ class App extends Component {
   }
 
   cerrarSesion(){
-    this.setState({
-      usuario:undefined,
-      registrarse: false,
-      iniciarSesion: true
-    });
+    this.setState({usuario:undefined});
     sessionStorage.removeItem('usuario');
+    this.mostrarIniciarSesion();
   }
 
   registradoOk(){
@@ -78,7 +71,6 @@ class App extends Component {
   render() {
     let estaLogueado = this.state.usuario !== undefined
     let header;
-    let mensaje = '';
     let iniciarSesionForm;
     let registrarUsuarioForm;
     let preguntasDiarias;
@@ -103,21 +95,18 @@ class App extends Component {
      registrarUsuarioForm =  '';
    }
 
-   if(this.state.mensaje){
-    mensaje = <span>{this.state.mensaje}</span>
-  }
 
-  return (
+   return (
     <div>
     {header}
-    <h2>{mensaje}</h2>
+    <Mensaje mensaje = {this.state.mensaje}/>
     {iniciarSesionForm}
     {registrarUsuarioForm}
-    <RankingUsuarios/>
     {preguntasDiarias}
+    <RankingUsuarios/>
     </div>
     );
-}
+  }
 }
 
 

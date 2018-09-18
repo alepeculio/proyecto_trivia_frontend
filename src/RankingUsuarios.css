@@ -115,14 +115,6 @@
 }
 
 @media screen and (max-width: 700px) {
-  header{
-    height: 70px;
-  }
-
-  .header-puntuacion{
-    top:40px;
-  }
-
   .usuarios_ranking {
     width: 60%;
   }

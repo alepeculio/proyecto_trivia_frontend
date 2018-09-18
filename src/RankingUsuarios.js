@@ -34,20 +34,9 @@ class RankingUsuarios extends Component{
 			}else{
 				let usuarios = data.usuarios.map(u => {
 					return(
-						<Usuario
-						key = {u.id}
-						id = {u.id}
-						img = {u.img}
-						correo = {u.correo}
-						nombre = {u.nombre}
-						apellido = {u.apellido}
-						pass = {u.pass}
-						tipo = {u.tipo}
-						mmrestantes = {u.mmrestantes}
-						puntaje = {u.puntaje}
-						/>
+						<Usuario key={u.id} usuario = {u}/>
 						);
-				})
+				});
 				this.setState({usuarios: usuarios});
 			}})
 		.catch(err => {
