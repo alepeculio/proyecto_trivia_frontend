@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Pregunta from './Pregunta';
-
+import './PreguntasDiarias.css';
 
 class PreguntasDiarias extends Component {
 

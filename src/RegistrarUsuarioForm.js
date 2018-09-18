@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './RegistrarUsuarioForm.css';
 
 const registrarUsuarioURL = 'http://localhost:1234/usuarios/registro';
 

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import ObtenerUsuarios from './ObtenerUsuarios';
+import RankingUsuarios from './RankingUsuarios';
 import RegistrarUsuarioForm from './RegistrarUsuarioForm';
 import IniciarSesionForm from './IniciarSesionForm';
 import PreguntasDiarias from './PreguntasDiarias';
+import Header from './Header';
 
 class App extends Component {
   constructor(){
@@ -76,50 +77,47 @@ class App extends Component {
 
   render() {
     let estaLogueado = this.state.usuario !== undefined
-    let contenidoHeader;
+    let header;
+    let mensaje = '';
     let iniciarSesionForm;
     let registrarUsuarioForm;
-    let mensaje = '';
+    let preguntasDiarias;
+
 
     if(estaLogueado){
-      contenidoHeader =<div>
-      <img src={this.state.usuario.img} alt=""/>
-      <span className="header-nombre">{this.state.usuario.nombre} {this.state.usuario.apellido}</span>
-      <span className="header-puntuacion">Puntuación: {this.state.usuario.puntaje} pts.</span>
-      <button onClick = {this.cerrarSesion.bind(this)}>Cerrar Sesión</button>
-      </div>;
+      header = <Header usuario={this.state.usuario} cerrarSesion={this.cerrarSesion.bind(this)}/>;
       iniciarSesionForm = '';
       registrarUsuarioForm = '';
+      preguntasDiarias = <PreguntasDiarias/>;
     }
 
     if(this.state.registrarse){
-      registrarUsuarioForm =  <RegistrarUsuarioForm registradoOk = {this.registradoOk.bind(this)}/>
+      header = <Header iniciarSesion={this.mostrarIniciarSesion.bind(this)}/>;
       iniciarSesionForm = '';
-      contenidoHeader = <div><button onClick = {this.mostrarIniciarSesion.bind(this)}>Iniciar Sesión</button></div>
+      registrarUsuarioForm =  <RegistrarUsuarioForm registradoOk = {this.registradoOk.bind(this)}/>;
     }
 
     if(this.state.iniciarSesion){
-      registrarUsuarioForm =  '';
-      iniciarSesionForm = <IniciarSesionForm iniciarSesion = {this.iniciarSesion.bind(this)}/>
-      contenidoHeader = <div><button onClick = {this.mostrarRegistrarse.bind(this)}>Registrarse</button></div>
-    }
+     header = <Header registrarse={this.mostrarRegistrarse.bind(this)}/>;
+     iniciarSesionForm = <IniciarSesionForm iniciarSesion = {this.iniciarSesion.bind(this)}/>;
+     registrarUsuarioForm =  '';
+   }
 
-    if(this.state.mensaje){
-      mensaje = <span>{this.state.mensaje}</span>
-    }
-
-    return (
-      <div className="App">
-      <header>
-      {contenidoHeader}
-      </header>
-      <h2>{mensaje}</h2>
-      {iniciarSesionForm}
-      {registrarUsuarioForm}
-      <ObtenerUsuarios/>
-      </div>
-      );
+   if(this.state.mensaje){
+    mensaje = <span>{this.state.mensaje}</span>
   }
+
+  return (
+    <div>
+    {header}
+    <h2>{mensaje}</h2>
+    {iniciarSesionForm}
+    {registrarUsuarioForm}
+    <RankingUsuarios/>
+    {preguntasDiarias}
+    </div>
+    );
+}
 }
 
 
