@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router ,Redirect } from "react-router-dom";
 //import Usuario from './Usuario';
 import './IniciarSesionForm.css';
 
@@ -8,8 +9,16 @@ class IniciarSesionForm extends Component{
 	constructor(){
 		super();
 		this.state = {
-			error: false
+			error: false,
+			ok:false
 		}
+	}
+
+	componentDidMount(){
+		let u = localStorage.getItem('usuario');
+		if(u !== null && u !== undefined ){
+			this.setState({ok:true});
+		}	
 	}
 
 	iniciarSesion(e){
@@ -35,6 +44,7 @@ class IniciarSesionForm extends Component{
 				this.setState({error:true});
 			}else{
 				this.props.iniciarSesion(data);
+				this.setState({ok:true});
 			}
 		}).catch(err => {
 			console.log(err);
@@ -43,22 +53,26 @@ class IniciarSesionForm extends Component{
 
 	render(){
 		let error = '';
+
+		if(this.state.ok){
+			return <Redirect to='/inicio' />;
+		}
 		
 		if(this.state.error){
 			error = <span className="error">Correo o contraseña incorrectos</span>
 		}
 
 		return(
-			<div className="iniciar_sesion_form">
-			<h2>Iniciar Sesión</h2>
-			<form method="POST" onSubmit = {this.iniciarSesion.bind(this)}>
-			<input required type="email" autoFocus placeholder="Correo" name="correo"/>
-			<input required type="password" placeholder="Contraseña" name="pass"/>
-			{error}
-			<button>Iniciar Sesión</button>
-			</form>
-			</div>
-			);
+		<div className="iniciar_sesion_form">
+		<h2>Iniciar Sesión</h2>
+		<form method="POST" onSubmit = {this.iniciarSesion.bind(this)}>
+		<input required type="email" autoFocus placeholder="Correo" name="correo"/>
+		<input required type="password" placeholder="Contraseña" name="pass"/>
+		{error}
+		<button>Iniciar Sesión</button>
+		</form>
+		</div>
+		);
 	}
 }
 

@@ -4,7 +4,7 @@
 }
 
 .usuarios_ranking{
-  background-color: black;
+  background-color: rgba(0,0,0,.9);
   color: white;
   border-radius: 5px;
   width:40%;
@@ -12,7 +12,7 @@
   margin: 50px auto;
   padding: 10px 20px;
   transition-property: width;
-  transition-duration: 2s;
+  transition-duration: .5s;
   transition-timing-function: ease-in;
 }
 

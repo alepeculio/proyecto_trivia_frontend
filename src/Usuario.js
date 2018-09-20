@@ -15,11 +15,3 @@ class Usuario extends Component{
 }
 
 export default Usuario;
-
-	/*
-	<td><span>{usuario.id}</span></td>
-	<td><span>{usuario.correo}</span></td>
-	<td><span>{usuario.pass}</span></td>
-	<td><span>{usuario.tipo}</span></td>
-	<td><span>{usuario.mmrestantes}</span></td>
-	*/

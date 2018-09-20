@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router,Redirect} from "react-router-dom";
 import './RegistrarUsuarioForm.css';
 
 const registrarUsuarioURL = 'http://localhost:1234/usuarios/registro';
@@ -7,9 +8,19 @@ class RegistrarUsuarioForm extends Component{
 	constructor(){
 		super();
 		this.state = {
-			error: false
+			error: false,
+			irIniciarSesion: false,
+			irInicio:false
 		}
 	}
+
+	componentDidMount(){
+		let u = localStorage.getItem('usuario')
+		if(u !== null && u !== undefined){
+			this.setState({irInicio:true});
+		}	
+	}
+
 
 	registrarUsuario(event){
 		event.preventDefault();
@@ -44,7 +55,7 @@ class RegistrarUsuarioForm extends Component{
 					this.setState({error: 'El correo ingresado es incorrecto.'});
 				}
 			}else{
-				this.props.registradoOk();
+				this.setState({irIniciarSesion:true});
 			}
 			
 		})
@@ -54,8 +65,15 @@ class RegistrarUsuarioForm extends Component{
 	}
 
 	render() {
+		if(this.state.irInicio){
+			return <Redirect to='/inicio' />;
+		}
+
+		if(this.state.irIniciarSesion){
+			return <Redirect to='/iniciarSesion' />;
+		}
+
 		let error = '';
-		
 		if(this.state.error){
 			error = <span className="error">{this.state.error}</span>
 		}

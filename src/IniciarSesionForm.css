@@ -1,7 +1,7 @@
 /*[Iniciar sesion formulario] ==========================================================*/
 .iniciar_sesion_form{
   padding: 10px 20px;
-  background-color: black;
+  background-color: rgba(0,0,0,.9);
   border: 1px solid rgba(0,0,0,.5);
   border-radius: 5px;
   margin: 50px auto;
@@ -28,13 +28,13 @@
   font-weight: bold;
   cursor: pointer;
   color:white;
-  background-color: #2323cee6;
+  background-color: rgb(158, 23, 23);
   display: block;
   margin: 0 auto; 
 }
 
 .iniciar_sesion_form button:hover{
-  background-color: #071a6c;
+ background-color: rgb(109, 16, 16);
 }
 
 .iniciar_sesion_form .error{

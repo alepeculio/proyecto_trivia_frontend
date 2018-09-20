@@ -49,12 +49,14 @@ class RankingUsuarios extends Component{
 		if(usuarios === undefined){
 			usuarios = <div className="cargando">Cargando...</div>
 		}
+
 		return(
 			<div className="usuarios_ranking">
 			<span className="titulo">Top 10 Ranking</span>
 			{usuarios}
 			</div>
 			);
+		
 	}
 }
 

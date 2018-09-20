@@ -32,8 +32,7 @@ class PreguntasDiarias extends Component {
 		
 		this.state = {
 			preguntas: preguntas,
-			cantPregs: categorias.length * preguntasPorCategoria,
-			preguntas: preguntas
+			cantPregs: categorias.length * preguntasPorCategoria
 		};
 	}
 
@@ -134,7 +133,7 @@ class PreguntasDiarias extends Component {
 					<tbody>
 						{ this.state.preguntas.map( p => {
 							return (
-								<tr>
+								<tr key={p.posicion}>
 									<td>
 										{ p.posicion }
 									</td>
