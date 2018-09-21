@@ -12,26 +12,48 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      usuario:''
+      usuario:'cargando'
     };
   }
 
+  //Si ya habia un usuario logueado, obtenerlo con la id y setearlo en el estado.
   componentWillMount(){
-   let usuario = localStorage.getItem('usuario');
+   let usuario = localStorage.getItem('usuario_logueado');
    if(usuario !== null && usuario !== undefined){
-    this.setState({usuario:JSON.parse(usuario)});
+    fetch('http://localhost:1234/usuarios/obtener?id='+usuario,{
+      method: 'GET',
+      headers:{
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      if(data.Error !== undefined){
+        console.log(data.Error);
+      }else if(data.Mensaje !== undefined){
+        console.log(data.Mensaje);
+      }else{
+       this.setState({usuario:data});
+     }})
+    .catch(err => {
+      console.log(err);
+    });
   }else{
     this.setState({usuario: ''});
   }
 }
 
+//Se llama desde el componente IniciarSesionForm si se inicio correctamente.
 iniciarSesion(usuario){
-  localStorage.setItem('usuario', JSON.stringify(usuario));
+  localStorage.setItem('usuario_logueado', usuario.id);
   this.setState({usuario:usuario});
 }
 
+//Se llama desde el componente Header desde el boton cerrar sesion.
 cerrarSesion(){
-  localStorage.removeItem('usuario');
+  localStorage.removeItem('usuario_logueado');
   this.setState({usuario:''});
 }
 
@@ -41,37 +63,37 @@ render(){
     <div>
     <Router>
     <div>
-    <Route exact path="/" render={(props) => <Inicio  {...props}  usuario={usuario}  cerrarSesion={this.cerrarSesion.bind(this)} /> } />
-    <Route path="/inicio" render={(props) => <Inicio  {...props}  usuario={usuario}  cerrarSesion={this.cerrarSesion.bind(this)} /> } />
-    <Route path="/iniciarSesion" render={(props) => <IniciarSesion  {...props}  usuario={usuario} iniciarSesion={this.iniciarSesion.bind(this)}/> } />
-    <Route path="/registrarse" render={(props) => <Registrarse  {...props}  usuario={usuario} /> } />
+    <Route exact path="/" render={(props) => <Inicio usuario={usuario} cerrarSesion={this.cerrarSesion.bind(this)} {...props} /> } />
+    <Route path="/inicio" render={(props) => <Inicio usuario={usuario} cerrarSesion={this.cerrarSesion.bind(this)} {...props} /> } />
+    <Route path="/iniciarSesion" render={(props) => <IniciarSesion usuario={usuario} iniciarSesion={this.iniciarSesion.bind(this)} {...props} /> } />
+    <Route path="/registrarse" render={(props) => <Registrarse usuario={usuario} {...props} /> } />
     </div>
     </Router>
     </div>
     );
-}
+  }
 }
 
 const Inicio = (props) => (
-  <div>
-  <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
-  <RankingUsuarios/>
-  </div>
-  );
+<div>
+<Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
+<RankingUsuarios/>
+</div>
+);
 
 const IniciarSesion = (props) => (
-  <div>
-  <Header match = {props.match} usuario = {props.usuario}/>
-  <IniciarSesionForm iniciarSesion={props.iniciarSesion}/>
-  </div>
-  );
+<div>
+<Header match = {props.match} usuario = {props.usuario}/>
+<IniciarSesionForm iniciarSesion={props.iniciarSesion}/>
+</div>
+);
 
 const Registrarse = (props) => (
- <div>
- <Header match = {props.match} usuario = {props.usuario}/>
- <RegistrarUsuarioForm/>
- </div>
- );
+<div>
+<Header match = {props.match} usuario = {props.usuario}/>
+<RegistrarUsuarioForm/>
+</div>
+);
 
 export default App;
 

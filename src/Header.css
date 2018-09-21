@@ -76,6 +76,7 @@ header img{
   transition-property: top;
   transition-duration: .5s;
   transition-timing-function: ease-in;
+  font-weight: 600;
 }
 
 header .boton{
@@ -87,7 +88,7 @@ header .boton{
  text-decoration: none;
  color: white;
  padding: 5px;
- font-weight: 550;
+ font-weight: 600;
  font-size: 14px;
  cursor: pointer;
  transition-property: margin, width, height, background-color;
@@ -114,6 +115,13 @@ header .boton.registrarse:hover{
  background-color: rgb(7, 96, 67);
 }
 
+header .boton.cargando{
+  background-color: white;
+  color:grey;
+  cursor: default;
+  font-weight: 100;
+}
+
 @media screen and (max-width: 700px) {
   header{
 
@@ -123,4 +131,6 @@ header .boton.registrarse:hover{
 
   }
 }
+
+
 /*[FIN Header] =================================================================*/
