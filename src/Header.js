@@ -15,7 +15,7 @@ class Header extends Component {
 	render(){
 		let usuario = this.props.usuario;
 		let url = this.props.match.url;
-		let titulo = <span className="header-titulo"><Link to={'/inicio'}>TriviaTIP</Link></span>;
+		let titulo = <span title='Ir a inicio' className="header-titulo"><Link to={'/inicio'}>TriviaTIP</Link></span>;
 		let btnIniciarSesion = <Link className="boton iniciar-sesion" to={`/iniciarSesion`}>Iniciar Sesión</Link>;
 		let btnRegistrarse = <Link className="boton registrarse" to={`/registrarse`}>Registrarse</Link>;
 		

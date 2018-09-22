@@ -10,7 +10,7 @@ class IniciarSesionForm extends Component{
 		super();
 		this.state = {
 			error: false,
-			ok:false
+			irInicio:false
 		}
 	}
 
@@ -44,7 +44,7 @@ class IniciarSesionForm extends Component{
 				this.setState({error:true});
 			}else{
 				this.props.iniciarSesion(data);
-				this.setState({ok:true});
+				this.setState({irInicio:true});
 			}
 		}).catch(err => {
 			console.log(err);
@@ -54,7 +54,7 @@ class IniciarSesionForm extends Component{
 	render(){
 		let error = '';
 
-		if(this.state.ok){
+		if(this.state.irInicio){
 			return <Redirect to='/inicio' />;
 		}
 		

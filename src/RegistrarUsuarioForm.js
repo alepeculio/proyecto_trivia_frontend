@@ -70,7 +70,7 @@ class RegistrarUsuarioForm extends Component{
 		}
 
 		if(this.state.irIniciarSesion){
-			return <Redirect to='/iniciarSesion' />;
+			return <Redirect to={'/iniciarSesion/registro_ok'} />;
 		}
 
 		let error = '';

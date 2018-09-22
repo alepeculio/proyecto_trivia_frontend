@@ -5,8 +5,8 @@ import Header from './Header';
 import IniciarSesionForm from './IniciarSesionForm';
 import RegistrarUsuarioForm from './RegistrarUsuarioForm';
 import RankingUsuarios from './RankingUsuarios';
-//import PreguntasDiarias from './PreguntasDiarias';
-//import Mensaje from './Mensaje';
+import PreguntasDiarias from './PreguntasDiarias';
+import Mensaje from './Mensaje';
 
 class App extends Component {
   constructor(){
@@ -71,29 +71,40 @@ render(){
     </Router>
     </div>
     );
-  }
+}
 }
 
-const Inicio = (props) => (
-<div>
-<Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
-<RankingUsuarios/>
-</div>
-);
+const Inicio = (props) => {
+let usuario = props.usuario;
+let contenidoInicio
+if(usuario !== '' && usuario !== 'cargando' && usuario.tipo === 'Suscripcion'){
+  contenidoInicio = <PreguntasDiarias />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.
+}
+ return <div>
+ <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
+ {contenidoInicio}
+ <RankingUsuarios/>
+ </div>;
+};
 
-const IniciarSesion = (props) => (
-<div>
-<Header match = {props.match} usuario = {props.usuario}/>
-<IniciarSesionForm iniciarSesion={props.iniciarSesion}/>
-</div>
-);
+const IniciarSesion = (props) => {
+  let mensaje;
+  if(props.location.pathname === '/iniciarSesion/registro_ok'){
+    mensaje = <Mensaje mensaje='Bienvenido, inicie sesión para continuar'/>;
+  }
+  return <div>
+  <Header match = {props.match} usuario = {props.usuario}/>
+  {mensaje}
+  <IniciarSesionForm  match = {props.match} iniciarSesion={props.iniciarSesion} {...props}/>
+  </div>
+};
 
 const Registrarse = (props) => (
-<div>
-<Header match = {props.match} usuario = {props.usuario}/>
-<RegistrarUsuarioForm/>
-</div>
-);
+  <div>
+  <Header match = {props.match} usuario = {props.usuario}/>
+  <RegistrarUsuarioForm/>
+  </div>
+  );
 
 export default App;
 
