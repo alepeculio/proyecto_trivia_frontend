@@ -38,6 +38,7 @@ header{
 
 header > div{
  height: 40px;
+ margin-top:-20px;
  overflow: hidden;
  position: relative;
  animation-duration: .5s;
