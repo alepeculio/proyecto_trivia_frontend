@@ -10,7 +10,8 @@ class IniciarSesionForm extends Component{
 		super();
 		this.state = {
 			error: false,
-			irInicio:false
+			irInicio:false,
+			iniciando:false
 		}
 	}
 
@@ -23,6 +24,8 @@ class IniciarSesionForm extends Component{
 
 	iniciarSesion(e){
 		e.preventDefault();
+
+		this.setState({iniciando: true, error:false});
 
 		let datos = {
 			correo: e.target.correo.value,
@@ -41,7 +44,7 @@ class IniciarSesionForm extends Component{
 		})
 		.then(data => {
 			if(data.Mensaje !== undefined){
-				this.setState({error:true});
+				this.setState({error:true ,iniciando:false});
 			}else{
 				this.props.iniciarSesion(data);
 				this.setState({irInicio:true});
@@ -52,27 +55,34 @@ class IniciarSesionForm extends Component{
 	}
 
 	render(){
-		let error = '';
+		let error;
+		let boton;
 
 		if(this.state.irInicio){
 			return <Redirect to='/inicio' />;
 		}
-		
+
+		if(this.state.iniciando){
+			boton = <button disabled >Iniciando...</button>;
+		}else{
+			boton = <button>Iniciar Sesión</button>;
+		}
+
 		if(this.state.error){
 			error = <span className="error">Correo o contraseña incorrectos</span>
 		}
 
 		return(
-		<div className="iniciar_sesion_form">
-		<h2>Iniciar Sesión</h2>
-		<form method="POST" onSubmit = {this.iniciarSesion.bind(this)}>
-		<input required type="email" autoFocus placeholder="Correo" name="correo"/>
-		<input required type="password" placeholder="Contraseña" name="pass"/>
-		{error}
-		<button>Iniciar Sesión</button>
-		</form>
-		</div>
-		);
+			<div className="iniciar_sesion_form">
+			<h2>Iniciar Sesión</h2>
+			<form method="POST" onSubmit = {this.iniciarSesion.bind(this)}>
+			<input required type="email" autoFocus placeholder="Correo" name="correo"/>
+			<input required type="password" placeholder="Contraseña" name="pass"/>
+			{error}
+			{boton}
+			</form>
+			</div>
+			);
 	}
 }
 

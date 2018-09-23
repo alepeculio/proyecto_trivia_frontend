@@ -75,16 +75,20 @@ render(){
 }
 
 const Inicio = (props) => {
-let usuario = props.usuario;
-let contenidoInicio
-if(usuario !== '' && usuario !== 'cargando' && usuario.tipo === 'Suscripcion'){
-  contenidoInicio = <PreguntasDiarias />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.
-}
- return <div>
- <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
- {contenidoInicio}
- <RankingUsuarios/>
- </div>;
+  let usuario = props.usuario;
+  let contenidoInicio
+  if(usuario !== '' && usuario !== 'cargando'){
+    if(usuario.tipo === 'Suscripcion'){
+      contenidoInicio = <PreguntasDiarias />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.    
+    }else if(usuario.tipo === 'SinSuscripcion'){
+      contenidoInicio = <Mensaje mensaje='No tienes una suscripcion vigente, obtén una para comenzar a responder preguntas.'/>
+    }
+  }
+return <div>
+<Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
+{contenidoInicio}
+<RankingUsuarios/>
+</div>;
 };
 
 const IniciarSesion = (props) => {
