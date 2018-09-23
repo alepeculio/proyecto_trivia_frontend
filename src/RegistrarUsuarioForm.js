@@ -10,7 +10,8 @@ class RegistrarUsuarioForm extends Component{
 		this.state = {
 			error: false,
 			irIniciarSesion: false,
-			irInicio:false
+			irInicio:false,
+			registrandote:false
 		}
 	}
 
@@ -24,6 +25,8 @@ class RegistrarUsuarioForm extends Component{
 
 	registrarUsuario(event){
 		event.preventDefault();
+
+		this.setState({registrandote:true, error:false});
 
 		let pass = event.target.pass.value;
 		let confPass = event.target.confPass.value
@@ -50,9 +53,9 @@ class RegistrarUsuarioForm extends Component{
 		.then(data => {
 			if(data.Error !== undefined){
 				if(data.Error.includes('duplicate key error')){
-					this.setState({error: 'El correo ingresado ya existe.'});
+					this.setState({registrandote:false, error: 'El correo ingresado ya existe.'});
 				}else if(data.Error.includes('validation failed')){
-					this.setState({error: 'El correo ingresado es incorrecto.'});
+					this.setState({registrandote:false, error: 'El correo ingresado es incorrecto.'});
 				}
 			}else{
 				this.setState({irIniciarSesion:true});
@@ -73,9 +76,16 @@ class RegistrarUsuarioForm extends Component{
 			return <Redirect to={'/iniciarSesion/registro_ok'} />;
 		}
 
-		let error = '';
+		let error;
 		if(this.state.error){
 			error = <span className="error">{this.state.error}</span>
+		}
+
+		let boton;
+		if(this.state.registrandote){
+			boton = <button disabled style={{width: 'inherit'}} >Registrandote...</button> 
+		}else{
+			boton = <button>Registrarse</button>
 		}
 
 		return (
@@ -89,7 +99,7 @@ class RegistrarUsuarioForm extends Component{
 			<input required type="password" placeholder="Confirmar contraseña" name="confPass"/>
 			<input type="file" placeholder="Imagen" name="img"/>
 			{error}
-			<button>Registrarse</button>
+			{boton}
 			</form>
 			</div>
 			);
