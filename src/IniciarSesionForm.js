@@ -16,9 +16,9 @@ class IniciarSesionForm extends Component{
 	}
 
 	componentDidMount(){
-		let u = localStorage.getItem('usuario_logueado');
-		if(u !== null && u !== undefined ){
-			this.setState({ok:true});
+		let u = this.props.usuario;
+		if(u !== '' ){
+			this.setState({irInicio:true});
 		}	
 	}
 

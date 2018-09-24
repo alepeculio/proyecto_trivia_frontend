@@ -16,8 +16,8 @@ class RegistrarUsuarioForm extends Component{
 	}
 
 	componentDidMount(){
-		let u = localStorage.getItem('usuario_logueado')
-		if(u !== null && u !== undefined){
+		let u = this.props.usuario;
+		if(u !== ''){
 			this.setState({irInicio:true});
 		}	
 	}

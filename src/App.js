@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import Header from './Header';
 import IniciarSesionForm from './IniciarSesionForm';
 import RegistrarUsuarioForm from './RegistrarUsuarioForm';
@@ -12,7 +12,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      usuario:'cargando'
+      usuario:''
     };
   }
 
@@ -20,6 +20,7 @@ class App extends Component {
   componentWillMount(){
    let usuario = localStorage.getItem('usuario_logueado');
    if(usuario !== null && usuario !== undefined){
+    this.setState({usuario:'cargando'});
     fetch('http://localhost:1234/usuarios/obtener?id='+usuario,{
       method: 'GET',
       headers:{
@@ -40,8 +41,6 @@ class App extends Component {
     .catch(err => {
       console.log(err);
     });
-  }else{
-    this.setState({usuario: ''});
   }
 }
 
@@ -63,7 +62,7 @@ render(){
     <div>
     <Router>
     <div>
-    <Route exact path="/" render={(props) => <Inicio usuario={usuario} cerrarSesion={this.cerrarSesion.bind(this)} {...props} /> } />
+    <Route exact path="/" render={() => <Redirect to='/inicio' />} />
     <Route path="/inicio" render={(props) => <Inicio usuario={usuario} cerrarSesion={this.cerrarSesion.bind(this)} {...props} /> } />
     <Route path="/iniciarSesion" render={(props) => <IniciarSesion usuario={usuario} iniciarSesion={this.iniciarSesion.bind(this)} {...props} /> } />
     <Route path="/registrarse" render={(props) => <Registrarse usuario={usuario} {...props} /> } />
@@ -84,29 +83,29 @@ const Inicio = (props) => {
       contenidoInicio = <Mensaje mensaje='No tienes una suscripcion vigente, obtén una para comenzar a responder preguntas.'/>
     }
   }
-return <div>
-<Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
-{contenidoInicio}
-<RankingUsuarios/>
-</div>;
+  return <div>
+  <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
+  {contenidoInicio}
+  <RankingUsuarios/>
+  </div>;
 };
 
 const IniciarSesion = (props) => {
   let mensaje;
   if(props.location.pathname === '/iniciarSesion/registro_ok'){
-    mensaje = <Mensaje mensaje='Bienvenido, inicie sesión para continuar'/>;
+    mensaje = <Mensaje mensaje='Bienvenido, inicie sesión para continuar.'/>;
   }
   return <div>
   <Header match = {props.match} usuario = {props.usuario}/>
   {mensaje}
-  <IniciarSesionForm  match = {props.match} iniciarSesion={props.iniciarSesion} {...props}/>
+  <IniciarSesionForm iniciarSesion = {props.iniciarSesion} usuario = {props.usuario} {...props}/>
   </div>
 };
 
 const Registrarse = (props) => (
   <div>
   <Header match = {props.match} usuario = {props.usuario}/>
-  <RegistrarUsuarioForm/>
+  <RegistrarUsuarioForm usuario={props.usuario}/>
   </div>
   );
 
