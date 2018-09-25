@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link} from "react-router-dom";
+import { BrowserRouter as Router, Link, withRouter} from "react-router-dom";
 import './Header.css';
 
 class Header extends Component {
@@ -14,7 +14,8 @@ class Header extends Component {
 	
 	render(){
 		let usuario = this.props.usuario;
-		let url = this.props.match.url;
+		let url = this.props.location.pathname;
+		console.log( url );
 		let titulo = <span className="header-titulo"><Link  title='Ir a inicio' to={'/inicio'}>TriviaTIP</Link></span>;
 		let btnIniciarSesion = <Link className="boton iniciar-sesion" to={`/iniciarSesion`}>Iniciar Sesión</Link>;
 		let btnRegistrarse = <Link className="boton registrarse" to={`/registrarse`}>Registrarse</Link>;
@@ -44,4 +45,4 @@ class Header extends Component {
 		}
 	}
 }
-export default Header;
+export default withRouter( Header );

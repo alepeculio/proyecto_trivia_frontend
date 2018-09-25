@@ -62,13 +62,37 @@ render(){
     <div>
     <Router>
     <div>
+    <Header usuario = { usuario } cerrarSesion = { this.cerrarSesion.bind( this ) } />
+
     <Route exact path="/" render={() => <Redirect to='/inicio' />} />
-    <Route path="/inicio" render={(props) => <Inicio usuario={usuario} cerrarSesion={this.cerrarSesion.bind(this)} {...props} /> } />
+    <Route exact path="/inicio" component = { RankingUsuarios } />
     <Route path="/iniciarSesion" render={(props) => <IniciarSesion usuario={usuario} iniciarSesion={this.iniciarSesion.bind(this)} {...props} /> } />
     <Route path="/registrarse" render={(props) => <Registrarse usuario={usuario} {...props} /> } />
 
-    <Route path = "/inicio/ranking" component = { RankingUsuarios } />
-    <Route path = "/inicio/preguntas" component = { PreguntasDiarias } />
+    <Route path = "/ranking" component = { MenuInicial } />
+    <Route path = "/preguntas" component = { MenuInicial } />
+    <Route path = "/manoamano" component = { MenuInicial } />
+
+    <Route path = "/ranking" render = { ( props ) => {
+      if ( usuario === '' )
+        return ( <Redirect to='/inicio' /> );
+      else
+        return ( <RankingUsuarios /> );
+    } } />
+
+    <Route path = "/preguntas" render = { ( props ) => {
+      if ( usuario === '' )
+        return ( <Redirect to='/inicio' /> );
+      else
+        return ( <PreguntasDiarias /> );
+    } } />
+
+    <Route path = "/manoamano" render = { ( props ) => {
+      if ( usuario === '' )
+        return ( <Redirect to='/inicio' /> );
+      else
+        return ( <PreguntasDiarias /> );
+    } } />
 
     </div>
     </Router>
@@ -77,30 +101,12 @@ render(){
 }
 }
 
-const Inicio = (props) => {
-  let usuario = props.usuario;
-
-  let contenidoInicio
-  if(usuario !== '' && usuario !== 'cargando'){
-    if(true/*usuario.tipo === 'Suscripcion'*/){
-      contenidoInicio = <MenuInicial />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.    
-    }else if(usuario.tipo === 'SinSuscripcion'){
-      contenidoInicio = <div><Mensaje mensaje='No tienes una suscripcion vigente, obtén una para comenzar a responder preguntas.'/><RankingUsuarios/></div>
-    }
-  }
-  return <div>
-  <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
-  {contenidoInicio}
-  </div>;
-};
-
 const IniciarSesion = (props) => {
   let mensaje;
   if(props.location.pathname === '/iniciarSesion/registro_ok'){
     mensaje = <Mensaje mensaje='Bienvenido, inicie sesión para continuar.'/>;
   }
   return <div>
-  <Header match = {props.match} usuario = {props.usuario}/>
   {mensaje}
   <IniciarSesionForm iniciarSesion = {props.iniciarSesion} usuario = {props.usuario} {...props}/>
   </div>
@@ -108,7 +114,6 @@ const IniciarSesion = (props) => {
 
 const Registrarse = (props) => (
   <div>
-  <Header match = {props.match} usuario = {props.usuario}/>
   <RegistrarUsuarioForm usuario={props.usuario}/>
   </div>
 );
@@ -117,9 +122,9 @@ const MenuInicial = ( props ) => {
   return (
     <div id='menuInicial'>
       <div>
-        <Link to = '/inicio/ranking'>Ranking</Link>
-        <Link to = '/inicio/preguntas'>Preguntas diarias</Link>
-        <Link to = '/inicio/manoamano'>Mano a mano</Link>
+        <Link to = '/ranking'>Ranking</Link>
+        <Link to = '/preguntas'>Preguntas diarias</Link>
+        <Link to = '/manoamano'>Mano a mano</Link>
       </div>
     </div>
   );
