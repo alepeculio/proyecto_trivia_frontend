@@ -29,8 +29,9 @@ class RankingUsuarios extends Component{
 		.then(data => {
 			if(data.Error !== undefined){
 				console.log(data.Error);
+				this.setState({usuarios: ''});
 			}else if(data.Mensaje !== undefined){
-				console.log(data.Mensaje);
+				this.setState({usuarios: ''});
 			}else{
 				let usuarios = data.usuarios.map(u => {
 					return(
@@ -48,6 +49,8 @@ class RankingUsuarios extends Component{
 		let usuarios = this.state.usuarios;
 		if(usuarios === undefined){
 			usuarios = <div className="cargando">Cargando...</div>
+		}else if(usuarios === ''){
+			usuarios = <div className="cargando">No hay usuarios</div>
 		}
 
 		return(
