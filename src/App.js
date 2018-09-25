@@ -62,10 +62,11 @@ render(){
     <div>
     <Router>
     <div>
+    <Header usuario={usuario} cerrarSesion={this.cerrarSesion.bind(this)}/>
     <Route exact path="/" render={() => <Redirect to='/inicio' />} />
-    <Route path="/inicio" render={(props) => <Inicio usuario={usuario} cerrarSesion={this.cerrarSesion.bind(this)} {...props} /> } />
+    <Route exact path="/inicio" render={(props) => <RankingUsuarios usuario={usuario}/> } />
     <Route path="/iniciarSesion" render={(props) => <IniciarSesion usuario={usuario} iniciarSesion={this.iniciarSesion.bind(this)} {...props} /> } />
-    <Route path="/registrarse" render={(props) => <Registrarse usuario={usuario} {...props} /> } />
+    <Route path="/registrarse" render={(props) => <RegistrarUsuarioForm usuario={usuario} /> } />
     </div>
     </Router>
     </div>
@@ -73,41 +74,16 @@ render(){
 }
 }
 
-const Inicio = (props) => {
-  let usuario = props.usuario;
-  let contenidoInicio
-  if(usuario !== '' && usuario !== 'cargando'){
-    if(usuario.tipo === 'Suscripcion'){
-      contenidoInicio = <PreguntasDiarias />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.    
-    }else if(usuario.tipo === 'SinSuscripcion'){
-      contenidoInicio = <Mensaje mensaje='No tienes una suscripcion vigente, obtén una para comenzar a responder preguntas.'/>
-    }
-  }
-  return <div>
-  <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
-  {contenidoInicio}
-  <RankingUsuarios/>
-  </div>;
-};
-
 const IniciarSesion = (props) => {
   let mensaje;
   if(props.location.pathname === '/iniciarSesion/registro_ok'){
     mensaje = <Mensaje mensaje='Bienvenido, inicie sesión para continuar.'/>;
   }
-  return <div>
-  <Header match = {props.match} usuario = {props.usuario}/>
+  return (<div>
   {mensaje}
-  <IniciarSesionForm iniciarSesion = {props.iniciarSesion} usuario = {props.usuario} {...props}/>
-  </div>
+  <IniciarSesionForm iniciarSesion = {props.iniciarSesion} usuario = {props.usuario}/>
+  </div>);
 };
-
-const Registrarse = (props) => (
-  <div>
-  <Header match = {props.match} usuario = {props.usuario}/>
-  <RegistrarUsuarioForm usuario={props.usuario}/>
-  </div>
-  );
 
 export default App;
 

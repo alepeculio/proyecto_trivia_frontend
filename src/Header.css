@@ -83,7 +83,7 @@ header img{
 header .boton{
  position: absolute;
  right: 4px;
- top:calc(50% - 15px);
+ top:calc(50% - 16px);
  margin: 0;
  border-radius: 5px;
  text-decoration: none;
@@ -95,6 +95,10 @@ header .boton{
  transition-property: margin, width, height, background-color;
  transition-timing-function: ease-in;
  transition-duration: .1s;
+ border-bottom: 2px solid  rgba(0,0,0,.3);
+ border-right: 2px solid rgba(0,0,0,.3);
+ border-top: 2px solid rgba(255, 255, 255, 0.3);
+ border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 header .boton.segundo{
@@ -121,6 +125,10 @@ header .boton.cargando{
   color:grey;
   cursor: default;
   font-weight: 100;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 @media screen and (max-width: 700px) {
