@@ -82,16 +82,15 @@ const Inicio = (props) => {
 
   let contenidoInicio
   if(usuario !== '' && usuario !== 'cargando'){
-    if(usuario.tipo === 'Suscripcion'){
-      contenidoInicio = <PreguntasDiarias />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.    
+    if(true/*usuario.tipo === 'Suscripcion'*/){
+      contenidoInicio = <MenuInicial />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.    
     }else if(usuario.tipo === 'SinSuscripcion'){
-      contenidoInicio = <Mensaje mensaje='No tienes una suscripcion vigente, obtén una para comenzar a responder preguntas.'/>
+      contenidoInicio = <div><Mensaje mensaje='No tienes una suscripcion vigente, obtén una para comenzar a responder preguntas.'/><RankingUsuarios/></div>
     }
   }
   return <div>
   <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
   {contenidoInicio}
-  <RankingUsuarios/>
   </div>;
 };
 
