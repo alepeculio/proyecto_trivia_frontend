@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Header from './Header';
 import IniciarSesionForm from './IniciarSesionForm';
 import RegistrarUsuarioForm from './RegistrarUsuarioForm';
@@ -67,6 +67,10 @@ render(){
     <Route path="/inicio" render={(props) => <Inicio usuario={usuario} cerrarSesion={this.cerrarSesion.bind(this)} {...props} /> } />
     <Route path="/iniciarSesion" render={(props) => <IniciarSesion usuario={usuario} iniciarSesion={this.iniciarSesion.bind(this)} {...props} /> } />
     <Route path="/registrarse" render={(props) => <Registrarse usuario={usuario} {...props} /> } />
+
+    <Route path = "/inicio/ranking" component = { RankingUsuarios } />
+    <Route path = "/inicio/preguntas" component = { PreguntasDiarias } />
+
     </div>
     </Router>
     </div>
@@ -75,16 +79,19 @@ render(){
 }
 
 const Inicio = (props) => {
-let usuario = props.usuario;
-let contenidoInicio
-if(usuario !== '' && usuario !== 'cargando' && usuario.tipo === 'Suscripcion'){
-  contenidoInicio = <PreguntasDiarias />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.
-}
- return <div>
- <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
- {contenidoInicio}
- <RankingUsuarios/>
- </div>;
+  let usuario = props.usuario;
+  let contenidoInicio;
+  if(usuario !== '' && usuario !== 'cargando' /*&& usuario.tipo === 'Suscripcion'*/){
+    contenidoInicio = <MenuInicial />; //Agregar mas cosas para mostrar cuando hay un usuario logueado.
+  } else {
+    contenidoInicio = <RankingUsuarios/>
+  }
+  return (
+    <div>
+      <Header match = {props.match} usuario = {props.usuario} cerrarSesion={props.cerrarSesion}/>
+      { contenidoInicio }
+    </div>
+  );
 };
 
 const IniciarSesion = (props) => {
@@ -104,7 +111,19 @@ const Registrarse = (props) => (
   <Header match = {props.match} usuario = {props.usuario}/>
   <RegistrarUsuarioForm/>
   </div>
+);
+
+const MenuInicial = ( props ) => {
+  return (
+    <div id='menuInicial'>
+      <div>
+        <Link to = '/inicio/ranking'>Ranking</Link>
+        <Link to = '/inicio/preguntas'>Preguntas diarias</Link>
+        <Link to = '/inicio/manoamano'>Mano a mano</Link>
+      </div>
+    </div>
   );
+};
 
 export default App;
 
