@@ -141,6 +141,26 @@ class PreguntasDiarias extends Component {
 		render () {
 			return (
 				<div id="pdLista">
+				//i
+				<div className="ContenedorPregunta" id="pregunta" >
+				<div className="cabezera">
+				<font className="pregunta">Que pinta?</font>
+				</div>
+				<br></br>
+				<button className="button" type="button">Respuesta 1</button><br></br>
+				<button className="button"  type="button">Respuesta 1</button><br></br>
+				<button className="button"  type="button">Respuesta 1</button><br></br>
+				<button className="button"  type="button">Respuesta 1</button><br></br>
+				<h1>1</h1>
+				</div>
+
+				<div className='timer' style={shown}>
+				<label className="texto">La pregunta aparecera en </label>
+				<h1 className="contador">1</h1>
+				<div>
+				</div>
+				</div>
+				//f
 				{this.state.pregunta}
 				<table id="pdTabla" >
 				<tbody>
@@ -168,7 +188,7 @@ class PreguntasDiarias extends Component {
 					);
 				}
 			};
-		
 
-		export default PreguntasDiarias;
+
+			export default PreguntasDiarias;
 

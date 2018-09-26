@@ -143,11 +143,9 @@ class Pregunta extends Component{
 			<h1>{this.state.cronometro}</h1>
 			</div>
 
-
-
 			<div className='timer' style={shown}>
-			<label>La pregunta aparecera en </label>
-			<h1>{this.state.contador}</h1>
+			<label className="texto">La pregunta aparecera en </label>
+			<h1 className="contador">{this.state.contador}</h1>
 			<div>
 
 			</div>
