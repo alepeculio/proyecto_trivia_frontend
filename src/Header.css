@@ -1,0 +1,145 @@
+/*[Header] =================================================================*/
+
+@font-face {
+  font-family: Trivia;
+  src: url(fofbb_reg.otf);
+}
+
+:root{
+  --img: 35px;
+}
+
+
+header{
+  background-color: rgba(0,0,0,.9);
+  border-radius: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  min-width: 350px;
+  font-family: Helvetica;
+  transition-property: height;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
+}
+
+.header-titulo{
+  display: block;
+  font-family: Trivia;
+  font-size:30px;
+  text-align: left;
+  margin-left: 20%;
+}
+
+.header-titulo a{
+  color:white;
+  text-decoration: none;
+}
+
+header > div{
+ height: 40px;
+ margin-top:-20px;
+ overflow: hidden;
+ position: relative;
+ animation-duration: .5s;
+ animation-name: bajar;
+}
+
+@keyframes bajar {
+  from {height: 0}
+  to {height: 40px}
+}
+
+.header-nombre{
+  color:white;
+  position: absolute;
+  top: calc(50% - 8px);
+  left:calc(var(--img) + 10px);
+  font-weight: bold;
+}
+
+header img{
+  position: absolute;
+  left: 4px;
+  top:2.5px;
+  height: var(--img);
+  width: var(--img);
+  border-radius: 100%;
+}
+
+.header-puntuacion{
+  color:white;
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 0;
+  width: 100%;
+  font-size: 13px;
+  transition-property: top;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
+  font-weight: 600;
+}
+
+header .boton{
+ position: absolute;
+ right: 4px;
+ top:calc(50% - 16px);
+ margin: 0;
+ border-radius: 5px;
+ text-decoration: none;
+ color: white;
+ padding: 5px;
+ font-weight: 600;
+ font-size: 14px;
+ cursor: pointer;
+ transition-property: margin, width, height, background-color;
+ transition-timing-function: ease-in;
+ transition-duration: .1s;
+ border-bottom: 2px solid  rgba(0,0,0,.3);
+ border-right: 2px solid rgba(0,0,0,.3);
+ border-top: 2px solid rgba(255, 255, 255, 0.3);
+ border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+header .boton.segundo{
+  right: 101px;
+}
+
+header .boton.iniciar-sesion{
+ background-color: rgb(158, 23, 23);
+}
+
+header .boton.iniciar-sesion:hover{
+ background-color: rgb(109, 16, 16);
+}
+
+header .boton.registrarse{
+  background-color: rgb(15, 112, 80);
+}
+header .boton.registrarse:hover{
+ background-color: rgb(7, 96, 67);
+}
+
+header .boton.cargando{
+  background-color: white;
+  color:grey;
+  cursor: default;
+  font-weight: 100;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+@media screen and (max-width: 700px) {
+  header{
+
+  }
+
+  .header-puntuacion{
+
+  }
+}
+
+
+/*[FIN Header] =================================================================*/

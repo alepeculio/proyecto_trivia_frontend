@@ -1,0 +1,22 @@
+/*[Mensaje] ======================================*/
+
+.mensaje{
+	text-align: center;
+	display: block;
+	margin-top: 30px;
+}
+
+.mensaje-oculto{
+	display: none;
+}
+
+.mensaje span{
+  font-size: 20px;
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid;
+	padding: 2px 5px;
+	font-weight: bold;
+}
+
+/*[FIN Mensaje] ======================================*/

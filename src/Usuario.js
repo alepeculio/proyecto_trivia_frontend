@@ -2,22 +2,15 @@ import React, { Component } from 'react';
 
 class Usuario extends Component{
 	
-	render(){ 
+	render(){
+		let usuario = this.props.usuario;
 		return(
-			<tbody >
-				<tr>
-					<td><img src={this.props.img} alt="imagen usuario"/></td>
-					<td><span>{this.props.id}</span></td>
-					<td><span>{this.props.correo}</span></td>
-					<td><span>{this.props.nombre}</span></td>
-					<td><span>{this.props.apellido}</span></td>
-					<td><span>{this.props.pass}</span></td>
-					<td><span>{this.props.tipo}</span></td>
-					<td><span>{this.props.mmrestantes}</span></td>
-					<td><span>{this.props.puntaje}</span></td>
-				</tr>
-			</tbody>
-		);
+			<div className="usuario">
+			<img src={usuario.img} alt="Imagen usuario"/>
+			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
+			<span className="puntaje">{usuario.puntaje} pts.</span>
+			</div>
+			);
 	}
 }
 

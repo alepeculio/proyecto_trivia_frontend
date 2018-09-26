@@ -1,0 +1,148 @@
+/*[Ranking de usuarios] ============================================================*/
+:root{
+  --img-dimension:60px;
+}
+
+.usuarios_ranking{
+  background-color: rgba(0,0,0,.9);
+  color: white;
+  border-radius: 5px;
+  width:40%;
+  min-width: 300px;
+  margin: 50px auto;
+  padding: 10px 20px;
+  transition-property: width;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
+}
+
+.usuarios_ranking .titulo{
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin:5px 0;
+}
+
+.usuarios_ranking .usuario{
+  background-color: white;
+  color:black;
+  margin-bottom: 10px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+  /*box-shadow: 2px 2px #9f9494;*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.usuarios_ranking :nth-child(2){
+  background-color: #EDAF3A;
+}
+
+.usuarios_ranking :nth-child(3){
+  background-color: #C6C6C6;
+}
+
+.usuarios_ranking :nth-child(4){
+  background-color: #C37D55;
+}
+
+.usuarios_ranking .usuario img{
+  width:var(--img-dimension);
+  height: var(--img-dimension);
+  border-radius: 100%;
+  border-top: 1px solid rgba(255,255,255,.3);
+  border-left: 1px solid rgba(255,255,255,.3);
+  box-shadow: 2px 2px rgba(0,0,0,.3);
+}
+
+.usuarios_ranking .usuario .nombre{
+  font-weight: bold;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(var(--img-dimension) + 20px);
+  border-radius: 5px;
+  padding:5px;
+  /*border-top: 1px solid rgba(0,0,0,.4);
+  border-left: 1px solid rgba(0,0,0,.4);
+  box-shadow: 2px 2px rgba(0,0,0,.4);*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(256,256,256,.7);
+  transition-property: top;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
+}
+
+.usuarios_ranking .usuario .puntaje{
+  position: absolute;
+  top:calc(50% - 20px);
+  right:10px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 5px;
+  padding:5px;
+  /*border-top: 1px solid rgba(0,0,0,.4);
+  border-left: 1px solid rgba(0,0,0,.4);
+  box-shadow: 2px 2px rgba(0,0,0,.4);*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(256,256,256,.7);
+  text-shadow: 0 0 .5px blue;
+  transition-property: top,left,right;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
+}
+
+.usuarios_ranking .cargando{
+  background-color: white;
+  color:black;
+  margin-bottom: 10px;
+  padding: 10px 8px;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+  text-align: center;
+  color:grey;
+  font-size: 14px;
+  font-family: Helvetica;
+  /*box-shadow: 3px 3px #9f9494;*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+@media screen and (max-width: 1200px) {
+  .usuarios_ranking {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .usuarios_ranking {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .usuarios_ranking .usuario .nombre{
+    top:calc(50% - 32px);
+  }
+
+  .usuarios_ranking .usuario .puntaje{
+    top:50%;
+    left: calc(var(--img-dimension) + 20px);
+    right: unset;
+    padding: 3px;
+  }
+}

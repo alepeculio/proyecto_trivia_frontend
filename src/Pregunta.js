@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './Pregunta.css';
 
 //document.querySelector("#pdTabla").removeAttribute( 'hidden' );
 

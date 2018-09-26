@@ -1,0 +1,86 @@
+/* [Preguntas diarias] ============================================= */
+#pdLista {
+  text-align: center;
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#pdLista table {
+  margin: 0 auto;
+  border: none;
+  padding: 0 10px;
+  border-spacing: 0 10px;
+
+  background-color: black;
+}
+
+#pdLista table tr td {
+  border-top: 2px solid rgba(0, 0, 0, .3);
+  border-bottom: 2px solid rgba(255, 255, 255, .3);
+  padding: 8px 10px;
+
+  background-color: rgb(230, 230, 230);
+}
+
+#pdLista table tr td:nth-child(1) {
+  padding-left: 4px;
+  padding-right: 4px;
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  border-left: 2px solid rgba(0, 0, 0, .3);
+}
+
+#pdLista table tr td:nth-child(2) {
+  width: 200px;
+
+  text-align: left;
+  padding-left: 25px;
+
+  border-top: 2px solid rgba(255, 255, 255, .3);
+  border-bottom: 2px solid rgba(0, 0, 0, .3);
+}
+
+#pdLista table tr td:nth-child(3),
+#pdLista table tr td:nth-child(4) {
+  width: 100px;
+
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  border-right: 2px solid rgba(255, 255, 255, .3);
+}
+
+#pdLista table tr td:nth-child(4):hover {
+  cursor: pointer;
+
+  border-top: 2px solid rgba(0, 0, 0, .3);
+  border-bottom: 2px solid rgba(255, 255, 255, .3);
+  border-right: 2px solid rgba(255, 255, 255, .3);
+
+  background-color: rgb(230, 230, 230) !important;;
+  color: black !important;;
+}
+
+#pdLista table tr td:nth-child(3).correcta {
+  color: rgb(25, 200, 25);
+  font-weight: bold;
+}
+
+#pdLista table tr td:nth-child(3).incorrecta {
+  color: rgb(200, 25, 25);
+  font-weight: bold;
+}
+
+#pdLista table tr td:nth-child(4) {
+  border-top: 2px solid rgba(255, 255, 255, .3);
+  border-bottom: 2px solid rgba(0, 0, 0, .3);
+  border-right: 2px solid rgba(0, 0, 0, .3);
+}
+
+/* [Fin preguntas diarias] ============================================= */
