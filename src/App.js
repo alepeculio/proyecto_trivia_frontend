@@ -98,7 +98,7 @@ render(){
     </Router>
     </div>
     );
-}
+ }
 }
 
 const IniciarSesion = (props) => {
