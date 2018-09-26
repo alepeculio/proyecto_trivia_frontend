@@ -63,6 +63,9 @@ img{
   to {top: 0; opacity: 1}
 }
 
+body {
+  background-color: rgba(66, 160, 255, .85);
+}
 
 /* [Menu Inicial] ============================================= */
 
@@ -115,8 +118,14 @@ img{
   text-align: center;
 }
 
+.contenedor2,
 .contenedor {
   display: inline-block;
+}
+.contenedor2 {
+  width: 50%;
+
+  margin-top: 30px;
 }
 
 #pdLista table tr td:nth-child(3).correcta {

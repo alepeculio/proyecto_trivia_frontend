@@ -22,6 +22,11 @@
        -o-transition-timing-function: ease-in;
           transition-timing-function: ease-in;
 }
+.usuarios_ranking.inicio {
+  border-top: 1px solid white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
 
 .usuarios_ranking .titulo{
   font-size: 30px;
