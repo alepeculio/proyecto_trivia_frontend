@@ -87,6 +87,7 @@ class App extends Component {
 								return ( <div> <MenuInicial /> <RankingUsuarios /> </div> );
 						} } />
 
+<<<<<<< HEAD
 						<Route path = "/preguntas" render = { ( props ) => {
 							if ( usuario === '' )
 								return ( <Redirect to='/inicio' /> );
@@ -105,6 +106,13 @@ class App extends Component {
 			</div>
 		);
 	}
+=======
+    </div>
+    </Router>
+    </div>
+    );
+ }
+>>>>>>> 9a4cb749b63c11021b3407b06f933f2774dbb5cb
 }
 
 const MenuInicial = ( props ) => {
