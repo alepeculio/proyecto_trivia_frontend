@@ -47,6 +47,7 @@ img{
 /* [Preguntas diarias] ============================================= */
 #pdLista {
   cursor: default;
+}
 .close:hover,
 .close:focus {
   color: black;
