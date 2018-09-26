@@ -10,16 +10,14 @@ class IniciarSesionForm extends Component{
 		super();
 		this.state = {
 			error: false,
-			irInicio:false,
+			irRanking:false,
 			iniciando:false
 		}
 	}
 
-	componentDidMount(){
-		let u = this.props.usuario;
-		if(u !== '' ){
-			this.setState({irInicio:true});
-		}	
+	componentWillMount(){
+		if(this.props.usuario !== '' )
+			this.setState({irRanking:true});
 	}
 
 	iniciarSesion(e){
@@ -47,7 +45,7 @@ class IniciarSesionForm extends Component{
 				this.setState({error:true ,iniciando:false});
 			}else{
 				this.props.iniciarSesion(data);
-				this.setState({irInicio:true});
+				this.setState({irRanking:true});
 			}
 		}).catch(err => {
 			console.log(err);
@@ -58,7 +56,7 @@ class IniciarSesionForm extends Component{
 		let error;
 		let boton;
 
-		if(this.state.irInicio){
+		if(this.state.irRanking){
 			return <Redirect to='/ranking' />;
 		}
 

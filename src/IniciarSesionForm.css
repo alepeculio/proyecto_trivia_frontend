@@ -7,6 +7,11 @@
   margin: 50px auto;
   width: 30%;
   color:white;
+  text-align: right;
+}
+
+.iniciar_sesion_form h2{
+  text-align:left;
 }
 
 .iniciar_sesion_form *{
@@ -14,12 +19,16 @@
 }
 
 .iniciar_sesion_form input{
-  width: 100%;
+  width: calc(100% - 10px);
   margin-bottom:8px;
   border: none;
   padding: 7px 3px;
   background-color: white;
-  box-shadow: 3px 3px #9f9494
+  /*box-shadow: 3px 3px #9f9494*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .iniciar_sesion_form button{
@@ -29,8 +38,12 @@
   cursor: pointer;
   color:white;
   background-color: rgb(158, 23, 23);
-  display: block;
-  margin: 0 auto; 
+  display: inline-block;
+  margin-top:10px;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .iniciar_sesion_form button:hover{
@@ -39,14 +52,18 @@
 
 .iniciar_sesion_form .error{
   color:red;
-  width: 100%;
+  width: calc(100% - 10px);
   display: block;
   margin-bottom: 8px;
   background-color: white;
   padding: 2px;
   text-align: center;
   font-weight: bold;
-  box-shadow: 3px 3px #9f9494
+  /*box-shadow: 3px 3px #9f9494;*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 /*FIN [Iniciar sesion formulario] ==========================================================*/
