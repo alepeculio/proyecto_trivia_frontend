@@ -10,16 +10,14 @@ class RegistrarUsuarioForm extends Component{
 		this.state = {
 			error: false,
 			irIniciarSesion: false,
-			irInicio:false,
+			irRanking:false,
 			registrandote:false
 		}
 	}
 
-	componentDidMount(){
-		let u = this.props.usuario;
-		if(u !== ''){
-			this.setState({irInicio:true});
-		}	
+	componentWillMount(){
+		if(this.props.usuario !== '')
+			this.setState({irRanking:true});
 	}
 
 
@@ -68,8 +66,8 @@ class RegistrarUsuarioForm extends Component{
 	}
 
 	render() {
-		if(this.state.irInicio){
-			return <Redirect to='/inicio' />;
+		if(this.state.irRanking){
+			return <Redirect to='/ranking' />;
 		}
 
 		if(this.state.irIniciarSesion){

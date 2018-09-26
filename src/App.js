@@ -66,7 +66,18 @@ render(){
 
     <Route exact path="/" render={() => <Redirect to='/inicio' />} />
     <Route exact path="/inicio" component = { RankingUsuarios } />
-    <Route path="/iniciarSesion" render={ (props) => <IniciarSesion usuario = { usuario } iniciarSesion = { this.iniciarSesion.bind(this) } { ...props } /> } />
+    
+    <Route path="/iniciarSesion" render={ (props) => {
+      let mensaje;
+      if(props.location.pathname === '/iniciarSesion/registro_ok')
+        mensaje = <Mensaje mensaje='Bienvenido, inicie sesión para continuar.'/>;
+      
+      return (<div>
+        {mensaje}
+        <IniciarSesionForm iniciarSesion = {this.iniciarSesion.bind(this)} usuario = {usuario}/>
+        </div>);
+    }} />
+    
     <Route path="/registrarse" render={ (props) => <RegistrarUsuarioForm usuario = { usuario } /> } />
 
     <Route path = "/ranking" component = { MenuInicial } />
@@ -101,28 +112,16 @@ render(){
 }
 }
 
-const IniciarSesion = (props) => {
-  let mensaje;
-  if(props.location.pathname === '/iniciarSesion/registro_ok'){
-    mensaje = <Mensaje mensaje='Bienvenido, inicie sesión para continuar.'/>;
-  }
-  return (<div>
-  {mensaje}
-  <IniciarSesionForm iniciarSesion = {props.iniciarSesion} usuario = {props.usuario}/>
-  </div>);
-};
-
-
 const MenuInicial = ( props ) => {
   return (
     <div id='menuInicial'>
-      <div>
-        <Link to = '/ranking'>Ranking</Link>
-        <Link to = '/preguntas'>Preguntas diarias</Link>
-        <Link to = '/manoamano'>Mano a mano</Link>
-      </div>
+    <div>
+    <Link to = '/ranking'>Ranking</Link>
+    <Link to = '/preguntas'>Preguntas diarias</Link>
+    <Link to = '/manoamano'>Mano a mano</Link>
     </div>
-  );
+    </div>
+    );
 };
 
 export default App;
