@@ -87,22 +87,28 @@ render(){
     <Route path = "/ranking" render = { ( props ) => {
       if ( usuario === '' )
         return ( <Redirect to='/inicio' /> );
-      else
+      else{
+        this.pestania( "linkRanking" );
         return ( <RankingUsuarios /> );
+      }
     } } />
 
     <Route path = "/preguntas" render = { ( props ) => {
       if ( usuario === '' )
         return ( <Redirect to='/inicio' /> );
-      else
+      else {
+        this.pestania( "linkPreguntas" );
         return ( <PreguntasDiarias /> );
+      }
     } } />
 
     <Route path = "/manoamano" render = { ( props ) => {
       if ( usuario === '' )
         return ( <Redirect to='/inicio' /> );
-      else
+      else {
+        this.pestania( "linkManoAMano" );
         return ( <PreguntasDiarias /> );
+      }
     } } />
 
     </div>
@@ -116,9 +122,9 @@ const MenuInicial = ( props ) => {
   return (
     <div id='menuInicial'>
     <div>
-    <Link to = '/ranking'>Ranking</Link>
-    <Link to = '/preguntas'>Preguntas diarias</Link>
-    <Link to = '/manoamano'>Mano a mano</Link>
+    <Link to = '/ranking' id="linkRanking">Ranking</Link>
+    <Link to = '/preguntas' id="linkPreguntas">Preguntas diarias</Link>
+    <Link to = '/manoamano' id="linkManoAMano">Mano a mano</Link>
     </div>
     </div>
     );

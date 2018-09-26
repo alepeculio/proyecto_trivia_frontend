@@ -66,21 +66,32 @@ body{
   display: inline-block;
   margin: 0 auto;
   text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  
-  background-color: black;
 }
 
 #menuInicial > div > a {
+  font-size: 25px;
   color: black;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin: 5px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 15px 15px 5px 15px;
+  margin: 0 .5px;
   display: inline-block;
   background-color: white;
+  
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+#menuInicial > div > a:hover,
+#menuInicial > div > a.activo {
+  box-sizing: border-box;
+  background-color: rgba(66, 160, 255, 1);
+  color: white;
+  border-top: 4px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
 
 /* [Fin Menu Inicial] ============================================= */
