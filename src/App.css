@@ -75,7 +75,7 @@ body{
   cursor: pointer;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  padding: 15px 15px 5px 15px;
+  padding: 15px 35px 5px 35px;
   margin: 0 .5px;
   display: inline-block;
   background-color: white;
@@ -86,12 +86,21 @@ body{
 
 #menuInicial > div > a:hover,
 #menuInicial > div > a.activo {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-color: rgba(66, 160, 255, 1);
   color: white;
-  border-top: 4px solid white;
+  border-top: 5px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
+}
+
+.padre {
+  text-align: center;
+}
+
+.contenedor {
+  display: inline-block;
 }
 
 /* [Fin Menu Inicial] ============================================= */
