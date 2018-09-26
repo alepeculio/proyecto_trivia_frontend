@@ -55,7 +55,6 @@ class RankingUsuarios extends Component{
 
 		return(
 			<div className="usuarios_ranking">
-			<span className="titulo">Top 10 Ranking</span>
 			{usuarios}
 			</div>
 			);
