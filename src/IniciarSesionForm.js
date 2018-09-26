@@ -59,7 +59,7 @@ class IniciarSesionForm extends Component{
 		let boton;
 
 		if(this.state.irInicio){
-			return <Redirect to='/inicio' />;
+			return <Redirect to='/ranking' />;
 		}
 
 		if(this.state.iniciando){
