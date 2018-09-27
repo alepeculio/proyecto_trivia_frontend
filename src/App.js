@@ -56,6 +56,33 @@ class App extends Component {
 		this.setState({usuario:''});
 	}
 
+  pestania( p ) {
+    let ranking = document.querySelector( "#linkRanking" );
+    let preguntas = document.querySelector( "#linkPreguntas" );
+    let manoamano = document.querySelector( "#linkManoAMano" );
+
+    if ( ranking ) {
+      ranking.classList.remove( "activo" );
+
+      if ( p === "linkRanking" )
+        ranking.classList.add( "activo" );
+    }
+
+    if ( preguntas ) {
+      preguntas.classList.remove( "activo" );
+
+      if ( p === "linkPreguntas" )
+        preguntas.classList.add( "activo" );
+    }
+
+    if ( manoamano ){
+      manoamano.classList.remove( "activo" );
+
+      if ( p === "linkManoAMano" )
+        manoamano.classList.add( "activo" );
+    }
+  }
+
 	render(){
 		let usuario = this.state.usuario;
 		return(
@@ -65,7 +92,9 @@ class App extends Component {
 						<Header usuario = { usuario } cerrarSesion = { this.cerrarSesion.bind( this ) } />
 
 						<Route exact path="/" render={() => <Redirect to='/inicio' />} />
-						<Route exact path="/inicio" component = { RankingUsuarios } />
+						<Route exact path="/inicio" component = { () => {
+              				return ( <div className = "padre"> <div className = "contenedor2"> <RankingUsuarios /> </div> </div> );
+            			} } />
 
 						<Route path="/iniciarSesion" render={ (props) => {
 							let mensaje;
@@ -84,21 +113,21 @@ class App extends Component {
 							if ( usuario === '' )
 								return ( <Redirect to='/inicio' /> );
 							else
-								return ( <div> <MenuInicial /> <RankingUsuarios /> </div> );
+								return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkRanking" } /> <RankingUsuarios /> </div> </div> );
 						} } />
 
 						<Route path = "/preguntas" render = { ( props ) => {
 							if ( usuario === '' )
 								return ( <Redirect to='/inicio' /> );
 							else
-								return ( <div> <MenuInicial /> <PreguntasDiarias /> </div> );
+								return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias /> </div> </div> );
 						} } />
 
 						<Route path = "/manoamano" render = { ( props ) => {
 							if ( usuario === '' )
 								return ( <Redirect to='/inicio' /> );
 							else
-								return ( <div> <MenuInicial /> <PreguntasDiarias /> </div> );
+								return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <PreguntasDiarias /> </div> </div> );
 						} } />
 					</div>
 				</Router>
@@ -108,15 +137,16 @@ class App extends Component {
 }
 
 const MenuInicial = ( props ) => {
-	return (
-		<div id='menuInicial'>
-			<div>
-				<Link to = '/ranking'>Ranking</Link>
-				<Link to = '/preguntas'>Preguntas diarias</Link>
-				<Link to = '/manoamano'>Mano a mano</Link>
-			</div>
-		</div>
-	);
+  console.log( props );
+  return (
+    <div id='menuInicial'>
+    <div>
+    <Link to = '/ranking' id="linkRanking" className = { props.link === "linkRanking" ? "activo" : "" }>Ranking</Link>
+    <Link to = '/preguntas' id="linkPreguntas" className = { props.link === "linkPreguntas" ? "activo" : "" }>Preguntas diarias</Link>
+    <Link to = '/manoamano' id="linkManoAMano" className = { props.link === "linkManoAMano" ? "activo" : "" }>Mano a mano</Link>
+    </div>
+    </div>
+  );
 };
 
 export default App;
