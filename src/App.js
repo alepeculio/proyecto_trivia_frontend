@@ -46,7 +46,8 @@ class App extends Component {
 
 	//Se llama desde el componente IniciarSesionForm si se inicio correctamente.
 	iniciarSesion(usuario){
-		localStorage.setItem('usuario_logueado', usuario.id);
+		localStorage.setItem('usuario_logueado', usuario._id);
+		localStorage.setItem( 'usuario_id', usuario._id );
 		this.setState({usuario:usuario});
 	}
 
@@ -137,7 +138,6 @@ class App extends Component {
 }
 
 const MenuInicial = ( props ) => {
-  console.log( props );
   return (
     <div id='menuInicial'>
     <div>

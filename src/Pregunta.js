@@ -55,13 +55,14 @@ class Pregunta extends Component{
 
 	inicio($var){
 
+		let usuario_id = localStorage.getItem( 'usuario_id' );
 		fetch( 'http://localhost:1234/preguntas/usuarioRespondio', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify( {
-				ID_Usuario: "5b930d67dd0a701d6889bf98",
+				ID_Usuario: usuario_id,
 				ID_Pregunta: $var,
 				estado:"NoRespondio",
 				tiempo:0
@@ -85,13 +86,14 @@ class Pregunta extends Component{
 			estado = "Incorrecta"
 		}
 
+		let usuario_id = localStorage.getItem( 'usuario_id' );
 		fetch( 'http://localhost:1234/preguntas/cambiarEstado', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify( {
-				ID_Usuario: "5b930d67dd0a701d6889bf98",
+				ID_Usuario: usuario_id,
 				ID_Pregunta: this.props.id_Pregunta,
 				estado:estado,
 				tiempo:tiempo

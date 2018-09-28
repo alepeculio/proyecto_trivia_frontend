@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Pregunta from './Pregunta';
 import './PreguntasDiarias.css';
 
-
 class PreguntasDiarias extends Component {
 
 
@@ -45,13 +44,15 @@ class PreguntasDiarias extends Component {
 			items[posicion - 1].querySelector( '.pdEstado' ).removeAttribute( 'hidden' );
 			items[posicion - 1].querySelector( '.pdResponder' ).setAttribute( 'hidden', true );
 
+			let usuario_id = localStorage.getItem( 'usuario_id' );
+
 			fetch( 'http://localhost:1234/preguntas/generarPreguntaDiaria', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
 				},
 				body: JSON.stringify( {
-					ID_Usuario: "5b930d67dd0a701d6889bf98",
+					ID_Usuario: usuario_id,
 					categoria: "Geografía",
 					posicion: posicion
 				} )
@@ -76,14 +77,14 @@ class PreguntasDiarias extends Component {
 			} );
 		}
 
-
-		componentDidMount () {
+		componentWillMount() {
 			this.cargarPreguntasDiarias();
 		}
 
 
 		cargarPreguntasDiarias () {
-			fetch( 'http://localhost:1234/preguntas/preguntasDiarias?ID_Usuario=5b930d67dd0a701d6889bf98', {
+			let usuario_id = localStorage.getItem( 'usuario_id' );
+			fetch( 'http://localhost:1234/preguntas/preguntasDiarias?ID_Usuario=' + usuario_id, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
