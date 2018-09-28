@@ -9,9 +9,9 @@ class Pregunta extends Component{
 
 		super();
 		this.state = {
-			contador: 5,
+			contador: 5,//tiempo antes de que aparezca la pregunta
 			shown: true,
-			cronometro: 5,
+			cronometro: 10,//tiempo para responder
 			inicio: false,
 			lista : []
 
@@ -54,7 +54,7 @@ class Pregunta extends Component{
 	}
 
 	inicio($var){
-
+		let usuario = localStorage.getItem('usuario_logueado');
 		fetch( 'http://localhost:1234/preguntas/usuarioRespondio', {
 			method: 'POST',
 			headers: {

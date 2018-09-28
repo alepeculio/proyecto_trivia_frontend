@@ -44,7 +44,7 @@ class PreguntasDiarias extends Component {
 			items[posicion - 1].querySelector( '.pdEstado' ).innerHTML = 'Respondiendo...';
 			items[posicion - 1].querySelector( '.pdEstado' ).removeAttribute( 'hidden' );
 			items[posicion - 1].querySelector( '.pdResponder' ).setAttribute( 'hidden', true );
-
+			let usuario = localStorage.getItem('usuario_logueado');
 			fetch( 'http://localhost:1234/preguntas/generarPreguntaDiaria', {
 				method: 'POST',
 				headers: {
@@ -142,9 +142,6 @@ class PreguntasDiarias extends Component {
 		render () {
 			return (
 				<div id="pdLista">
-
-
-
 				{this.state.pregunta}
 				<table id="pdTabla" >
 				<tbody>

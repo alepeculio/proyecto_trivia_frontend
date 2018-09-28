@@ -75,6 +75,7 @@
 
 
 .wrapper {
+
   width: 100px; /* Set the size of the progress bar */
   height: 100px;
   position: absolute;
@@ -91,6 +92,7 @@
   border-radius: 50px;
   position: absolute;
   clip: rect(0px, 50px, 100px, 0px);
+
 }
 /* Using the data attributes for the animation selectors. */
 /* Base settings for all animated elements */

@@ -46,7 +46,7 @@ class App extends Component {
 
 	//Se llama desde el componente IniciarSesionForm si se inicio correctamente.
 	iniciarSesion(usuario){
-		localStorage.setItem('usuario_logueado', usuario.id);
+		localStorage.setItem('usuario_logueado', usuario._id);
 		this.setState({usuario:usuario});
 	}
 
