@@ -12,15 +12,9 @@
   border-top: none;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  -webkit-transition-property: width;
-  -o-transition-property: width;
   transition-property: width;
-  -webkit-transition-duration: .5s;
-       -o-transition-duration: .5s;
-          transition-duration: .5s;
-  -webkit-transition-timing-function: ease-in;
-       -o-transition-timing-function: ease-in;
-          transition-timing-function: ease-in;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
 }
 .usuarios_ranking.inicio {
   border-top: 1px solid white;
@@ -70,8 +64,7 @@
   border-radius: 100%;
   border-top: 1px solid rgba(255,255,255,.3);
   border-left: 1px solid rgba(255,255,255,.3);
-  -webkit-box-shadow: 2px 2px rgba(0,0,0,.3);
-          box-shadow: 2px 2px rgba(0,0,0,.3);
+  box-shadow: 2px 2px rgba(0,0,0,.3);
 }
 
 .usuarios_ranking .usuario .nombre{
@@ -89,15 +82,9 @@
   border-top: 2px solid rgba(255, 255, 255, 0.3);
   border-left: 2px solid rgba(255, 255, 255, 0.3);
   background-color: rgba(256,256,256,.7);
-  -webkit-transition-property: top;
-  -o-transition-property: top;
   transition-property: top;
-  -webkit-transition-duration: .5s;
-       -o-transition-duration: .5s;
-          transition-duration: .5s;
-  -webkit-transition-timing-function: ease-in;
-       -o-transition-timing-function: ease-in;
-          transition-timing-function: ease-in;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
 }
 
 .usuarios_ranking .usuario .puntaje{
@@ -117,15 +104,9 @@
   border-left: 2px solid rgba(255, 255, 255, 0.3);
   background-color: rgba(256,256,256,.7);
   text-shadow: 0 0 .5px blue;
-  -webkit-transition-property: top,left,right;
-  -o-transition-property: top,left,right;
   transition-property: top,left,right;
-  -webkit-transition-duration: .5s;
-       -o-transition-duration: .5s;
-          transition-duration: .5s;
-  -webkit-transition-timing-function: ease-in;
-       -o-transition-timing-function: ease-in;
-          transition-timing-function: ease-in;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
 }
 
 .usuarios_ranking .cargando{
