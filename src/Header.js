@@ -11,6 +11,8 @@ class Header extends Component {
 	cerrarSesion(){
 		this.props.cerrarSesion();
 	}
+
+	
 	
 	render(){
 		let usuario = this.props.usuario;
@@ -20,7 +22,7 @@ class Header extends Component {
 		let titulo;
 
 		if(usuario === ''){
-			titulo = <span className="header-titulo"><Link  title='Ir a inicio' to={'/inicio'}>TriviaTIP</Link></span>;
+			titulo =<Link className='header-titulo'  title='Ir a inicio' to={'/inicio'}><img src={require('./logo.png')} alt='logo'/></Link>;
 			if(url === '/iniciarSesion'){
 				return  <header>{titulo}{btnRegistrarse}</header>;
 			}else if(url === '/registrarse'){
@@ -31,14 +33,14 @@ class Header extends Component {
 		}else if(usuario === 'cargando'){
 			return  <header>{titulo}<span className='boton cargando'>Cargando...</span></header>;	
 		}else{
-			titulo = <span className="header-titulo"><Link  title='Ir al ranking' to={'/ranking'}>TriviaTIP</Link></span>;
+			titulo = <Link className='header-titulo log'  title='Ir al ranking' to={'/ranking'}><img src={require('./logo.png')} alt='logo'/></Link>;
 			return(
 				<header>
 				{titulo}
-				<div>
-				<img src={usuario.img} alt=""/>
-				<span className="header-nombre">{usuario.nombre} {usuario.apellido}</span>
-				<span className="header-puntuacion">Puntuación: {usuario.puntaje} pts.</span>
+				<div className="logueado">
+				<img className="imagen" src={usuario.img} alt=""/>
+				<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
+				<span className="puntuacion">Puntuación: {usuario.puntaje} pts.</span>
 				<a className="boton iniciar-sesion" onClick={this.cerrarSesion.bind(this)} >Cerrar Sesión</a>
 				</div>
 				</header>
@@ -47,5 +49,4 @@ class Header extends Component {
 	}
 	
 }
-
 export default withRouter( Header );

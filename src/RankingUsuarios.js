@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Usuario from './Usuario';
 import './RankingUsuarios.css';
+import { withRouter } from "react-router-dom";
 
 let usuariosListaURL = 'http://localhost:1234/usuarios/listar?cantidad=';
 
@@ -53,8 +54,14 @@ class RankingUsuarios extends Component{
 			usuarios = <div className="cargando">No hay usuarios</div>
 		}
 
+		let clase = 'usuarios_ranking';
+		if(this.props.location.pathname === '/inicio'){
+			clase += ' inicio';
+		}
+
+
 		return(
-			<div className="usuarios_ranking">
+			<div className={clase}>
 			{usuarios}
 			</div>
 			);
@@ -62,4 +69,4 @@ class RankingUsuarios extends Component{
 	}
 }
 
-export default RankingUsuarios;
+export default withRouter( RankingUsuarios );

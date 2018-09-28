@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Pregunta.css';
 
-//document.querySelector("#pdTabla").removeAttribute( 'hidden' );
+
 
 class Pregunta extends Component{
 
@@ -9,7 +9,7 @@ class Pregunta extends Component{
 
 		super();
 		this.state = {
-			contador: 2,
+			contador: 5,
 			shown: true,
 			cronometro: 5,
 			inicio: false,
@@ -131,6 +131,16 @@ class Pregunta extends Component{
 
 		return(
 			<div id="contenedor">
+			<div className='timer'  style={shown} >
+			<label className="texto">La pregunta aparecera en </label>
+			<br></br>
+			<font className="contador">{this.state.contador}</font>
+			<div className="wrapper" data-anim="base wrapper">
+			<div className="circle" data-anim="base left"></div>
+			<div className="circle" data-anim="base right"></div>
+			</div>
+			</div>
+
 			<div className="ContenedorPregunta" id="pregunta" style={hidden}>
 			<div className="cabezera">
 			<font className="pregunta">{this.props.pregunta}</font>
@@ -143,16 +153,7 @@ class Pregunta extends Component{
 			<h1>{this.state.cronometro}</h1>
 			</div>
 
-
-
-			<div className='timer' style={shown}>
-			<label>La pregunta aparecera en </label>
-			<h1>{this.state.contador}</h1>
-			<div>
-
-			</div>
-			</div>
-			
+ 
 
 			</div>
 

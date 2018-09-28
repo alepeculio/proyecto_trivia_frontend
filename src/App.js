@@ -93,8 +93,8 @@ class App extends Component {
 
 						<Route exact path="/" render={() => <Redirect to='/inicio' />} />
 						<Route exact path="/inicio" component = { () => {
-              return ( <div className = "padre"> <div className = "contenedor2"> <RankingUsuarios /> </div> </div> );
-            } } />
+              				return ( <div className = "padre"> <div className = "contenedor2"> <RankingUsuarios /> </div> </div> );
+            			} } />
 
 						<Route path="/iniciarSesion" render={ (props) => {
 							let mensaje;
@@ -134,7 +134,6 @@ class App extends Component {
 			</div>
 		);
 	}
-
 }
 
 const MenuInicial = ( props ) => {
