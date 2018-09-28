@@ -8,6 +8,8 @@ import RankingUsuarios from './RankingUsuarios';
 import PreguntasDiarias from './PreguntasDiarias';
 import Mensaje from './Mensaje';
 
+const meURL = 'http://localhost:1234/usuarios/authMe';
+
 class App extends Component {
 		constructor(){
 			super();
@@ -21,7 +23,25 @@ class App extends Component {
 	  	let usuario = localStorage.getItem('usuario_logueado');
 	  	if(usuario !== null && usuario !== undefined){
 	  		this.setState({usuario:'cargando'});
-	  		fetch('http://localhost:1234/usuarios/obtener?id='+usuario,{
+	  		fetch( meURL, {
+	  			method: 'GET',
+	  			headers: {
+	  				'Content-Type': 'application/json; charset=utf-8',
+	  				'x-access-token': usuario
+	  			}
+	  		} )
+	  		.then( response => {
+	  			return response.json();
+	  		} )
+	  		.then( data => {
+	  			console.log( data );
+	  			this.iniciarSesion(usuario, data);
+  				this.setState({usuario:data});
+	  		} )
+	  		.catch( err => {
+	  			console.log( err );
+	  		} );
+	  		/*fetch('http://localhost:1234/usuarios/obtener?id='+usuario,{
 	  			method: 'GET',
 	  			headers:{
 	  				'Content-Type': 'application/json; charset=utf-8'
@@ -40,13 +60,13 @@ class App extends Component {
 	  			}})
 	  		.catch(err => {
 	  			console.log(err);
-	  		});
+	  		});*/
 	  	}
 	  }
 
 	//Se llama desde el componente IniciarSesionForm si se inicio correctamente.
-	iniciarSesion(usuario){
-		localStorage.setItem('usuario_logueado', usuario._id);
+	iniciarSesion(token, usuario){
+		localStorage.setItem('usuario_logueado', token);
 		localStorage.setItem( 'usuario_id', usuario._id );
 		this.setState({usuario:usuario});
 	}
@@ -54,6 +74,7 @@ class App extends Component {
 	//Se llama desde el componente Header desde el boton cerrar sesion.
 	cerrarSesion(){
 		localStorage.removeItem('usuario_logueado');
+		localStorage.removeItem('usuario_id');
 		this.setState({usuario:''});
 	}
 
@@ -94,6 +115,10 @@ class App extends Component {
 
 						<Route exact path="/" render={() => <Redirect to='/inicio' />} />
 						<Route exact path="/inicio" component = { () => {
+							let usuario = localStorage.getItem('usuario_logueado');
+							if(usuario !== null && usuario !== undefined){
+								return ( <Redirect to='/ranking' /> );
+							} else
               				return ( <div className = "padre"> <div className = "contenedor2"> <RankingUsuarios /> </div> </div> );
             			} } />
 

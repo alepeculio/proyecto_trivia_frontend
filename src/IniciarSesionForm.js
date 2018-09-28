@@ -56,9 +56,8 @@ class IniciarSesionForm extends Component{
 				.then( response => {
 					return response.json();
 				} )
-				.then( data => {
-					console.log( data );
-					this.props.iniciarSesion(data);
+				.then( usuario => {
+					this.props.iniciarSesion(data.token, usuario);
 					this.setState({irRanking:true});
 				} )
 				.catch( err => {
