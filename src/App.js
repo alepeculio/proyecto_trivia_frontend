@@ -7,6 +7,7 @@ import RegistrarUsuarioForm from './RegistrarUsuarioForm';
 import RankingUsuarios from './RankingUsuarios';
 import PreguntasDiarias from './PreguntasDiarias';
 import Mensaje from './Mensaje';
+import Perfil from './Perfil';
 
 class App extends Component {
 		constructor(){
@@ -91,8 +92,17 @@ class App extends Component {
 					<div>
 						<Header usuario = { usuario } cerrarSesion = { this.cerrarSesion.bind( this ) } />
 
-						<Route exact path="/" render={() => <Redirect to='/inicio' />} />
+						<Route exact path="/" render={() => {
+							if(usuario === 'cargando')
+								return null;
+							else if(usuario === '')
+								return <Redirect to='/inicio' />;
+							else
+								return <Redirect to='/ranking' />;
+						}} />
 						<Route exact path="/inicio" component = { () => {
+							if(usuario !== '' && usuario !== 'cargando')
+								return <Redirect to='/ranking' />;
               				return ( <div className = "padre"> <div className = "contenedor2"> <RankingUsuarios /> </div> </div> );
             			} } />
 
@@ -129,6 +139,13 @@ class App extends Component {
 							else
 								return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <PreguntasDiarias /> </div> </div> );
 						} } />
+
+						<Route path = "/perfil" render = { ( props ) => {
+							if ( usuario === '' )
+								return ( <Redirect to='/inicio' /> );
+							else
+								return ( <Perfil usuario={usuario} /> );
+						} } />
 					</div>
 				</Router>
 			</div>
@@ -137,7 +154,6 @@ class App extends Component {
 }
 
 const MenuInicial = ( props ) => {
-  console.log( props );
   return (
     <div id='menuInicial'>
     <div>

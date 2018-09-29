@@ -7,14 +7,16 @@
 
 :root{
   --altura: 35px;
-  --img: 35px;
+  --img: 33px;
   --logo: 184px;
 }
 
 header{
-  background-color: rgba(0,0,0,.9);
+  background-color: rgba(0,0,0,.8);
   border-radius: 0;
-  position: relative;
+  position: fixed;
+  top:0;
+  z-index: 100;
   text-align: center;
   width: 100%;
   min-width: 350px;
@@ -67,11 +69,19 @@ header .logueado .imagen{
 }
 
 header .logueado .nombre{
-  color:white;
   position: absolute;
   top: calc(50% - 8px);
   left:calc(var(--img) + 15px);
   font-weight: bold;
+}
+
+header .logueado .nombre a{
+  text-decoration: none;
+  color:white;
+}
+
+header .logueado .nombre a:hover{
+  color: rgba(255,255,255,.8);
 }
 
 header .logueado .puntuacion{
@@ -138,11 +148,11 @@ header .boton.cargando{
 }
 
 @media screen and (max-width: 660px) {
-    header .header-titulo.log{
-      left: calc(50% - (var(--logo) / 2));
-    }
+  header .header-titulo.log{
+    left: calc(50% - (var(--logo) / 2));
+  }
 
-    header .logueado{
+  header .logueado{
     position: absolute;
     margin: 0;
     top:var(--altura);

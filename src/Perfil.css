@@ -1,0 +1,88 @@
+/* [Pefil] ============================================= */
+
+:root{
+	--pimg:150px;
+}
+
+.perfil{
+	padding: 20px 25px;
+	background-color: rgba(0,0,0,.7);
+	border: 1px solid rgba(0,0,0,.5);
+	border-radius: 5px;
+	margin: 55px auto;
+	width: 40%;
+	height: 200px;
+	color:white;
+	position: relative;
+}
+
+.perfil img{
+	width: var(--pimg);
+	height: var(--pimg);
+	border-radius: 100%;
+}
+
+.perfil span{
+	display: block;
+	position: absolute;
+	margin-top: 20px;
+	left: calc(10% + var(--pimg));
+	word-wrap: break-word;
+	width: calc(100% - var(--pimg) - 50px);
+}
+
+.perfil .nombre{
+	display: block;
+	position: absolute;
+	margin: 20px 0;
+	top:0;
+	left: calc(10% + var(--pimg));
+	color:#3a8dc4;
+}
+
+.perfil b{
+	color:white;
+}
+
+.perfil .correo{
+	top:30px;
+}
+
+.perfil .puntuacion{
+	top:60px;
+	color: #3a8dc4;
+}
+
+.perfil .mmrestantes{
+	top:90px;
+	color:#3a8dc4;
+}
+
+.perfil .tipo{
+	top: 150px;
+}
+
+.perfil .btnCambiarImg{
+	text-align: center;
+	padding: 3px;
+	border: none;
+	font-weight: bold;
+	font-size: 11px;
+	cursor: pointer;
+	color:white;
+	background-color: rgb(188, 96, 6);
+	display: block;
+	width: 50px;
+	margin-left: calc( (var(--pimg) / 2) - 28px);
+	border-radius: 5px;
+	border-bottom: 2px solid  rgba(0,0,0,.3);
+	border-right: 2px solid rgba(0,0,0,.3);
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+	border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.perfil .btnCambiarImg:hover{
+	background-color: rgb(132, 69, 7);
+}
+
+/* ===================================================== */

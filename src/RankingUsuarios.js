@@ -59,7 +59,6 @@ class RankingUsuarios extends Component{
 			clase += ' inicio';
 		}
 
-
 		return(
 			<div className={clase}>
 			{usuarios}

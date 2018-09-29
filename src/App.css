@@ -64,7 +64,7 @@ img{
 }
 
 body {
-  background-color: rgba(66, 160, 255, .85);
+  background-color: rgba(2, 13, 74, 0.9);
 }
 
 /* [Menu Inicial] ============================================= */
@@ -77,7 +77,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding-top: 15px;
+  padding-top: 55px;
   text-align: center;
 }
 
