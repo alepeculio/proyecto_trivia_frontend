@@ -15,11 +15,14 @@ class Perfil extends Component{
 			case 'Suscripcion':
 			suscripcion = 'Tienes una suscripción activa!!, comienza a responder preguntas.'
 			break;
+			default: 
+			suscripcion='';
+			break;
 		}
 		console.log(u);
 		return (
 			<div className="perfil">
-				<img src={u.img} />
+				<img src={u.img} alt="imagen perfil"/>
 				<a className="btnCambiarImg">Cambiar</a>
 				<h3 className="nombre">{u.nombre} {u.apellido}</h3>
 				<span className="correo">{u.correo}</span>
