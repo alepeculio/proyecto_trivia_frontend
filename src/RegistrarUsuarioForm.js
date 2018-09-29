@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router,Redirect} from "react-router-dom";
 import './RegistrarUsuarioForm.css';
 
-const registrarUsuarioURL = 'http://localhost:1234/usuarios/registro';
+const registrarUsuarioURL = 'http://localhost:1234/usuarios/authRegistro';
 
 class RegistrarUsuarioForm extends Component{
 	constructor(){

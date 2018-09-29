@@ -44,13 +44,15 @@ class PreguntasDiarias extends Component {
 			items[posicion - 1].querySelector( '.pdEstado' ).removeAttribute( 'hidden' );
 			items[posicion - 1].querySelector( '.pdResponder' ).setAttribute( 'hidden', true );
 
+			let usuario_id = localStorage.getItem( 'usuario_id' );
+
 			fetch( 'http://localhost:1234/preguntas/generarPreguntaDiaria', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
 				},
 				body: JSON.stringify( {
-					ID_Usuario: "5b930d67dd0a701d6889bf98",
+					ID_Usuario: usuario_id,
 					categoria: "Geografía",
 					posicion: posicion
 				} )
@@ -75,14 +77,14 @@ class PreguntasDiarias extends Component {
 			} );
 		}
 
-
-		componentDidMount () {
+		componentWillMount() {
 			this.cargarPreguntasDiarias();
 		}
 
 
 		cargarPreguntasDiarias () {
-			fetch( 'http://localhost:1234/preguntas/preguntasDiarias?ID_Usuario=5b930d67dd0a701d6889bf98', {
+			let usuario_id = localStorage.getItem( 'usuario_id' );
+			fetch( 'http://localhost:1234/preguntas/preguntasDiarias?ID_Usuario=' + usuario_id, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
@@ -141,34 +143,37 @@ class PreguntasDiarias extends Component {
 		render () {
 			return (
 				<div id="pdLista">
+
+
+
 				{this.state.pregunta}
 				<table id="pdTabla" >
 				<tbody>
 				{ this.state.preguntas.map( p => {
 					return (
-						<tr key={p.posicion}>
-						<td>
-						{ p.posicion }
-						</td>
-						<td style = { p.estilo }>
-						{ p.categoria }
-						</td>
-						<td className="pdEstado">
-						{ p.estado }
-						</td>
-						<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
-						Responder
-						</td>
-						</tr>
-						);
-					} ) }
-					</tbody>
-					</table>
-					</div>
+					<tr key={p.posicion}>
+					<td>
+					{ p.posicion }
+					</td>
+					<td style = { p.estilo }>
+					{ p.categoria }
+					</td>
+					<td className="pdEstado">
+					{ p.estado }
+					</td>
+					<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
+					Responder
+					</td>
+					</tr>
 					);
-				}
-			};
-		
+				} ) }
+				</tbody>
+				</table>
+				</div>
+				);
+		}
+	};
 
-		export default PreguntasDiarias;
+
+	export default PreguntasDiarias;
 

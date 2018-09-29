@@ -3,7 +3,8 @@ import { BrowserRouter as Router ,Redirect } from "react-router-dom";
 //import Usuario from './Usuario';
 import './IniciarSesionForm.css';
 
-const iniciarSesionURL = 'http://localhost:1234/usuarios/iniciarSesion';
+const iniciarSesionURL = 'http://localhost:1234/usuarios/authLogin';
+const meURL = 'http://localhost:1234/usuarios/authMe';
 
 class IniciarSesionForm extends Component{
 	constructor(){
@@ -41,11 +42,29 @@ class IniciarSesionForm extends Component{
 			return response.json();
 		})
 		.then(data => {
-			if(data.Mensaje !== undefined){
+			console.log( data );
+
+			if ( data.auth !== undefined && data.auth ) {
+
+				fetch( meURL, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json; charset=utf-8',
+						'x-access-token': data.token
+					}
+				} )
+				.then( response => {
+					return response.json();
+				} )
+				.then( usuario => {
+					this.props.iniciarSesion(data.token, usuario);
+					this.setState({irRanking:true});
+				} )
+				.catch( err => {
+					console.log( err );
+				} );
+			} else {
 				this.setState({error:true ,iniciando:false});
-			}else{
-				this.props.iniciarSesion(data);
-				this.setState({irRanking:true});
 			}
 		}).catch(err => {
 			console.log(err);
