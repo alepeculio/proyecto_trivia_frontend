@@ -9,7 +9,7 @@ class Perfil extends Component{
 		super();
 		this.state = {
 			usuario: 'cargando',
-			actualizar : false
+			privado : false
 		};
 	}
 
@@ -29,22 +29,26 @@ class Perfil extends Component{
 			}else if(data.Mensaje !== undefined){
 				this.setState({usuario: ''});
 			}else{
-				this.setState({usuario: data});
+				this.setState({usuario: data, privado: false});
 			}})
 		.catch(err => {
 			console.log(err);
+			console.log('Reintentando obtener usuario...');
+			setTimeout(() => (this.obtenerUsuario(correo)), 10000);
 		});
 	}
 
 	setUsuario(usuarioLogueado){
-		//let usuarioLogueado = this.props.usuario;
 		let correo = this.props.history.location.pathname.split('/')[2];
 		if(correo !== undefined && correo !== ''){
-			this.obtenerUsuario(correo);
+			if(usuarioLogueado !== '' && usuarioLogueado.correo === correo){
+				this.setState({usuario:usuarioLogueado, privado: true});
+			}else{
+				this.obtenerUsuario(correo);
+			}
 		}else if(usuarioLogueado !== ''){
-			this.setState({usuario:usuarioLogueado});
+			this.setState({usuario:usuarioLogueado, privado: true});
 		}else{
-			console.log('entro');
 			this.setState({usuario:''});
 		}
 	}
@@ -84,19 +88,25 @@ class Perfil extends Component{
 			break;
 		}
 
+		let btnCambiar;
+		if(this.state.privado)
+			btnCambiar = <a className="btnCambiarImg">Cambiar</a>
+
 		return (
 			<div className="perfil">
-			<div className="contenedor-img">
-			<img src={u.img} alt="imagen perfil"/>
-			<a className="btnCambiarImg">Cambiar</a>
-			</div>
-			<div className="contenedor-info">
-			<h3 className="nombre">{u.nombre} {u.apellido}</h3>
-			<span className="correo">{u.correo}</span>
-			<span className="puntuacion"><b>Puntuación:</b> {u.puntaje}pts.</span>
-			<span className="mmrestantes"><b>Mano a mano restantes:</b> {u.mmrestantes}</span>
-			<span className="tipo">{suscripcion}</span>
-			</div>
+				<div className="contenedor-img">
+					<img src={u.img} alt="imagen perfil"/>
+					{btnCambiar}
+				</div>
+				<div className="contenedor-info">
+					<h3 className="nombre">{u.nombre} {u.apellido}</h3>
+					<span className="correo">{u.correo}</span>
+					<span className="puntuacion"><b>Puntuación:</b> {u.puntaje}pts.</span>
+					<div className={ this.state.privado ? '' : 'ocultar' }>
+						<span className="mmrestantes"><b>Mano a mano restantes:</b> {u.mmrestantes}</span>
+						<span className="tipo">{suscripcion}</span>
+					</div>
+				</div>
 			</div>
 			);
 	}
