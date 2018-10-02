@@ -1,71 +1,41 @@
 /* [Pefil] ============================================= */
 
 :root{
-	--pimg:150px;
+	--cont-img:200px;
 }
 
 .perfil{
-	padding: 20px 25px;
+	padding: 20px;
 	background-color: rgba(0,0,0,.7);
 	border: 1px solid rgba(0,0,0,.5);
 	border-radius: 5px;
 	margin: 55px auto;
 	width: 40%;
-	height: 200px;
 	color:white;
-	position: relative;
 }
 
-.perfil img{
-	width: var(--pimg);
-	height: var(--pimg);
+.contenedor-img{
+	width: var(--cont-img);
+	height: var(--cont-img);
+	overflow: hidden;
+	text-align: center;
+	position:relative;
+	display:block;
+	margin: 0 auto;
+}
+
+.perfil .contenedor-img img{
+	width: 90%;
+	height: 90%;
 	border-radius: 100%;
 }
 
-.perfil span{
-	display: block;
+.perfil .contenedor-img .btnCambiarImg{
 	position: absolute;
-	margin-top: 20px;
-	left: calc(10% + var(--pimg));
-	word-wrap: break-word;
-	width: calc(100% - var(--pimg) - 50px);
-}
-
-.perfil .nombre{
-	display: block;
-	position: absolute;
-	margin: 20px 0;
-	top:0;
-	left: calc(10% + var(--pimg));
-	color:#3a8dc4;
-}
-
-.perfil b{
-	color:white;
-}
-
-.perfil .correo{
-	top:30px;
-}
-
-.perfil .puntuacion{
-	top:60px;
-	color: #3a8dc4;
-}
-
-.perfil .mmrestantes{
-	top:90px;
-	color:#3a8dc4;
-}
-
-.perfil .tipo{
-	top: 150px;
-}
-
-.perfil .btnCambiarImg{
+	bottom: 0;
+	left: calc((100% / 2) - 28px);
 	text-align: center;
 	padding: 3px;
-	border: none;
 	font-weight: bold;
 	font-size: 11px;
 	cursor: pointer;
@@ -73,7 +43,6 @@
 	background-color: rgb(188, 96, 6);
 	display: block;
 	width: 50px;
-	margin-left: calc( (var(--pimg) / 2) - 28px);
 	border-radius: 5px;
 	border-bottom: 2px solid  rgba(0,0,0,.3);
 	border-right: 2px solid rgba(0,0,0,.3);
@@ -81,8 +50,75 @@
 	border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.perfil .btnCambiarImg:hover{
+.perfil .contenedor-img .btnCambiarImg:hover{
 	background-color: rgb(132, 69, 7);
+}
+
+.perfil .contenedor-info{
+	width: 80%;
+	height: 140px;
+	overflow: hidden;
+	position: relative;
+	background-color: white;
+	margin: 20px auto;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.perfil .contenedor-info span{
+	display: block;
+	color:black;
+	margin-top: 10px;
+	word-wrap: break-word;
+}
+
+.perfil .contenedor-info .nombre{
+	display: block;
+	color:#3a8dc4;
+	margin: 0;
+	text-align: center;
+	font-size: 24px;
+}
+
+.perfil .contenedor-info b{
+	color:black;
+}
+
+.perfil .contenedor-info .correo{
+	text-align: center;
+	margin-top:0;
+	font-size: 14px;
+}
+
+.perfil .contenedor-info .puntuacion{
+	margin-top: 15px;
+}
+
+.perfil .contenedor-info .tipo{
+	position: absolute;
+	bottom:5px;
+	width: 100%;
+	text-align: center;
+}
+
+
+.perfil .cargando{
+	display: block;
+	text-align: center;
+	width: 100px;
+	margin: 0 auto;
+	border-radius: 5px;
+	padding: 5px;
+	font-weight: 600;
+	font-size: 14px;
+	background-color: white;
+	color:grey;
+	cursor: default;
+	font-weight: 100;
+	border-bottom: 2px solid  rgba(0,0,0,.3);
+	border-right: 2px solid rgba(0,0,0,.3);
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+	border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 /* ===================================================== */

@@ -40,6 +40,7 @@
   border-radius: 5px;
   text-align: left;
   position: relative;
+  display: block;
   /*box-shadow: 2px 2px #9f9494;*/
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
@@ -47,16 +48,32 @@
   border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+.usuarios_ranking .usuario:hover{
+  background-color: #e6e6e6;
+}
+
 .usuarios_ranking :nth-child(1){
   background-color: #EDAF3A;
+}
+
+.usuarios_ranking :nth-child(1):hover{
+  background-color: #e99f16;
 }
 
 .usuarios_ranking :nth-child(2){
   background-color: #C6C6C6;
 }
 
+.usuarios_ranking :nth-child(2):hover{
+  background-color: #b3b3b3;
+}
+
 .usuarios_ranking :nth-child(3){
   background-color: #C37D55;
+}
+
+.usuarios_ranking :nth-child(3):hover{
+  background-color: #aa643c;
 }
 
 .usuarios_ranking .usuario img{
@@ -127,6 +144,10 @@
   border-right: 2px solid rgba(0,0,0,.3);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
   border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.usuarios_ranking .cargando:hover{
+  background-color:white;
 }
 
 @media screen and (max-width: 650px) {

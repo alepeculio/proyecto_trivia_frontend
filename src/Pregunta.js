@@ -22,7 +22,7 @@ class Pregunta extends Component{
 
 
 	tickContador () {
-		if(this.state.contador == 1){
+		if(this.state.contador === 1){
 			clearInterval(this.timer);
 			this.setState({
 				shown: !this.state.shown
@@ -35,7 +35,7 @@ class Pregunta extends Component{
 		}
 	}
 	tickCronometro () {
-		if(this.state.cronometro == 1){
+		if(this.state.cronometro === 1){
 			this.setState({cronometro: (this.state.cronometro - 1)})
 			this.conexion("");
 
@@ -116,7 +116,7 @@ class Pregunta extends Component{
 
 	render(){
 
-		if(this.state.inicio == false){
+		if(this.state.inicio === false){
 			this.state.lista = [this.props.respuesta1,this.props.respuesta2,this.props.respuesta3,this.props.respuesta4];
 			this.state.lista = this.state.lista.sort(function() {return Math.random() - 0.5});
 			this.startTimer();
