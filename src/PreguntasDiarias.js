@@ -84,6 +84,7 @@ class PreguntasDiarias extends Component {
 
 		cargarPreguntasDiarias () {
 			let usuario_id = localStorage.getItem( 'usuario_id' );
+
 			fetch( 'http://localhost:1234/preguntas/preguntasDiarias?ID_Usuario=' + usuario_id, {
 				method: 'GET',
 				headers: {
@@ -151,29 +152,29 @@ class PreguntasDiarias extends Component {
 				<tbody>
 				{ this.state.preguntas.map( p => {
 					return (
-					<tr key={p.posicion}>
-					<td>
-					{ p.posicion }
-					</td>
-					<td style = { p.estilo }>
-					{ p.categoria }
-					</td>
-					<td className="pdEstado">
-					{ p.estado }
-					</td>
-					<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
-					Responder
-					</td>
-					</tr>
+						<tr key={p.posicion}>
+						<td>
+						{ p.posicion }
+						</td>
+						<td style = { p.estilo }>
+						{ p.categoria }
+						</td>
+						<td className="pdEstado">
+						{ p.estado }
+						</td>
+						<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
+						Responder
+						</td>
+						</tr>
+						);
+					} ) }
+					</tbody>
+					</table>
+					</div>
 					);
-				} ) }
-				</tbody>
-				</table>
-				</div>
-				);
-		}
-	};
+				}
+			};
 
 
-	export default PreguntasDiarias;
+			export default PreguntasDiarias;
 
