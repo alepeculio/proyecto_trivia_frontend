@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router,Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import './RegistrarUsuarioForm.css';
 
 const registrarUsuarioURL = 'http://localhost:1234/usuarios/authRegistro';
@@ -90,12 +90,18 @@ class RegistrarUsuarioForm extends Component{
 			<div className="registrar_usuario_form">
 			<h2>Registrarse</h2>
 			<form method="post" encType="multipart/form-data" onSubmit = {this.registrarUsuario.bind(this)}>
-			<input autoFocus required type="email" placeholder="Correo" name="correo"/>
-			<input required type="text" placeholder="Nombre" name="nombre"/>
-			<input required type="text" placeholder="Apellido" name="apellido"/>
-			<input required type="password" placeholder="Contraseña" name="pass"/>
-			<input required type="password" placeholder="Confirmar contraseña" name="confPass"/>
-			<input type="file" placeholder="Imagen" name="img"/>
+			<label>Correo</label>
+			<input autoFocus required type="email" name="correo"/>
+			<label>Nombre</label>
+			<input required type="text" name="nombre"/>
+			<label>Apellido</label>
+			<input required type="text" name="apellido"/>
+			<label>Contraseña</label>
+			<input required type="password" name="pass"/>
+			<label>Confirmar contraseña</label>
+			<input required type="password" name="confPass"/>
+			<label>Imagen</label>
+			<input type="file" name="img"/>
 			{error}
 			{boton}
 			</form>

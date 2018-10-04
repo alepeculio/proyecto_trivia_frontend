@@ -1,11 +1,11 @@
 /*[Registrar usuario formulario] ===============================================*/
 .registrar_usuario_form{
   padding: 10px 20px;
-  background-color: rgba(0,0,0,.9);
+  background-color: rgba(0,0,0,.7);
   color:white;
   border: 1px solid rgba(0,0,0,.5);
   border-radius: 5px;
-  margin: 50px auto;
+  margin: 55px auto;
   width: 30%;
   text-align: right;
 }
@@ -16,6 +16,15 @@
 
 .registrar_usuario_form *{
   border-radius: 5px;
+}
+
+.registrar_usuario_form label{
+  font-weight: 600;
+  font-size: 12px;
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  color: rgba(255,255,255,.8)
 }
 
 .registrar_usuario_form input{
@@ -61,6 +70,10 @@
   padding: 2px;
   text-align: center;
   font-weight: bold;
-  box-shadow: 3px 3px #9f9494
+  /*box-shadow: 3px 3px #9f9494*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 /*[FIN Registrar usuario formulario] ===============================================*/

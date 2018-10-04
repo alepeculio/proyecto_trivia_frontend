@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router ,Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 //import Usuario from './Usuario';
 import './IniciarSesionForm.css';
 
@@ -56,9 +56,8 @@ class IniciarSesionForm extends Component{
 				.then( response => {
 					return response.json();
 				} )
-				.then( data => {
-					console.log( data );
-					this.props.iniciarSesion(data);
+				.then( usuario => {
+					this.props.iniciarSesion(data.token, usuario);
 					this.setState({irRanking:true});
 				} )
 				.catch( err => {
@@ -94,8 +93,10 @@ class IniciarSesionForm extends Component{
 			<div className="iniciar_sesion_form">
 			<h2>Iniciar Sesión</h2>
 			<form method="POST" onSubmit = {this.iniciarSesion.bind(this)}>
-			<input required type="email" autoFocus placeholder="Correo" name="correo"/>
-			<input required type="password" placeholder="Contraseña" name="pass"/>
+			<label>Correo</label>
+			<input required type="email" autoFocus name="correo"/>
+			<label>Contraseña</label>
+			<input required type="password" name="pass"/>
 			{error}
 			{boton}
 			</form>

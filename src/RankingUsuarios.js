@@ -3,7 +3,7 @@ import Usuario from './Usuario';
 import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
 
-let usuariosListaURL = 'http://localhost:1234/usuarios/listar?cantidad=';
+const usuariosListaURL = 'http://localhost:1234/usuarios/listar?cantidad=';
 
 class RankingUsuarios extends Component{
 	constructor(){
@@ -11,14 +11,15 @@ class RankingUsuarios extends Component{
 		this.state = {};
 	}
 
-	componentDidMount(){
+	obtenerUsuarios(){
+		let url;
 		if(this.props.cantidad !== undefined){
-			usuariosListaURL += this.props.cantidad;
+			url = usuariosListaURL + this.props.cantidad;
 		}else{
-			usuariosListaURL += '10';
+			url = usuariosListaURL + '10';
 		}
 
-		fetch(usuariosListaURL,{
+		fetch(url,{
 			method: 'GET',
 			headers:{
 				'Content-Type': 'application/json; charset=utf-8'
@@ -43,7 +44,13 @@ class RankingUsuarios extends Component{
 			}})
 		.catch(err => {
 			console.log(err);
+			console.log('Reintentando...');
+			setTimeout( this.obtenerUsuarios.bind(this) , 10000);
 		});
+	}
+
+	componentDidMount(){
+		this.obtenerUsuarios();
 	}
 
 	render(){
@@ -58,7 +65,6 @@ class RankingUsuarios extends Component{
 		if(this.props.location.pathname === '/inicio'){
 			clase += ' inicio';
 		}
-
 
 		return(
 			<div className={clase}>

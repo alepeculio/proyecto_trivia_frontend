@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, withRouter} from "react-router-dom";
+import { Link, withRouter} from "react-router-dom";
 import './Header.css';
 
 class Header extends Component {
@@ -39,7 +39,7 @@ class Header extends Component {
 				{titulo}
 				<div className="logueado">
 				<img className="imagen" src={usuario.img} alt=""/>
-				<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
+				<span className="nombre"><Link title="Ver mi perfil" to="/perfil">{usuario.nombre} {usuario.apellido}</Link></span>
 				<span className="puntuacion">Puntuación: {usuario.puntaje} pts.</span>
 				<a className="boton iniciar-sesion" onClick={this.cerrarSesion.bind(this)} >Cerrar Sesión</a>
 				</div>
