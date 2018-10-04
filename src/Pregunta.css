@@ -69,18 +69,32 @@
   font-family: monospace;
   color: white;
   position: absolute;
-  left: 48.5%;
-  top: 30%;
+  left: calc(50% - 20px);
+  top: 200px;
 }
+.imgCrono{
+  width: 60px;
+  height: 60px;
 
+}
+.textoCrono{
+  font-family: monospace;
+  font-style: italic;
+  font-size: 50px;
+  color:black;
+  position: absolute;
+  left: calc(50% - 20px);
+  top: 400px;
+
+}
 
 .wrapper {
 
   width: 100px; /* Set the size of the progress bar */
   height: 100px;
   position: absolute;
-  left: 46.5%;
-  top: 30%;
+  left: calc(50% - 50px);
+  top: 200px;
   /* Enable clipping */
   clip: rect(0px, 100px, 100px, 50px); /* Hide half of the progress bar */
 }

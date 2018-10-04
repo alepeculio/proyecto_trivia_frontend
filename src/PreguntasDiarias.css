@@ -11,16 +11,17 @@
   -o-transition-property: width;
   transition-property: width;
   -webkit-transition-duration: .5s;
-       -o-transition-duration: .5s;
-          transition-duration: .5s;
+  -o-transition-duration: .5s;
+  transition-duration: .5s;
   -webkit-transition-timing-function: ease-in;
-       -o-transition-timing-function: ease-in;
-          transition-timing-function: ease-in;
-  padding: 15px 20px;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  padding: 15px 25px;
   color: black;
 }
 
 #pdLista table {
+  width: 100%;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -40,8 +41,7 @@
 }
 
 #pdLista table tr td:nth-child(1) {
-  padding-left: 8px;
-  padding-right: 8px;
+  width: 20px;
 
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -50,7 +50,6 @@
 }
 
 #pdLista table tr td:nth-child(2) {
-  width: 72%;
 
   text-align: left;
   padding-left: 35px;

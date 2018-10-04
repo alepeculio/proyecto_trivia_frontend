@@ -11,10 +11,10 @@ class Pregunta extends Component{
 		this.state = {
 			contador: 5,//tiempo antes de que aparezca la pregunta
 			shown: true,
-			cronometro: 10,//tiempo para responder
+			cronometro: 9,//tiempo para responder
 			inicio: false,
-			lista : []
-
+			lista : [],
+			color: 'black'
 		}
 		this.inicio(props.id_Pregunta);
 
@@ -44,6 +44,9 @@ class Pregunta extends Component{
 		}else{
 			this.setState({cronometro: (this.state.cronometro - 1)})
 		}
+		if(this.state.cronometro == 5){
+			this.setState({color: 'red'})	
+		}
 	}
 
 
@@ -54,14 +57,15 @@ class Pregunta extends Component{
 	}
 
 	inicio($var){
-		let usuario = localStorage.getItem('usuario_logueado');
+
+		let usuario_id = localStorage.getItem( 'usuario_id' );
 		fetch( 'http://localhost:1234/preguntas/usuarioRespondio', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify( {
-				ID_Usuario: "5b930d67dd0a701d6889bf98",
+				ID_Usuario: usuario_id,
 				ID_Pregunta: $var,
 				estado:"NoRespondio",
 				tiempo:0
@@ -85,13 +89,14 @@ class Pregunta extends Component{
 			estado = "Incorrecta"
 		}
 
+		let usuario_id = localStorage.getItem( 'usuario_id' );
 		fetch( 'http://localhost:1234/preguntas/cambiarEstado', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify( {
-				ID_Usuario: "5b930d67dd0a701d6889bf98",
+				ID_Usuario: usuario_id,
 				ID_Pregunta: this.props.id_Pregunta,
 				estado:estado,
 				tiempo:tiempo
@@ -150,10 +155,14 @@ class Pregunta extends Component{
 			<button className="button" onClick={()=>{this.conexion(this.state.lista[1])}}  type="button">{this.state.lista[1]}</button><br></br>
 			<button className="button" onClick={()=>{this.conexion(this.state.lista[2])}} type="button">{this.state.lista[2]}</button><br></br>
 			<button className="button" onClick={()=>{this.conexion(this.state.lista[3])}} type="button">{this.state.lista[3]}</button><br></br>
-			<h1>{this.state.cronometro}</h1>
+			
+			<div>
+			<img className="imgCrono" src={require('./cronometro.png')} />
+			<font className="textoCrono" id="textoCrono" style={ { color: `${ this.state.color }` } } >{this.state.cronometro}</font>
+			</div>
 			</div>
 
- 
+
 
 			</div>
 
