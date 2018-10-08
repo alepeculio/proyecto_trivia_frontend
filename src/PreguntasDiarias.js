@@ -44,6 +44,7 @@ class PreguntasDiarias extends Component {
 			items[posicion - 1].querySelector( '.pdEstado' ).removeAttribute( 'hidden' );
 			items[posicion - 1].querySelector( '.pdResponder' ).setAttribute( 'hidden', true );
 
+
 			let usuario_id = localStorage.getItem( 'usuario_id' );
 
 			fetch( 'http://localhost:1234/preguntas/generarPreguntaDiaria', {
@@ -144,9 +145,6 @@ class PreguntasDiarias extends Component {
 		render () {
 			return (
 				<div id="pdLista">
-
-
-
 				{this.state.pregunta}
 				<table id="pdTabla" >
 				<tbody>

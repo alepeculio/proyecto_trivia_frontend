@@ -9,12 +9,12 @@ class Pregunta extends Component{
 
 		super();
 		this.state = {
-			contador: 5,
+			contador: 5,//tiempo antes de que aparezca la pregunta
 			shown: true,
-			cronometro: 5,
+			cronometro: 9,//tiempo para responder
 			inicio: false,
-			lista : []
-
+			lista : [],
+			color: 'black'
 		}
 		this.inicio(props.id_Pregunta);
 
@@ -43,6 +43,9 @@ class Pregunta extends Component{
 
 		}else{
 			this.setState({cronometro: (this.state.cronometro - 1)})
+		}
+		if(this.state.cronometro == 5){
+			this.setState({color: 'red'})	
 		}
 	}
 
@@ -152,10 +155,14 @@ class Pregunta extends Component{
 			<button className="button" onClick={()=>{this.conexion(this.state.lista[1])}}  type="button">{this.state.lista[1]}</button><br></br>
 			<button className="button" onClick={()=>{this.conexion(this.state.lista[2])}} type="button">{this.state.lista[2]}</button><br></br>
 			<button className="button" onClick={()=>{this.conexion(this.state.lista[3])}} type="button">{this.state.lista[3]}</button><br></br>
-			<h1>{this.state.cronometro}</h1>
+			
+			<div>
+			<img className="imgCrono" src={require('./cronometro.png')} />
+			<font className="textoCrono" id="textoCrono" style={ { color: `${ this.state.color }` } } >{this.state.cronometro}</font>
+			</div>
 			</div>
 
- 
+
 
 			</div>
 
