@@ -15,12 +15,13 @@
   transition-property: width;
   transition-duration: .5s;
   transition-timing-function: ease-in;
+  min-height: 100vh;
 }
 .usuarios_ranking.inicio {
   border-top: 1px solid white;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  margin-top:30px;
+  margin-top:70px;
 }
 
 .usuarios_ranking .titulo{

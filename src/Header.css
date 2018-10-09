@@ -19,7 +19,7 @@ header{
   z-index: 100;
   text-align: center;
   width: 100%;
-  min-width: 350px;
+  /*min-width: 350px;*/
   height: var(--altura);
   font-family: Helvetica;
 }
@@ -153,12 +153,54 @@ header .boton.cargando{
   border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+/*[Hamburguesa] */
+
+header .hamburguesa {
+  display: none;
+  cursor: pointer;
+  z-index: 102;
+  position: absolute;
+  right: 4px;
+  top:calc(50% - 20px);
+}
+
+header .bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #b6aeae;
+  margin: 6px 0;
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+/*header .change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+header .change .bar2 {opacity: 0;}
+
+header .change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}*/
+
+
+header .expandir.mostrar{
+  display: block;
+}
+
 @media screen and (max-width: 660px) {
-  header .header-titulo.log{
+  header{
+
+  }
+
+  header .header-titulo{
     left: calc(50% - (var(--logo) / 2));
   }
 
-  header .logueado{
+  header .expandir{
+    display:  none;
     position: absolute;
     margin: 0;
     top:var(--altura);
@@ -169,8 +211,71 @@ header .boton.cargando{
     height: var(--altura);
     width: 100%;
     min-width: 456px;
-  } 
+    animation-name: bajar;
+    animation-duration: .5s;
+    overflow: hidden;
+  }
+
+  @keyframes bajar {
+    from{
+     height: 0
+   }
+   to{
+     height: var(--altura);
+   }
+ }
+
+ header .hamburguesa{
+  display: inline-block;
+}
 }
 
+@media screen and (max-width: 456px) {
+  header .logueado{
+    height: calc(var(--altura) * 3);
+  }
+
+  header .logueado .nombre{
+    top: calc( (var(--img) / 2) - 8px);
+  }
+
+  header .logueado .puntuacion{
+   left:10px;
+   top: 40px;
+   text-align: left;
+ }
+
+ header .logueado .boton{
+  left:10px;
+  right: unset;
+  top: 70px;
+}
+
+header .no-logueado .boton{
+  left: 10px;
+  top: 2px;
+  right:unset;
+}
+header .no-logueado .boton.segundo{
+  left: 110px;
+}
+
+header .expandir{
+  animation-name: bajar-mas;
+}
+
+header .no-logueado.expandir{
+  animation-name: bajar;
+}
+
+@keyframes bajar-mas {
+  from{
+   height: 0
+ }
+ to{
+   height: calc(var(--altura) * 3 );
+ }
+}
+}
 
 /*[FIN Header] =================================================================*/
