@@ -1,13 +1,16 @@
 
 /* [Preguntas] ============================================= */
 
-.ContenedorPregunta {
+.ContenedorPregunta{
   width: 50%;
   height:100%;
   background: #e4e4e4;
-  border: 2px solid #007291;
+  border: 2px solid black;
   border-radius: 3px; 
-  margin: 0 auto;
+  margin: 0 auto 50px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 
 }
 
@@ -17,18 +20,40 @@
   width: 100px;
   border-radius: 50%;
 
+}
 
+.progress{
+  height: 10px;
+  content:"";
+  width: 100%;
+  animation-duration: 15s;
+  animation-name: barra;
+  animation-timing-function: linear;
 
+}
+@keyframes barra {
+  100%{background: red;}
+  50%  {background: red;}
+  40%  {background: orange;}
+  0% {background: green;}
+  from{
+    width: 99%;
+  }
+  to{
+    width: 0%;
+  } 
 }
 
 .ContenedorPregunta .pregunta{
-
   font-size: 1.2em; 
-
+  font-weight: bold;
+  color: #007291;
 }
-
+.contenedorTimer{
+  border: 2px solid black;
+}
 .ContenedorPregunta .cabezera{
-  border-bottom: 2px solid #007291;
+  border-bottom: 2px solid black;
   padding: 10px;
 
 }
@@ -36,18 +61,34 @@
   color:black;
 }
 .button {
-  background-color:  #008CBA;
-  color: white;
-  border: 2px solid #008CBA; 
-  padding: 12px 40px;
-  margin-bottom:3px;
+  background-color:  white;
+  color: black;
+  border: 2px solid black; 
+  border-radius: 4px;
+  padding: 10px 35px;
+  margin-bottom:5px;
+
+}
+.volver {
+  background-color:  white;
+  color: black;
+  border: 2px solid black; 
+  border-radius: 4px;
+  padding: 10px 35px;
+  margin: 0 auto;
 
 }
 
 .button:hover {
-  background-color: white; 
+  background-color: white;
   color: black;
+  border: 2px solid black; 
+  border-radius: 4px;
+  padding: 10px 39px;
+  margin-bottom:5px;
+
 }
+
 
 
 /* [Fin Preguntas] ============================================= */
@@ -63,13 +104,22 @@
   color:white;
 
 }
+.txtRespuestas{
+  font-style: normal;
+  font-size: 2em;
+  color:black;
+  font-size: 1.2em; 
+  font-weight: bold;
+
+}
+
 .contador{
   font-size: 80px;
   font-style: normal;
   font-family: monospace;
   color: white;
   position: absolute;
-  left: calc(50% - 20px);
+  left: calc(50% - 22px);
   top: 200px;
 }
 .imgCrono{
@@ -83,7 +133,7 @@
   font-size: 50px;
   color:black;
   position: absolute;
-  left: calc(50% - 20px);
+
   top: 400px;
 
 }

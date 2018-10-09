@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import './Pregunta.css';
 
 
+let green = '#11EA20';
+let red = '#F81010';
 
 class Pregunta extends Component{
+
 
 	constructor (props) {
 
@@ -11,10 +14,13 @@ class Pregunta extends Component{
 		this.state = {
 			contador: 5,//tiempo antes de que aparezca la pregunta
 			shown: true,
-			cronometro: 9,//tiempo para responder
+			cronometro: 15,//tiempo para responder
 			inicio: false,
 			lista : [],
-			color: 'black'
+			btn1: "white",
+			btn2: "white",
+			btn3: "white",
+			btn4: "white"
 		}
 		this.inicio(props.id_Pregunta);
 
@@ -44,9 +50,7 @@ class Pregunta extends Component{
 		}else{
 			this.setState({cronometro: (this.state.cronometro - 1)})
 		}
-		if(this.state.cronometro == 5){
-			this.setState({color: 'red'})	
-		}
+
 	}
 
 
@@ -78,7 +82,7 @@ class Pregunta extends Component{
 			console.log( "Error: "+err );
 		} );
 	}
-	conexion($var){
+	conexion($var,$btn){
 		let estado;
 
 		let tiempo = this.state.cronometro;
@@ -87,6 +91,21 @@ class Pregunta extends Component{
 			estado = "Correcta"
 		}else{
 			estado = "Incorrecta"
+		}
+		if(estado  == "Correcta"){
+
+			this.setState({
+				[$btn]: green
+			})
+		}else{
+			this.setState({
+				[$btn]: red
+			})
+			for (var i = 0; i < 4; i++) {
+				if(this.props.correcta == this.state.lista[i]){
+					this.setState({["btn"+(1+i)]:green})
+				}
+			}
 		}
 
 		let usuario_id = localStorage.getItem( 'usuario_id' );
@@ -107,8 +126,10 @@ class Pregunta extends Component{
 			return res.json();
 		}).then(nose=>{
 			this.state.inicio = false;
-			document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
-			this.props.funcion();
+			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
+			//this.props.funcion();
+
+			alert("FIN");
 
 		}).catch( err => {
 			console.log( "Error: "+err );
@@ -136,6 +157,7 @@ class Pregunta extends Component{
 
 		return(
 			<div id="contenedor">
+			<div className="ContenedorTimer">
 			<div className='timer'  style={shown} >
 			<label className="texto">La pregunta aparecera en </label>
 			<br></br>
@@ -145,32 +167,30 @@ class Pregunta extends Component{
 			<div className="circle" data-anim="base right"></div>
 			</div>
 			</div>
-
+			</div>
 			<div className="ContenedorPregunta" id="pregunta" style={hidden}>
+			
 			<div className="cabezera">
+
 			<font className="pregunta">{this.props.pregunta}</font>
 			</div>
+			<div className="progress"></div>
 			<br></br>
-			<button className="button" onClick={()=>{this.conexion(this.state.lista[0])}} type="button">{this.state.lista[0]}</button><br></br>
-			<button className="button" onClick={()=>{this.conexion(this.state.lista[1])}}  type="button">{this.state.lista[1]}</button><br></br>
-			<button className="button" onClick={()=>{this.conexion(this.state.lista[2])}} type="button">{this.state.lista[2]}</button><br></br>
-			<button className="button" onClick={()=>{this.conexion(this.state.lista[3])}} type="button">{this.state.lista[3]}</button><br></br>
-			
+			<button className="button" style={{background: this.state.btn1}} id="0" onClick={()=>{this.conexion(this.state.lista[0],"btn1")}} type="button"><font className="txtRespuestas">{this.state.lista[0]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn3}}  onClick={()=>{this.conexion(this.state.lista[2],"btn3")}} type="button"><font className="txtRespuestas">{this.state.lista[2]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
+			</div>
 			<div>
-			<img className="imgCrono" src={require('./cronometro.png')} />
-			<font className="textoCrono" id="textoCrono" style={ { color: `${ this.state.color }` } } >{this.state.cronometro}</font>
+			<button className="volver" style={hidden}>Volver</button>
 			</div>
-			</div>
-
-
-
 			</div>
 
 
 
 			);	
+		}
+
 	}
 
-}
-
-export default Pregunta;
+	export default Pregunta;
