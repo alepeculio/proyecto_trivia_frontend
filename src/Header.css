@@ -173,7 +173,7 @@ header .bar1, .bar2, .bar3 {
   pointer-events: none;
 }
 
-header .change .bar1 {
+/*header .change .bar1 {
   -webkit-transform: rotate(-45deg) translate(-9px, 6px);
   transform: rotate(-45deg) translate(-9px, 6px);
 }
@@ -183,7 +183,7 @@ header .change .bar2 {opacity: 0;}
 header .change .bar3 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
-}
+}*/
 
 
 header .expandir.mostrar{

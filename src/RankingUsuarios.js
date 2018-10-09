@@ -36,9 +36,11 @@ class RankingUsuarios extends Component{
 				this.setState({usuarios: ''});
 			}else{
 				let usuarios = data.usuarios.map(u => {
-					return(
-						<Usuario key={u.id} usuario = {u}/>
-						);
+					if(u.tipo !== 'Admin'){
+						return(
+							<Usuario key={u.id} usuario = {u}/>
+							);
+					}
 				});
 				this.setState({usuarios: usuarios});
 			}})

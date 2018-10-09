@@ -48,13 +48,18 @@ class Header extends Component {
 			document.querySelector(".hamburguesa").classList.toggle("change");
 			if(document.querySelector("header .logueado") !== null)
 				document.querySelector("header .logueado").classList.toggle('mostrar');*/
+
+			let puntuacion;
+			if(usuario.tipo !== 'Admin')
+				puntuacion = <span className="puntuacion">Puntuación: {usuario.puntaje} pts.</span>;
+
 			return(
 				<header>
 				{titulo}
 				<div className="logueado expandir">
 				<img className="imagen" src={usuario.img} alt=""/>
 				<span className="nombre"><Link title="Ver mi perfil" to="/perfil">{usuario.nombre} {usuario.apellido}</Link></span>
-				<span className="puntuacion">Puntuación: {usuario.puntaje} pts.</span>
+				{puntuacion}
 				<a className="boton iniciar-sesion" onClick={this.cerrarSesion.bind(this)} >Cerrar Sesión</a>
 				</div>
 				{hamburguesa}
