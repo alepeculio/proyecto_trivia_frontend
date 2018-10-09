@@ -1,0 +1,97 @@
+/*[Suscripciones ] ===============================================*/
+:root{
+	--usu-height-sus: 45px;
+}
+
+.suscripciones{
+	background-color: rgb(255,255,255);
+	margin: 50px 20px;
+	overflow: hidden;
+	position: relative;
+	width: 55%;
+	min-width: 310px;
+	max-width: 410px;
+	min-height: 100vh;
+	border-radius: 5px;
+}
+
+.suscripciones .titulo{
+	padding: 2px 5px;
+	display: block;
+}
+
+.suscripciones .titulo h3{
+	text-align: center;
+	margin:0;
+	margin-top: 5px
+}
+
+.suscripciones .titulo .primero{
+	font-size: 1.1em;
+}
+
+.suscripciones .titulo .segundo{
+	position: absolute;
+	right: 3px;
+	width: 115px;
+	font-size: 1.1em;
+}
+
+.suscripciones .usuario{
+	/*background-color: rgb(139, 173, 179);*/
+	margin: 2px;
+	border-radius: 3px;
+	height:var(--usu-height-sus);
+	position: relative;
+}
+
+.suscripciones .usuario *{
+  position: absolute;
+}
+
+
+.suscripciones .usuario img{
+	width: calc(var(--usu-height-sus) - 1px);
+	height: calc(var(--usu-height-sus) - 1px);
+	top: calc((var(--usu-height-sus) / 2) - ((var(--usu-height-sus) - 1px)) / 2);
+  left:1px;
+}
+
+.suscripciones .usuario .nombre{
+	top: calc((var(--usu-height-sus) / 2) - 10px);
+	left: calc(var(--usu-height-sus) + 2px);
+	font-size: 1.1em;
+}
+
+.suscripciones .usuario select{
+	top: calc((var(--usu-height-sus) / 2) - 12px);
+	right: 3px;
+	border-radius: 3px;
+	border: none;
+	padding: 2px;
+	width: 115px;
+	cursor: pointer;
+}
+
+.suscripciones .usuario select option:hover{
+	cursor: pointer;
+}
+
+.suscripciones .cargando{
+  background-color: rgb(139, 173, 179);
+  color:black;
+  margin-bottom: 10px;
+  padding: 10px 8px;
+  border-radius: 3px;
+  text-align: center;
+  font-size: .9em;
+	width: 70px;
+	margin: 7px auto;
+  /*box-shadow: 3px 3px #9f9494;*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/*[FIN Suscripciones ] ============================================*/

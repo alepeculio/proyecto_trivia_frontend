@@ -12,6 +12,7 @@ class IniciarSesionForm extends Component{
 		this.state = {
 			error: false,
 			irRanking:false,
+			irAdmin: false,
 			iniciando:false
 		}
 	}
@@ -58,7 +59,11 @@ class IniciarSesionForm extends Component{
 				} )
 				.then( usuario => {
 					this.props.iniciarSesion(data.token, usuario);
-					this.setState({irRanking:true});
+					if(usuario.tipo === 'Admin')
+						this.setState({irAdmin:true});
+					else
+						this.setState({irRanking:true});
+
 				} )
 				.catch( err => {
 					console.log( err );
@@ -77,6 +82,10 @@ class IniciarSesionForm extends Component{
 
 		if(this.state.irRanking){
 			return <Redirect to='/ranking' />;
+		}
+
+		if(this.state.irAdmin){
+			return <Redirect to='/admin' />;
 		}
 
 		if(this.state.iniciando){
