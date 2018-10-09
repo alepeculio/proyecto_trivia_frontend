@@ -82,6 +82,12 @@ class PreguntasDiarias extends Component {
 			this.cargarPreguntasDiarias();
 		}
 
+		aumentarPuntuacion() {
+			let pts = document.querySelector( ".header-titulo .puntuacion" );
+			let str = pts.innerHTML.split( " " );
+			let nuevo = parseInt( str[1] ) + 1;
+			pts.innerHTML = "Puntuación: " + nuevo + " pts.";
+		}
 
 		cargarPreguntasDiarias () {
 			let usuario_id = localStorage.getItem( 'usuario_id' );
@@ -143,33 +149,43 @@ class PreguntasDiarias extends Component {
 
 
 		render () {
-			return (
-				<div id="pdLista">
-				{this.state.pregunta}
-				<table id="pdTabla" >
-				<tbody>
-				{ this.state.preguntas.map( p => {
-					return (
-						<tr key={p.posicion}>
-						<td>
-						{ p.posicion }
-						</td>
-						<td style = { p.estilo }>
-						{ p.categoria }
-						</td>
-						<td className="pdEstado">
-						{ p.estado }
-						</td>
-						<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
-						Responder
-						</td>
-						</tr>
-						);
-					} ) }
+			if ( this.props.usuario === "cargando" )
+				return null;
+			else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
+				return(
+					<div id="pdLista">
+						Solicite una suscripcion
+					</div>
+				);
+			} else {
+				return (
+					<div id="pdLista">
+					{this.state.pregunta}
+					<table id="pdTabla" >
+					<tbody>
+					{ this.state.preguntas.map( p => {
+						return (
+							<tr key={p.posicion}>
+							<td>
+							{ p.posicion }
+							</td>
+							<td style = { p.estilo }>
+							{ p.categoria }
+							</td>
+							<td className="pdEstado">
+							{ p.estado }
+							</td>
+							<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
+							Responder
+							</td>
+							</tr>
+							);
+						} ) }
 					</tbody>
 					</table>
 					</div>
 					);
+				}
 				}
 			};
 

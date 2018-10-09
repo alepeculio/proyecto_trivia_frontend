@@ -143,14 +143,14 @@ class App extends Component {
 					if ( usuario === '' )
 						return ( <Redirect to='/inicio' /> );
 					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias /> </div> </div> );
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
 				} } />
 
 				<Route path = "/manoamano" render = { ( props ) => {
 					if ( usuario === '' )
 						return ( <Redirect to='/inicio' /> );
 					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <PreguntasDiarias /> </div> </div> );
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
 				} } />
 
 				<Route path = "/perfil" render = { ( props ) => {
