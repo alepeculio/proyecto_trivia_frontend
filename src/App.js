@@ -8,6 +8,8 @@ import RankingUsuarios from './RankingUsuarios';
 import PreguntasDiarias from './PreguntasDiarias';
 import Mensaje from './Mensaje';
 import Perfil from './Perfil';
+import Duelos from './Duelos';
+import UsuariosListado from './UsuariosListado';
 
 const meURL = 'http://localhost:1234/usuarios/authMe';
 
@@ -147,7 +149,7 @@ class App extends Component {
 					if ( usuario === '' )
 						return ( <Redirect to='/inicio' /> );
 					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <PreguntasDiarias /> </div> </div> );
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <UsuariosListado /> </div> </div> );
 				} } />
 
 				<Route path = "/perfil" render = { ( props ) => {
