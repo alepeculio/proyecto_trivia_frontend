@@ -13,7 +13,7 @@ class UsuariosListado extends Component{
 
 	obtenerUsuarios(){
 		let id = localStorage.getItem("usuario_id");
-		
+
 		console.log("ID",id);
 		fetch(usuariosListaURL+id,{
 			method: 'GET',

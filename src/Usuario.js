@@ -6,7 +6,7 @@ class Usuario extends Component{
 	render(){
 		let usuario = this.props.usuario;
 		return(
-			<Link className="usuario" to={"/perfil/"+usuario.correo}>
+			<Link title="Ver perfil" className="usuario" to={"/perfil/"+usuario.correo}>
 			<img src={usuario.img} alt="Imagen usuario"/>
 			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
 			<span className="puntaje">{usuario.puntaje} pts.</span>

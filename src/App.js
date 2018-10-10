@@ -8,8 +8,12 @@ import RankingUsuarios from './RankingUsuarios';
 import PreguntasDiarias from './PreguntasDiarias';
 import Mensaje from './Mensaje';
 import Perfil from './Perfil';
+<<<<<<< HEAD
 import Duelos from './Duelos';
 import UsuariosListado from './UsuariosListado';
+=======
+import Suscripciones from './Suscripciones';
+>>>>>>> 4c4eb14d06396dbf5504568ad4dfd2f8275d5623
 
 const meURL = 'http://localhost:1234/usuarios/authMe';
 
@@ -134,6 +138,8 @@ class App extends Component {
 				<Route path = "/ranking" render = { ( props ) => {
 					if ( usuario === '' )
 						return ( <Redirect to='/inicio' /> );
+					else if(usuario.tipo === 'Admin')
+						return <Redirect to='/admin' />
 					else
 						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkRanking" } /> <RankingUsuarios /> </div> </div> );
 				} } />
@@ -142,7 +148,7 @@ class App extends Component {
 					if ( usuario === '' )
 						return ( <Redirect to='/inicio' /> );
 					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias /> </div> </div> );
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
 				} } />
 
 				<Route path = "/manoamano" render = { ( props ) => {
@@ -155,12 +161,21 @@ class App extends Component {
 				<Route path = "/perfil" render = { ( props ) => {
 					if(usuario === 'cargando')
 						return null;
-					else if(usuario === ''){
+					else if(usuario === '')
 						return <Perfil usuario = '' />;
-					}
-					else{
-						return ( <Perfil usuario={usuario} /> );
-					}
+					else
+						return <Perfil usuario={usuario} />;
+
+				} } />
+
+				<Route path = "/admin" render = { (props) => {
+					if(usuario === 'cargando')
+						return null;
+					else if(usuario !== '' && usuario.tipo === 'Admin')
+						return <Suscripciones />;
+					else
+						return  <Redirect to='/inicio' />;
+
 				} } />
 				</div>
 				</Router>
