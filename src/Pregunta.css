@@ -21,6 +21,16 @@
   border-radius: 50%;
 
 }
+.animacion{
+  width: 100px;
+  height: 100px;
+  background:white;
+  opacity:1;
+  
+}
+.animacion:hover{
+  opacity: 0;
+}
 
 .progress{
   height: 10px;
@@ -29,7 +39,7 @@
   animation-duration: 15s;
   animation-name: barra;
   animation-timing-function: linear;
- 
+
 
 }
 @keyframes barra {
@@ -68,6 +78,7 @@
   border-radius: 4px;
   padding: 10px 35px;
   margin-bottom:5px;
+  transition:opacity 1s linear;
 
 }
 .volver {

@@ -54,7 +54,7 @@ class PreguntasDiarias extends Component {
 				},
 				body: JSON.stringify( {
 					ID_Usuario: usuario_id,
-					categoria: "Historia",
+					categoria: categoria,
 					posicion: posicion
 				} )
 			} ).then( res => {
