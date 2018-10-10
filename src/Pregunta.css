@@ -7,7 +7,7 @@
   background: #e4e4e4;
   border: 2px solid black;
   border-radius: 3px; 
-  margin: 0 auto 50px;
+  margin: 0 auto 30px;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -29,6 +29,7 @@
   animation-duration: 15s;
   animation-name: barra;
   animation-timing-function: linear;
+ 
 
 }
 @keyframes barra {
@@ -61,7 +62,7 @@
   color:black;
 }
 .button {
-  background-color:  white;
+  background-color: white;
   color: black;
   border: 2px solid black; 
   border-radius: 4px;
@@ -70,15 +71,20 @@
 
 }
 .volver {
-  background-color:  white;
-  color: black;
   border: 2px solid black; 
   border-radius: 4px;
   padding: 10px 35px;
   margin: 0 auto;
+  background-color: #4CAF50;
+  color: white;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 
 }
-
+.volver:hover{
+  background-color: #40C233;
+}
 .button:hover {
   background-color: white;
   color: black;
@@ -137,18 +143,17 @@
   top: 400px;
 
 }
-
+/* Animacion de temporizador */
 .wrapper {
-
-  width: 100px; /* Set the size of the progress bar */
+  width: 100px; 
   height: 100px;
   position: absolute;
   left: calc(50% - 50px);
   top: 200px;
-  /* Enable clipping */
-  clip: rect(0px, 100px, 100px, 50px); /* Hide half of the progress bar */
+  
+  clip: rect(0px, 100px, 100px, 50px); 
 }
-/* Set the sizes of the elements that make up the progress bar */
+
 .circle {
   width: 80px;
   height: 80px;
@@ -158,30 +163,29 @@
   clip: rect(0px, 50px, 100px, 0px);
 
 }
-/* Using the data attributes for the animation selectors. */
-/* Base settings for all animated elements */
+
 div[data-anim~=base] {
-  -webkit-animation-iteration-count: 1;  /* Only run once */
-  -webkit-animation-fill-mode: forwards; /* Hold the last keyframe */
-  -webkit-animation-timing-function:linear; /* Linear animation */
+  -webkit-animation-iteration-count: 1; 
+  -webkit-animation-fill-mode: forwards; 
+  -webkit-animation-timing-function:linear; 
 }
 
 .wrapper[data-anim~=wrapper] {
-  -webkit-animation-duration: 0.01s; /* Complete keyframes asap */
-  -webkit-animation-delay: 2.5s; /* Wait half of the animation */
-  -webkit-animation-name: close-wrapper; /* Keyframes name */
+  -webkit-animation-duration: 0.01s; 
+  -webkit-animation-delay: 1.5s; /* mitad del tiempo total */
+  -webkit-animation-name: close-wrapper; 
 }
 
 .circle[data-anim~=left] {
-  -webkit-animation-duration: 5s; /* Full animation time */
+  -webkit-animation-duration: 3s; /* tiempo total */
   -webkit-animation-name: left-spin;
 }
 
 .circle[data-anim~=right] {
-  -webkit-animation-duration: 2.5s; /* Half animation time */
+  -webkit-animation-duration: 1.5s;  /* mitad del tiempo total */
   -webkit-animation-name: right-spin;
 }
-/* Rotate the right side of the progress bar from 0 to 180 degrees */
+
 @-webkit-keyframes right-spin {
   from {
     -webkit-transform: rotate(0deg);
@@ -190,7 +194,7 @@ div[data-anim~=base] {
     -webkit-transform: rotate(180deg);
   }
 }
-/* Rotate the left side of the progress bar from 0 to 360 degrees */
+
 @-webkit-keyframes left-spin {
   from {
     -webkit-transform: rotate(0deg);
@@ -199,7 +203,7 @@ div[data-anim~=base] {
     -webkit-transform: rotate(360deg);
   }
 }
-/* Set the wrapper clip to auto, effectively removing the clip */
+
 @-webkit-keyframes close-wrapper {
   to {
     clip: rect(auto, auto, auto, auto);

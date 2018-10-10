@@ -12,7 +12,7 @@ class Pregunta extends Component{
 
 		super();
 		this.state = {
-			contador: 5,//tiempo antes de que aparezca la pregunta
+			contador: 3,//tiempo antes de que aparezca la pregunta
 			shown: true,
 			cronometro: 15,//tiempo para responder
 			inicio: false,
@@ -20,12 +20,19 @@ class Pregunta extends Component{
 			btn1: "white",
 			btn2: "white",
 			btn3: "white",
-			btn4: "white"
+			btn4: "white",
+			animation: "running"
 		}
 		this.inicio(props.id_Pregunta);
 
 	}
 
+	aumentarPuntuacion() {
+		let pts = document.querySelector( ".puntuacion" );
+		let str = pts.innerHTML.split( " " );
+		let nuevo = parseInt( str[1] ) + 1;
+		pts.innerHTML = "Puntuación: " + nuevo + " pts.";
+	}
 
 	tickContador () {
 		if(this.state.contador === 1){
@@ -83,12 +90,14 @@ class Pregunta extends Component{
 		} );
 	}
 	conexion($var,$btn){
+		this.setState({
+			animation: "paused"
+		})
 		let estado;
-
 		let tiempo = this.state.cronometro;
-
 		if(this.props.correcta === $var ){
 			estado = "Correcta"
+			this.aumentarPuntuacion();
 		}else{
 			estado = "Incorrecta"
 		}
@@ -129,14 +138,15 @@ class Pregunta extends Component{
 			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 			//this.props.funcion();
 
-			alert("FIN");
-
 		}).catch( err => {
 			console.log( "Error: "+err );
 		} );
 
 	}
-
+	volver(){
+		document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
+		this.props.funcion();
+	}
 
 	render(){
 
@@ -159,7 +169,7 @@ class Pregunta extends Component{
 			<div id="contenedor">
 			<div className="ContenedorTimer">
 			<div className='timer'  style={shown} >
-			<label className="texto">La pregunta aparecera en </label>
+			<label className="texto">La pregunta aparecerá en </label>
 			<br></br>
 			<font className="contador">{this.state.contador}</font>
 			<div className="wrapper" data-anim="base wrapper">
@@ -174,7 +184,7 @@ class Pregunta extends Component{
 
 			<font className="pregunta">{this.props.pregunta}</font>
 			</div>
-			<div className="progress"></div>
+			<div className="progress" style={{animationPlayState: this.state.animation}}></div>
 			<br></br>
 			<button className="button" style={{background: this.state.btn1}} id="0" onClick={()=>{this.conexion(this.state.lista[0],"btn1")}} type="button"><font className="txtRespuestas">{this.state.lista[0]}</font></button><br></br>
 			<button className="button" style={{background: this.state.btn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
@@ -182,15 +192,15 @@ class Pregunta extends Component{
 			<button className="button" style={{background: this.state.btn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
 			</div>
 			<div>
-			<button className="volver" style={hidden}>Volver</button>
+			<button className="volver" onClick={()=>{this.volver()}} style={hidden}>&laquo; Volver</button>
 			</div>
 			</div>
 
 
 
 			);	
-		}
-
 	}
 
-	export default Pregunta;
+}
+
+export default Pregunta;
