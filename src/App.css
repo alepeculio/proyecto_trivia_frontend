@@ -64,13 +64,16 @@ img{
 }
 
 body {
-  background-color: rgba(2, 13, 74, 0.9);
+  background-image: url('fondo2.jpg');
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;     
 }
 
 /* [Menu Inicial] ============================================= */
 
 #menuInicial {
-    cursor: default;
+  cursor: default;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -107,7 +110,7 @@ body {
 #menuInicial > div > a:hover,
 #menuInicial > div > a.activo {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   background-color: rgba(66, 160, 255, 1);
   color: white;
   border-top: 5px solid white;
