@@ -4,7 +4,6 @@ import './PreguntasDiarias.css';
 
 class PreguntasDiarias extends Component {
 
-
 	constructor () {
 		super();
 		
@@ -34,11 +33,17 @@ class PreguntasDiarias extends Component {
 
 			this.state = {
 				preguntas: preguntas,
-				cantPregs: categorias.length * preguntasPorCategoria
+				cantPregs: categorias.length * preguntasPorCategoria,
+				click: false
 			};
 		}
 
 		generarPreguntaDiaria ( posicion, categoria ) {
+			if ( this.state.click )
+				return;
+
+			this.setState( { click: true } );
+
 			let items = document.querySelectorAll( '#pdLista table tr' );
 			items[posicion - 1].querySelector( '.pdEstado' ).innerHTML = 'Respondiendo...';
 			items[posicion - 1].querySelector( '.pdEstado' ).removeAttribute( 'hidden' );
@@ -141,6 +146,8 @@ class PreguntasDiarias extends Component {
 		}
 
 		terminoResp() {
+			
+			this.setState( { click: false } );
 			document.querySelector("#pdTabla").removeAttribute( 'hidden' );
 			this.cargarPreguntasDiarias();
 
