@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Usuario from './Usuario';
+import UsuarioLista from './UsuarioLista';
 import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
 
@@ -14,7 +14,6 @@ class UsuariosListado extends Component{
 	obtenerUsuarios(){
 		let id = localStorage.getItem("usuario_id");
 
-		console.log("ID",id);
 		fetch(usuariosListaURL+id,{
 			method: 'GET',
 			headers:{
@@ -33,7 +32,7 @@ class UsuariosListado extends Component{
 			}else{
 				let usuarios = data.usuarios.map(u => {
 					return(
-						<Usuario key={u.id} usuario = {u}/>
+						<UsuarioLista key={u.id} usuario = {u} />
 						);
 				});
 				this.setState({usuarios: usuarios});

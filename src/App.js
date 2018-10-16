@@ -8,12 +8,8 @@ import RankingUsuarios from './RankingUsuarios';
 import PreguntasDiarias from './PreguntasDiarias';
 import Mensaje from './Mensaje';
 import Perfil from './Perfil';
-<<<<<<< HEAD
 import Duelos from './Duelos';
-import UsuariosListado from './UsuariosListado';
-=======
 import Suscripciones from './Suscripciones';
->>>>>>> 4c4eb14d06396dbf5504568ad4dfd2f8275d5623
 
 const meURL = 'http://localhost:1234/usuarios/authMe';
 
@@ -155,7 +151,7 @@ class App extends Component {
 					if ( usuario === '' )
 						return ( <Redirect to='/inicio' /> );
 					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <UsuariosListado /> </div> </div> );
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <Duelos /> </div> </div> );
 				} } />
 
 				<Route path = "/perfil" render = { ( props ) => {
