@@ -8,6 +8,7 @@ import RankingUsuarios from './RankingUsuarios';
 import PreguntasDiarias from './PreguntasDiarias';
 import Mensaje from './Mensaje';
 import Perfil from './Perfil';
+import Duelos from './Duelos';
 import Suscripciones from './Suscripciones';
 import Preguntas from './Preguntas';
 
@@ -144,14 +145,14 @@ class App extends Component {
 					if ( usuario === '' )
 						return ( <Redirect to='/inicio' /> );
 					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias /> </div> </div> );
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
 				} } />
 
 				<Route path = "/manoamano" render = { ( props ) => {
 					if ( usuario === '' )
 						return ( <Redirect to='/inicio' /> );
 					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <PreguntasDiarias /> </div> </div> );
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <Duelos /> </div> </div> );
 				} } />
 
 				<Route path = "/perfil" render = { ( props ) => {
