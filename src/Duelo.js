@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-
+import Pregunta from './Pregunta';
+import './Duelo.css';
 const cancelarURL = 'http://localhost:1234/usuarios/cancelarReto';
 
 class Duelo extends Component{
 
+
+	constructor () {
+		var randomColor = "#"+Math.floor(Math.random()*16777215).toString(16);
+		console.log(randomColor);
+		super();
+		this.state = {pregunta:null, color: "white"};
+
+	}
 	handleClickCancelar(e){
 		e.preventDefault();
 		let retado = localStorage.getItem("usuario_id"); 
@@ -43,17 +52,58 @@ class Duelo extends Component{
 			console.log('Reintentando...');
 			setTimeout( this.cancelarDuelo.bind(this) , 10000);
 		});
+	}	
+
+	generarPreguntaDuelo(){
+
+		fetch( 'http://localhost:1234/preguntas/generarPreguntaDuelo', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			},
+			body: JSON.stringify( {
+				ID_retador: this.props.duelo.id,
+				ID_retado: localStorage.getItem('usuario_id')
+			} )
+		} ).then( res => {
+			return res.json();
+		} ).then(pregunta => {
+			document.querySelector("#duelo").setAttribute( 'hidden', true );
+			var b = <Pregunta
+			funcion = { this.terminoResp.bind( this ) }
+			pregunta = {pregunta.pregunta}
+			correcta = {pregunta.respuestas[0]}
+			respuesta1 = {pregunta.respuestas[0]}
+			respuesta2 = {pregunta.respuestas[1]}
+			respuesta3 = {pregunta.respuestas[2]}
+			respuesta4 = {pregunta.respuestas[3]}
+			id_Pregunta = {pregunta._id}
+			mostrar = {true}
+			/>
+			this.setState({pregunta: b});
+
+		})
 	}
 	
 	render(){
 		let duelo = this.props.duelo;
 		return(
 			<div>
-			<img src={duelo.img} alt="Imagen usuario"/>
-			<span className="nombre">{duelo.nombre} {duelo.apellido}</span>
-			<span className="puntaje">{duelo.puntaje} pts.</span>
-			<button onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
-			<button onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
+			{this.state.pregunta}
+			<div id="duelo" className="contenedorDuelo" >
+			<div className="contImg">
+			<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
+			</div>
+			<div className="contInfo">
+			<font className="nombre">{duelo.nombre} {duelo.apellido} </font>
+			<font className="puntaje">{duelo.puntaje} pts.</font>
+			</div>
+			<div className="buttons">
+			<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
+			<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
+			</div>
+			
+			</div>
 			</div>
 			);
 	}

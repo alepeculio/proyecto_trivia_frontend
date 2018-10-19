@@ -1,0 +1,87 @@
+.contenedorDuelo{
+	background-color: #FFBA33;
+	-webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+	box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+	border: 2px solid white;
+	border-radius: 5px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center
+}
+
+.imgUser{
+	border: 1px solid orange;	
+
+
+}
+
+
+.contInfo{
+	margin-left: 20px;
+}
+.buttons{
+	margin-left: 70px;
+
+}
+.buttons button {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+
+.usuariosDuelo{
+	margin: 0 .7px .7px .7px;
+	background-color: rgba(66, 160, 255, 1);
+	color: white;
+	padding: 20px 20px 10px 20px;
+	border: 1px solid white;
+	border-top: none;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	transition-property: width;
+	transition-duration: .5s;
+	transition-timing-function: ease-in;
+	min-height: 100vh;
+	-webkit-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+}
+
+
+.usuariosDuelo font{
+	color: black;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 16px;
+}
+.Aceptar{
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 8px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.Cancelar{
+	background-color: #f44336;
+	border: none;
+	color: white;
+	padding: 8px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-left:3px;
+}
+
+.Aceptar:hover {
+	background-color: #368938;
+}
+.Cancelar:hover {
+	background-color: #CB291D;
+}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Duelo from './Duelo';
 import DueloPropio from './DueloPropio';
-import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
 
 const duelosListaURL = 'http://localhost:1234/usuarios/listarRetos?id=';
@@ -97,14 +96,12 @@ class DuelosListado extends Component{
 			duelosPropios = <div className="cargando">No hay duelos</div>
 		}
 
-		let clase = 'usuarios_ranking';
-		if(this.props.location.pathname === '/inicio'){
-			clase += ' inicio';
-		}
-
+		let clase = 'usuariosDuelo';
 		return(
 			<div className={clase}>
+			Duelo
 			{duelos}
+			Duelos Propios
 			{duelosPropios}
 			</div>
 			);
