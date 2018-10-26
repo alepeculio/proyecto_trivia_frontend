@@ -3,16 +3,24 @@
 	--usu-height-sus: 45px;
 }
 
+.menu-admin{
+	text-align: center;
+	height: 100vh;
+}
+
 .suscripciones{
+	text-align: left;
 	background-color: rgb(255,255,255);
-	margin: 50px 20px;
+	margin: 50px 0px;
+	margin-left: 20px;
 	overflow: hidden;
 	position: relative;
-	width: 55%;
-	min-width: 310px;
-	max-width: 410px;
-	min-height: 100vh;
+	width: calc(25% - 20px);
+	min-width: 315px;
+	/*max-width: 410px;*/
+	height: 100%;
 	border-radius: 5px;
+	display: inline-block;
 }
 
 .suscripciones .titulo{
@@ -37,6 +45,18 @@
 	font-size: 1.1em;
 }
 
+.suscripciones .contenedor{
+	overflow-y: hidden;
+	height: 100%;
+	width: 100%
+}
+
+
+.suscripciones .contenedor:hover{
+	overflow-y:auto; 
+}
+
+
 .suscripciones .usuario{
 	/*background-color: rgb(139, 173, 179);*/
 	margin: 2px;
@@ -46,7 +66,7 @@
 }
 
 .suscripciones .usuario *{
-  position: absolute;
+	position: absolute;
 }
 
 
@@ -54,7 +74,7 @@
 	width: calc(var(--usu-height-sus) - 1px);
 	height: calc(var(--usu-height-sus) - 1px);
 	top: calc((var(--usu-height-sus) / 2) - ((var(--usu-height-sus) - 1px)) / 2);
-  left:1px;
+	left:1px;
 }
 
 .suscripciones .usuario .nombre{
@@ -78,20 +98,20 @@
 }
 
 .suscripciones .cargando{
-  background-color: rgb(139, 173, 179);
-  color:black;
-  margin-bottom: 10px;
-  padding: 10px 8px;
-  border-radius: 3px;
-  text-align: center;
-  font-size: .9em;
+	background-color: rgb(139, 173, 179);
+	color:black;
+	margin-bottom: 10px;
+	padding: 10px 8px;
+	border-radius: 3px;
+	text-align: center;
+	font-size: .9em;
 	width: 70px;
 	margin: 7px auto;
-  /*box-shadow: 3px 3px #9f9494;*/
-  border-bottom: 2px solid  rgba(0,0,0,.3);
-  border-right: 2px solid rgba(0,0,0,.3);
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
-  border-left: 2px solid rgba(255, 255, 255, 0.3);
+	/*box-shadow: 3px 3px #9f9494;*/
+	border-bottom: 2px solid  rgba(0,0,0,.3);
+	border-right: 2px solid rgba(0,0,0,.3);
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+	border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 /*[FIN Suscripciones ] ============================================*/

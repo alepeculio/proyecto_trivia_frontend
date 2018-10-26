@@ -11,6 +11,7 @@ import Perfil from './Perfil';
 import Duelos from './Duelos';
 import UsuariosListado from './UsuariosListado';
 import Suscripciones from './Suscripciones';
+import Preguntas from './Preguntas';
 
 const meURL = 'http://localhost:1234/usuarios/authMe';
 
@@ -182,7 +183,7 @@ class App extends Component {
 					if(usuario === 'cargando')
 						return null;
 					else if(usuario !== '' && usuario.tipo === 'Admin')
-						return <Suscripciones />;
+						return <div className="menu-admin"><Suscripciones /><Preguntas /></div>;
 					else
 						return  <Redirect to='/inicio' />;
 
