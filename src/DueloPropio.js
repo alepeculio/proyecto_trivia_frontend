@@ -43,11 +43,17 @@ class DueloPropio extends Component{
 		let duelo = this.props.duelo;
 		return(
 			<div>
-			<img src={duelo.img} alt="Imagen usuario"/>
-			<div>
-			<span className="nombre">{duelo.nombre} {duelo.apellido}</span>
-			<span className="puntaje">{duelo.puntaje} pts.</span>
-			<button onClick={this.handleClick.bind(this)}>Cancelar</button>
+			<div className="contenedorDuelo P">
+			<div className="contImg">
+			<img  className="imgUser" src={duelo.img} alt="Imagen usuario"/>
+			</div>
+			<div className="contInfo">
+			<font className="nombre">{duelo.nombre} {duelo.apellido} </font>
+			<font className="puntaje">{duelo.puntaje} pts.</font>
+			</div>
+			<div className="buttonP">
+			<button className="CancelarP" onClick={this.handleClick.bind(this)}>Cancelar</button>
+			</div>
 			</div>
 			</div>
 			);

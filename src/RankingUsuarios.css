@@ -21,6 +21,8 @@
   box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
   
 }
+
+
 .usuarios_ranking.inicio {
   border-top: 1px solid white;
   border-top-left-radius: 15px;
@@ -131,7 +133,24 @@
   transition-duration: .5s;
   transition-timing-function: ease-in;
 }
-
+.retar{
+  position: absolute;
+  top:calc(50% - 20px);
+  right:150px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 5px;
+  padding:5px;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(256,256,256,.7);
+  text-shadow: 0 0 .5px blue;
+  transition-property: top,left,right;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
+}
 .usuarios_ranking .cargando{
   background-color: white;
   color:black;
@@ -160,7 +179,7 @@
     top:calc(50% - 32px);
   }
 
-  .usuarios_ranking .usuario .puntaje{
+  .usuarios_ranking .usuario .puntaje .retar{
     top:50%;
     left: calc(var(--img-dimension) + 20px);
     right: unset;

@@ -1,33 +1,51 @@
 .contenedorDuelo{
-	background-color: #FFBA33;
+
+	background-color: #EDAF3A;
+	color:black;
+	margin-bottom: 10px;
+	padding: 2px 8px;
+	border-radius: 5px;
+	text-align: left;
+	position: relative;
+	/*box-shadow: 2px 2px #9f9494;*/
+	border-bottom: 2px solid  rgba(0,0,0,.3);
+	border-right: 2px solid rgba(0,0,0,.3);
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+	border-left: 2px solid rgba(255, 255, 255, 0.3);
 	-webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
 	box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
 	border: 2px solid white;
-	border-radius: 5px;
-
 	display: flex;
 	align-items: center;
-	justify-content: center
+	justify-content: left ;
+}
+.P{
+	background-color: #21C23C;
+}
+.react-css-collapse-transition {
+	transition: height 250ms cubic-bezier(.4, 0, .2, 1);
 }
 
 .imgUser{
-	border: 1px solid orange;	
-
-
+	border: 1px solid #21C23C;	
+	display:block;
+	margin:auto;
 }
-
+.P .imgUser{
+	border: 1px solid #FFBA33;	
+	display:block;
+	margin:auto;
+}
+.contImg{
+	margin-right: 10px;
+	margin-left: 10px;
+}
 
 .contInfo{
-	margin-left: 20px;
-}
-.buttons{
-	margin-left: 70px;
+	width: 250px;
+	text-align: left;
 
-}
-.buttons button {
-	margin-right: 5px;
-	margin-left: 5px;
 }
 
 
@@ -49,16 +67,27 @@
 	box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
 }
 
-
 .usuariosDuelo font{
 	color: black;
 	font-family: monospace;
 	font-weight: bold;
 	font-size: 16px;
 }
+.buttons{
+	margin-left: 80px;
+}
+.buttonP{
+	margin-left: 120px;
+}
+.buttons button {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
 .Aceptar{
 	background-color: #4CAF50; /* Green */
 	border: none;
+	border-radius: 8px;
 	color: white;
 	padding: 8px 10px;
 	text-align: center;
@@ -71,6 +100,7 @@
 	background-color: #f44336;
 	border: none;
 	color: white;
+	border-radius: 8px;
 	padding: 8px 10px;
 	text-align: center;
 	text-decoration: none;
@@ -78,10 +108,24 @@
 	font-size: 16px;
 	margin-left:3px;
 }
-
+.CancelarP{
+	background-color: #f44336;
+	border: none;
+	border-radius: 8px;
+	color: white;
+	padding: 8px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-left:3px;
+}
 .Aceptar:hover {
 	background-color: #368938;
 }
 .Cancelar:hover {
+	background-color: #CB291D;
+}
+.CancelarP:hover {
 	background-color: #CB291D;
 }

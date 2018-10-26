@@ -21,8 +21,25 @@ class Duelo extends Component{
 
 	handleClickAceptar(e){
 		e.preventDefault();
+		let retado = localStorage.getItem("usuario_id"); 
+
 		console.log("CLIC ACEPTAR");
 		console.log("DUELO:", this.props.duelo.id);
+		fetch( 'http://localhost:1234/preguntas/generarPreguntasDuelo', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			},
+			body: JSON.stringify( {
+				ID_retador: this.props.duelo.id,
+				ID_retado: retado,
+			} )
+		} ).then( res => {
+		
+			return res.json();
+		} ).then( pregunta => {
+			console.log(pregunta);
+		});
 	}
 
 	cancelarDuelo(retador,retado){
