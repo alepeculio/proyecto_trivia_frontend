@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Preguntas.css';
 
-const preguntasListaURL = 'http://localhost:1234/preguntas/obtenerPreguntas';
+const preguntasListaURL = 'http://localhost:1234/preguntas/obtenerPreguntas?cantidad=';
 const editarPreguntaURL = 'http://localhost:1234/preguntas/editarPregunta';
 const eliminarPreguntaURL = 'http://localhost:1234/preguntas/eliminarPregunta';
 
@@ -15,11 +15,11 @@ class Preguntas extends Component{
 	}
 
 	componentDidMount(){
-		this.obtenerPreguntas();
+		this.obtenerPreguntas("");
 	}
 
-	obtenerPreguntas(){
-		fetch(preguntasListaURL,{
+	obtenerPreguntas(busqueda){
+		fetch(preguntasListaURL+"10"+"&busqueda="+busqueda,{
 			method: 'GET',
 			headers:{
 				'Content-Type': 'application/json; charset=utf-8'
@@ -33,20 +33,21 @@ class Preguntas extends Component{
 				console.log(data.Error);
 				this.setState({preguntas: ''});
 			}else if(data.Mensaje !== undefined){
-				this.setState({preguntas: ''});
+				this.setState({preguntas: 'no hay'});
 			}else{
 				let preguntas = data.Preguntas.map(p => {
 					let respuestas = p.respuestas.map( ( r, index ) =>{
-						return <input key={r.id} disabled name={'respuesta'+index} className={index === 0 ? "respuesta correcta" : "respuesta"} value={r}/>;
+						let key = r._id + " " + index;
+						return <input key={key} disabled name={'respuesta'+index} className={index === 0 ? "respuesta correcta" : "respuesta"} value={r}/>;
 					});
 					
 					return(
-						<div key={p.id} className="pregunta" style={{backgroundColor: this.obtenerColor(p.categoria.name)}}>
+						<div key={p._id} className="pregunta" style={{backgroundColor: this.obtenerColor(p.categoria.name)}}>
 						<form onSubmit={this.confirmar.bind(this)}>
-						<textarea className="texto" name="pregunta" disabled >{p.pregunta}</textarea>
+						<textarea className="texto" defaultValue={p.pregunta} name="pregunta" disabled ></textarea>
 						<img src={require('./expand.png')} alt='expandir'onClick={this.expandir.bind(this) } />
-						<input hidden value={p._id} name="id" />
-						<input hidden value={p.categoria._id} name="categoria" />
+						<input hidden defaultValue={p._id} name="id" />
+						<input hidden defaultValue={p.categoria._id} name="categoria" />
 						<div className="respuestas">
 						{respuestas}
 						<div className="editar">
@@ -203,6 +204,11 @@ class Preguntas extends Component{
 		return color;
 	}
 
+	buscar(e){
+		e.preventDefault();
+		this.setState({preguntas: ''});
+		this.obtenerPreguntas(e.target.busqueda.value);
+	}
 
 
 	render(){
@@ -210,12 +216,21 @@ class Preguntas extends Component{
 		if(preguntas === '')
 			preguntas =  <div className='cargando'>Cargando...</div>;
 
+		if(preguntas == 'no hay')
+			preguntas =  <div className='cargando no-hay'>No se encontraron preguntas.</div>;
+
 		return (
 			<div className='preguntas'>
 			<span className='titulo'>
 			<h3>Preguntas</h3>
 			</span>
 			<div className="contenedor">
+			<div className="buscador">
+				<form onSubmit={this.buscar.bind(this)}>
+					<input name="busqueda" placeholder="Ingresa una pregunta..."/>
+					<button>Buscar</button>
+				</form>
+			</div>
 			{preguntas}
 			</div>
 			</div>);
