@@ -144,7 +144,7 @@ class PreguntasDiarias extends Component {
 				console.log( 'Error: ' + err );
 			} );
 		}
-
+		
 		terminoResp() {
 			
 			this.setState( { click: false } );

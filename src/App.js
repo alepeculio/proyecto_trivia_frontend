@@ -8,7 +8,10 @@ import RankingUsuarios from './RankingUsuarios';
 import PreguntasDiarias from './PreguntasDiarias';
 import Mensaje from './Mensaje';
 import Perfil from './Perfil';
+import Duelos from './Duelos';
+import UsuariosListado from './UsuariosListado';
 import Suscripciones from './Suscripciones';
+import Preguntas from './Preguntas';
 
 const meURL = 'http://localhost:1234/usuarios/authMe';
 
@@ -70,6 +73,7 @@ class App extends Component {
 		let ranking = document.querySelector( "#linkRanking" );
 		let preguntas = document.querySelector( "#linkPreguntas" );
 		let manoamano = document.querySelector( "#linkManoAMano" );
+		let usuarioListado = document.querySelector( "#linkUsuarioListado" );
 
 		if ( ranking ) {
 			ranking.classList.remove( "activo" );
@@ -90,6 +94,12 @@ class App extends Component {
 
 			if ( p === "linkManoAMano" )
 				manoamano.classList.add( "activo" );
+		}
+		if ( usuarioListado ){
+			usuarioListado.classList.remove( "activo" );
+
+			if ( p === "linkUsuarioListado" )
+				usuarioListado.classList.add( "activo" );
 		}
 	}
 
@@ -154,7 +164,13 @@ class App extends Component {
 					else if(usuario.tipo === 'Admin')
 						return <Redirect to='/admin' />
 					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <Duelos /> </div> </div> );
+				} } />
+				<Route path = "/usuarioListado" render = { ( props ) => {
+					if ( usuario === '' )
+						return ( <Redirect to='/inicio' /> );
+					else
+						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkUsuarioListado" } /> <UsuariosListado/> </div> </div> );
 				} } />
 
 				<Route path = "/perfil" render = { ( props ) => {
@@ -171,7 +187,7 @@ class App extends Component {
 					if(usuario === 'cargando')
 						return null;
 					else if(usuario !== '' && usuario.tipo === 'Admin')
-						return <Suscripciones />;
+						return <div className="menu-admin"><Suscripciones /><Preguntas /></div>;
 					else
 						return  <Redirect to='/inicio' />;
 
@@ -190,10 +206,11 @@ class App extends Component {
 				<Link to = '/ranking' id="linkRanking" className = { props.link === "linkRanking" ? "activo" : "" }>Ranking</Link>
 				<Link to = '/preguntas' id="linkPreguntas" className = { props.link === "linkPreguntas" ? "activo" : "" }>Preguntas diarias</Link>
 				<Link to = '/manoamano' id="linkManoAMano" className = { props.link === "linkManoAMano" ? "activo" : "" }>Mano a mano</Link>
+				<Link to = '/usuarioListado' id="linkUsuarioListado" className = { props.link === "linkUsuarioListado" ? "activo" : "" }>Usuarios</Link>
 				</div>
 				</div>
 				);
-			};
+		};
 
-			export default App;
+		export default App;
 

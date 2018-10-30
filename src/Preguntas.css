@@ -1,0 +1,198 @@
+/* [Preguntas] ============================================= */
+
+.preguntas{
+	background-color: rgb(255,255,255);
+	margin: 50px 20px;
+	overflow: hidden;
+	position: relative;
+	/*max-width: 410px;	*/
+	height: 100%;
+	border-radius: 5px;
+	display: inline-block;
+	border:1px solid;
+	background-color: #CCC;
+}
+
+.preguntas .titulo{
+	padding: 2px 5px;
+	display: block;
+	border-bottom: 1px solid;
+}
+
+.preguntas .titulo h3{
+	text-align: center;
+	margin:0;
+	margin-top: 5px
+}
+
+.preguntas .contenedor{
+	overflow-y: auto;
+	height: 100%;
+	width: 100%;
+}
+
+.preguntas .contenedor .buscador{
+	text-align: left;
+}
+
+.preguntas .contenedor .buscador form input{
+	width: calc(100% - 88px);
+	border-radius: 5px;
+	padding:10px 5px;
+	margin: 5px;
+}
+
+.preguntas .contenedor .buscador form button{
+	width: 60px;
+	border-radius: 5px;
+	font-weight: bold;
+	padding:10px 5px;
+}
+
+.preguntas .contenedor .pregunta{
+	text-align: left;
+	margin: 2px 1px;
+	border-radius: 2px;
+	padding: 10px;
+	cursor:pointer;
+}
+
+.preguntas .contenedor .pregunta .texto{
+	color: white;
+	font-size: 1.2em;
+	background-color: transparent;
+	border:none;
+	width: calc(100% - 35px);
+	resize: none;
+	border-radius: 5px;
+}
+
+.preguntas .contenedor .pregunta .fb{
+	background-color: white;
+	color:black !important;
+}
+
+.preguntas .contenedor .pregunta form img{
+	height: 30px;
+	width: 30px;
+}
+
+.preguntas .contenedor .pregunta .respuestas{
+	display: none;
+	background-color: rgba(0,0,0,.2);
+	padding: 5px 0;
+	border-radius: 2px;
+}
+
+.preguntas .contenedor .pregunta .respuestas .respuesta{
+	width: calc(100% - 10px);
+	display: inline-block;
+	margin: 2px 2px;
+	color: white;
+	font-size: 1.1em;
+	font-family: monospace;
+	border-radius: 5px;
+}
+
+.preguntas .contenedor .pregunta .respuestas .respuesta.correcta{
+	font-weight: bold;
+	font-size: 1.2em;
+	color: greenyellow;
+}
+
+.preguntas .contenedor .pregunta .respuestas.mostrar{
+	display: inherit;
+	margin-top:3px;
+}
+
+.preguntas .contenedor .pregunta form input{
+	width:100%;
+	background-color: unset;
+	border:none;
+}
+
+.preguntas .contenedor .pregunta .respuestas .editar{
+	text-align: right;
+	margin-top:3px;
+	position: relative;
+}
+
+.preguntas .contenedor .pregunta .respuestas .editar .mensaje{
+  font-size: .9em;
+	position: absolute;
+	bottom: 0;
+	left: 3px;
+	font-weight: bold;
+	margin: 0;
+	width: 30%;
+	border-radius: 5px;
+	padding: 2px;
+	background-color: white;
+	display: none;
+}
+
+.preguntas .contenedor .pregunta .respuestas .editar .mensaje.error{
+	color:red;
+	display: inline !important;
+	width: 40%;
+}
+
+.preguntas .contenedor .pregunta .respuestas .editar .mensaje.correcto{
+	color:green;
+	display: inline !important;
+}
+
+.preguntas .contenedor .pregunta .respuestas .editar button{
+	margin-right: 3px;
+	border-radius: 2px;
+	border:none;
+	padding: 3px 10px;
+	color: white;
+	font-weight: bold;
+	background-color: #d76d1f;
+	width: 70px;
+	border-bottom: 2px solid  rgba(0,0,0,.3);
+	border-right: 2px solid rgba(0,0,0,.3);
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+	border-left: 2px solid rgba(255, 255, 255, 0.3);
+	cursor: pointer;
+}
+
+.preguntas .contenedor .pregunta .respuestas .editar .btnConfirmar{
+	background-color: green;
+	width: unset;
+}
+
+.preguntas .contenedor .pregunta .respuestas .editar .cancelar{
+	background-color: rgb(215, 36, 36);
+	width: unset;
+}
+
+.preguntas .contenedor .pregunta .respuestas .editar button.eliminar{
+	background-color: rgb(215, 36, 36);
+}
+
+.preguntas .cargando{
+	background-color: rgb(139, 173, 179);
+	color:white;
+	margin-bottom: 10px;
+	padding: 10px 8px;
+	border-radius: 3px;
+	text-align: center;
+	font-size: .9em;
+	width: 80px;
+	margin: 7px auto;
+	font-weight: bold;
+	/*box-shadow: 3px 3px #9f9494;*/
+	border-bottom: 2px solid  rgba(0,0,0,.3);
+	border-right: 2px solid rgba(0,0,0,.3);
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+	border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.preguntas .cargando.no-hay{
+	width: 220px;
+}
+
+
+/* ============================================================= */

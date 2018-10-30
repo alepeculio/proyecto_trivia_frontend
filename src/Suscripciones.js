@@ -129,7 +129,7 @@ class Suscripciones extends Component{
 			<span className='primero'>Usuario</span>
 			<span className='segundo'>Tipo</span>
 			</span>
-			{usuarios}
+			<div className='contenedor'>{usuarios}</div>
 			</div>);
 	}
 

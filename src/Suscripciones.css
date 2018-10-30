@@ -3,31 +3,40 @@
 	--usu-height-sus: 45px;
 }
 
+.menu-admin{
+	text-align: center;
+	height: 100vh;
+}
+
 .suscripciones{
-	background-color: rgb(255,255,255);
-	margin: 50px 20px;
+	text-align: left;
+	margin: 50px 0px;
+	margin-left: 20px;
 	overflow: hidden;
 	position: relative;
-	width: 55%;
-	min-width: 310px;
-	max-width: 410px;
-	min-height: 100vh;
+	width: calc(25% - 22px);
+	/*max-width: 410px;*/
+	height: 100%;
 	border-radius: 5px;
+	display: inline-block;
+	border:1px solid;
+	background-color: #CCC;
 }
 
 .suscripciones .titulo{
-	padding: 2px 5px;
+	padding: 1px 0px;
 	display: block;
 }
 
 .suscripciones .titulo h3{
 	text-align: center;
-	margin:0;
-	margin-top: 5px
+	margin: 8px 0;
+	border-bottom: 1px solid;
 }
 
 .suscripciones .titulo .primero{
 	font-size: 1.1em;
+	padding-top: 30px;
 }
 
 .suscripciones .titulo .segundo{
@@ -36,6 +45,18 @@
 	width: 115px;
 	font-size: 1.1em;
 }
+
+.suscripciones .contenedor{
+	overflow-y: hidden;
+	height: 100%;
+	width: 100%
+}
+
+
+.suscripciones .contenedor:hover{
+	overflow-y:auto; 
+}
+
 
 .suscripciones .usuario{
 	/*background-color: rgb(139, 173, 179);*/
@@ -46,7 +67,7 @@
 }
 
 .suscripciones .usuario *{
-  position: absolute;
+	position: absolute;
 }
 
 
@@ -54,7 +75,7 @@
 	width: calc(var(--usu-height-sus) - 1px);
 	height: calc(var(--usu-height-sus) - 1px);
 	top: calc((var(--usu-height-sus) / 2) - ((var(--usu-height-sus) - 1px)) / 2);
-  left:1px;
+	left:1px;
 }
 
 .suscripciones .usuario .nombre{
@@ -78,20 +99,21 @@
 }
 
 .suscripciones .cargando{
-  background-color: rgb(139, 173, 179);
-  color:black;
-  margin-bottom: 10px;
-  padding: 10px 8px;
-  border-radius: 3px;
-  text-align: center;
-  font-size: .9em;
-	width: 70px;
+	background-color: rgb(139, 173, 179);
+	color:white;
+	margin-bottom: 10px;
+	padding: 10px 8px;
+	border-radius: 3px;
+	text-align: center;
+	font-size: .9em;
+	width: 80px;
 	margin: 7px auto;
-  /*box-shadow: 3px 3px #9f9494;*/
-  border-bottom: 2px solid  rgba(0,0,0,.3);
-  border-right: 2px solid rgba(0,0,0,.3);
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
-  border-left: 2px solid rgba(255, 255, 255, 0.3);
+	font-weight: bold;
+	/*box-shadow: 3px 3px #9f9494;*/
+	border-bottom: 2px solid  rgba(0,0,0,.3);
+	border-right: 2px solid rgba(0,0,0,.3);
+	border-top: 2px solid rgba(255, 255, 255, 0.3);
+	border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 /*[FIN Suscripciones ] ============================================*/

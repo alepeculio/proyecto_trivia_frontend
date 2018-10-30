@@ -1,5 +1,5 @@
 
-/* [Preguntas] ============================================= */
+/* [Pregunta] ============================================= */
 
 .ContenedorPregunta{
   width: 50%;
@@ -39,7 +39,6 @@
   animation-duration: 15s;
   animation-name: barra;
   animation-timing-function: linear;
-
 
 }
 @keyframes barra {

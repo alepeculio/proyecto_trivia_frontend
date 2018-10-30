@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
-import Usuario from './Usuario';
+import UsuarioLista from './UsuarioLista';
 import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
 
-const usuariosListaURL = 'http://localhost:1234/usuarios/listar?cantidad=';
+const usuariosListaURL = 'http://localhost:1234/usuarios/usuariosSinRetar?id=';
 
-class RankingUsuarios extends Component{
+class UsuariosListado extends Component{
 	constructor(){
 		super();
 		this.state = {};
 	}
 
 	obtenerUsuarios(){
-		let url;
-		if(this.props.cantidad !== undefined){
-			url = usuariosListaURL + this.props.cantidad;
-		}else{
-			url = usuariosListaURL + '10';
-		}
+		let id = localStorage.getItem("usuario_id");
 
-		fetch(url,{
+		fetch(usuariosListaURL+id,{
 			method: 'GET',
 			headers:{
-				'Access-Control-Allow-Origin':'*',
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 		})
@@ -36,10 +30,11 @@ class RankingUsuarios extends Component{
 			}else if(data.Mensaje !== undefined){
 				this.setState({usuarios: ''});
 			}else{
+
 				let usuarios = data.usuarios.map(u => {
-					if(u.tipo !== 'Admin'){
-						return(<Usuario key={u.id} usuario = {u}/>);
-					}
+					return(
+						<UsuarioLista  key={u.id} usuario = {u} />
+						);
 				});
 				this.setState({usuarios: usuarios});
 			}})
@@ -49,6 +44,8 @@ class RankingUsuarios extends Component{
 			setTimeout( this.obtenerUsuarios.bind(this) , 10000);
 		});
 	}
+
+
 
 	componentDidMount(){
 		this.obtenerUsuarios();
@@ -68,12 +65,13 @@ class RankingUsuarios extends Component{
 		}
 
 		return(
-			<div className={clase}>
+
+			<div  className={clase} >
 			{usuarios}
 			</div>
 			);
-		
+
 	}
 }
 
-export default withRouter( RankingUsuarios );
+export default withRouter( UsuariosListado );
