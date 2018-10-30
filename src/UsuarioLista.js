@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-
+import { Link } from "react-router-dom";
+import Pregunta from './Pregunta';
 const retarURL = 'http://localhost:1234/usuarios/retar';
+
 
 class UsuarioLista extends Component{
 
 	constructor(){
 		super();
-		this.state = {};
+		this.state = {pregunta:null};
 	}
 
 	handleClick(e){
@@ -14,47 +16,58 @@ class UsuarioLista extends Component{
 		let id = localStorage.getItem("usuario_id");
 		let usuario = this.props.usuario.id;
 		this.retarUsuario(id,usuario);
+
 	}
 
-	retarUsuario(retador,retado){
-		fetch(retarURL,{
+	retarUsuario(e){
+		e.preventDefault();
+		let retado = this.props.usuario;
+		let retador = localStorage.getItem("usuario_id");
+
+		fetch( 'http://localhost:1234/preguntas/generarPreguntasDuelo', {
 			method: 'POST',
-			headers:{
+			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
 			},
-			body: JSON.stringify({
+			body: JSON.stringify( {
 				ID_retador: retador,
-				ID_retado: retado
-			})
-		})
-		.then(response => {
-			return response.json();
-		})
-		.then(data => {
-			if(data.Error !== undefined){
-				alert(data.Error);
-				console.log(data.Error);
-			}else{
-				alert(data.Mensaje);
-				console.log("OK", data.Mensaje);
-			}})
-		.catch(err => {
-			console.log(err);
-			console.log('Reintentando...');
-			setTimeout( this.retarUsuario.bind(this) , 10000);
+				ID_retado: retado.id,
+			} )
+		} ).then( res => {
+			return res.json();
+		} ).then( preguntas => {
+			var att = document.querySelectorAll('.ver');
+			for (var i=0; i < att.length; i++) {
+				att[i].setAttribute( 'hidden', true );
+			}
+			var primera = preguntas[0];
+			var b = <Pregunta
+			pregunta = {primera.pregunta}
+			correcta = {primera.respuestas[0]}
+			respuesta1 = {primera.respuestas[0]}
+			respuesta2 = {primera.respuestas[1]}
+			respuesta3 = {primera.respuestas[2]}
+			respuesta4 = {primera.respuestas[3]}
+			id_Pregunta = {primera._id}
+			mostrar = {true}
+			/>
+			this.setState({pregunta: b});
+
 		});
 	}
-
 	render(){
 		let usuario = this.props.usuario;
 		return(
-			<div onClick={this.handleClick.bind(this)} >
+			<div className="usuario" >
 			<img src={usuario.img} alt="Imagen usuario"/>
 			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
+			<span onClick={this.retarUsuario.bind(this)} className="retar">Retar</span>
 			<span className="puntaje">{usuario.puntaje} pts.</span>
 			</div>
-			);
-	}
-}
 
-export default UsuarioLista;
+
+			);
+		}
+	}
+
+	export default UsuarioLista;

@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-.App-logo {
+.App-logo { 
   -webkit-animation: App-logo-spin infinite 20s linear;
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -99,7 +99,7 @@ body {
   cursor: pointer;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  padding: 15px 35px 5px 35px;
+  padding: 10px 18px 5px 18px;
   margin: 0 .5px;
   display: inline-block;
   background-color: white;

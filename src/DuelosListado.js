@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Duelo from './Duelo';
 import DueloPropio from './DueloPropio';
-import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
 
 const duelosListaURL = 'http://localhost:1234/usuarios/listarRetos?id=';
@@ -10,7 +9,8 @@ const duelosPropiosListaURL = 'http://localhost:1234/usuarios/listarRetosPropios
 class DuelosListado extends Component{
 	constructor(){
 		super();
-		this.state = {};
+
+		this.state = {shown: false};
 	}
 
 	obtenerDuelos(){
@@ -84,6 +84,7 @@ class DuelosListado extends Component{
 
 	render(){
 		let duelos = this.state.duelos;
+
 		let duelosPropios = this.state.duelosPropios;
 		if(duelos === undefined){
 			duelos = <div className="cargando">Cargando...</div>
@@ -96,20 +97,25 @@ class DuelosListado extends Component{
 		}else if(duelosPropios === ''){
 			duelosPropios = <div className="cargando">No hay duelos</div>
 		}
+		var shown = {
+			display: this.state.shown ? "block" : "none",
+			visibility : this.state.visibility ? "visible" : "hidden"
+		};
+		
 
-		let clase = 'usuarios_ranking';
-		if(this.props.location.pathname === '/inicio'){
-			clase += ' inicio';
-		}
 
+
+		let clase = 'usuariosDuelo';
 		return(
 			<div className={clase}>
+			Duelo
 			{duelos}
+			Duelos Propios
 			{duelosPropios}
 			</div>
 			);
 
-		}
 	}
+}
 
-	export default withRouter( DuelosListado );
+export default withRouter( DuelosListado );

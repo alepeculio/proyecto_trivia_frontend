@@ -30,9 +30,10 @@ class UsuariosListado extends Component{
 			}else if(data.Mensaje !== undefined){
 				this.setState({usuarios: ''});
 			}else{
+
 				let usuarios = data.usuarios.map(u => {
 					return(
-						<UsuarioLista key={u.id} usuario = {u} />
+						<UsuarioLista  key={u.id} usuario = {u} />
 						);
 				});
 				this.setState({usuarios: usuarios});
@@ -43,6 +44,8 @@ class UsuariosListado extends Component{
 			setTimeout( this.obtenerUsuarios.bind(this) , 10000);
 		});
 	}
+
+
 
 	componentDidMount(){
 		this.obtenerUsuarios();
@@ -62,12 +65,13 @@ class UsuariosListado extends Component{
 		}
 
 		return(
-			<div className={clase}>
+
+			<div  className={clase} >
 			{usuarios}
 			</div>
 			);
 
-		}
 	}
+}
 
-	export default withRouter( UsuariosListado );
+export default withRouter( UsuariosListado );

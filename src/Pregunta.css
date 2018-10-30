@@ -40,7 +40,6 @@
   animation-name: barra;
   animation-timing-function: linear;
 
-
 }
 @keyframes barra {
   100%{background: red;}
