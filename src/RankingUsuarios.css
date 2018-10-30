@@ -22,7 +22,6 @@
   
 }
 
-
 .usuarios_ranking.inicio {
   border-top: 1px solid white;
   border-top-left-radius: 15px;
@@ -48,16 +47,22 @@
   text-align: left;
   position: relative;
   display: block;
-  /*box-shadow: 2px 2px #9f9494;*/
+  -webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+  box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
   border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+
 .usuarios_ranking .usuario:hover{
   background-color: #e6e6e6;
 }
+
+
 
 .usuarios_ranking :nth-child(1){
   background-color: #EDAF3A;

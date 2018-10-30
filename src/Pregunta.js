@@ -176,7 +176,7 @@ class Pregunta extends Component{
 	}
 	volver(){
 		document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
-		this.props.funcion();
+		this.props.funcion("VERGA");
 	}
 
 	render(){
