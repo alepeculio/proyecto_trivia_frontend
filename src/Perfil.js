@@ -88,15 +88,11 @@ class Perfil extends Component{
 			break;
 		}
 
-		let btnCambiar;
-		if(this.state.privado)
-			btnCambiar = <a className="btnCambiarImg">Cambiar</a>
 
 		return (
 			<div className="perfil">
 				<div className="contenedor-img">
 					<img src={u.img} alt="imagen perfil"/>
-					{btnCambiar}
 				</div>
 				<div className="contenedor-info">
 					<h3 className="nombre">{u.nombre} {u.apellido}</h3>
