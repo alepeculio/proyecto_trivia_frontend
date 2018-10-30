@@ -17,6 +17,7 @@ class Suscripciones extends Component{
 	}
 
 	obtenerUsuarios(){
+		let usuario = this.props.usuario;
 		let url;
 		if(this.props.cantidad !== undefined){
 			url = usuariosListaURL + this.props.cantidad;
@@ -41,18 +42,19 @@ class Suscripciones extends Component{
 				this.setState({usuarios: ''});
 			}else{
 				let usuarios = data.usuarios.map(u => {
-					return(
-						<div key={u.id} className="usuario" style={{backgroundColor: this.obtenerColor(u.tipo)}}>
-						<img src={u.img} alt="Imagen usuario"/>
-						<input readOnly hidden value={u.correo}/>
-						<span className="nombre">{u.nombre} {u.apellido}</span>
-						<select value={u.tipo} onChange={this.actualizarSuscripcion.bind(this)} >
-						<option value="Admin" > Administrador </option>
-						<option value="Suscripcion"> Suscripción </option>
-						<option value="SinSuscripcion"> Sin Suscripción </option>
-						</select>
-						</div>
-						);
+					if(u.id !== usuario.id)
+						return(
+							<div key={u.id} className="usuario" style={{backgroundColor: this.obtenerColor(u.tipo)}}>
+							<img src={u.img} alt="Imagen usuario"/>
+							<input readOnly hidden value={u.correo}/>
+							<span className="nombre">{u.nombre} {u.apellido}</span>
+							<select value={u.tipo} onChange={this.actualizarSuscripcion.bind(this)} >
+							<option value="Admin" > Administrador </option>
+							<option value="Suscripcion"> Suscripción </option>
+							<option value="SinSuscripcion"> Sin Suscripción </option>
+							</select>
+							</div>
+							);
 				});
 				this.setState({usuarios: usuarios});
 			}})

@@ -187,7 +187,7 @@ class App extends Component {
 					if(usuario === 'cargando')
 						return null;
 					else if(usuario !== '' && usuario.tipo === 'Admin')
-						return <div className="menu-admin"><Suscripciones /><Preguntas /></div>;
+						return <div className="menu-admin"><Suscripciones usuario={usuario} /><Preguntas /></div>;
 					else
 						return  <Redirect to='/inicio' />;
 
