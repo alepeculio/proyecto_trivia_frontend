@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Pregunta from './Pregunta';
-const retarURL = 'http://localhost:1234/usuarios/retar';
-
+import {properties} from './properties.js'
+const retarURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/retar';
 
 class UsuarioLista extends Component{
 
@@ -24,7 +24,7 @@ class UsuarioLista extends Component{
 		let retado = this.props.usuario;
 		let retador = localStorage.getItem("usuario_id");
 
-		fetch( 'http://localhost:1234/preguntas/generarPreguntasDuelo', {
+		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/generarPreguntasDuelo', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'

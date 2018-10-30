@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Pregunta.css';
-
+import { properties } from './properties.js'
 
 let green = '#11EA20';
 let red = '#F81010';
@@ -79,7 +79,7 @@ class Pregunta extends Component{
 	inicio($var){
 
 		let usuario_id = localStorage.getItem( 'usuario_id' );
-		fetch( 'http://localhost:1234/preguntas/usuarioRespondio', {
+		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/usuarioRespondio', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -149,7 +149,7 @@ class Pregunta extends Component{
 		}
 
 		let usuario_id = localStorage.getItem( 'usuario_id' );
-		fetch( 'http://localhost:1234/preguntas/cambiarEstado', {
+		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/cambiarEstado', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'

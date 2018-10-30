@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import UsuarioLista from './UsuarioLista';
 import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
+import {properties} from './properties.js'
 
-const usuariosListaURL = 'http://localhost:1234/usuarios/usuariosSinRetar?id=';
+const usuariosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/usuariosSinRetar?id=';
 
 class UsuariosListado extends Component{
 	constructor(){

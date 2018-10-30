@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect} from "react-router-dom";
 import './Perfil.css';
-
-const obtenerUsuarioURL = 'http://localhost:1234/usuarios/obtener?correo=';
+import {properties} from './properties.js'
+const obtenerUsuarioURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/obtener?correo=';
 
 class Perfil extends Component{
 	constructor(){
