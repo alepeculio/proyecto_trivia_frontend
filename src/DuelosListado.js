@@ -3,6 +3,7 @@ import Duelo from './Duelo';
 import DueloPropio from './DueloPropio';
 import { withRouter } from "react-router-dom";
 import {properties} from './properties.js'
+
 const duelosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/listarRetos?id=';
 const duelosPropiosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/listarRetosPropios?id=';
 
