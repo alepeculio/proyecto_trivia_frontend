@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PreguntaDuelo from './preguntaDuelo';
 import './Duelo.css';
 import {properties} from './properties.js';
+import './Pregunta.css';
 
 const cancelarURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/cancelarReto';
 const obtenerPreguntasDueloURL = 'http://'+properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntasDuelo';
@@ -32,7 +33,8 @@ class Duelo extends Component{
 		e.preventDefault();
 		let retado = localStorage.getItem("usuario_id"); 
 
-		fetch(obtenerPreguntasDueloURL, {
+		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
+
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -57,6 +59,7 @@ class Duelo extends Component{
 				mostrar= {true}
 				termino = {this.termino.bind(this)}
 				/>
+				document.querySelector( '.contenedorDuelo' ).setAttribute( 'hidden', true );
 				this.setState({pregunta: b});
 				this.setState({preguntas:preguntas});
 			}
@@ -76,10 +79,6 @@ class Duelo extends Component{
 			
 			if(this.state.cont == 3){
 
-				console.log("Retador: ", localStorage.getItem("usuario_id"));
-				console.log("Retado: ", this.props.duelo.id);
-				console.log("Cant:",this.state.cant_correctas);
-				console.log("Tiempo:", this.state.tiempo);
 				fetch(finalizarDueloURL, {
 					method: 'POST',
 					headers: {
@@ -97,7 +96,6 @@ class Duelo extends Component{
 				}).then(data => {
 					console.log(data);
 					alert(data);
-					window.location.reload();
 				}).catch(err => {
 					console.log(err);
 				});
@@ -151,6 +149,10 @@ class Duelo extends Component{
 	
 	render(){
 		let duelo = this.props.duelo;
+
+		var shown = {
+			display:"block"
+		};
 		return(
 			<div>
 			{this.state.pregunta}
