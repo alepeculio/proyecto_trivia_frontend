@@ -11,7 +11,7 @@ class DuelosListado extends Component{
 	constructor(){
 		super();
 
-		this.state = {shown: false};
+		this.state = {shown: false,flag: false};
 	}
 
 	obtenerDuelos(){
@@ -38,81 +38,40 @@ class DuelosListado extends Component{
 						);
 				});
 				this.setState({duelos: duelos});
+				this.setState({flag: true});
 			}})
 		.catch(err => {
 			console.log(err);
 			console.log('Reintentando...');
+			this.setState({flag: false});
 			setTimeout( this.obtenerDuelos.bind(this) , 10000);
-		});
-	}
-
-	obtenerDuelosPropios(){
-		let id = localStorage.getItem("usuario_id");
-		fetch(duelosPropiosListaURL+id,{
-			method: 'GET',
-			headers:{
-				'Content-Type': 'application/json; charset=utf-8'
-			},
-		})
-		.then(response => {
-			return response.json();
-		})
-		.then(data => {
-			if(data.Error !== undefined){
-				console.log(data.Error);
-				this.setState({duelosPropios: ''});
-			}else if(data.Mensaje !== undefined){
-				this.setState({duelosPropios: ''});
-			}else{
-				let duelosPropios = data.duelos.map(d => {
-					return(
-						<DueloPropio key={d.id} duelo = {d}/>
-						);
-				});
-				this.setState({duelosPropios: duelosPropios});
-			}})
-		.catch(err => {
-			console.log(err);
-			console.log('Reintentando...');
-			setTimeout( this.obtenerDuelosPropios.bind(this) , 10000);
 		});
 	}
 
 	componentDidMount(){
 		this.obtenerDuelos();
-		this.obtenerDuelosPropios();
 	}
 
 	render(){
 		let duelos = this.state.duelos;
 
-		let duelosPropios = this.state.duelosPropios;
 		if(duelos === undefined){
 			duelos = <div className="cargando">Cargando...</div>
-		}else if(duelos === ''){
+		}else if(this.state.flag){
 			duelos = <div className="cargando">No hay duelos</div>
 		}
 
-		if(duelosPropios === undefined){
-			duelosPropios = <div className="cargando">Cargando...</div>
-		}else if(duelosPropios === ''){
-			duelosPropios = <div className="cargando">No hay duelos</div>
-		}
 		var shown = {
 			display: this.state.shown ? "block" : "none",
 			visibility : this.state.visibility ? "visible" : "hidden"
 		};
 		
 
-
-
 		let clase = 'usuariosDuelo';
 		return(
 			<div className={clase}>
-			Duelo
+			Duelos
 			{duelos}
-			Duelos Propios
-			{duelosPropios}
 			</div>
 			);
 
