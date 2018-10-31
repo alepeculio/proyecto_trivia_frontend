@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Usuario from './Usuario';
 import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
-
-const usuariosListaURL = 'http://localhost:1234/usuarios/listar?cantidad=';
+import {properties} from './properties.js'
+const usuariosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/listar?cantidad=';
 
 class RankingUsuarios extends Component{
 	constructor(){
@@ -22,6 +22,7 @@ class RankingUsuarios extends Component{
 		fetch(url,{
 			method: 'GET',
 			headers:{
+				'Access-Control-Allow-Origin':'*',
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 		})

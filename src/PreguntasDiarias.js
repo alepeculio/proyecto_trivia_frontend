@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Pregunta from './Pregunta';
 import './PreguntasDiarias.css';
-
+import {properties} from './properties.js'
 class PreguntasDiarias extends Component {
-
 
 	constructor () {
 		super();
@@ -35,11 +34,16 @@ class PreguntasDiarias extends Component {
 			this.state = {
 				preguntas: preguntas,
 				cantPregs: categorias.length * preguntasPorCategoria,
-			
+				click: false
 			};
 		}
 
 		generarPreguntaDiaria ( posicion, categoria ) {
+			if ( this.state.click )
+				return;
+
+			this.setState( { click: true } );
+
 			let items = document.querySelectorAll( '#pdLista table tr' );
 			items[posicion - 1].querySelector( '.pdEstado' ).innerHTML = 'Respondiendo...';
 			items[posicion - 1].querySelector( '.pdEstado' ).removeAttribute( 'hidden' );
@@ -48,7 +52,7 @@ class PreguntasDiarias extends Component {
 
 			let usuario_id = localStorage.getItem( 'usuario_id' );
 
-			fetch( 'http://localhost:1234/preguntas/generarPreguntaDiaria', {
+			fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/generarPreguntaDiaria', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
@@ -93,7 +97,7 @@ class PreguntasDiarias extends Component {
 		cargarPreguntasDiarias () {
 			let usuario_id = localStorage.getItem( 'usuario_id' );
 
-			fetch( 'http://localhost:1234/preguntas/preguntasDiarias?ID_Usuario=' + usuario_id, {
+			fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/preguntasDiarias?ID_Usuario=' + usuario_id, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
@@ -140,9 +144,10 @@ class PreguntasDiarias extends Component {
 				console.log( 'Error: ' + err );
 			} );
 		}
-
-		terminoResp(a) {
-			console.log(a);
+		
+		terminoResp() {
+			
+			this.setState( { click: false } );
 			document.querySelector("#pdTabla").removeAttribute( 'hidden' );
 			this.cargarPreguntasDiarias();
 

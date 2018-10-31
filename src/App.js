@@ -14,8 +14,10 @@ import UsuariosListado from './UsuariosListado';
 import Suscripciones from './Suscripciones';
 import Preguntas from './Preguntas';
 
+import {properties} from './properties.js'
 
-const meURL = 'http://localhost:1234/usuarios/authMe';
+const meURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/authMe';
+
 
 class App extends Component {
 	constructor(){
@@ -24,7 +26,6 @@ class App extends Component {
 			usuario:''
 		};
 	}
-
 
 	obtenerUsuario(){
 		let usuario = localStorage.getItem('usuario_logueado');
@@ -138,77 +139,77 @@ class App extends Component {
 					{mensaje}
 					<IniciarSesionForm iniciarSesion = {this.iniciarSesion.bind(this)} usuario = {usuario}/>
 					</div>);
-				}} />
+			}} />
 
-				<Route path="/registrarse" render={ (props) => <RegistrarUsuarioForm usuario = { usuario } /> } />
+			<Route path="/registrarse" render={ (props) => <RegistrarUsuarioForm usuario = { usuario } /> } />
 
-				<Route path = "/ranking" render = { ( props ) => {
-					if ( usuario === '' )
-						return ( <Redirect to='/inicio' /> );
-					else if(usuario.tipo === 'Admin')
-						return <Redirect to='/admin' />
-					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkRanking" } /> <RankingUsuarios /> </div> </div> );
-				} } />
+			<Route path = "/ranking" render = { ( props ) => {
+				if ( usuario === '' )
+					return ( <Redirect to='/inicio' /> );
+				else if(usuario.tipo === 'Admin')
+					return <Redirect to='/admin' />
+				else
+					return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkRanking" } /> <RankingUsuarios /> </div> </div> );
+			} } />
 
-				<Route path = "/preguntas" render = { ( props ) => {
-					if ( usuario === '' )
-						return ( <Redirect to='/inicio' /> );
-					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
-				} } />
+			<Route path = "/preguntas" render = { ( props ) => {
+				if ( usuario === '' )
+					return ( <Redirect to='/inicio' /> );
+				else
+					return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
+			} } />
 
-				<Route path = "/manoamano" render = { ( props ) => {
-					if ( usuario === '' )
-						return ( <Redirect to='/inicio' /> );
-					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <Duelos /> </div> </div> );
-				} } />
-				<Route path = "/usuarioListado" render = { ( props ) => {
-					if ( usuario === '' )
-						return ( <Redirect to='/inicio' /> );
-					else
-						return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkUsuarioListado" } /> <UsuariosListado/> </div> </div> );
-				} } />
+			<Route path = "/manoamano" render = { ( props ) => {
+				if ( usuario === '' )
+					return ( <Redirect to='/inicio' /> );
+				else
+					return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <Duelos /> </div> </div> );
+			} } />
+			<Route path = "/usuarioListado" render = { ( props ) => {
+				if ( usuario === '' )
+					return ( <Redirect to='/inicio' /> );
+				else
+					return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkUsuarioListado" } /> <UsuariosListado/> </div> </div> );
+			} } />
 
-				<Route path = "/perfil" render = { ( props ) => {
-					if(usuario === 'cargando')
-						return null;
-					else if(usuario === '')
-						return <Perfil usuario = '' />;
-					else
-						return <Perfil usuario={usuario} />;
+			<Route path = "/perfil" render = { ( props ) => {
+				if(usuario === 'cargando')
+					return null;
+				else if(usuario === '')
+					return <Perfil usuario = '' />;
+				else
+					return <Perfil usuario={usuario} />;
 
-				} } />
+			} } />
 
-				<Route path = "/admin" render = { (props) => {
-					if(usuario === 'cargando')
-						return null;
-					else if(usuario !== '' && usuario.tipo === 'Admin')
-						return <div className="menu-admin"><Suscripciones /><Preguntas /></div>;
-					else
-						return  <Redirect to='/inicio' />;
+			<Route path = "/admin" render = { (props) => {
+				if(usuario === 'cargando')
+					return null;
+				else if(usuario !== '' && usuario.tipo === 'Admin')
+					return <div className="menu-admin"><Suscripciones usuario={usuario} /><Preguntas /></div>;
+				else
+					return  <Redirect to='/inicio' />;
 
-				} } />
-				</div>
-				</Router>
-				</div>
-				);
-			}
-		}
+			} } />
+			</div>
+			</Router>
+			</div>
+			);
+	}
+}
 
-		const MenuInicial = ( props ) => {
-			return (
-				<div id='menuInicial'>
-				<div>
-				<Link to = '/ranking' id="linkRanking" className = { props.link === "linkRanking" ? "activo" : "" }>Ranking</Link>
-				<Link to = '/preguntas' id="linkPreguntas" className = { props.link === "linkPreguntas" ? "activo" : "" }>Preguntas diarias</Link>
-				<Link to = '/manoamano' id="linkManoAMano" className = { props.link === "linkManoAMano" ? "activo" : "" }>Mano a mano</Link>
-				<Link to = '/usuarioListado' id="linkUsuarioListado" className = { props.link === "linkUsuarioListado" ? "activo" : "" }>Usuarios</Link>
-				</div>
-				</div>
-				);
-		};
+const MenuInicial = ( props ) => {
+	return (
+		<div id='menuInicial'>
+		<div>
+		<Link to = '/ranking' id="linkRanking" className = { props.link === "linkRanking" ? "activo" : "" }>Ranking</Link>
+		<Link to = '/preguntas' id="linkPreguntas" className = { props.link === "linkPreguntas" ? "activo" : "" }>Preguntas diarias</Link>
+		<Link to = '/manoamano' id="linkManoAMano" className = { props.link === "linkManoAMano" ? "activo" : "" }>Mano a mano</Link>
+		<Link to = '/usuarioListado' id="linkUsuarioListado" className = { props.link === "linkUsuarioListado" ? "activo" : "" }>Usuarios</Link>
+		</div>
+		</div>
+		);
+};
 
-		export default App;
+export default App;
 

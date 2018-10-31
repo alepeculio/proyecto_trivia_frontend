@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-const retarURL = 'http://localhost:1234/usuarios/retar';
-
+import Pregunta from './Pregunta';
+import {properties} from './properties.js'
+const retarURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/retar';
 
 class UsuarioLista extends Component{
 
@@ -17,7 +18,8 @@ class UsuarioLista extends Component{
 		let retado = this.props.usuario.id;
 		this.props.retar(retador,retado);
 
-		}
+
+	}
 	
 	render(){
 		let usuario = this.props.usuario;
@@ -31,7 +33,7 @@ class UsuarioLista extends Component{
 
 
 			);
-		}
 	}
+}
 
-	export default UsuarioLista;
+export default UsuarioLista;
