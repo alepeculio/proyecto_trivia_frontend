@@ -247,3 +247,10 @@ body {
     margin-top: -20px;
   }
 }
+
+@media only screen and (max-width: 800px) {
+ .contenedor2{
+  width: 100%;
+  text-align: center;
+ }
+}

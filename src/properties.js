@@ -1,4 +1,4 @@
 export const properties = {
-    ip: "localhost",
+    ip: "192.168.0.148",
     puerto: "1234"
 };
