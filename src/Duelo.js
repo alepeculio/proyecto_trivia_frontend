@@ -24,21 +24,19 @@ class Duelo extends Component{
 		let retado = localStorage.getItem("usuario_id"); 
 
 		console.log("CLIC ACEPTAR");
-		console.log("DUELO:", this.props.duelo.id);
-		fetch( 'http://localhost:1234/preguntas/generarPreguntasDuelo', {
+		
+		fetch( 'http://localhost:1234/preguntas/obtenerPreguntasDuelo', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify( {
-				ID_retador: this.props.duelo.id,
-				ID_retado: retado,
+				ID_retado: retado
 			} )
 		} ).then( res => {
-		
 			return res.json();
-		} ).then( pregunta => {
-			console.log(pregunta);
+		} ).then( preguntas => {
+			console.log(preguntas);
 		});
 	}
 
@@ -105,24 +103,24 @@ class Duelo extends Component{
 	render(){
 		let duelo = this.props.duelo;
 		return(
-			<div>
-			{this.state.pregunta}
-			<div id="duelo" className="contenedorDuelo" >
-			<div className="contImg">
-			<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
-			</div>
-			<div className="contInfo">
-			<font className="nombre">{duelo.nombre} {duelo.apellido} </font>
-			<font className="puntaje">{duelo.puntaje} pts.</font>
-			</div>
-			<div className="buttons">
-			<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
-			<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
-			</div>
-			
-			</div>
-			</div>
-			);
+		<div>
+		{this.state.pregunta}
+		<div id="duelo" className="contenedorDuelo" >
+		<div className="contImg">
+		<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
+		</div>
+		<div className="contInfo">
+		<font className="nombre">{duelo.nombre} {duelo.apellido} </font>
+		<font className="puntaje">{duelo.puntaje} pts.</font>
+		</div>
+		<div className="buttons">
+		<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
+		<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
+		</div>
+		
+		</div>
+		</div>
+		);
 	}
 }
 
