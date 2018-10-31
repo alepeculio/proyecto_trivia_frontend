@@ -3,7 +3,7 @@ import Usuario from './Usuario';
 import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
 import {properties} from './properties.js'
-const usuariosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/listar?cantidad=';
+const usuariosListaURL = properties.ip+':'+properties.puerto+'/usuarios/listar?cantidad=';
 
 class RankingUsuarios extends Component{
 	constructor(){
