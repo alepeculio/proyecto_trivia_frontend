@@ -23,11 +23,7 @@ class Duelo extends Component{
 	handleClickAceptar(e){
 		e.preventDefault();
 		let retado = localStorage.getItem("usuario_id"); 
-
-
-		console.log("CLIC ACEPTAR");
-		console.log("DUELO:", this.props.duelo.id);
-		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/generarPreguntasDuelo', {
+		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
