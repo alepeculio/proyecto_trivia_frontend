@@ -35,6 +35,7 @@ class IniciarSesionForm extends Component{
 		fetch(iniciarSesionURL,{
 			method: 'POST',
 			headers: {
+				'Access-Control-Allow-Origin':'*',
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify(datos)
@@ -50,6 +51,7 @@ class IniciarSesionForm extends Component{
 				fetch( meURL, {
 					method: 'GET',
 					headers: {
+						'Access-Control-Allow-Origin':'*',
 						'Content-Type': 'application/json; charset=utf-8',
 						'x-access-token': data.token
 					}
