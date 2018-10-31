@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 //import Usuario from './Usuario';
 import './IniciarSesionForm.css';
-
-const iniciarSesionURL = 'http://localhost:1234/usuarios/authLogin';
-const meURL = 'http://localhost:1234/usuarios/authMe';
+import {properties} from './properties.js'
+const iniciarSesionURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/authLogin';
+const meURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/authMe';
 
 class IniciarSesionForm extends Component{
 	constructor(){
@@ -35,6 +35,7 @@ class IniciarSesionForm extends Component{
 		fetch(iniciarSesionURL,{
 			method: 'POST',
 			headers: {
+				'Access-Control-Allow-Origin':'*',
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify(datos)
@@ -50,6 +51,7 @@ class IniciarSesionForm extends Component{
 				fetch( meURL, {
 					method: 'GET',
 					headers: {
+						'Access-Control-Allow-Origin':'*',
 						'Content-Type': 'application/json; charset=utf-8',
 						'x-access-token': data.token
 					}

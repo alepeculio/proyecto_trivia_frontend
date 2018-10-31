@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Pregunta from './Pregunta';
 import './Duelo.css';
-const cancelarURL = 'http://localhost:1234/usuarios/cancelarReto';
+import {properties} from './properties.js'
+const cancelarURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/cancelarReto';
 
 class Duelo extends Component{
 
@@ -23,9 +24,7 @@ class Duelo extends Component{
 		e.preventDefault();
 		let retado = localStorage.getItem("usuario_id"); 
 
-		console.log("CLIC ACEPTAR");
-		
-		fetch( 'http://localhost:1234/preguntas/obtenerPreguntasDuelo', {
+		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/generarPreguntasDuelo', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -71,7 +70,7 @@ class Duelo extends Component{
 
 	generarPreguntaDuelo(){
 
-		fetch( 'http://localhost:1234/preguntas/generarPreguntaDuelo', {
+		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/generarPreguntaDuelo', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'

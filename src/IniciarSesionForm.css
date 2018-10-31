@@ -11,6 +11,24 @@
 
 }
 
+@media only screen and (max-width: 900px) {
+  .iniciar_sesion_form {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .iniciar_sesion_form {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .iniciar_sesion_form {
+    width: 80%;
+  }
+}
+
 .iniciar_sesion_form h2{
   text-align:left;
 }

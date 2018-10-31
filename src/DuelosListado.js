@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Duelo from './Duelo';
 import DueloPropio from './DueloPropio';
 import { withRouter } from "react-router-dom";
-
-const duelosListaURL = 'http://localhost:1234/usuarios/listarRetos?id=';
-const duelosPropiosListaURL = 'http://localhost:1234/usuarios/listarRetosPropios?id=';
+import {properties} from './properties.js'
+const duelosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/listarRetos?id=';
+const duelosPropiosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/listarRetosPropios?id=';
 
 class DuelosListado extends Component{
 	constructor(){

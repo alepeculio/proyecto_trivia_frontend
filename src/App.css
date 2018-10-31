@@ -69,6 +69,16 @@ body {
   background-repeat: no-repeat; 
   background-size: cover;     
   background-attachment: fixed;
+
+  background-color: #073276;
+}
+
+
+@media only screen and (max-width: 500px) {
+  body {
+    background-image: linear-gradient(to right, #073276, blue, #073276); 
+    background-repeat: repeat; 
+  }
 }
 
 /* [Menu Inicial] ============================================= */
@@ -106,6 +116,69 @@ body {
   
   border-left: 1px solid white;
   border-right: 1px solid white;
+}
+
+@media only screen and (max-width: 750px) {
+  #menuInicial > div > a {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  #menuInicial > div > a:nth-child(1),
+  #menuInicial > div > a:nth-child(2) {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  #menuInicial > div > a:nth-child(3),
+  #menuInicial > div > a:nth-child(4),
+  #menuInicial > div > a:nth-child(3).activo,
+  #menuInicial > div > a:nth-child(4).activo,
+  #menuInicial > div > a:nth-child(3):hover,
+  #menuInicial > div > a:nth-child(4):hover {
+    border: 1px solid white;
+    border-bottom: none;
+    border-top: 1px solid rgba(66, 160, 255, 1);
+  }
+
+  #menuInicial > div > a:nth-child(3):hover,
+  #menuInicial > div > a:nth-child(4):hover {
+    border-top: 1px solid white;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #menuInicial > div > a {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    border-radius: 0 !important;
+  }
+
+  #menuInicial > div > a:nth-child(1) {
+  }
+
+  #menuInicial > div > a:nth-child(2),
+  #menuInicial > div > a:nth-child(3),
+  #menuInicial > div > a:nth-child(4),
+  #menuInicial > div > a:nth-child(2).activo,
+  #menuInicial > div > a:nth-child(3).activo,
+  #menuInicial > div > a:nth-child(4).activo,
+  #menuInicial > div > a:nth-child(2):hover,
+  #menuInicial > div > a:nth-child(3):hover,
+  #menuInicial > div > a:nth-child(4):hover {
+    border: 1px solid white;
+    border-bottom: none;
+    border-top: 1px solid rgba(66, 160, 255, 1);
+  }
+
+  #menuInicial > div > a:nth-child(2):hover,
+  #menuInicial > div > a:nth-child(3):hover,
+  #menuInicial > div > a:nth-child(4):hover {
+    border-top: 1px solid white;
+  }
 }
 
 #menuInicial > div > a:hover,
@@ -150,3 +223,34 @@ body {
 }
 
 /* [Fin preguntas diarias] ============================================= */
+
+.menu-admin .suscripciones {
+  width: 350px;
+  float: left;
+  background-color: rgba(1, 1, 1, .5);
+  color: white;
+}
+
+.menu-admin .preguntas {
+  width: calc(calc(100% - 350px) - 65px);
+  background-color: rgba(1, 1, 1, .5);
+  color: white;
+}
+
+@media only screen and (max-width: 900px) {
+  .menu-admin .suscripciones {
+    width: calc(100% - 40px);
+  }
+
+  .menu-admin .preguntas {
+    width: calc(100% - 40px);
+    margin-top: -20px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+ .contenedor2{
+  width: 100%;
+  text-align: center;
+ }
+}

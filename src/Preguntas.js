@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './Preguntas.css';
-
-const preguntasListaURL = 'http://localhost:1234/preguntas/obtenerPreguntas?cantidad=';
-const editarPreguntaURL = 'http://localhost:1234/preguntas/editarPregunta';
-const eliminarPreguntaURL = 'http://localhost:1234/preguntas/eliminarPregunta';
+import {properties} from './properties.js'
+const preguntasListaURL = 'http://'+properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntas?cantidad=';
+const editarPreguntaURL = 'http://'+properties.ip+':'+properties.puerto+'/preguntas/editarPregunta';
+const eliminarPreguntaURL = 'http://'+properties.ip+':'+properties.puerto+'/preguntas/eliminarPregunta';
 
 
 class Preguntas extends Component{

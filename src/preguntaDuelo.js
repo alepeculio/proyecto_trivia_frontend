@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './Pregunta.css';
-import { properties } from './properties.js'
+
 
 let green = '#11EA20';
 let red = '#F81010';
 
-class Pregunta extends Component{
+class PreguntaDuelo extends Component{
 
 
 	constructor (props) {
@@ -78,25 +78,6 @@ class Pregunta extends Component{
 
 	inicio($var){
 
-		let usuario_id = localStorage.getItem( 'usuario_id' );
-		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/usuarioRespondio', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			},
-			body: JSON.stringify( {
-				ID_Usuario: usuario_id,
-				ID_Pregunta: $var,
-				estado:"NoRespondio",
-				tiempo:0
-			} )
-
-		} ).then(res => {
-			return res.json();
-		}).then(nose=>{
-		}).catch( err => {
-			console.log( "Error: "+err );
-		} );
 	}
 	conexion($var,$btn){
 		this.setState({
@@ -107,7 +88,6 @@ class Pregunta extends Component{
 		let tiempo = this.state.cronometro;
 		if(this.props.correcta === $var ){
 			estado = "Correcta"
-			this.aumentarPuntuacion();
 		}else{
 			estado = "Incorrecta"
 		}
@@ -148,30 +128,7 @@ class Pregunta extends Component{
 			}
 		}
 
-		let usuario_id = localStorage.getItem( 'usuario_id' );
-		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/cambiarEstado', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			},
-			body: JSON.stringify( {
-				ID_Usuario: usuario_id,
-				ID_Pregunta: this.props.id_Pregunta,
-				estado:estado,
-				tiempo:tiempo
-			} )
-
-		} ).then(res => {
-			clearInterval(this.timer);
-			return res.json();
-		}).then(nose=>{
-			this.state.inicio = false;
-			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
-			//this.props.funcion();
-
-		}).catch( err => {
-			console.log( "Error: "+err );
-		} );
+		this.props.termino(estado,tiempo);
 
 	}
 	volver(){
@@ -234,4 +191,4 @@ class Pregunta extends Component{
 
 }
 
-export default Pregunta;
+export default PreguntaDuelo;

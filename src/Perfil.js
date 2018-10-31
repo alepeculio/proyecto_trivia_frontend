@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect} from "react-router-dom";
 import './Perfil.css';
-
-const obtenerUsuarioURL = 'http://localhost:1234/usuarios/obtener?correo=';
+import {properties} from './properties.js'
+const obtenerUsuarioURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/obtener?correo=';
 
 class Perfil extends Component{
 	constructor(){
@@ -88,15 +88,11 @@ class Perfil extends Component{
 			break;
 		}
 
-		let btnCambiar;
-		if(this.state.privado)
-			btnCambiar = <a className="btnCambiarImg">Cambiar</a>
 
 		return (
 			<div className="perfil">
 				<div className="contenedor-img">
 					<img src={u.img} alt="imagen perfil"/>
-					{btnCambiar}
 				</div>
 				<div className="contenedor-info">
 					<h3 className="nombre">{u.nombre} {u.apellido}</h3>
