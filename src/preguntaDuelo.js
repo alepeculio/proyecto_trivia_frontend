@@ -4,6 +4,7 @@ import './Pregunta.css';
 
 let green = '#11EA20';
 let red = '#F81010';
+let t = 15;
 
 class PreguntaDuelo extends Component{
 
@@ -14,7 +15,7 @@ class PreguntaDuelo extends Component{
 		this.state = {
 			contador: 3,//tiempo antes de que aparezca la pregunta
 			shown: true,
-			cronometro: 15,//tiempo para responder
+			cronometro: t,//tiempo para responder
 			inicio: false,
 			lista : [],
 			btn1: "white",
@@ -128,7 +129,7 @@ class PreguntaDuelo extends Component{
 			}
 		}
 
-		this.props.termino(estado,tiempo);
+		this.props.termino(estado,t-tiempo);
 
 	}
 	volver(){

@@ -4,7 +4,7 @@ import { properties } from './properties.js'
 
 let green = '#11EA20';
 let red = '#F81010';
-
+let t = 15;
 class Pregunta extends Component{
 
 
@@ -14,7 +14,7 @@ class Pregunta extends Component{
 		this.state = {
 			contador: 3,//tiempo antes de que aparezca la pregunta
 			shown: true,
-			cronometro: 15,//tiempo para responder
+			cronometro: t,//tiempo para responder
 			inicio: false,
 			lista : [],
 			btn1: "white",
@@ -104,7 +104,7 @@ class Pregunta extends Component{
 		})
 
 		let estado;
-		let tiempo = this.state.cronometro;
+		let tiempo = t-this.state.cronometro;
 		if(this.props.correcta === $var ){
 			estado = "Correcta"
 			this.aumentarPuntuacion();

@@ -17,8 +17,6 @@ class UsuarioLista extends Component{
 		let retador = localStorage.getItem("usuario_id");
 		let retado = this.props.usuario.id;
 		this.props.retar(retador,retado);
-
-
 	}
 	
 	render(){

@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import Pregunta from './Pregunta';
+import PreguntaDuelo from './preguntaDuelo';
 import './Duelo.css';
-import {properties} from './properties.js'
+import {properties} from './properties.js';
+import './Pregunta.css';
+
 const cancelarURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/cancelarReto';
+const obtenerPreguntasDueloURL = 'http://'+properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntasDuelo';
+const finalizarDueloURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/finalizarDuelo';
 
 class Duelo extends Component{
 
-
 	constructor () {
 		var randomColor = "#"+Math.floor(Math.random()*16777215).toString(16);
-		console.log(randomColor);
 		super();
-		this.state = {pregunta:null, color: "white"};
-
+		this.state = {
+			pregunta:null, 
+			color: "white",
+			preguntas: null,
+			cant_correctas: 0,
+			tiempo: 0,
+			cont: 0
+		};
 	}
+
 	handleClickCancelar(e){
 		e.preventDefault();
 		let retado = localStorage.getItem("usuario_id"); 
@@ -23,20 +32,90 @@ class Duelo extends Component{
 	handleClickAceptar(e){
 		e.preventDefault();
 		let retado = localStorage.getItem("usuario_id"); 
+
 		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
+
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify( {
-				ID_retado: retado
+				ID_retado: retado,
+				ID_retador: this.props.duelo.id
 			} )
 		} ).then( res => {
-		
 			return res.json();
 		} ).then( preguntas => {
-			console.log(preguntas);
+			if(preguntas.lenght !== 0){
+				let primera = preguntas[0];
+				let b = <PreguntaDuelo
+				pregunta = {primera.pregunta}
+				correcta = {primera.respuestas[0]}
+				respuesta1 = {primera.respuestas[0]}
+				respuesta2 = {primera.respuestas[1]}
+				respuesta3 = {primera.respuestas[2]}
+				respuesta4 = {primera.respuestas[3]}
+				id_Pregunta = {primera._id}
+				mostrar= {true}
+				termino = {this.termino.bind(this)}
+				/>
+				document.querySelector( '.contenedorDuelo' ).setAttribute( 'hidden', true );
+				this.setState({pregunta: b});
+				this.setState({preguntas:preguntas});
+			}
 		});
+	}
+
+	termino(estado,tiempo){
+		this.setState({pregunta: null});
+
+		if(estado=="Correcta"){
+			this.setState({cant_correctas:this.state.cant_correctas+1});
+		}
+
+		this.setState({tiempo:this.state.tiempo+tiempo});
+
+		this.setState({cont:this.state.cont+1},()=>{
+			
+			if(this.state.cont == 3){
+
+				fetch(finalizarDueloURL, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json; charset=utf-8'
+					},
+					body: JSON.stringify( {
+						usuario: localStorage.getItem("usuario_id"),
+						ID_retador: this.props.duelo.id,
+						ID_retado: localStorage.getItem("usuario_id"),
+						cant_correctas: this.state.cant_correctas,
+						tiempo: this.state.tiempo
+					} )
+				} ).then(res=>{
+					return res.json();
+				}).then(data => {
+					console.log(data);
+					alert(data);
+				}).catch(err => {
+					console.log(err);
+				});
+			}else{
+				var siguiente = this.state.preguntas[this.state.cont];
+				var b = <PreguntaDuelo
+				pregunta = {siguiente.pregunta}
+				correcta = {siguiente.respuestas[0]}
+				respuesta1 = {siguiente.respuestas[0]}
+				respuesta2 = {siguiente.respuestas[1]}
+				respuesta3 = {siguiente.respuestas[2]}
+				respuesta4 = {siguiente.respuestas[3]}
+				id_Pregunta = {siguiente._id}
+				mostrar = {true}
+				termino={this.termino.bind(this)}
+				/>
+				this.setState({pregunta: b});
+			}
+		});
+
 	}
 
 	cancelarDuelo(retador,retado){
@@ -67,40 +146,13 @@ class Duelo extends Component{
 			setTimeout( this.cancelarDuelo.bind(this) , 10000);
 		});
 	}	
-
-	generarPreguntaDuelo(){
-
-		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/generarPreguntaDuelo', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			},
-			body: JSON.stringify( {
-				ID_retador: this.props.duelo.id,
-				ID_retado: localStorage.getItem('usuario_id')
-			} )
-		} ).then( res => {
-			return res.json();
-		} ).then(pregunta => {
-			document.querySelector("#duelo").setAttribute( 'hidden', true );
-			var b = <Pregunta
-			funcion = { this.terminoResp.bind( this ) }
-			pregunta = {pregunta.pregunta}
-			correcta = {pregunta.respuestas[0]}
-			respuesta1 = {pregunta.respuestas[0]}
-			respuesta2 = {pregunta.respuestas[1]}
-			respuesta3 = {pregunta.respuestas[2]}
-			respuesta4 = {pregunta.respuestas[3]}
-			id_Pregunta = {pregunta._id}
-			mostrar = {true}
-			/>
-			this.setState({pregunta: b});
-
-		})
-	}
 	
 	render(){
 		let duelo = this.props.duelo;
+
+		var shown = {
+			display:"block"
+		};
 		return(
 			<div>
 			{this.state.pregunta}
@@ -116,7 +168,7 @@ class Duelo extends Component{
 			<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
 			<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
 			</div>
-			
+
 			</div>
 			</div>
 			);

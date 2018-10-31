@@ -22,7 +22,7 @@ class UsuariosListado extends Component{
 			tiempo: 0,
 			contador: 0,
 			retado: null,
-
+			shown: false,
 
 		};
 	}	
@@ -64,7 +64,6 @@ class UsuariosListado extends Component{
 	}
 
 	retar(retador,retado){
-		console.log("A");
 
 		fetch( 'http://localhost:1234/preguntas/generarPreguntasDuelo', {
 			method: 'POST',
@@ -91,9 +90,15 @@ class UsuariosListado extends Component{
 			mostrar = {true}
 			termino={this.termino.bind(this)}
 			/>
-			this.setState({pregunta: b});
-			this.setState({preguntas:preguntas});
-			this.setState({retado:retado})
+			this.setState({shown:true},()=>{
+				this.setState({pregunta: b});
+				this.setState({preguntas:preguntas});
+				this.setState({retado:retado});
+				document.querySelector( '.usuarios_ranking' ).setAttribute( 'hidden', true );
+
+			});
+
+
 
 
 		});
@@ -102,52 +107,54 @@ class UsuariosListado extends Component{
 	termino(estado,tiempo){
 
 		this.setState({pregunta: null});
-
+		console.log("Estado"+estado);
+		console.log("Tiempo"+tiempo);
 		if(estado=="Correcta"){
 			this.setState({estado:this.state.estado+1});
 		}
 
-		this.setState({tiempo:this.state.tiempo+this.state.tiempo});
+		this.setState({tiempo:this.state.tiempo+tiempo},()=>{
 
-		this.setState({contador:this.state.contador+1},()=>{
-			console.log(this.state.contador);
-			if(this.state.contador == 3){
-				console.log(localStorage.getItem("usuario_id"));
-				console.log(this.state.retado);
-				console.log(this.state.estado);
-				console.log(this.state.tiempo);
-				fetch( 'http://localhost:1234/usuarios/comenzarDuelo', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json; charset=utf-8'
-					},
-					body: JSON.stringify( {
-						ID_retador: localStorage.getItem("usuario_id"),
-						ID_retado: this.state.retado,
-						cant_correctas: this.state.estado,
-						tiempo: this.state.tiempo
-					} )
-				} ).then(res=>{
-					return res.json();
-				}).then(data => {console.log(data)}).catch(err => {
-					console.log(err);
-				});
-			}else{
-				var siguiente = this.state.preguntas[this.state.contador];
-				var b = <Pregunta
-				pregunta = {siguiente.pregunta}
-				correcta = {siguiente.respuestas[0]}
-				respuesta1 = {siguiente.respuestas[0]}
-				respuesta2 = {siguiente.respuestas[1]}
-				respuesta3 = {siguiente.respuestas[2]}
-				respuesta4 = {siguiente.respuestas[3]}
-				id_Pregunta = {siguiente._id}
-				mostrar = {true}
-				termino={this.termino.bind(this)}
-				/>
-				this.setState({pregunta: b});
-			}
-		});
+			this.setState({contador:this.state.contador+1},()=>{
+
+				if(this.state.contador == 3){
+
+					fetch( 'http://localhost:1234/usuarios/comenzarDuelo', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json; charset=utf-8'
+						},
+						body: JSON.stringify( {
+							ID_retador: localStorage.getItem("usuario_id"),
+							ID_retado: this.state.retado,
+							cant_correctas: this.state.estado,
+							tiempo: this.state.tiempo
+						} )
+					} ).then(res=>{
+						return res.json();
+					}).then(data => {
+						console.log(data);
+						document.querySelector( '.usuarios_ranking' ).removeAttribute('hidden');
+						this.setState({shown:false});
+					}).catch(err => {
+						console.log(err);
+					});
+				}else{
+					var siguiente = this.state.preguntas[this.state.contador];
+					var b = <Pregunta
+					pregunta = {siguiente.pregunta}
+					correcta = {siguiente.respuestas[0]}
+					respuesta1 = {siguiente.respuestas[0]}
+					respuesta2 = {siguiente.respuestas[1]}
+					respuesta3 = {siguiente.respuestas[2]}
+					respuesta4 = {siguiente.respuestas[3]}
+					id_Pregunta = {siguiente._id}
+					mostrar = {true}
+					termino={this.termino.bind(this)}
+					/>
+					this.setState({pregunta: b});
+				}
+			});});
 
 		
 	}
@@ -166,11 +173,15 @@ class UsuariosListado extends Component{
 		let clase = 'usuarios_ranking';
 		if(this.props.location.pathname === '/inicio'){
 			clase += ' inicio';
-		}
+		};
+		var shown = {
+			display: this.state.shown ? "block" : "none"
+		};
+		
 
 		return(
 			<div>
-			<div className="cont">
+			<div className="cont" style={shown}>
 			{this.state.pregunta}
 			</div>
 			<div  className={clase} >
