@@ -36,7 +36,7 @@
 
 .suscripciones .titulo .primero{
 	font-size: 1.1em;
-	padding-top: 30px;
+	margin-left: 30px;
 }
 
 .suscripciones .titulo .segundo{
@@ -59,11 +59,17 @@
 
 
 .suscripciones .usuario{
-	/*background-color: rgb(139, 173, 179);*/
-	margin: 2px;
+	margin-top:15px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+	margin-right: 18px; 
+	border:1px solid;
+	padding: 5px;
 	border-radius: 3px;
 	height:var(--usu-height-sus);
 	position: relative;
+	-webkit-box-shadow: 2px 2px;
+	        box-shadow: 2px 2px; 
 }
 
 .suscripciones .usuario *{
@@ -74,18 +80,18 @@
 .suscripciones .usuario img{
 	width: calc(var(--usu-height-sus) - 1px);
 	height: calc(var(--usu-height-sus) - 1px);
-	top: calc((var(--usu-height-sus) / 2) - ((var(--usu-height-sus) - 1px)) / 2);
-	left:1px;
+	top: calc((var(--usu-height-sus) / 2) - ((var(--usu-height-sus) - 10px)) / 2);
+	left:5px;
 }
 
 .suscripciones .usuario .nombre{
-	top: calc((var(--usu-height-sus) / 2) - 10px);
-	left: calc(var(--usu-height-sus) + 2px);
+	top: calc((var(--usu-height-sus) / 2) - 7px);
+	left: calc(var(--usu-height-sus) + 10px);
 	font-size: 1.1em;
 }
 
 .suscripciones .usuario select{
-	top: calc((var(--usu-height-sus) / 2) - 12px);
+	top: calc((var(--usu-height-sus) / 2) - 7px);
 	right: 3px;
 	border-radius: 3px;
 	border: none;

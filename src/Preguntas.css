@@ -13,6 +13,10 @@
 	background-color: #CCC;
 }
 
+.preguntas * {
+	font-family: Helvetica;
+}
+
 .preguntas .titulo{
 	padding: 2px 5px;
 	display: block;
@@ -33,6 +37,7 @@
 
 .preguntas .contenedor .buscador{
 	text-align: left;
+	margin:0 14px;
 }
 
 .preguntas .contenedor .buscador form input{
@@ -51,15 +56,22 @@
 
 .preguntas .contenedor .pregunta{
 	text-align: left;
-	margin: 2px 1px;
+	margin-top:15px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+	margin-right: 18px; 
 	border-radius: 2px;
 	padding: 10px;
 	cursor:pointer;
+	box-shadow: 2px 2px;
+	border:1px solid;
+	background-color: rgb(128, 128, 128);
 }
 
 .preguntas .contenedor .pregunta .texto{
-	color: white;
-	font-size: 1.2em;
+	color: black;
+	font-weight: bolder;
+	font-size: 1em;
 	background-color: transparent;
 	border:none;
 	width: calc(100% - 35px);
@@ -89,20 +101,20 @@
 	display: inline-block;
 	margin: 2px 2px;
 	color: white;
-	font-size: 1.1em;
-	font-family: monospace;
+	font-size: .8em;
 	border-radius: 5px;
 }
 
 .preguntas .contenedor .pregunta .respuestas .respuesta.correcta{
 	font-weight: bold;
-	font-size: 1.2em;
+	font-size: .9em;
 	color: greenyellow;
 }
 
 .preguntas .contenedor .pregunta .respuestas.mostrar{
 	display: inherit;
 	margin-top:3px;
+	pointer-events: unset;
 }
 
 .preguntas .contenedor .pregunta form input{
@@ -118,13 +130,13 @@
 }
 
 .preguntas .contenedor .pregunta .respuestas .editar .mensaje{
-  font-size: .9em;
+	font-size: .9em;
 	position: absolute;
 	bottom: 0;
 	left: 3px;
 	font-weight: bold;
 	margin: 0;
-	width: 30%;
+	width: 40%;
 	border-radius: 5px;
 	padding: 2px;
 	background-color: white;
@@ -149,7 +161,7 @@
 	padding: 3px 10px;
 	color: white;
 	font-weight: bold;
-	background-color: #d76d1f;
+	background-color: #b95105;
 	width: 70px;
 	border-bottom: 2px solid  rgba(0,0,0,.3);
 	border-right: 2px solid rgba(0,0,0,.3);
@@ -159,17 +171,18 @@
 }
 
 .preguntas .contenedor .pregunta .respuestas .editar .btnConfirmar{
-	background-color: green;
+	background-color: #0c600c;
 	width: unset;
 }
 
 .preguntas .contenedor .pregunta .respuestas .editar .cancelar{
-	background-color: rgb(215, 36, 36);
+	background-color: rgb(138, 16, 16);
 	width: unset;
 }
 
 .preguntas .contenedor .pregunta .respuestas .editar button.eliminar{
-	background-color: rgb(215, 36, 36);
+	background-color: rgb(119, 10, 10);
+	width: unset;
 }
 
 .preguntas .cargando{
