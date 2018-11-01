@@ -4,9 +4,9 @@ import './Duelo.css';
 import {properties} from './properties.js';
 import './Pregunta.css';
 
-const cancelarURL = properties.ip+':'+properties.puerto+'/usuarios/cancelarReto';
-const obtenerPreguntasDueloURL = properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntasDuelo';
-const finalizarDueloURL = properties.ip+':'+properties.puerto+'/usuarios/finalizarDuelo';
+const cancelarURL = properties.ip+properties.puerto+'/usuarios/cancelarReto';
+const obtenerPreguntasDueloURL = properties.ip+properties.puerto+'/preguntas/obtenerPreguntasDuelo';
+const finalizarDueloURL = properties.ip+properties.puerto+'/usuarios/finalizarDuelo';
 
 class Duelo extends Component{
 
@@ -33,7 +33,7 @@ class Duelo extends Component{
 		e.preventDefault();
 		let retado = localStorage.getItem("usuario_id"); 
 
-		fetch( properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
+		fetch( properties.ip+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
 
 			method: 'POST',
 			headers: {

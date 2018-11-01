@@ -79,7 +79,7 @@ class Pregunta extends Component{
 	inicio($var){
 
 		let usuario_id = localStorage.getItem( 'usuario_id' );
-		fetch( properties.ip+':'+properties.puerto+'/preguntas/usuarioRespondio', {
+		fetch( properties.ip+properties.puerto+'/preguntas/usuarioRespondio', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -149,7 +149,7 @@ class Pregunta extends Component{
 		}
 
 		let usuario_id = localStorage.getItem( 'usuario_id' );
-		fetch( properties.ip+':'+properties.puerto+'/preguntas/cambiarEstado', {
+		fetch( properties.ip+properties.puerto+'/preguntas/cambiarEstado', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'

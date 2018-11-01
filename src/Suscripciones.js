@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Suscripciones.css';
 import {properties} from './properties.js'
-const usuariosListaURL = properties.ip+':'+properties.puerto+'/usuarios/listar?cantidad=';
-const actualizarSuscripcionURL = properties.ip+':'+properties.puerto+'/usuarios/actualizarSuscripcion';
+const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/listar?cantidad=';
+const actualizarSuscripcionURL = properties.ip+properties.puerto+'/usuarios/actualizarSuscripcion';
 
 class Suscripciones extends Component{
 	constructor(){

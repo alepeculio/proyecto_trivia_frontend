@@ -8,7 +8,7 @@ import Pregunta from './preguntaDuelo';
 import {properties} from './properties.js'
 
 
-const usuariosListaURL = properties.ip+':'+properties.puerto+'/usuarios/usuariosSinRetar?id=';
+const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/usuariosSinRetar?id=';
 
 class UsuariosListado extends Component{
 
