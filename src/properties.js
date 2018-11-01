@@ -1,4 +1,4 @@
 export const properties = {
-    ip: "localhost",
+    ip: "https://triviatipserver.herokuapp.com",
     puerto: "1234"
 };
