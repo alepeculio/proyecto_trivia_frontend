@@ -16,7 +16,7 @@ import Preguntas from './Preguntas';
 
 import {properties} from './properties.js'
 
-const meURL = properties.ip+':'+properties.puerto+'/usuarios/authMe';
+const meURL = properties.ip+properties.puerto+'/usuarios/authMe';
 
 
 class App extends Component {

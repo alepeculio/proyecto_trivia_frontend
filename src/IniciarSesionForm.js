@@ -3,8 +3,8 @@ import { Redirect } from "react-router-dom";
 //import Usuario from './Usuario';
 import './IniciarSesionForm.css';
 import {properties} from './properties.js'
-const iniciarSesionURL = properties.ip+':'+properties.puerto+'/usuarios/authLogin';
-const meURL = properties.ip+':'+properties.puerto+'/usuarios/authMe';
+const iniciarSesionURL = properties.ip+properties.puerto+'/usuarios/authLogin';
+const meURL = properties.ip+properties.puerto+'/usuarios/authMe';
 
 class IniciarSesionForm extends Component{
 	constructor(){
