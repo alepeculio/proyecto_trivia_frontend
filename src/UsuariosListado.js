@@ -8,7 +8,9 @@ import Pregunta from './preguntaDuelo';
 import {properties} from './properties.js'
 
 
-const usuariosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/usuariosSinRetar?id=';
+const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/usuariosSinRetar?id=';
+
+const generarPreguntasDueloURL = properties.ip+properties.puerto+'/preguntas/generarPreguntasDuelo';
 
 class UsuariosListado extends Component{
 
@@ -65,7 +67,7 @@ class UsuariosListado extends Component{
 
 	retar(retador,retado){
 
-		fetch( 'http://localhost:1234/preguntas/generarPreguntasDuelo', {
+		fetch( generarPreguntasDueloURL, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -119,7 +121,7 @@ class UsuariosListado extends Component{
 
 				if(this.state.contador === 3){
 
-					fetch( 'http://localhost:1234/usuarios/comenzarDuelo', {
+					fetch( properties.ip+properties.puerto+'/usuarios/comenzarDuelo', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json; charset=utf-8'

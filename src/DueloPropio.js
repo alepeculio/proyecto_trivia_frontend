@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {properties} from './properties.js'
-const cancelarURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/cancelarReto';
+const cancelarURL = properties.ip+properties.puerto+'/usuarios/cancelarReto';
 
 class DueloPropio extends Component{
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 import './RegistrarUsuarioForm.css';
 import {properties} from './properties.js'
-const registrarUsuarioURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/authRegistro';
+const registrarUsuarioURL = properties.ip+properties.puerto+'/usuarios/authRegistro';
 
 class RegistrarUsuarioForm extends Component{
 	constructor(){

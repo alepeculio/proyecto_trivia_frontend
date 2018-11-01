@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Redirect} from "react-router-dom";
 import './Perfil.css';
 import {properties} from './properties.js'
-const obtenerUsuarioURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/obtener?correo=';
+const obtenerUsuarioURL = properties.ip+properties.puerto+'/usuarios/obtener?correo=';
 
 class Perfil extends Component{
 	constructor(){

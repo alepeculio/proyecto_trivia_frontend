@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Suscripciones.css';
 import {properties} from './properties.js'
-const usuariosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/listar?cantidad=';
-const actualizarSuscripcionURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/actualizarSuscripcion';
+const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/listar?cantidad=';
+const actualizarSuscripcionURL = properties.ip+properties.puerto+'/usuarios/actualizarSuscripcion';
 
 class Suscripciones extends Component{
 	constructor(){
@@ -22,7 +22,7 @@ class Suscripciones extends Component{
 		if(this.props.cantidad !== undefined){
 			url = usuariosListaURL + this.props.cantidad;
 		}else{
-			url = usuariosListaURL + '10';
+			url = usuariosListaURL + '0';
 		}
 
 		fetch(url,{
@@ -69,13 +69,13 @@ class Suscripciones extends Component{
 		let color;
 		switch(tipo){	
 			case 'Admin':
-			color = 'rgb(71, 208, 233)';
+			color = 'rgb(27, 109, 125)';
 			break;
 			case 'Suscripcion':
-			color = 'rgb(35, 191, 53)';
+			color = 'rgb(12, 107, 23)';
 			break;
 			case 'SinSuscripcion':
-			color = 'rgb(240, 48, 48)';
+			color = 'rgb(125, 23, 23)';
 			break;
 			default:
 			color = '';

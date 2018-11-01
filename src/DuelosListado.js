@@ -4,7 +4,8 @@ import { withRouter } from "react-router-dom";
 import {properties} from './properties.js';
 import './RankingUsuarios.css';
 
-const duelosListaURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/listarRetos?id=';
+const duelosListaURL = properties.ip+properties.puerto+'/usuarios/listarRetos?id=';
+const duelosPropiosListaURL = properties.ip+properties.puerto+'/usuarios/listarRetosPropios?id=';
 
 class DuelosListado extends Component{
 	constructor(){
