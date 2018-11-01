@@ -68,8 +68,7 @@
 	border-radius: 3px;
 	height:var(--usu-height-sus);
 	position: relative;
-	-webkit-box-shadow: 2px 2px;
-	        box-shadow: 2px 2px; 
+	box-shadow: 2px 2px 2px white; 
 }
 
 .suscripciones .usuario *{
