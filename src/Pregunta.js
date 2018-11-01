@@ -178,8 +178,8 @@ class Pregunta extends Component{
 	render(){
 
 		if(this.state.inicio === false){
-			this.setState({lista: [this.props.respuesta1,this.props.respuesta2,this.props.respuesta3,this.props.respuesta4]});
-			this.setState({lista: this.state.lista.sort(function() {return Math.random() - 0.5})});
+			this.state.lista = [this.props.respuesta1,this.props.respuesta2,this.props.respuesta3,this.props.respuesta4];
+			this.state.lista = this.state.lista.sort(function() {return Math.random() - 0.5});
 			this.startTimer();
 			
 		}
@@ -190,7 +190,7 @@ class Pregunta extends Component{
 		
 		var hidden = {
 			display: this.state.shown ? "none" : "block"
-		}
+		};
 
 		return(
 			<div id="contenedor">
