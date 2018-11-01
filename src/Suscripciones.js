@@ -22,7 +22,7 @@ class Suscripciones extends Component{
 		if(this.props.cantidad !== undefined){
 			url = usuariosListaURL + this.props.cantidad;
 		}else{
-			url = usuariosListaURL + '10';
+			url = usuariosListaURL + '0';
 		}
 
 		fetch(url,{
