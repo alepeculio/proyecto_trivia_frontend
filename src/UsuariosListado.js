@@ -121,7 +121,7 @@ class UsuariosListado extends Component{
 
 				if(this.state.contador == 3){
 
-					fetch( 'http://localhost:1234/usuarios/comenzarDuelo', {
+					fetch( properties.ip+properties.puerto+'/usuarios/comenzarDuelo', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json; charset=utf-8'
