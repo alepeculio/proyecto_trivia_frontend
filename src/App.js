@@ -210,7 +210,7 @@ const MenuInicial = ( props ) => {
 		<div>
 		<Link to = '/ranking' id="linkRanking" className = { props.link === "linkRanking" ? "activo" : "" }>Ranking</Link>
 		<Link to = '/preguntas' id="linkPreguntas" className = { props.link === "linkPreguntas" ? "activo" : "" }>Preguntas diarias</Link>
-		<Link to = '/manoamano' id="linkManoAMano" className = { props.link === "linkManoAMano" ? "activo" : "" }>Mano a mano</Link>
+		<Link to = '/manoamano' id="linkManoAMano" className = { props.link === "linkManoAMano" ? "activo" : "" }>Duelos</Link>
 		<Link to = '/usuarioListado' id="linkUsuarioListado" className = { props.link === "linkUsuarioListado" ? "activo" : "" }>Usuarios</Link>
 		</div>
 		</div>

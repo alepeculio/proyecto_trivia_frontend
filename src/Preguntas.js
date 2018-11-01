@@ -19,7 +19,8 @@ class Preguntas extends Component{
 	}
 
 	obtenerPreguntas(busqueda){
-		fetch(preguntasListaURL+"10"+"&busqueda="+busqueda,{
+		let URL = preguntasListaURL+10+'&busqueda'+busqueda
+		fetch(URL,{
 			method: 'GET',
 			headers:{
 				'Content-Type': 'application/json; charset=utf-8'
@@ -216,7 +217,7 @@ class Preguntas extends Component{
 		if(preguntas === '')
 			preguntas =  <div className='cargando'>Cargando...</div>;
 
-		if(preguntas == 'no hay')
+		if(preguntas === 'no hay')
 			preguntas =  <div className='cargando no-hay'>No se encontraron preguntas.</div>;
 
 		return (

@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-
-import Pregunta from './Pregunta';
-import {properties} from './properties.js'
-const retarURL = 'http://'+properties.ip+':'+properties.puerto+'/usuarios/retar';
 
 class UsuarioLista extends Component{
 

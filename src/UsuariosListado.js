@@ -109,7 +109,7 @@ class UsuariosListado extends Component{
 		this.setState({pregunta: null});
 		console.log("Estado"+estado);
 		console.log("Tiempo"+tiempo);
-		if(estado=="Correcta"){
+		if(estado ==="Correcta"){
 			this.setState({estado:this.state.estado+1});
 		}
 
@@ -117,7 +117,7 @@ class UsuariosListado extends Component{
 
 			this.setState({contador:this.state.contador+1},()=>{
 
-				if(this.state.contador == 3){
+				if(this.state.contador === 3){
 
 					fetch( 'http://localhost:1234/usuarios/comenzarDuelo', {
 						method: 'POST',
