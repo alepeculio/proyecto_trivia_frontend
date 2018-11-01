@@ -10,6 +10,8 @@ import {properties} from './properties.js'
 
 const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/usuariosSinRetar?id=';
 
+const generarPreguntasDueloURL = properties.ip+properties.puerto+'/preguntas/generarPreguntasDuelo';
+
 class UsuariosListado extends Component{
 
 	constructor(props){
@@ -65,7 +67,7 @@ class UsuariosListado extends Component{
 
 	retar(retador,retado){
 
-		fetch( 'http://localhost:1234/preguntas/generarPreguntasDuelo', {
+		fetch( generarPreguntasDueloURL, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
