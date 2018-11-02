@@ -72,40 +72,6 @@ class App extends Component {
 		this.setState({usuario:''});
 	}
 
-	pestania( p ) {
-		let ranking = document.querySelector( "#linkRanking" );
-		let preguntas = document.querySelector( "#linkPreguntas" );
-		let manoamano = document.querySelector( "#linkManoAMano" );
-		let usuarioListado = document.querySelector( "#linkUsuarioListado" );
-
-		if ( ranking ) {
-			ranking.classList.remove( "activo" );
-
-			if ( p === "linkRanking" )
-				ranking.classList.add( "activo" );
-		}
-
-		if ( preguntas ) {
-			preguntas.classList.remove( "activo" );
-
-			if ( p === "linkPreguntas" )
-				preguntas.classList.add( "activo" );
-		}
-
-		if ( manoamano ){
-			manoamano.classList.remove( "activo" );
-
-			if ( p === "linkManoAMano" )
-				manoamano.classList.add( "activo" );
-		}
-		if ( usuarioListado ){
-			usuarioListado.classList.remove( "activo" );
-
-			if ( p === "linkUsuarioListado" )
-				usuarioListado.classList.add( "activo" );
-		}
-	}
-
 	render(){
 		let usuario = this.state.usuario;
 		return(
@@ -149,7 +115,7 @@ class App extends Component {
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkRanking" } /> <RankingUsuarios /> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <RankingUsuarios /> </div> </div> );
 			} } />
 
 			<Route path = "/preguntas" render = { ( props ) => {
@@ -158,24 +124,24 @@ class App extends Component {
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkPreguntas" } /> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <PreguntasDiarias usuario = { usuario } /> </div> </div> );
 			} } />
 
-			<Route path = "/manoamano" render = { ( props ) => {
+			<Route path = "/duelos" render = { ( props ) => {
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkManoAMano" } /> <Duelos /> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <Duelos /> </div> </div> );
 			} } />
-			<Route path = "/usuarioListado" render = { ( props ) => {
+			<Route path = "/usuarios" render = { ( props ) => {
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <MenuInicial link = { "linkUsuarioListado" } /> <UsuariosListado/> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <UsuariosListado/> </div> </div> );
 			} } />
 
 			<Route path = "/perfil" render = { ( props ) => {
@@ -204,7 +170,7 @@ class App extends Component {
 	}
 }
 
-const MenuInicial = ( props ) => {
+/*const MenuInicial = ( props ) => {
 	return (
 		<div id='menuInicial'>
 		<div>
@@ -215,7 +181,7 @@ const MenuInicial = ( props ) => {
 		</div>
 		</div>
 		);
-};
+};*/
 
 export default App;
 
