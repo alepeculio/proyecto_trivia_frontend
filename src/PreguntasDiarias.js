@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Pregunta from './Pregunta';
 import './PreguntasDiarias.css';
 import {properties} from './properties.js'
+
 class PreguntasDiarias extends Component {
 
 	constructor () {
