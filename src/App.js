@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import openSocket from 'socket.io-client';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import Header from './Header';
@@ -13,11 +14,13 @@ import Duelos from './Duelos';
 import UsuariosListado from './UsuariosListado';
 import Suscripciones from './Suscripciones';
 import Preguntas from './Preguntas';
+import Mensajes from './Mensajes';
 
 import {properties} from './properties.js'
 
 const meURL = properties.ip+properties.puerto+'/usuarios/authMe';
 
+const socket = openSocket(properties.ip+properties.socket);
 
 class App extends Component {
 	constructor(){
@@ -25,6 +28,24 @@ class App extends Component {
 		this.state = {
 			usuario:''
 		};
+		this.mensajes = React.createRef();
+
+		socket.on( 'mensaje', ( mensaje ) => {
+			if ( this.mensajes !== undefined )
+				this.mensajes.current.agregarMensaje( mensaje );
+		} );
+
+		socket.on( 'ranking', ( rank ) => {
+			let usuarios = document.querySelectorAll( '.usuarios_ranking .usuario' );
+
+			// TODO: Quedan bugs por arreglar!
+			if ( usuarios.length > 0 ) {
+				for ( let i = 0; i < rank.length; i++ ) {
+					usuarios[i].querySelector( '.nombre' ).innerHTML = rank[i].nombre;
+					usuarios[i].querySelector( '.puntaje' ).innerHTML = rank[i].puntaje;
+				}
+			}
+		} );
 	}
 
 	obtenerUsuario(){
@@ -163,6 +184,7 @@ class App extends Component {
 					return  <Redirect to='/inicio' />;
 
 			} } />
+			<Mensajes ref = { this.mensajes }/>
 			</div>
 			</Router>
 			</div>

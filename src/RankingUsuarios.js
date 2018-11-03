@@ -1,4 +1,3 @@
-import openSocket from 'socket.io-client';
 import React, { Component } from 'react';
 import Usuario from './Usuario';
 import './RankingUsuarios.css';
@@ -6,24 +5,11 @@ import { withRouter } from "react-router-dom";
 import {properties} from './properties.js'
 const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/listar?cantidad=';
 
-const socket = openSocket(properties.ip+properties.socket);
 
 class RankingUsuarios extends Component{
 	constructor(){
 		super();
 		this.state = {};
-
-		socket.on( 'ranking', ( rank ) => {
-			let usuarios = document.querySelectorAll( '.usuarios_ranking .usuario' );
-
-			// TODO: Quedan bugs por arreglar!
-			if ( usuarios.length > 0 ) {
-				for ( let i = 0; i < rank.length; i++ ) {
-					usuarios[i].querySelector( '.nombre' ).innerHTML = rank[i].nombre;
-					usuarios[i].querySelector( '.puntaje' ).innerHTML = rank[i].puntaje;
-				}
-			}
-		} );
 	}
 
 	obtenerUsuarios(){
