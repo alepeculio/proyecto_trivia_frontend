@@ -30,10 +30,10 @@ class App extends Component {
 		};
 		this.mensajes = React.createRef();
 
-		socket.on( 'mensaje', ( mensaje ) => {
+		/*socket.on( 'mensaje', ( mensaje ) => {
 			if ( this.mensajes !== undefined )
 				this.mensajes.current.agregarMensaje( mensaje );
-		} );
+		} );*/
 
 		socket.on( 'ranking', ( rank ) => {
 			let usuarios = document.querySelectorAll( '.usuarios_ranking .usuario' );

@@ -8,13 +8,12 @@ class Usuario extends Component{
 		let medalla = "./medalla-de-oro.png"
 		return(
 			<Link title="Ver perfil" className="usuario" to={"/perfil/"+usuario.correo}>
-			<img src={usuario.img} alt="Imagen usuario"/>
-			<img  src={require('./medalla-de-oro.png')} alt="Imagen usuario"/>
+			<img src={usuario.img} alt="Imagen usuario"/>	
 			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
 			<span className="puntaje">{usuario.puntaje} pts.</span>
 			</Link>
 			);
+		}
 	}
-}
 
-export default Usuario;
+	export default Usuario;

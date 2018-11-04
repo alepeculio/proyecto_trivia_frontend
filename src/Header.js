@@ -67,8 +67,8 @@ class Header extends Component {
 				{hamburguesa}
 
 				<div className = "links-container">
-					<Link to = '/ranking' className = { this.props.history.location.pathname !== "/ranking" ? "header-link" : "header-link activo" } id = "linkRanking">Ranking</Link>
-					<Link to = '/preguntas' className = { this.props.history.location.pathname !== "/preguntas" ? "header-link" : "header-link activo" } id = "linkPreguntas">Preguntas diarias</Link>
+					<Link to = '/ranking' className = { this.props.history.location.pathname !== "/ranking" ? "header-link" : "header-link activo" } id = "linkRanking">Top 10</Link>
+					<Link to = '/preguntas' className = { this.props.history.location.pathname !== "/preguntas" ? "header-link" : "header-link activo" } id = "linkPreguntas">Preguntas Diarias</Link>
 					<Link to = '/duelos' className = { this.props.history.location.pathname !== "/duelos" ? "header-link" : "header-link activo" } id = "linkDuelos">Duelos</Link>
 					<Link to = '/usuarios' className = { this.props.history.location.pathname !== "/usuarios" ? "header-link" : "header-link activo" } id = "linkUsuarios">Usuarios</Link>
 				</div>

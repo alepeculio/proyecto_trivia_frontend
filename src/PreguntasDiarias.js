@@ -169,27 +169,6 @@ class PreguntasDiarias extends Component {
 					return (
 					<div id="pdLista">
 					{this.state.pregunta}
-					
-					<div className="ContenedorPregunta" id="pregunta" >
-					
-					<div className="cabezera">
-
-					<font className="pregunta">Una preUn textsona, sí puede ser descifradodescifradodescifradodescifrado por su destinatario original. gunta?</font>
-					</div>
-
-					<br></br>
-					<button className="button" id="0" type="button"><font className="txtRespuestas">Pregunta 1</font></button><br></br>
-					<button className="button"  type="button"><font className="txtRespuestas">Pregunta 2</font></button><br></br>
-					<button className="button"   type="button"><font className="txtRespuestas">Pregunta 3</font></button><br></br>
-					<button className="button"   type="button"><font className="txtRespuestas">Pregunta 4</font></button><br></br>
-					</div>
-					<div>
-					<button className="volver"  >&laquo; Volver</button>
-					</div>
-
-
-
-					
 					<table id="pdTabla" >
 					<tbody>
 					{ this.state.preguntas.map( p => {

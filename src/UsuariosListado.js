@@ -182,34 +182,17 @@ class UsuariosListado extends Component{
 		var aux ={display: "block"};
 
 		return(
-			<div>
-			<div className="cont" style={aux}>
+			<div >
+			<div style={shown} >
 			{this.state.pregunta}
-
-			<div className="ContenedorPregunta" id="pregunta" >
-			
-			<div className="cabezera">
-			<p className="pregunta">Pregunta  Pregunta   box-sizing:    box-sizing: border-box;   box-sizing: border-box;reatextarea </p>
 			</div>
-
-			<br></br>
-			<button className="button" id="0" type="button"><font className="txtRespuestas">Pregunta 1</font></button><br></br>
-			<button className="button"  type="button"><font className="txtRespuestas">Pregunta 2</font></button><br></br>
-			<button className="button"   type="button"><font className="txtRespuestas">Pregunta 3</font></button><br></br>
-			<button className="button"   type="button"><font className="txtRespuestas">Pregunta 4</font></button><br></br>
-			</div>
-			<div>
-			<button className="volver"  >&laquo; Volver</button>
-			</div>
-
-			</div>
-			<div style={shown} className={clase} >
+			<div className={clase} >
 			{usuarios}
 			</div>
 			</div>
 			);
 
-		}
 	}
+}
 
-	export default withRouter( UsuariosListado );
+export default withRouter( UsuariosListado );
