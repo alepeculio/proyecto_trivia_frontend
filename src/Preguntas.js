@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './Preguntas.css';
 import {properties} from './properties.js'
-const preguntasListaURL = 'http://'+properties.ip+':'+properties.puerto+'/preguntas/obtenerPreguntas?cantidad=';
-const editarPreguntaURL = 'http://'+properties.ip+':'+properties.puerto+'/preguntas/editarPregunta';
-const eliminarPreguntaURL = 'http://'+properties.ip+':'+properties.puerto+'/preguntas/eliminarPregunta';
+const preguntasListaURL = properties.ip+properties.puerto+'/preguntas/obtenerPreguntas?cantidad=';
+const editarPreguntaURL = properties.ip+properties.puerto+'/preguntas/editarPregunta';
+const eliminarPreguntaURL = properties.ip+properties.puerto+'/preguntas/eliminarPregunta';
 
 
 class Preguntas extends Component{
@@ -19,7 +19,8 @@ class Preguntas extends Component{
 	}
 
 	obtenerPreguntas(busqueda){
-		fetch(preguntasListaURL+"10"+"&busqueda="+busqueda,{
+		let URL = preguntasListaURL+'10'+'&busqueda='+busqueda
+		fetch(URL,{
 			method: 'GET',
 			headers:{
 				'Content-Type': 'application/json; charset=utf-8'
@@ -38,11 +39,11 @@ class Preguntas extends Component{
 				let preguntas = data.Preguntas.map(p => {
 					let respuestas = p.respuestas.map( ( r, index ) =>{
 						let key = r._id + " " + index;
-						return <input key={key} disabled name={'respuesta'+index} className={index === 0 ? "respuesta correcta" : "respuesta"} value={r}/>;
+						return <input key={key} disabled name={'respuesta'+index} className={index === 0 ? "respuesta correcta" : "respuesta"} defaultValue={r}/>;
 					});
 					
 					return(
-						<div key={p._id} className="pregunta" style={{backgroundColor: this.obtenerColor(p.categoria.name)}}>
+						<div key={p._id} className="pregunta">
 						<form onSubmit={this.confirmar.bind(this)}>
 						<textarea className="texto" defaultValue={p.pregunta} name="pregunta" disabled ></textarea>
 						<img src={require('./expand.png')} alt='expandir'onClick={this.expandir.bind(this) } />
@@ -73,13 +74,14 @@ class Preguntas extends Component{
 	expandir(e){
 		if(e.target.parentNode.parentNode.classList.contains('pregunta'))
 			e.target.parentNode.parentNode.querySelector('.mensaje').classList.remove('error');
+		
 		e.target.parentNode.parentNode.querySelector('.mensaje').classList.remove('correcto');
 		e.target.parentNode.parentNode.querySelector('.respuestas').classList.toggle('mostrar');
 		this.trufalse(true, e.target);
 	}
 
 	trufalse(tf, target) {
-		let campos = target.parentNode.parentNode.parentNode.querySelectorAll('input, textarea');
+		let campos = target.parentNode.parentNode.parentNode.querySelectorAll('.pregunta input, .pregunta textarea');
 		for(let c of campos){
 			c.disabled = tf;
 			if (tf)
@@ -176,7 +178,7 @@ class Preguntas extends Component{
 	}
 
 
-	obtenerColor(categoria){
+	/*obtenerColor(categoria){
 		let color;
 		switch(categoria){	
 			case 'Geografía':
@@ -202,7 +204,7 @@ class Preguntas extends Component{
 			break;
 		}
 		return color;
-	}
+	}*/
 
 	buscar(e){
 		e.preventDefault();
@@ -216,7 +218,7 @@ class Preguntas extends Component{
 		if(preguntas === '')
 			preguntas =  <div className='cargando'>Cargando...</div>;
 
-		if(preguntas == 'no hay')
+		if(preguntas === 'no hay')
 			preguntas =  <div className='cargando no-hay'>No se encontraron preguntas.</div>;
 
 		return (
@@ -226,10 +228,10 @@ class Preguntas extends Component{
 			</span>
 			<div className="contenedor">
 			<div className="buscador">
-				<form onSubmit={this.buscar.bind(this)}>
-					<input name="busqueda" placeholder="Ingresa una pregunta..."/>
-					<button>Buscar</button>
-				</form>
+			<form onSubmit={this.buscar.bind(this)}>
+			<input name="busqueda" placeholder="Ingresa una pregunta..."/>
+			<button>Buscar</button>
+			</form>
 			</div>
 			{preguntas}
 			</div>

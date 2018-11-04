@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Pregunta from './Pregunta';
 import './PreguntasDiarias.css';
 import {properties} from './properties.js'
+
 class PreguntasDiarias extends Component {
 
 	constructor () {
@@ -52,7 +53,7 @@ class PreguntasDiarias extends Component {
 
 			let usuario_id = localStorage.getItem( 'usuario_id' );
 
-			fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/generarPreguntaDiaria', {
+			fetch( properties.ip+properties.puerto+'/preguntas/generarPreguntaDiaria', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
@@ -97,7 +98,7 @@ class PreguntasDiarias extends Component {
 		cargarPreguntasDiarias () {
 			let usuario_id = localStorage.getItem( 'usuario_id' );
 
-			fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/preguntasDiarias?ID_Usuario=' + usuario_id, {
+			fetch( properties.ip+properties.puerto+'/preguntas/preguntasDiarias?ID_Usuario=' + usuario_id, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'

@@ -160,6 +160,25 @@
   border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+.usuariosDuelo .cargando{
+  background-color: white;
+  color:black;
+  margin-bottom: 10px;
+  padding: 10px 8px;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+  text-align: center;
+  color:grey;
+  font-size: 14px;
+  font-family: Helvetica;
+  /*box-shadow: 3px 3px #9f9494;*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
 .usuarios_ranking .cargando:hover{
   background-color:white;
 }

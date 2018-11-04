@@ -26,11 +26,7 @@ class Pregunta extends Component{
 			opbtn2: 1,
 			opbtn3: 1,
 			opbtn4: 1,
-			evbtn1: "auto",
-			evbtn1: "auto",
-			evbtn1: "auto",
-			evbtn1: "auto",
-
+			evbtn1: "auto"
 		}
 		this.inicio(props.id_Pregunta);
 
@@ -73,13 +69,13 @@ class Pregunta extends Component{
 	startTimer () {
 		clearInterval(this.timer)
 		this.timer = setInterval(this.tickContador.bind(this), 1000)
-		this.state.inicio = true;
+		this.setState({inicio: true});
 	}
 
 	inicio($var){
 
 		let usuario_id = localStorage.getItem( 'usuario_id' );
-		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/usuarioRespondio', {
+		fetch( properties.ip+properties.puerto+'/preguntas/usuarioRespondio', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -106,17 +102,17 @@ class Pregunta extends Component{
 		let estado;
 		let tiempo = t-this.state.cronometro;
 		if(this.props.correcta === $var ){
-			estado = "Correcta"
+			estado = "Correcta";
 			this.aumentarPuntuacion();
 		}else{
-			estado = "Incorrecta"
+			estado = "Incorrecta";
 		}
-		if(estado  == "Correcta"){
+		if(estado  === "Correcta"){
 			this.setState({
 				[$btn]: green
 			})
 			for (var i = 0; i < 4; i++) {
-				if(this.props.correcta != this.state.lista[i]){
+				if(this.props.correcta !== this.state.lista[i]){
 					var opbtn = "opbtn"+(1+i);
 					this.setState({[opbtn]:0})	
 				}
@@ -130,16 +126,16 @@ class Pregunta extends Component{
 			this.setState({
 				[$btn]: red
 			})
-			for (var i = 0; i < 4; i++) {
-				if(this.props.correcta == this.state.lista[i]){
+			for (i = 0; i < 4; i++) {
+				if(this.props.correcta === this.state.lista[i]){
 					this.setState({
 						["evbtn"+(1+i)]: "none"
 					})
 					this.setState({["btn"+(1+i)]:green})
 				}else{
-					var opbtn = "opbtn"+(1+i);
+					opbtn = "opbtn"+(1+i);
 					var Incorrecta = "op"+$btn;
-					if(opbtn!=Incorrecta){
+					if(opbtn !== Incorrecta){
 						this.setState({[opbtn]:0})
 					}
 					
@@ -149,7 +145,7 @@ class Pregunta extends Component{
 		}
 
 		let usuario_id = localStorage.getItem( 'usuario_id' );
-		fetch( 'http://'+properties.ip+':'+properties.puerto+'/preguntas/cambiarEstado', {
+		fetch( properties.ip+properties.puerto+'/preguntas/cambiarEstado', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -165,7 +161,7 @@ class Pregunta extends Component{
 			clearInterval(this.timer);
 			return res.json();
 		}).then(nose=>{
-			this.state.inicio = false;
+			this.setState({inicio: false});
 			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 			//this.props.funcion();
 
@@ -194,7 +190,7 @@ class Pregunta extends Component{
 		
 		var hidden = {
 			display: this.state.shown ? "none" : "block"
-		}
+		};
 
 		return(
 			<div id="contenedor">
