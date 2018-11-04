@@ -177,14 +177,31 @@ class UsuariosListado extends Component{
 		var shown = {
 			display: this.state.shown ? "block" : "none"
 		};
-		
+		var aux ={display: "block"};
 
 		return(
 			<div>
-			<div className="cont" style={shown}>
+			<div className="cont" style={aux}>
 			{this.state.pregunta}
+
+			<div className="ContenedorPregunta" id="pregunta" >
+			
+			<div className="cabezera">
+			<p className="pregunta">Pregunta  Pregunta   box-sizing:    box-sizing: border-box;   box-sizing: border-box;reatextarea </p>
 			</div>
-			<div  className={clase} >
+
+			<br></br>
+			<button className="button" id="0" type="button"><font className="txtRespuestas">Pregunta 1</font></button><br></br>
+			<button className="button"  type="button"><font className="txtRespuestas">Pregunta 2</font></button><br></br>
+			<button className="button"   type="button"><font className="txtRespuestas">Pregunta 3</font></button><br></br>
+			<button className="button"   type="button"><font className="txtRespuestas">Pregunta 4</font></button><br></br>
+			</div>
+			<div>
+			<button className="volver"  >&laquo; Volver</button>
+			</div>
+
+			</div>
+			<div style={shown} className={clase} >
 			{usuarios}
 			</div>
 			</div>

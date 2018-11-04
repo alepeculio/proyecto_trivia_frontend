@@ -2,12 +2,12 @@
 /* [Pregunta] ============================================= */
 
 .ContenedorPregunta{
-  width: 50%;
-  height:100%;
+  margin-left: auto;
+  margin-right: auto;
+  height:auto;
   background: #e4e4e4;
   border: 2px solid black;
   border-radius: 3px; 
-  margin: 0 auto 30px;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -58,6 +58,10 @@
   font-size: 1.2em; 
   font-weight: bold;
   color: #007291;
+  text-align: center;
+  background: red;
+  display: block;
+  max-width: 80%;
 }
 .contenedorTimer{
   border: 2px solid black;
@@ -67,6 +71,8 @@
   padding: 10px;
 
 }
+
+
 .ContenedorPregunta label {
   color:black;
 }
