@@ -179,20 +179,20 @@ class UsuariosListado extends Component{
 		var shown = {
 			display: this.state.shown ? "block" : "none"
 		};
-		
+		var aux ={display: "block"};
 
 		return(
-			<div>
-			<div className="cont" style={shown}>
+			<div >
+			<div style={shown} >
 			{this.state.pregunta}
 			</div>
-			<div  className={clase} >
+			<div className={clase} >
 			{usuarios}
 			</div>
 			</div>
 			);
 
-		}
 	}
+}
 
-	export default withRouter( UsuariosListado );
+export default withRouter( UsuariosListado );

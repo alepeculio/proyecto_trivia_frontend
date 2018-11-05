@@ -1,12 +1,10 @@
 /* [Preguntas diarias] ============================================= */
 #pdLista {
-  margin: 0 1px 5px 1px;
+  margin: 20px 120px .7px 120px;
   background-color: rgba(66, 160, 255, 1);
   color: white;
   border: 1px solid white;
-  border-top: none;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-radius: 15px;
   -webkit-transition-property: width;
   -o-transition-property: width;
   transition-property: width;
@@ -25,10 +23,10 @@
 }
 
 #pdLista table {
-  width: 100%;
+  width: 90%;
   box-sizing: border-box;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   border-spacing: 0 15px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
