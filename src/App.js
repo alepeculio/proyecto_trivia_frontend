@@ -130,7 +130,7 @@ class App extends Component {
 				if(usuario !== null && usuario !== undefined){
 					return ( <Redirect to='/ranking' /> );
 				} else
-				return ( <div className = "padre"> <div className = "contenedor2"> <RankingUsuarios /> </div> </div> );
+				return ( <div className = "padre"> <div className = "contenedor3"> <RankingUsuarios /> </div> </div> );
 			} } />
 
 			<Route path="/iniciarSesion" render={ (props) => {
