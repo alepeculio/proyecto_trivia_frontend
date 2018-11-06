@@ -31,8 +31,13 @@ class App extends Component {
 		this.mensajes = React.createRef();
 
 		socket.on( 'mensaje', ( mensaje ) => {
-			if ( this.mensajes !== undefined )
+			if ( this.mensajes !== undefined ) {
 				this.mensajes.current.agregarMensaje( mensaje );
+
+				if ( mensaje.puntos !== undefined ) {
+					this.aumentarPuntuacion( mensaje.puntos );
+				}
+			}
 		} );
 
 		socket.on( 'ranking', ( rank ) => {
@@ -74,6 +79,15 @@ class App extends Component {
 				setTimeout( this.obtenerUsuario.bind(this) , 10000);
 			} );
 		}
+	}
+
+	aumentarPuntuacion( puntos ) {
+		let pts = document.querySelector( ".header-titulo .puntuacion" );
+		if ( pts == null )
+			return;
+		let str = pts.innerHTML.split( " " );
+		let nuevo = parseInt( str[1] ) + puntos;
+		pts.innerHTML = "Puntuación: " + nuevo + " pts.";
 	}
 
 	//Si ya habia un usuario logueado, obtenerlo con la id y setearlo en el estado.
