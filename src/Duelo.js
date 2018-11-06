@@ -85,7 +85,6 @@ class Duelo extends Component{
 						'Content-Type': 'application/json; charset=utf-8'
 					},
 					body: JSON.stringify( {
-						usuario: localStorage.getItem("usuario_id"),
 						ID_retador: this.props.duelo.id,
 						ID_retado: localStorage.getItem("usuario_id"),
 						cant_correctas: this.state.cant_correctas,

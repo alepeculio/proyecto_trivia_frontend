@@ -41,10 +41,9 @@ header .header-titulo img{
   width: var(--logo);
 }
 header .logueado{
- height:var(--altura);
+ height: var(--altura);
  width: calc(100% - (var(--logo) + 15px));
  margin-left: calc(var(--logo) + 15px);
- overflow: hidden;
  position: relative;
  border-left:  2px solid rgba(255,255,255,.4);
  border-radius: 4px;
@@ -213,7 +212,6 @@ header .expandir.mostrar{
     min-width: 456px;
     animation-name: bajar;
     animation-duration: .5s;
-    overflow: hidden;
   }
 
   @keyframes bajar {
@@ -279,3 +277,32 @@ header .no-logueado.expandir{
 }
 
 /*[FIN Header] =================================================================*/
+
+.links-container {
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.header-link {
+  display: inline-block;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 10px;
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+}
+
+.header-link.activo,
+.header-link:hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+@media only screen and (max-width: 660px) {
+  .links-container {
+    margin-top: 35px;
+  }
+
+  .header-link {
+    display: block;
+  }
+}

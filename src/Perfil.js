@@ -13,7 +13,7 @@ class Perfil extends Component{
 		};
 	}
 
-	obtenerUsuario(correo){
+	obtenerUsuario(correo, yo = false){
 		fetch(obtenerUsuarioURL+correo,{
 			method: 'GET',
 			headers:{
@@ -29,7 +29,7 @@ class Perfil extends Component{
 			}else if(data.Mensaje !== undefined){
 				this.setState({usuario: ''});
 			}else{
-				this.setState({usuario: data, privado: false});
+				this.setState({usuario: data, privado: yo});
 			}})
 		.catch(err => {
 			console.log(err);
@@ -41,15 +41,9 @@ class Perfil extends Component{
 	setUsuario(usuarioLogueado){
 		let correo = this.props.history.location.pathname.split('/')[2];
 		if(correo !== undefined && correo !== ''){
-			if(usuarioLogueado !== '' && usuarioLogueado.correo === correo){
-				this.setState({usuario:usuarioLogueado, privado: true});
-			}else{
-				this.obtenerUsuario(correo);
-			}
-		}else if(usuarioLogueado !== ''){
-			this.setState({usuario:usuarioLogueado, privado: true});
-		}else{
-			this.setState({usuario:''});
+			this.obtenerUsuario( correo, usuarioLogueado.correo === correo );
+		} else {
+			this.obtenerUsuario( usuarioLogueado.correo, true );
 		}
 	}
 

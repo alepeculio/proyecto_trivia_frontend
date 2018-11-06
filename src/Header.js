@@ -31,6 +31,8 @@ class Header extends Component {
 		let titulo;
 		let hamburguesa = <div className="hamburguesa" onClick={this.hamburguesa.bind(this)} ><div className="bar1"></div><div className="bar2"></div><div className="bar3"></div></div>;
 
+		console.log( this.props.history.location.pathname );
+
 		if(usuario === ''){
 			titulo =<Link className='header-titulo'  title='Ir a inicio' to={'/inicio'}><img src={require('./logo.png')} alt='logo'/></Link>;
 			if(url === '/iniciarSesion'){
@@ -63,6 +65,13 @@ class Header extends Component {
 				<a className="boton iniciar-sesion" onClick={this.cerrarSesion.bind(this)} >Cerrar Sesión</a>
 				</div>
 				{hamburguesa}
+
+				<div className = "links-container">
+					<Link to = '/ranking' className = { this.props.history.location.pathname !== "/ranking" ? "header-link" : "header-link activo" } id = "linkRanking">Top 10</Link>
+					<Link to = '/preguntas' className = { this.props.history.location.pathname !== "/preguntas" ? "header-link" : "header-link activo" } id = "linkPreguntas">Preguntas Diarias</Link>
+					<Link to = '/duelos' className = { this.props.history.location.pathname !== "/duelos" ? "header-link" : "header-link activo" } id = "linkDuelos">Duelos</Link>
+					<Link to = '/usuarios' className = { this.props.history.location.pathname !== "/usuarios" ? "header-link" : "header-link activo" } id = "linkUsuarios">Usuarios</Link>
+				</div>
 				</header>
 				);
 		}

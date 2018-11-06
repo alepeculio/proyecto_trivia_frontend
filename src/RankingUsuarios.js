@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import {properties} from './properties.js'
 const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/listar?cantidad=';
 
+
 class RankingUsuarios extends Component{
 	constructor(){
 		super();
@@ -68,7 +69,7 @@ class RankingUsuarios extends Component{
 		}
 
 		return(
-			<div className={clase}>
+			<div className={clase}>	
 			{usuarios}
 			</div>
 			);

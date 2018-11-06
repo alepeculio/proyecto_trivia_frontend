@@ -4,14 +4,13 @@
 }
 
 .usuarios_ranking{
-  margin: 0 .7px .7px .7px;
+  margin: 20px 120px .7px 120px;
   background-color: rgba(66, 160, 255, 1);
   color: white;
   padding: 20px 20px 10px 20px;
   border: 1px solid white;
-  border-top: none;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-radius:15px;;
+
   min-height: 100vh;
   box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
   
@@ -82,6 +81,45 @@
   background-color: #aa643c;
 }
 
+.usuarios_ranking :nth-child(4){
+  background-color: #AA64D7;
+}
+
+.usuarios_ranking :nth-child(4):hover{
+  background-color: #9855C3;
+}
+
+.usuarios_ranking :nth-child(5){
+  background-color: #5EC490;
+}
+
+.usuarios_ranking :nth-child(5):hover{
+  background-color: #4DB27F;
+}
+
+.usuarios_ranking :nth-child(6){
+  background-color: #F74444;
+}
+
+.usuarios_ranking :nth-child(6):hover{
+  background-color: #DF3535;
+}
+
+.usuarios_ranking :nth-child(7){
+  background-color: #41EA25;
+}
+
+.usuarios_ranking :nth-child(7):hover{
+  background-color: #3DD324;
+}
+
+.usuarios_ranking :nth-child(8){
+  background-color: #FE66EE;
+}
+
+.usuarios_ranking :nth-child(8):hover{
+  background-color: #F84CE6;
+}
 .usuarios_ranking .usuario img{
   width:var(--img-dimension);
   height: var(--img-dimension);
@@ -142,6 +180,25 @@
   text-shadow: 0 0 .5px blue;
 }
 .usuarios_ranking .cargando{
+  background-color: white;
+  color:black;
+  margin-bottom: 10px;
+  padding: 10px 8px;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+  text-align: center;
+  color:grey;
+  font-size: 14px;
+  font-family: Helvetica;
+  /*box-shadow: 3px 3px #9f9494;*/
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.usuariosDuelo .cargando{
   background-color: white;
   color:black;
   margin-bottom: 10px;

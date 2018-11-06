@@ -10,6 +10,8 @@ import {properties} from './properties.js'
 
 const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/usuariosSinRetar?id=';
 
+const generarPreguntasDueloURL = properties.ip+properties.puerto+'/preguntas/generarPreguntasDuelo';
+
 class UsuariosListado extends Component{
 
 	constructor(props){
@@ -65,7 +67,7 @@ class UsuariosListado extends Component{
 
 	retar(retador,retado){
 
-		fetch( 'http://localhost:1234/preguntas/generarPreguntasDuelo', {
+		fetch( generarPreguntasDueloURL, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -109,7 +111,7 @@ class UsuariosListado extends Component{
 		this.setState({pregunta: null});
 		console.log("Estado"+estado);
 		console.log("Tiempo"+tiempo);
-		if(estado=="Correcta"){
+		if(estado ==="Correcta"){
 			this.setState({estado:this.state.estado+1});
 		}
 
@@ -117,9 +119,9 @@ class UsuariosListado extends Component{
 
 			this.setState({contador:this.state.contador+1},()=>{
 
-				if(this.state.contador == 3){
+				if(this.state.contador === 3){
 
-					fetch( 'http://localhost:1234/usuarios/comenzarDuelo', {
+					fetch( properties.ip+properties.puerto+'/usuarios/comenzarDuelo', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json; charset=utf-8'
@@ -177,20 +179,20 @@ class UsuariosListado extends Component{
 		var shown = {
 			display: this.state.shown ? "block" : "none"
 		};
-		
+		var aux ={display: "block"};
 
 		return(
-			<div>
-			<div className="cont" style={shown}>
+			<div >
+			<div style={shown} >
 			{this.state.pregunta}
 			</div>
-			<div  className={clase} >
+			<div className={clase} >
 			{usuarios}
 			</div>
 			</div>
 			);
 
-		}
 	}
+}
 
-	export default withRouter( UsuariosListado );
+export default withRouter( UsuariosListado );

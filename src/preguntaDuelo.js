@@ -27,11 +27,7 @@ class PreguntaDuelo extends Component{
 			opbtn2: 1,
 			opbtn3: 1,
 			opbtn4: 1,
-			evbtn1: "auto",
-			evbtn1: "auto",
-			evbtn1: "auto",
-			evbtn1: "auto",
-
+			evbtn1: "auto"
 		}
 		this.inicio(props.id_Pregunta);
 
@@ -74,7 +70,7 @@ class PreguntaDuelo extends Component{
 	startTimer () {
 		clearInterval(this.timer)
 		this.timer = setInterval(this.tickContador.bind(this), 1000)
-		this.state.inicio = true;
+		this.setState({inicio: true});
 	}
 
 	inicio($var){
@@ -88,16 +84,16 @@ class PreguntaDuelo extends Component{
 		let estado;
 		let tiempo = this.state.cronometro;
 		if(this.props.correcta === $var ){
-			estado = "Correcta"
+			estado = "Correcta";
 		}else{
-			estado = "Incorrecta"
+			estado = "Incorrecta";
 		}
-		if(estado  == "Correcta"){
+		if(estado  === "Correcta"){
 			this.setState({
 				[$btn]: green
 			})
 			for (var i = 0; i < 4; i++) {
-				if(this.props.correcta != this.state.lista[i]){
+				if(this.props.correcta !== this.state.lista[i]){
 					var opbtn = "opbtn"+(1+i);
 					this.setState({[opbtn]:0})	
 				}
@@ -111,16 +107,16 @@ class PreguntaDuelo extends Component{
 			this.setState({
 				[$btn]: red
 			})
-			for (var i = 0; i < 4; i++) {
-				if(this.props.correcta == this.state.lista[i]){
+			for (i = 0; i < 4; i++) {
+				if(this.props.correcta === this.state.lista[i]){
 					this.setState({
 						["evbtn"+(1+i)]: "none"
 					})
 					this.setState({["btn"+(1+i)]:green})
 				}else{
-					var opbtn = "opbtn"+(1+i);
+					opbtn = "opbtn"+(1+i);
 					var Incorrecta = "op"+$btn;
-					if(opbtn!=Incorrecta){
+					if(opbtn !== Incorrecta){
 						this.setState({[opbtn]:0})
 					}
 					

@@ -19,6 +19,7 @@ class Preguntas extends Component{
 	}
 
 	obtenerPreguntas(busqueda){
+
 		fetch(preguntasListaURL+"100"+"&busqueda="+busqueda,{
 			method: 'GET',
 			headers:{
@@ -217,7 +218,7 @@ class Preguntas extends Component{
 		if(preguntas === '')
 			preguntas =  <div className='cargando'>Cargando...</div>;
 
-		if(preguntas == 'no hay')
+		if(preguntas === 'no hay')
 			preguntas =  <div className='cargando no-hay'>No se encontraron preguntas.</div>;
 
 		return (
