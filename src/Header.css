@@ -299,6 +299,10 @@ header .no-logueado.expandir{
 
 @media only screen and (max-width: 660px) {
   .links-container {
-    display: none;
+    margin-top: 35px;
+  }
+
+  .header-link {
+    display: block;
   }
 }
