@@ -19,7 +19,7 @@ class Preguntas extends Component{
 	}
 
 	obtenerPreguntas(busqueda){
-		fetch(preguntasListaURL+"10"+"&busqueda="+busqueda,{
+		fetch(preguntasListaURL+"100"+"&busqueda="+busqueda,{
 			method: 'GET',
 			headers:{
 				'Content-Type': 'application/json; charset=utf-8'
@@ -82,7 +82,6 @@ class Preguntas extends Component{
 	trufalse(tf, target) {
 		let campos = target.parentNode.parentNode.parentNode.querySelectorAll('.pregunta input, .pregunta textarea');
 		for(let c of campos){
-			console.log(campos);
 			c.disabled = tf;
 			if (tf)
 				c.classList.remove('fb');
