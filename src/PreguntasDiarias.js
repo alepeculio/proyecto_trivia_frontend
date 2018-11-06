@@ -155,6 +155,24 @@ class PreguntasDiarias extends Component {
 
 		}
 
+		solicitarSuscripcion(e){
+			let btn = e.target;
+			let u = this.props.usuario;
+			btn.disabled = true;
+			fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				} 
+			} ).then (res => {
+				console.log(res);
+
+			} ).catch( err => {
+				btn.disabled = false;
+				console.log( 'Error: ' + err );
+			} );
+		}
+
 
 		render () {
 			if ( this.props.usuario === "cargando" )
@@ -162,7 +180,11 @@ class PreguntasDiarias extends Component {
 			else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
 				return(
 					<div id="pdLista">
-					Solicite una suscripcion
+						<div className="SinSuscripcion">
+							<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
+							<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
+							<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
+						</div>
 					</div>
 					);
 				} else {

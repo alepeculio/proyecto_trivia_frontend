@@ -13,6 +13,7 @@ class UsuarioLista extends Component{
 		e.preventDefault();
 		let retador = localStorage.getItem("usuario_id");
 		let retado = this.props.usuario.id;
+		console.log("COSO");
 		this.props.retar(retador,retado);
 	}
 	
