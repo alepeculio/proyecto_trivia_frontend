@@ -34,9 +34,8 @@ class App extends Component {
 			if ( this.mensajes !== undefined ) {
 				this.mensajes.current.agregarMensaje( mensaje );
 
-				if ( mensaje.puntos !== undefined ) {
+				if ( mensaje.puntos !== undefined )
 					this.aumentarPuntuacion( mensaje.puntos );
-				}
 			}
 		} );
 
@@ -82,8 +81,8 @@ class App extends Component {
 	}
 
 	aumentarPuntuacion( puntos ) {
-		let pts = document.querySelector( ".header-titulo .puntuacion" );
-		if ( pts == null )
+		let pts = document.querySelector( "header .logueado .puntuacion" );
+		if ( pts === null )
 			return;
 		let str = pts.innerHTML.split( " " );
 		let nuevo = parseInt( str[1] ) + puntos;
