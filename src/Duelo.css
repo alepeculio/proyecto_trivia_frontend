@@ -2,20 +2,23 @@
 	--img-dimension:60px;
 	--button-padding-top:8px;
 	--button-padding-left:10px;
-	--font-size-button:16px;
+	--font-size:16px;
+	--puntaje-right:250px;
+
 
 }
 @media screen and (max-width: 1000px) {
-	.usuariosDuelo{
+ 	.usuariosDuelo{
 		width: 500px;
-		margin: 0 auto;
+		margin: 0 auto !important;
 	}
 
 	:root{
 		--img-dimension:40px;
-		--button-padding-top:5px;
-		--button-padding-left:8px;
-		--font-size-button:12px;
+		--button-padding-top:7px;
+		--button-padding-left:10px;
+		--font-size:12px;
+		--puntaje-right:200px;
 	}
 }
 @media screen and (max-width: 650px) {
@@ -26,7 +29,7 @@
 		--img-dimension:30px;
 		--button-padding-top:5px;
 		--button-padding-left:8px;
-		--font-size-button:12px;
+		--font-size:12px;
 	}
 }
 
@@ -42,7 +45,7 @@
 	background-color: #EDAF3A;
 	color:black;
 	margin-bottom: 10px;
-	padding: 2px 8px;
+	padding: 3px 8px;
 	border-radius: 5px;
 	text-align: left;
 	position: relative;
@@ -120,6 +123,7 @@
 
 .contenedorDuelo span{
 	font-weight: bold;
+	font-size: var(--font-size);
 	position: absolute;
 	top: calc(50% - 15px);
  	/*border-top: 1px solid rgba(0,0,0,.4);
@@ -137,7 +141,7 @@
   	padding:5px;
   }
   .contenedorDuelo .puntaje {
-  	right: 250px;
+  	right: var(--puntaje-right);
   	border-radius: 5px;
   	padding:5px;
   }
@@ -147,7 +151,7 @@
   	top:calc(50% - 20px);
   	right:150px;
   	font-weight: bold;
-  	font-size: 20px;
+  	font-size: var(--font-size);
   	border-radius: 5px;
   	padding:5px;
   	border-bottom: 2px solid  rgba(0,0,0,.3);
@@ -177,7 +181,6 @@
   }
   .buttons{
   	position: absolute;
-  	top: calc(50% - 20px);
   	right: 50px;
   }
 
@@ -195,7 +198,7 @@
   	text-align: center;
   	text-decoration: none;
   	display: inline-block;
-  	font-size: var(--font-size-button);
+  	font-size: var(--font-size);
   	border-bottom: 2px solid  rgba(0,0,0,.3);
   	border-right: 2px solid rgba(0,0,0,.3);
   	border-top: 2px solid rgba(255, 255, 255, 0.3);
@@ -212,7 +215,7 @@
   	text-align: center;
   	text-decoration: none;
   	display: inline-block;
-  	font-size: var(--font-size-button);
+  	font-size: var(--font-size);
   	margin-left:3px;
   	border-bottom: 2px solid  rgba(0,0,0,.3);
   	border-right: 2px solid rgba(0,0,0,.3);
