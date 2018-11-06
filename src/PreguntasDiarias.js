@@ -159,7 +159,7 @@ class PreguntasDiarias extends Component {
 			let btn = e.target;
 			let u = this.props.usuario;
 			btn.disabled = true;
-			fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo, {
+			fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
