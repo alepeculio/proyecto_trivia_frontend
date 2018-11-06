@@ -10,10 +10,12 @@ class UsuarioLista extends Component{
 
 	
 	retarUsuario(e){
+		alert("Y");
 		e.preventDefault();
 		let retador = localStorage.getItem("usuario_id");
 		let retado = this.props.usuario.id;
 		this.props.retar(retador,retado);
+
 	}
 	
 	render(){
@@ -22,7 +24,7 @@ class UsuarioLista extends Component{
 			<div className="usuario" >
 			<img src={usuario.img} alt="Imagen usuario"/>
 			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
-			<span onClick={this.retarUsuario.bind(this)} className="retar">Retar</span>
+			<span onClick={this.retarUsuario.bind(this)} className="retar">Retar1</span>
 			<span className="puntaje">{usuario.puntaje} pts.</span>
 			</div>
 

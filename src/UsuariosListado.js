@@ -66,8 +66,8 @@ class UsuariosListado extends Component{
 	}
 
 	retar(retador,retado){
-
-		fetch( generarPreguntasDueloURL, {
+		console.log(generarPreguntasDueloURL);
+		fetch(generarPreguntasDueloURL,{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -78,6 +78,7 @@ class UsuariosListado extends Component{
 			} )
 		} ).then( res => {
 			return res.json();
+			console.log("a");
 		} ).then( preguntas => {
 			console.log("B");
 			var primera = preguntas[0];

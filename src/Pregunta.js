@@ -161,9 +161,7 @@ class Pregunta extends Component{
 			clearInterval(this.timer);
 			return res.json();
 		}).then(nose=>{
-			this.setState({inicio: false});
-			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
-			//this.props.funcion();
+
 
 		}).catch( err => {
 			console.log( "Error: "+err );

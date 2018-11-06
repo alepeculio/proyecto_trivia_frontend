@@ -147,7 +147,6 @@ class PreguntasDiarias extends Component {
 		}
 		
 		terminoResp() {
-			
 			this.setState( { click: false } );
 			document.querySelector("#pdTabla").removeAttribute( 'hidden' );
 			this.cargarPreguntasDiarias();
