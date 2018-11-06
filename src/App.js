@@ -43,12 +43,11 @@ class App extends Component {
 			let usuarios = document.querySelectorAll( '.usuarios_ranking .usuario' );
 
 			// TODO: Quedan bugs por arreglar!
-			if ( usuarios.length > 0 ) {
+			if ( usuarios.length > 0 )
 				for ( let i = 0; i < rank.length; i++ ) {
 					usuarios[i].querySelector( '.nombre' ).innerHTML = rank[i].nombre;
 					usuarios[i].querySelector( '.puntaje' ).innerHTML = rank[i].puntaje;
 				}
-			}
 		} );
 	}
 
@@ -68,8 +67,6 @@ class App extends Component {
 			} )
 			.then( data => {
 				this.iniciarSesion(usuario, data);
-
-				socket.emit( 'conectado', data.id );
   				//this.setState({usuario:data});
   			} )
 			.catch( err => {
@@ -99,6 +96,8 @@ class App extends Component {
 		localStorage.setItem('usuario_logueado', token);
 		localStorage.setItem( 'usuario_id', usuario.id );
 		this.setState({usuario:usuario});
+
+		socket.emit( 'conectado', usuario.id );
 	}
 
 	//Se llama desde el componente Header desde el boton cerrar sesion.
@@ -106,6 +105,8 @@ class App extends Component {
 		localStorage.removeItem('usuario_logueado');
 		localStorage.removeItem('usuario_id');
 		this.setState({usuario:''});
+
+		socket.emit( 'desconectar' );
 	}
 
 	render(){
