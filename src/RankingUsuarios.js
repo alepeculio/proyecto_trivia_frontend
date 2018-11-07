@@ -37,12 +37,19 @@ class RankingUsuarios extends Component{
 			}else if(data.Mensaje !== undefined){
 				this.setState({usuarios: ''});
 			}else{
+				let usuariosNormales = false;
 				let usuarios = data.usuarios.map(u => {
 					if(u.tipo !== 'Admin'){
+						usuariosNormales = true;
 						return(<Usuario key={u.id} usuario = {u}/>);
 					}
 				});
-				this.setState({usuarios: usuarios});
+				if(usuariosNormales){
+					this.setState({usuarios: usuarios});	
+				}else{
+					this.setState({usuarios: ''});
+				}
+				
 			}})
 		.catch(err => {
 			console.log(err);
