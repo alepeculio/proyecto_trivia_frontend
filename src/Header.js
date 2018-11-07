@@ -44,7 +44,6 @@ class Header extends Component {
 								<div className="bar3"></div>
 							</div>;
 
-		console.log( this.props.history.location.pathname );
 
 		if(usuario === ''){
 			titulo =<Link className='header-titulo'  title='Ir a inicio' to={'/inicio'}><img src={require('./logo.png')} alt='logo'/></Link>;

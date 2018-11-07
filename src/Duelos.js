@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import DuelosListado from './DuelosListado';
 import {properties} from './properties.js'
