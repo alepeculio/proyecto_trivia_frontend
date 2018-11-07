@@ -30,6 +30,8 @@
     border: none !important;
 
     padding: 0px;
+
+    font-size: 14px;
   }
 
   .contenedor {
@@ -42,7 +44,12 @@
   }
 
   #pdLista table tr td {
-  padding: 12px 10px !important;
+    padding: 10px 10px !important;
+  }
+
+  #pdLista table tr td:nth-child(3),
+  #pdLista table tr td:nth-child(4) {
+    padding: 0px 2px !important;
   }
 }
 
