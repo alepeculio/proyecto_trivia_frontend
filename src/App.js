@@ -170,7 +170,7 @@ class App extends Component {
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <Duelos /> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } /> </div> </div> );
 			} } />
 			<Route path = "/usuarios" render = { ( props ) => {
 				if ( usuario === '' )
@@ -178,7 +178,7 @@ class App extends Component {
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <UsuariosListado/> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <UsuariosListado usuario = { usuario } /> </div> </div> );
 			} } />
 
 			<Route path = "/perfil" render = { ( props ) => {

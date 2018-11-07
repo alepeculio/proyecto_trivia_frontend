@@ -238,3 +238,48 @@
     width: 300px;
   }
 }
+
+.usuarios_ranking .SinSuscripcion{
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.usuarios_ranking .SinSuscripcion p{
+  font-size: 1.2em;
+  color:black;
+  background-color: white;
+}
+
+
+.usuarios_ranking .SinSuscripcion:hover{
+  background-color: white;
+}
+
+.usuarios_ranking .SinSuscripcion p:hover{
+  background-color: white;
+}
+
+.usuarios_ranking .SinSuscripcion button{
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color:white;
+  background-color: rgb(19, 123, 9);
+  display: inline-block;
+  margin-top:10px;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.usuarios_ranking .SinSuscripcion button:disabled{
+  background-color: rgb(47, 93, 42);
+}
+
+.usuarios_ranking .SinSuscripcion button:hover{
+  background-color: rgb(19, 123, 9);
+}
