@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 import './App.css';
@@ -19,7 +20,6 @@ import Mensajes from './Mensajes';
 import {properties} from './properties.js'
 
 const meURL = properties.ip+properties.puerto+'/usuarios/authMe';
-
 const socket = openSocket(properties.ip+properties.socket);
 
 class App extends Component {

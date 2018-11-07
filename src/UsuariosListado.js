@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import UsuarioLista from './UsuarioLista';
 import './RankingUsuarios.css';

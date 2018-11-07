@@ -44,8 +44,7 @@ class IniciarSesionForm extends Component{
 			return response.json();
 		})
 		.then(data => {
-			console.log( data );
-
+			
 			if ( data.auth !== undefined && data.auth ) {
 
 				fetch( meURL, {

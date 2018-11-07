@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import Duelo from './Duelo';
 import { withRouter } from "react-router-dom";

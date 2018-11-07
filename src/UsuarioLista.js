@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import {properties} from './properties.js';
 const retarURL = properties.ip+properties.puerto+'/usuarios/retar';
