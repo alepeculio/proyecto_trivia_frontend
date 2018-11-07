@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter} from "react-router-dom";
 import './Header.css';
+import ReactResizeDetector from 'react-resize-detector';
 
 class Header extends Component {
 	constructor(){
@@ -22,6 +23,14 @@ class Header extends Component {
 			document.querySelector("header .logueado").classList.toggle('mostrar');
 		}
 	}
+
+	onResize = () => {
+		if ( window.innerWidth >= 661 ) {
+			if ( document.querySelector( '.logueado' ) ) {
+				document.querySelector( '.logueado' ).classList.remove( 'mostrar' );
+			}
+		}
+	}
 	
 	render(){
 		let usuario = this.props.usuario;
@@ -29,7 +38,11 @@ class Header extends Component {
 		let btnIniciarSesion = <Link className="boton iniciar-sesion" to={`/iniciarSesion`}>Iniciar Sesión</Link>;
 		let btnRegistrarse = <Link className="boton registrarse" to={`/registrarse`}>Registrarse</Link>;
 		let titulo;
-		let hamburguesa = <div className="hamburguesa" onClick={this.hamburguesa.bind(this)} ><div className="bar1"></div><div className="bar2"></div><div className="bar3"></div></div>;
+		let hamburguesa = 	<div className="hamburguesa" onClick={this.hamburguesa.bind(this)} >
+								<div className="bar1"></div>
+								<div className="bar2"></div>
+								<div className="bar3"></div>
+							</div>;
 
 		console.log( this.props.history.location.pathname );
 
@@ -40,7 +53,7 @@ class Header extends Component {
 			}else if(url === '/registrarse'){
 				return  <header>{titulo}<div className="no-logueado expandir">{btnIniciarSesion}</div>{hamburguesa}</header>;
 			}else{
-				return  <header>{titulo}<div className="no-logueado expandir"><Link className="boton segundo iniciar-sesion" to={`/iniciarSesion`}>Iniciar Sesión</Link>{btnRegistrarse}</div>{hamburguesa}</header>;	
+				return  <header>{titulo}<div className="no-logueado expandir"><Link className="boton segundo iniciar-sesion admin" to={`/iniciarSesion`}>Iniciar Sesión</Link>{btnRegistrarse}</div>{hamburguesa}</header>;	
 			}	
 		}else if(usuario === 'cargando'){
 			return  <header>{titulo}<span className='boton cargando'>Cargando...</span></header>;	
@@ -51,27 +64,34 @@ class Header extends Component {
 			if(document.querySelector("header .logueado") !== null)
 				document.querySelector("header .logueado").classList.toggle('mostrar');*/
 
+			let clasessAdmins = "logueado expandir";
 			let puntuacion;
-			if(usuario.tipo !== 'Admin')
+			let pestanias;
+			if(usuario.tipo !== 'Admin'){
 				puntuacion = <span className="puntuacion">Puntuación: {usuario.puntaje} pts.</span>;
+				pestanias = <div className = "links-container">
+					<Link to = '/ranking' className = { this.props.history.location.pathname !== "/ranking" ? "header-link" : "header-link activo" } id = "linkRanking">Top 10</Link>
+					<Link to = '/preguntas' className = { this.props.history.location.pathname !== "/preguntas" ? "header-link" : "header-link activo" } id = "linkPreguntas">Preguntas Diarias</Link>
+					<Link to = '/duelos' className = { this.props.history.location.pathname !== "/duelos" ? "header-link" : "header-link activo" } id = "linkDuelos">Duelos</Link>
+					<Link to = '/usuarios' className = { this.props.history.location.pathname !== "/usuarios" ? "header-link" : "header-link activo" } id = "linkUsuarios">Usuarios</Link>
+				</div>;
+			} else
+				clasessAdmins += " admin";
+
 
 			return(
 				<header>
+				<ReactResizeDetector handleWidth handleHeight onResize={this.onResize} />
 				{titulo}
-				<div className="logueado expandir">
-				<img className="imagen" src={usuario.img} alt=""/>
-				<span className="nombre"><Link title="Ver mi perfil" to="/perfil">{usuario.nombre} {usuario.apellido}</Link></span>
-				{puntuacion}
-				<a className="boton iniciar-sesion" onClick={this.cerrarSesion.bind(this)} >Cerrar Sesión</a>
+				<div className={clasessAdmins}>
+					<img className="imagen" src={usuario.img} alt=""/>
+					<span className="nombre"><Link title="Ver mi perfil" to="/perfil">{usuario.nombre} {usuario.apellido}</Link></span>
+					{puntuacion}
+					{pestanias}
+					<a className="boton iniciar-sesion" onClick={this.cerrarSesion.bind(this)} >Cerrar Sesión</a>
 				</div>
 				{hamburguesa}
 
-				<div className = "links-container">
-					<Link to = '/ranking' className = { this.props.history.location.pathname !== "/ranking" ? "header-link" : "header-link activo" } id = "linkRanking">Top 10</Link>
-					<Link to = '/preguntas' className = { this.props.history.location.pathname !== "/preguntas" ? "header-link" : "header-link activo" } id = "linkPreguntas">Preguntas Diarias</Link>
-					<Link to = '/duelos' className = { this.props.history.location.pathname !== "/duelos" ? "header-link" : "header-link activo" } id = "linkDuelos">Mis Duelos</Link>
-					<Link to = '/usuarios' className = { this.props.history.location.pathname !== "/usuarios" ? "header-link" : "header-link activo" } id = "linkUsuarios">Usuarios</Link>
-				</div>
 				</header>
 				);
 		}

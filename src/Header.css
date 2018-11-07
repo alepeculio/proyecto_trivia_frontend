@@ -187,6 +187,7 @@ header .change .bar3 {
 
 header .expandir.mostrar{
   display: block;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 660px) {
@@ -194,9 +195,70 @@ header .expandir.mostrar{
 
   }
 
+  .links-container {
+    width: 100vw !important;
+    border: none !important;
+    margin: 0 !important;
+    margin-top: 30px !important;
+  }
+
   header .header-titulo{
     left: calc(50% - (var(--logo) / 2));
   }
+
+  header .expandir.mostrar{
+    height: 300px !important;
+  }
+
+
+
+
+  header .expandir.no-logueado {
+    height: 40px !important;
+  }
+  header .expandir.logueado.admin {
+    height: 100px !important;
+  }
+  header .logueado.admin .boton.iniciar-sesion {
+    margin-top: -30px !important;
+  }
+  header .admin.boton.iniciar-sesion {
+    margin-top: 0px !important;
+  }
+
+
+
+
+  header .boton.iniciar-sesion {
+    margin-top: 185px;
+  }
+
+
+  header .logueado .nombre{
+    top: calc( (var(--img) / 2) - 8px);
+  }
+
+  header .logueado .puntuacion{
+   left:10px;
+   top: 40px;
+   text-align: left;
+ }
+
+
+  header .logueado .boton{
+   left:10px;
+   right: unset;
+   top: 70px;
+ }
+
+ header .no-logueado .boton{
+   left: 10px;
+   top: 2px;
+   right:unset;
+ }
+ header .no-logueado .boton.segundo{
+   left: 110px;
+ }
 
   header .expandir{
     display:  none;
@@ -279,6 +341,11 @@ header .no-logueado.expandir{
 /*[FIN Header] =================================================================*/
 
 .links-container {
+  box-sizing: border-box;
+  width: 300vw;
+  margin-left: calc(calc(var(--logo) * -1) - 17px);
+  padding-top: 35px;
+  border-right: 200vw solid transparent;
   background-color: rgba(0, 0, 0, .5);
 }
 

@@ -5,7 +5,7 @@
 
 .menu-admin{
 	text-align: center;
-	height: 100vh;
+	height: 90vh;
 }
 
 .suscripciones{
@@ -48,8 +48,9 @@
 
 .suscripciones .contenedor{
 	overflow-y: hidden;
-	height: 96%;
-	width: 100%
+	height: 90%;
+	width: 100%;
+	padding: 0;
 }
 
 

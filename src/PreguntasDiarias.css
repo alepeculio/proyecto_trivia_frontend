@@ -39,7 +39,7 @@
   border-bottom: 2px solid rgba(255, 255, 255, .3);
   padding: 12px 10px;
   background-color: rgb(230, 230, 230);
-  
+
   -webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
   box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
@@ -98,6 +98,36 @@
   border-top: 2px solid rgba(255, 255, 255, .3);
   border-bottom: 2px solid rgba(0, 0, 0, .3);
   border-right: 2px solid rgba(0, 0, 0, .3);
+}
+
+#pdLista .SinSuscripcion{
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#pdLista .SinSuscripcion p{
+  font-size: 1.2em;
+}
+
+#pdLista .SinSuscripcion button{
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color:white;
+  background-color: rgb(19, 123, 9);
+  display: inline-block;
+  margin-top:10px;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+#pdLista .SinSuscripcion button:disabled{
+  background-color: rgb(47, 93, 42);
 }
 
 /* [Fin preguntas diarias] ============================================= */

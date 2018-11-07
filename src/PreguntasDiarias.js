@@ -154,6 +154,24 @@ class PreguntasDiarias extends Component {
 
 		}
 
+		solicitarSuscripcion(e){
+			let btn = e.target;
+			let u = this.props.usuario;
+			btn.disabled = true;
+			fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				} 
+			} ).then (res => {
+				console.log(res);
+
+			} ).catch( err => {
+				btn.disabled = false;
+				console.log( 'Error: ' + err );
+			} );
+		}
+
 
 		render () {
 			if ( this.props.usuario === "cargando" )
@@ -161,41 +179,45 @@ class PreguntasDiarias extends Component {
 			else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
 				return(
 					<div id="pdLista">
-					Solicite una suscripcion
+					<div className="SinSuscripcion">
+					<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
+					<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
+					<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
+					</div>
 					</div>
 					);
-				} else {
-					return (
+			} else {
+				return (
 					<div id="pdLista">
 					{this.state.pregunta}
 					<table id="pdTabla" >
 					<tbody>
 					{ this.state.preguntas.map( p => {
 						return (
-						<tr key={p.posicion}>
-						<td>
-						{ p.posicion }
-						</td>
-						<td style = { p.estilo }>
-						{ p.categoria }
-						</td>
-						<td className="pdEstado">
-						{ p.estado }
-						</td>
-						<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
-						Responder
-						</td>
-						</tr>
+							<tr key={p.posicion}>
+							<td>
+							{ p.posicion }
+							</td>
+							<td style = { p.estilo }>
+							{ p.categoria }
+							</td>
+							<td className="pdEstado">
+							{ p.estado }
+							</td>
+							<td className="pdResponder" style = { p.estilo } hidden onClick = { () => { this.generarPreguntaDiaria( p.posicion, p.categoria ) } }>
+							Responder
+							</td>
+							</tr>
+							);
+						} ) }
+						</tbody>
+						</table>
+						</div>
 						);
-					} ) }
-					</tbody>
-					</table>
-					</div>
-					);
+					}
 				}
-			}
-		};
+			};
 
 
-		export default PreguntasDiarias;
+			export default PreguntasDiarias;
 

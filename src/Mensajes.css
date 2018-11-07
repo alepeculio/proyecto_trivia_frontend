@@ -37,8 +37,7 @@
 
 .mensajeRecibido div:last-child {
 	margin-top: 5px;
-	word-break: break-all;
-	text-align: right;
+	text-align: left;
 }
 
 @keyframes mensaje {

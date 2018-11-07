@@ -19,8 +19,8 @@ class Preguntas extends Component{
 	}
 
 	obtenerPreguntas(busqueda){
-		let URL = preguntasListaURL+'10'+'&busqueda='+busqueda
-		fetch(URL,{
+
+		fetch(preguntasListaURL+"100"+"&busqueda="+busqueda,{
 			method: 'GET',
 			headers:{
 				'Content-Type': 'application/json; charset=utf-8'

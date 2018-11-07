@@ -2,8 +2,7 @@
 /* [Pregunta] ============================================= */
 
 .ContenedorPregunta{
-  width: 50%;
-  max-width: 80%;
+  width: 200px;
   margin: 0 auto;
   background: #e4e4e4;
   border: 2px solid black;
@@ -15,7 +14,6 @@
 }
 
 .circulo{
-
   border:2px solid red;
   width: 100px;
   border-radius: 50%;
@@ -157,7 +155,7 @@
 
 }
 /* Animacion de temporizador */
-.wrapper {
+.wrapper {  
   width: 100px; 
   height: 100px;
   position: absolute;

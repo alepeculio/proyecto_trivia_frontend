@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {properties} from './properties.js';
+import './Duelo.css';
 const retarURL = properties.ip+properties.puerto+'/usuarios/retar';
 
 class UsuarioLista extends Component{
@@ -8,9 +9,7 @@ class UsuarioLista extends Component{
 		super();
 	}
 
-	
 	retarUsuario(e){
-		alert("Y");
 		e.preventDefault();
 		let retador = localStorage.getItem("usuario_id");
 		let retado = this.props.usuario.id;
@@ -24,7 +23,7 @@ class UsuarioLista extends Component{
 			<div className="usuario" >
 			<img src={usuario.img} alt="Imagen usuario"/>
 			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
-			<span onClick={this.retarUsuario.bind(this)} className="retar">Retar1</span>
+			<button className="Retar" onClick={this.retarUsuario.bind(this)}>Retar</button>
 			<span className="puntaje">{usuario.puntaje} pts.</span>
 			</div>
 

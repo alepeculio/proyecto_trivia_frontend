@@ -8,18 +8,18 @@
 
 }
 @media screen and (max-width: 1000px) {
- 	.usuariosDuelo{
-		width: 500px;
-		margin: 0 auto !important;
-	}
+  .usuariosDuelo{
+    width: 500px;
+    margin: 0 auto !important;
+  }
 
-	:root{
-		--img-dimension:40px;
-		--button-padding-top:7px;
-		--button-padding-left:10px;
-		--font-size:12px;
-		--puntaje-right:200px;
-	}
+  :root{
+    --img-dimension:40px;
+    --button-padding-top:7px;
+    --button-padding-left:10px;
+    --font-size:12px;
+    --puntaje-right:200px;
+  }
 }
 @media screen and (max-width: 650px) {
 	.usuariosDuelo{
@@ -206,6 +206,25 @@
 
   }
 
+  .Retar{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: var(--button-padding-top) var(--button-padding-left);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: var(--font-size);
+    border-bottom: 2px solid  rgba(0,0,0,.3);
+    border-right: 2px solid rgba(0,0,0,.3);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+
+    
+    position: absolute;
+    right: 50px;
+  }
   .Cancelar{
   	background-color: #f44336;
   	border: none;

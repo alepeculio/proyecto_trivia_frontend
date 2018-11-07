@@ -49,6 +49,9 @@
   border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+.usuarios_ranking font{
+  background: none !important;
+}
 
 .usuarios_ranking .usuario:hover{
   background-color: #e6e6e6;

@@ -30,21 +30,24 @@ class App extends Component {
 		};
 		this.mensajes = React.createRef();
 
-		/*socket.on( 'mensaje', ( mensaje ) => {
-			if ( this.mensajes !== undefined )
+		socket.on( 'mensaje', ( mensaje ) => {
+			if ( this.mensajes !== undefined ) {
 				this.mensajes.current.agregarMensaje( mensaje );
-		} );*/
+
+				if ( mensaje.puntos !== undefined )
+					this.aumentarPuntuacion( mensaje.puntos );
+			}
+		} );
 
 		socket.on( 'ranking', ( rank ) => {
 			let usuarios = document.querySelectorAll( '.usuarios_ranking .usuario' );
 
 			// TODO: Quedan bugs por arreglar!
-			if ( usuarios.length > 0 ) {
+			if ( usuarios.length > 0 )
 				for ( let i = 0; i < rank.length; i++ ) {
 					usuarios[i].querySelector( '.nombre' ).innerHTML = rank[i].nombre;
 					usuarios[i].querySelector( '.puntaje' ).innerHTML = rank[i].puntaje;
 				}
-			}
 		} );
 	}
 
@@ -74,6 +77,15 @@ class App extends Component {
 		}
 	}
 
+	aumentarPuntuacion( puntos ) {
+		let pts = document.querySelector( "header .logueado .puntuacion" );
+		if ( pts === null )
+			return;
+		let str = pts.innerHTML.split( " " );
+		let nuevo = parseInt( str[1] ) + puntos;
+		pts.innerHTML = "Puntuación: " + nuevo + " pts.";
+	}
+
 	//Si ya habia un usuario logueado, obtenerlo con la id y setearlo en el estado.
 	componentWillMount(){
 		this.obtenerUsuario();
@@ -84,6 +96,8 @@ class App extends Component {
 		localStorage.setItem('usuario_logueado', token);
 		localStorage.setItem( 'usuario_id', usuario.id );
 		this.setState({usuario:usuario});
+
+		socket.emit( 'conectado', usuario.id );
 	}
 
 	//Se llama desde el componente Header desde el boton cerrar sesion.
@@ -91,6 +105,8 @@ class App extends Component {
 		localStorage.removeItem('usuario_logueado');
 		localStorage.removeItem('usuario_id');
 		this.setState({usuario:''});
+
+		socket.emit( 'desconectar' );
 	}
 
 	render(){
@@ -114,7 +130,7 @@ class App extends Component {
 				if(usuario !== null && usuario !== undefined){
 					return ( <Redirect to='/ranking' /> );
 				} else
-				return ( <div className = "padre"> <div className = "contenedor2"> <RankingUsuarios /> </div> </div> );
+				return ( <div className = "padre"> <div className = "contenedor3"> <RankingUsuarios /> </div> </div> );
 			} } />
 
 			<Route path="/iniciarSesion" render={ (props) => {

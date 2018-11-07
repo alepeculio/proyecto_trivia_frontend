@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 
 import Pregunta from './preguntaDuelo';
 
-import {properties} from './properties.js'
+import {properties} from './properties.js';
 
 
 const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/usuariosSinRetar?id=';
@@ -66,8 +66,7 @@ class UsuariosListado extends Component{
 	}
 
 	retar(retador,retado){
-		console.log(generarPreguntasDueloURL);
-		fetch(generarPreguntasDueloURL,{
+		fetch( generarPreguntasDueloURL, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -78,9 +77,7 @@ class UsuariosListado extends Component{
 			} )
 		} ).then( res => {
 			return res.json();
-			console.log("a");
-		} ).then( preguntas => {
-			console.log("B");
+		} ).then( preguntas => {	
 			var primera = preguntas[0];
 			var b = <Pregunta
 			pregunta = {primera.pregunta}
@@ -101,9 +98,8 @@ class UsuariosListado extends Component{
 
 			});
 
-
-
-
+		}).catch(function(err){
+			console.log(err);
 		});
 	}
 
@@ -159,30 +155,30 @@ class UsuariosListado extends Component{
 				}
 			});});
 
-		
-	}
-	componentDidMount(){
-		this.obtenerUsuarios();
-	}
 
-	render(){
-		let usuarios = this.state.usuarios;
-		if(usuarios === undefined){
-			usuarios = <div className="cargando">Cargando...</div>
-		}else if(usuarios === ''){
-			usuarios = <div className="cargando">No hay usuarios</div>
+		}
+		componentDidMount(){
+			this.obtenerUsuarios();
 		}
 
-		let clase = 'usuarios_ranking';
-		if(this.props.location.pathname === '/inicio'){
-			clase += ' inicio';
-		};
-		var shown = {
-			display: this.state.shown ? "block" : "none"
-		};
-		var aux ={display: "block"};
+		render(){
+			let usuarios = this.state.usuarios;
+			if(usuarios === undefined){
+				usuarios = <div className="cargando">Cargando...</div>
+			}else if(usuarios === ''){
+				usuarios = <div className="cargando">No hay usuarios</div>
+			}
 
-		return(
+			let clase = 'usuarios_ranking';
+			if(this.props.location.pathname === '/inicio'){
+				clase += ' inicio';
+			};
+			var shown = {
+				display: this.state.shown ? "block" : "none"
+			};
+			var aux ={display: "block"};
+
+			return(
 			<div >
 			<div style={shown} >
 			{this.state.pregunta}
@@ -193,7 +189,7 @@ class UsuariosListado extends Component{
 			</div>
 			);
 
+		}
 	}
-}
 
-export default withRouter( UsuariosListado );
+	export default withRouter( UsuariosListado );
