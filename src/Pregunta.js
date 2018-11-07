@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import './Pregunta.css';
 import { properties } from './properties.js'

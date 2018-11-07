@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import Duelo from './Duelo';
 import { withRouter } from "react-router-dom";
@@ -49,9 +50,42 @@ class DuelosListado extends Component{
 		this.obtenerDuelos();
 	}
 
+	solicitarSuscripcion(e){
+		let btn = e.target;
+		let u = this.props.usuario;
+		btn.disabled = true;
+		fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			} 
+		} ).then (res => {
+			console.log(res);
+
+		} ).catch( err => {
+			btn.disabled = false;
+			console.log( 'Error: ' + err );
+		} );
+	}
+
 	render(){
 		let clase = 'usuariosDuelo';
 		let duelos = this.state.duelos;
+
+		if ( this.props.usuario === "cargando" )
+			return null;
+		else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
+			return(
+				<div className="usuariosDuelo">
+					<div className="SinSuscripcion">
+						<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
+						<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
+						<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
+					</div>
+				</div>
+			);
+		}
+
 
 		if(duelos === undefined){
 			duelos = <div className="cargando">Cargando...</div>

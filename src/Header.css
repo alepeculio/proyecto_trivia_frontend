@@ -24,6 +24,20 @@ header{
   font-family: Helvetica;
 }
 
+@media screen and (max-width: 660px) {
+  :root {
+    --altura: 100px;
+  }
+
+  header {
+    height: calc(var(--altura) / 2.4);
+  }
+
+  .expandir {
+    margin-top: -59px !important;
+  }
+}
+
 header .header-titulo{
   display: block;
   position: absolute;

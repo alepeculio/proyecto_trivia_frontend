@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import Pregunta from './Pregunta';
 import './PreguntasDiarias.css';

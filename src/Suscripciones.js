@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import './Suscripciones.css';
 import {properties} from './properties.js'
