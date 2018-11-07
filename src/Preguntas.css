@@ -31,8 +31,9 @@
 
 .preguntas .contenedor{
 	overflow-y: auto;
-	height: 96%;
+	height: 95%;
 	width: 100%;
+	padding: 0;
 }
 
 .preguntas .contenedor .buscador{
