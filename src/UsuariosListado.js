@@ -77,10 +77,9 @@ class UsuariosListado extends Component{
 				ID_retado: retado,
 			} )
 		} ).then( res => {
-			console.log("A");
 			return res.json();
 		} ).then( preguntas => {
-			console.log("B");
+			
 			var primera = preguntas[0];
 			var b = <Pregunta
 			pregunta = {primera.pregunta}
