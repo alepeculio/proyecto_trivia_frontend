@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 import './App.css';
@@ -19,7 +20,6 @@ import Mensajes from './Mensajes';
 import {properties} from './properties.js'
 
 const meURL = properties.ip+properties.puerto+'/usuarios/authMe';
-
 const socket = openSocket(properties.ip+properties.socket);
 
 class App extends Component {
@@ -170,7 +170,7 @@ class App extends Component {
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <Duelos /> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } /> </div> </div> );
 			} } />
 			<Route path = "/usuarios" render = { ( props ) => {
 				if ( usuario === '' )
@@ -178,7 +178,7 @@ class App extends Component {
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <UsuariosListado/> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <UsuariosListado usuario = { usuario } /> </div> </div> );
 			} } />
 
 			<Route path = "/perfil" render = { ( props ) => {

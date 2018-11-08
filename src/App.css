@@ -70,14 +70,19 @@ body {
   background-size: cover;     
   background-attachment: fixed;
 
-  background-color: #073276;
+  background-color: rgba(66, 160, 255, 1);
 }
 
 
 @media only screen and (max-width: 500px) {
   body {
-    background-image: linear-gradient(to right, #073276, blue, #073276); 
-    background-repeat: repeat; 
+    background-image: none;
+    background-position: unset; 
+    background-repeat: unset; 
+    background-size: unset;     
+    background-attachment: unset;
+
+    background-color: rgba(66, 160, 255, 1);
   }
 }
 

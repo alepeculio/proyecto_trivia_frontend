@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import DuelosListado from './DuelosListado';
-
+import {properties} from './properties.js'
 import { withRouter } from "react-router-dom";
 
 class Duelos extends Component{
@@ -12,10 +13,10 @@ class Duelos extends Component{
 	render(){
 		return(
 			<div>
-			<DuelosListado />
+			<DuelosListado usuario={this.props.usuario} />
 			</div>
 			);	
 		}
-	}
+}
 
-	export default withRouter( Duelos );
+export default withRouter( Duelos );
