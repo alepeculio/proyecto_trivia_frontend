@@ -1,15 +1,52 @@
 
 /* [Pregunta] ============================================= */
 
+@media screen and (max-width: 660px) {
+  .ContenedorPregunta{  
+    position: absolute;
+    top: 20%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 97% !important;
+    background-color: rgba(66, 160, 255, 1) !important;
+    border:none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+
+
+  }
+  .volver{
+    position: absolute;
+    top: 80%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+
+}
+
 .ContenedorPregunta{
-  width: 200px;
+  width: 70%;
   margin: 0 auto;
-  background: #e4e4e4;
+
+
+}
+
+.cabezera{
   border: 2px solid black;
-  border-radius: 3px; 
+  border-radius: 3px;
+  background: white; 
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+
+}
+.respuestas{
+
 
 }
 

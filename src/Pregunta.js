@@ -53,8 +53,8 @@ class Pregunta extends Component{
 		}else{
 			this.setState({contador: (this.state.contador - 1)})
 		}
-	}*/
-
+	}
+*/
 	tickCronometro () {
 		if(this.state.cronometro === 1){
 			this.setState({cronometro: (this.state.cronometro - 1)})
@@ -70,8 +70,8 @@ class Pregunta extends Component{
 
 
 	startTimer () {
-		/*clearInterval(this.timer)
-		this.timer = setInterval(this.tickContador.bind(this), 1000)*/		
+		clearInterval(this.timer)
+		this.timer = setInterval(this.tickCronometro.bind(this), 1000)	
 		this.setState({inicio: true});
 	}
 
@@ -110,7 +110,10 @@ class Pregunta extends Component{
 		}else{
 			estado = "Incorrecta";
 		}
+		console.log(estado);
+		console.log(tiempo);
 		if(estado  === "Correcta"){
+
 			this.setState({
 				[$btn]: green
 			})
@@ -199,15 +202,16 @@ class Pregunta extends Component{
 			<div className="ContenedorPregunta" id="pregunta" style={shown}>
 			
 			<div className="cabezera">
-
 			<font className="pregunta">{this.props.pregunta}</font>
 			</div>
 			<div className="progress" style={{animationPlayState: this.state.animation}}></div>
 			<br></br>
+			<div className="respuestas">
 			<button className="button" style={{background: this.state.btn1 , opacity: this.state.opbtn1,pointerEvents : this.state.evbtn1}} id="0" onClick={()=>{this.conexion(this.state.lista[0],"btn1")}} type="button"><font className="txtRespuestas">{this.state.lista[0]}</font></button><br></br>
 			<button className="button" style={{background: this.state.btn2 , opacity: this.state.opbtn2,pointerEvents : this.state.evbtn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
 			<button className="button" style={{background: this.state.btn3 , opacity: this.state.opbtn3,pointerEvents : this.state.evbtn3}}  onClick={()=>{this.conexion(this.state.lista[2],"btn3")}} type="button"><font className="txtRespuestas">{this.state.lista[2]}</font></button><br></br>
 			<button className="button" style={{background: this.state.btn4 , opacity: this.state.opbtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
+			</div>
 			</div>
 			<div>
 			<button className="volver" onClick={()=>{this.volver()}} style={hidden}>&laquo; Volver</button>
