@@ -15,6 +15,7 @@ class Pregunta extends Component{
 		this.state = {
 			contador: 3,//tiempo antes de que aparezca la pregunta
 			shown: true,
+			volver:false,
 			cronometro: t,//tiempo para responder
 			inicio: false,
 			lista : [],
@@ -40,7 +41,7 @@ class Pregunta extends Component{
 		pts.innerHTML = "Puntuación: " + nuevo + " pts.";
 	}
 
-	tickContador () {
+	/*tickContador () {
 		if(this.state.contador === 1){
 			clearInterval(this.timer);
 			this.setState({
@@ -52,7 +53,8 @@ class Pregunta extends Component{
 		}else{
 			this.setState({contador: (this.state.contador - 1)})
 		}
-	}
+	}*/
+
 	tickCronometro () {
 		if(this.state.cronometro === 1){
 			this.setState({cronometro: (this.state.cronometro - 1)})
@@ -68,8 +70,8 @@ class Pregunta extends Component{
 
 
 	startTimer () {
-		clearInterval(this.timer)
-		this.timer = setInterval(this.tickContador.bind(this), 1000)
+		/*clearInterval(this.timer)
+		this.timer = setInterval(this.tickContador.bind(this), 1000)*/		
 		this.setState({inicio: true});
 	}
 
@@ -162,9 +164,7 @@ class Pregunta extends Component{
 			clearInterval(this.timer);
 			return res.json();
 		}).then(nose=>{
-			this.setState({inicio: false});
-			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
-			//this.props.funcion();
+				this.setState({volver:true})
 
 		}).catch( err => {
 			console.log( "Error: "+err );
@@ -190,23 +190,13 @@ class Pregunta extends Component{
 		};
 		
 		var hidden = {
-			display: this.state.shown ? "none" : "block"
+			visibility: this.state.volver ? "visible" : "hidden"
 		};
 
 		return(
 			<div id="contenedor">
-			<div className="ContenedorTimer">
-			<div className='timer'  style={shown} >
-			<label className="texto">La pregunta aparecerá en </label>
-			<br></br>
-			<font className="contador">{this.state.contador}</font>
-			<div className="wrapper" data-anim="base wrapper">
-			<div className="circle" data-anim="base left"></div>
-			<div className="circle" data-anim="base right"></div>
-			</div>
-			</div>
-			</div>
-			<div className="ContenedorPregunta" id="pregunta" style={hidden}>
+
+			<div className="ContenedorPregunta" id="pregunta" style={shown}>
 			
 			<div className="cabezera">
 

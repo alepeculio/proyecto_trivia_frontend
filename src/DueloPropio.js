@@ -44,16 +44,10 @@ class DueloPropio extends Component{
 		return(
 			<div>
 			<div className="contenedorDuelo P">
-			<div className="contImg">
 			<img  className="imgUser" src={duelo.img} alt="Imagen usuario"/>
-			</div>
-			<div className="contInfo">
-			<font className="nombre">{duelo.nombre} {duelo.apellido} </font>
-			<font className="puntaje">{duelo.puntaje} pts.</font>
-			</div>
-			<div className="buttonP">
+			<span className="nombre">{duelo.nombre} {duelo.apellido} </font>
+			<span className="puntaje">{duelo.puntaje} pts.</font>
 			<button className="CancelarP" onClick={this.handleClick.bind(this)}>Cancelar</button>
-			</div>
 			</div>
 			</div>
 			);

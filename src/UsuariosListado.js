@@ -67,7 +67,6 @@ class UsuariosListado extends Component{
 	}
 
 	retar(retador,retado){
-		console.log("COSO2");
 		fetch( generarPreguntasDueloURL, {
 			method: 'POST',
 			headers: {
@@ -79,8 +78,7 @@ class UsuariosListado extends Component{
 			} )
 		} ).then( res => {
 			return res.json();
-		} ).then( preguntas => {
-			
+		} ).then( preguntas => {	
 			var primera = preguntas[0];
 			var b = <Pregunta
 			pregunta = {primera.pregunta}
@@ -100,9 +98,6 @@ class UsuariosListado extends Component{
 				document.querySelector( '.usuarios_ranking' ).setAttribute( 'hidden', true );
 
 			});
-
-
-
 
 		}).catch(function(err){
 			console.log(err);
