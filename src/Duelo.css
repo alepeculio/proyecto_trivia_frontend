@@ -216,12 +216,41 @@
 }
 
 @media only screen and (max-width: 886px) {
+	
 	body {
-		background: red;
+		background-image: none;
+		background: rgba(66,160,255,1);
 	}
 
 	.buttons{
 		margin-left: unset;
+	}
+
+	.Aceptar {
+		font-size: 12px;
+	}
+
+	.Cancelar {
+		font-size: 12px;
+		padding: 8px 8px;
+	}
+
+	.usuariosDuelo{
+		margin: 0;
+		background-color: unset;
+		border: unset;
+		border-radius: unset;
+		transition-property: width;
+		transition-duration: .5s;
+		transition-timing-function: ease-in;
+		min-height: unset;
+		-webkit-box-shadow: unset;
+		-moz-box-shadow: unset;
+		box-shadow: unset;
+	}
+
+	.contenedor{
+		padding: 25px 0 0 0;
 	}
 
 }
