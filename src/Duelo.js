@@ -159,7 +159,6 @@ class Duelo extends Component{
 			<div id="duelo" className="contenedorDuelo" >
 			<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
 			<span className="nombre">{duelo.nombre} {duelo.apellido} </span>
-			<span className="puntaje">{duelo.puntaje} pts.</span>
 
 			<div className="buttons">
 			<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
