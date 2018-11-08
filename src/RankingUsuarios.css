@@ -37,7 +37,7 @@
 
   .usuarios_ranking .usuario .nombre {
     margin: 0px !important;
-    margin-left: -20px !important;
+    margin-left: 8px !important;
   }
 
   .usuarios_ranking .usuario .puntaje {
