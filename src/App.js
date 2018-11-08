@@ -52,7 +52,30 @@ class App extends Component {
 
 		socket.on( 'nuevo-ranking', ( ranking ) => {
 			for ( let i = 0; i < ranking.length; i++ )
-				console.log( ranking[i].nombre + ' ' + ranking[i].apellido + ' ' + ranking[i].puntaje );
+				console.log( ranking[i].nombre + ' ' + ranking[i].puntaje );
+
+			let usus = document.querySelectorAll( '.usuarios_ranking .usuario' );
+			if ( usus.length > 0 ) {
+				let i;
+
+				for ( i = 0; i < ranking.length; i++ ) {
+					if ( usus[i] === undefined ) {
+						let copia = usus[i - 1].cloneNode( true );
+						document.querySelector( '.usuarios_ranking' ).appendChild( copia );
+						usus = document.querySelectorAll( '.usuarios_ranking .usuario' );
+					}
+
+					usus[i].href = '/perfil/' + ranking[i].correo;
+					usus[i].querySelector( 'img' ).src = ranking[i].img;
+					usus[i].querySelector( '.nombre' ).innerHTML = ranking[i].nombre + ' ' + ranking[i].apellido;
+					usus[i].querySelector( '.puntaje' ).innerHTML = ranking[i].puntaje + ' pts.';
+				}
+
+				while ( i < usus.length ) {
+					usus[i].remove();
+					i++;
+				}
+			}
 		} );
 	}
 
