@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import UsuarioLista from './UsuarioLista';
-import './RankingUsuarios.css';
+import './UsuariosListado.css';
 import { withRouter } from "react-router-dom";
 
 import Pregunta from './preguntaDuelo';
@@ -78,7 +78,16 @@ class UsuariosListado extends Component{
 			} )
 		} ).then( res => {
 			return res.json();
-		} ).then( preguntas => {	
+		} ).then( preguntas => {
+
+			if(preguntas.Mensaje !== undefined){
+				let btns = document.getElementsByClassName("Retar");
+
+				for(let i=0; i < btns.length; i++) {
+					btns[i].disabled = false;
+				}
+			}	
+
 			var primera = preguntas[0];
 			var b = <Pregunta
 			pregunta = {primera.pregunta}
@@ -95,7 +104,7 @@ class UsuariosListado extends Component{
 				this.setState({pregunta: b});
 				this.setState({preguntas:preguntas});
 				this.setState({retado:retado});
-				document.querySelector( '.usuarios_ranking' ).setAttribute( 'hidden', true );
+				document.querySelector( '.usuarios_duelos' ).setAttribute( 'hidden', true );
 
 			});
 
@@ -132,7 +141,14 @@ class UsuariosListado extends Component{
 						return res.json();
 					}).then(data => {
 						console.log(data);
-						document.querySelector( '.usuarios_ranking' ).removeAttribute('hidden');
+						
+						let btns = document.getElementsByClassName("Retar");
+						for(let i=0; i < btns.length; i++){
+							btns[i].disabled = false;
+						}
+						
+						this.obtenerUsuarios();
+						document.querySelector( '.usuarios_duelos' ).removeAttribute('hidden');
 						this.setState({shown:false});
 					}).catch(err => {
 						console.log(err);
@@ -183,16 +199,16 @@ class UsuariosListado extends Component{
 			let usuarios = this.state.usuarios;
 
 			if ( this.props.usuario === "cargando" )
-			return null;
+				return null;
 			else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
 				return(
-					<div className="usuarios_ranking">
-						<div className="SinSuscripcion">
-							<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
-							<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
-							<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
-						</div>
-					</div>
+				<div className="usuarios_ranking">
+				<div className="SinSuscripcion">
+				<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
+				<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
+				<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
+				</div>
+				</div>
 				);
 			}
 
@@ -202,7 +218,7 @@ class UsuariosListado extends Component{
 				usuarios = <div className="cargando">No hay usuarios</div>
 			}
 
-			let clase = 'usuarios_ranking';
+			let clase = 'usuarios_listado';
 			if(this.props.location.pathname === '/inicio'){
 				clase += ' inicio';
 			};

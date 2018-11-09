@@ -12,6 +12,13 @@ class UsuarioLista extends Component{
 
 	retarUsuario(e){
 		e.preventDefault();
+		
+		let btns = document.getElementsByClassName("Retar");
+
+		for(let i=0; i < btns.length; i++) {
+			btns[i].disabled = true;
+		}
+
 		let retador = localStorage.getItem("usuario_id");
 		let retado = this.props.usuario.id;
 		this.props.retar(retador,retado);

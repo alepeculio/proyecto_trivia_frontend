@@ -1,0 +1,292 @@
+:root{
+  --img-dimension:60px;
+}
+
+.usuarios_listado{
+  box-sizing: border-box;
+  margin: 20px 120px .7px 120px;
+  background-color: rgba(66, 160, 255, 1);
+  color: white;
+  padding: 20px 20px 10px 20px;
+  border: 1px solid white;
+  border-radius:15px;
+  min-height: 100vh;
+  box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+}
+
+.usuarios_listado.inicio {
+  border-top: 1px solid white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-top:70px;
+}
+
+.usuarios_listado .titulo{
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin:5px 0;
+}
+
+.usuarios_listado .usuario{
+  background-color: white;
+  color:black;
+  margin-bottom: 10px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+  display: block;
+  -webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+  box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.usuarios_listado font{
+  background: none !important;
+}
+
+.usuarios_listado .usuario:hover{
+  background-color: #e6e6e6;
+}
+
+
+.usuarios_listado :nth-child(1){
+  background-color: #EDAF3A;
+}
+
+.usuarios_listado :nth-child(1):hover{
+  background-color: #e99f16;
+}
+
+.usuarios_listado :nth-child(2){
+  background-color: #C6C6C6;
+}
+
+.usuarios_listado :nth-child(2):hover{
+  background-color: #b3b3b3;
+}
+
+.usuarios_listado :nth-child(3){
+  background-color: #C37D55;
+}
+
+.usuarios_listado :nth-child(3):hover{
+  background-color: #aa643c;
+}
+
+.usuarios_listado :nth-child(4){
+  background-color: #AA64D7;
+}
+
+.usuarios_listado :nth-child(4):hover{
+  background-color: #9855C3;
+}
+
+.usuarios_listado :nth-child(5){
+  background-color: #5EC490;
+}
+
+.usuarios_listado :nth-child(5):hover{
+  background-color: #4DB27F;
+}
+
+.usuarios_listado :nth-child(6){
+  background-color: #F74444;
+}
+
+.usuarios_listado :nth-child(6):hover{
+  background-color: #DF3535;
+}
+
+.usuarios_listado :nth-child(7){
+  background-color: #41EA25;
+}
+
+.usuarios_listado :nth-child(7):hover{
+  background-color: #3DD324;
+}
+
+.usuarios_listado :nth-child(8){
+  background-color: #FE66EE;
+}
+
+.usuarios_listado :nth-child(8):hover{
+  background-color: #F84CE6;
+}
+
+.usuarios_listado .usuario img{
+  width:var(--img-dimension);
+  height: var(--img-dimension);
+  border-radius: 100%;
+  border-top: 1px solid rgba(255,255,255,.3);
+  border-left: 1px solid rgba(255,255,255,.3);
+  box-shadow: 2px 2px rgba(0,0,0,.3);
+}
+
+.usuarios_listado .usuario .nombre{
+  font-weight: bold;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(var(--img-dimension) + 20px);
+  border-radius: 5px;
+  padding:5px;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(256,256,256,.7);
+}
+
+.usuarios_listado .usuario .puntaje{
+  position: absolute;
+  top:calc(50% - 20px);
+  right:10px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 5px;
+  padding:5px;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(256,256,256,.7);
+  text-shadow: 0 0 .5px blue;
+}
+
+.usuariosDuelo .cargando{
+  background-color: white;
+  color:black;
+  margin-bottom: 10px;
+  padding: 10px 8px;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+  text-align: center;
+  color:grey;
+  font-size: 14px;
+  font-family: Helvetica;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.usuarios_listado .cargando:hover{
+  background-color:white;
+}
+
+.usuarios_listado .SinSuscripcion{
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.usuarios_listado .SinSuscripcion p{
+  font-size: 1.2em;
+  color:black;
+  background-color: white;
+}
+
+
+.usuarios_listado .SinSuscripcion:hover{
+  background-color: white;
+}
+
+.usuarios_listado .SinSuscripcion p:hover{
+  background-color: white;
+}
+
+.usuarios_listado .SinSuscripcion button{
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color:white;
+  background-color: rgb(19, 123, 9);
+  display: inline-block;
+  margin-top:10px;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.usuarios_listado .SinSuscripcion button:disabled{
+  background-color: rgb(47, 93, 42);
+}
+
+.usuarios_listado .SinSuscripcion button:hover{
+  background-color: rgb(19, 123, 9);
+}
+
+@media screen and (max-width: 1000px) and (min-width: 651px) {
+
+  .usuarios_listado{
+    width: 500px;
+    margin: 20px 120px .7px 120px;
+    padding: 20px 20px 10px 20px;
+    min-height: 100vh;
+  }
+
+  :root{
+    --img-dimension:40px;
+    --button-padding-top:7px;
+    --button-padding-left:10px;
+    --font-size:12px;
+  }
+}
+
+@media screen and (max-width: 650px) and (min-width: 351px) {
+
+  .usuarios_listado{
+    width: 450px;
+    margin: 0 auto !important;
+    background-color: unset;
+    min-height: 100vh !important;
+    border: unset;
+    border-radius: unset;
+    min-height: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
+  }
+
+  :root{
+    --img-dimension:45px;
+    --button-padding-top:5px;
+    --button-padding-left: 3px;
+    --font-size:12px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+
+  :root{
+    --img-dimension:30px;
+    --button-padding-top:5px;
+    --button-padding-left: 3px;
+    --font-size:12px;
+  }
+
+  .usuarios_listado{
+    width: 400px;
+    margin: 0 auto !important;
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
+    min-height: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
+  }
+
+}
+
