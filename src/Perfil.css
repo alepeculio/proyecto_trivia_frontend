@@ -189,6 +189,19 @@
 	}
 }
 
+
+@media screen and (max-width: 970px) {
+	.perfil {
+		width: 68% !important;
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.perfil {
+		width: 80% !important;
+	}
+}
+
 @media screen and (max-width: 456px) {
 	.cambioPass {
 		width: 94% !important;
@@ -229,6 +242,7 @@
 	display: block;
 	width: 100%;
 	padding-bottom: 10px;
+	padding-top: 10px;
 	color: rgb(158, 23, 23);
 	font-weight: bold;
 }
