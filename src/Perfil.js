@@ -55,6 +55,34 @@ class Perfil extends Component{
 		this.setUsuario(nextProps.usuario);
 	}
 
+	cambiarPass() {
+		let passAnterior = document.querySelector( '#passAnterior' );
+		let pass1 = document.querySelector( '#pass1' );
+		let pass2 = document.querySelector( '#pass2' );
+
+		if ( pass1 == undefined || pass2 == undefined || passAnterior == undefined )
+			return;
+
+		let msjCambioPass = document.querySelector( '#msjCambioPass' );
+
+		if ( pass1.value == '' || passAnterior.value == '' ) {
+			if ( msjCambioPass == undefined )
+				alert( 'Ingrese todos los campos' );
+			else {
+				msjCambioPass.innerHTML = 'Ingrese todos los campos';
+			}
+		} else if ( pass1.value != pass2.value ) {
+
+			if ( msjCambioPass == undefined )
+				alert( 'Las contraseñas no coinciden' );
+			else {
+				msjCambioPass.innerHTML = 'Las contraseñas no coinciden';
+			}
+		} else {
+			alert( 'ok' );
+		}
+	}
+
 	render(){
 		let u = this.state.usuario;
 
@@ -87,9 +115,25 @@ class Perfil extends Component{
 		if ( this.state.privado ) {
 			cambioPass =
 			<div className = "cambioPass">
+				<h3>Cambiar contraseña</h3>
 				<form>
-					<input type="password" name="pass1" id="pass1" />
-					<input type="password" name="pass2" id="pass2" />
+					<label>
+						Contraseña anterior
+						<input type="password" name="passAnterior" id="passAnterior" placeholder="Contraseña anterior" required />
+					</label>
+					<div className="sep"></div>
+					<label>
+						Nueva contraseña
+						<input type="password" name="pass1" id="pass1" required placeholder="Nueva contraseña" />
+					</label>
+					<div className="sep"></div>
+					<label>
+						Nueva contraseña
+						<input type="password" name="pass2" id="pass2" required placeholder="Nueva contraseña" />
+					</label>
+					<div className="sep"></div>
+					<button type="button" onClick = { () => { this.cambiarPass() } }>Confirmar</button>
+					<span id="msjCambioPass"></span>
 				</form>
 			</div>;
 		}
