@@ -32,6 +32,10 @@ class IniciarSesionForm extends Component{
 			pass: e.target.pass.value
 		};
 
+		this.autenticarUsuario(datos);
+	}
+
+	autenticarUsuario(datos){
 		fetch(iniciarSesionURL,{
 			method: 'POST',
 			headers: {
@@ -44,7 +48,6 @@ class IniciarSesionForm extends Component{
 			return response.json();
 		})
 		.then(data => {
-			
 			if ( data.auth !== undefined && data.auth ) {
 
 				fetch( meURL, {
@@ -74,7 +77,11 @@ class IniciarSesionForm extends Component{
 			}
 		}).catch(err => {
 			console.log(err);
+			console.log('Reintentando...');
+			setTimeout( this.autenticarUsuario(datos), 10000);
+			
 		});
+
 	}
 
 	render(){

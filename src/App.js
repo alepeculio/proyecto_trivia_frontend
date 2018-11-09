@@ -260,8 +260,10 @@ class App extends Component {
 					pass: usuario.pass
 				} )
 			} ).then( res => {
-				console.log(res);
-				alert('Datos eliminados');
+				if(res.statusText = 'OK')
+					alert('Datos eliminados');
+				else
+					alert('Falla al eliminar los datos');
 			} ).catch( err => {
 				console.log(err);
 				alert('Hubo un error al eliminar los datos')

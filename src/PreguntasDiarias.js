@@ -82,6 +82,8 @@ class PreguntasDiarias extends Component {
 				this.setState({pregunta: b});
 			} ).catch( err => {
 				console.log( err );
+				console.log( 'Reintentando...' );
+				setTimeout( generarPreguntaDiaria ( posicion, categoria ), 10000 );
 			} );
 		}
 
@@ -144,6 +146,8 @@ class PreguntasDiarias extends Component {
 				}
 			} ).catch( err => {
 				console.log( 'Error: ' + err );
+				console.log('Reintentando...');
+				setTimeout( this.cargarPreguntasDiarias(), 10000);
 			} );
 		}
 		
