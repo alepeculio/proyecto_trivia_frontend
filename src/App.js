@@ -84,6 +84,14 @@ class App extends Component {
 		} );
 	}
 
+	mostrarMensaje( titulo, mensaje ) {
+		if ( this.mensajes != undefined )
+			this.mensajes.current.agregarMensaje( {
+				titulo: titulo,
+				conetenido: contenido
+			} );
+	}
+
 	obtenerUsuario(){
 		let usuario = localStorage.getItem('usuario_logueado');
 		if(usuario !== null && usuario !== undefined){

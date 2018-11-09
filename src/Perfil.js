@@ -82,6 +82,18 @@ class Perfil extends Component{
 			break;
 		}
 
+		let cambioPass = '';
+
+		if ( this.state.privado ) {
+			cambioPass =
+			<div className = "cambioPass">
+				<form>
+					<input type="password" name="pass1" id="pass1" />
+					<input type="password" name="pass2" id="pass2" />
+				</form>
+			</div>;
+		}
+
 
 		return (
 			<div className="perfil">
@@ -97,8 +109,9 @@ class Perfil extends Component{
 						<span className="tipo">{suscripcion}</span>
 					</div>
 				</div>
+				{ cambioPass }
 			</div>
-			);
+		);
 	}
 }
 
