@@ -18,17 +18,19 @@ class Pregunta extends Component{
 			volver:false,
 			cronometro: t,//tiempo para responder
 			inicio: false,
+			estado: "",	
 			lista : [],
 			btn1: "white",
 			btn2: "white",
 			btn3: "white",
 			btn4: "white",
 			animation: "running",
-			opbtn1: 1,
-			opbtn2: 1,
-			opbtn3: 1,
-			opbtn4: 1,
-			evbtn1: "auto"
+			displaybtn1: "block",
+			displaybtn2: "block",
+			displaybtn3: "block",
+			displaybtn4: "block",
+			evbtn1: "auto",
+			color:""
 		}
 		this.inicio(props.id_Pregunta);
 
@@ -54,7 +56,7 @@ class Pregunta extends Component{
 			this.setState({contador: (this.state.contador - 1)})
 		}
 	}
-*/
+	*/
 	tickCronometro () {
 		if(this.state.cronometro === 1){
 			this.setState({cronometro: (this.state.cronometro - 1)})
@@ -104,14 +106,19 @@ class Pregunta extends Component{
 
 		let estado;
 		let tiempo = t-this.state.cronometro;
+
 		if(this.props.correcta === $var ){
 			estado = "Correcta";
+			this.setState({estado:estado});
+			this.setState({color:"green"});
 			this.aumentarPuntuacion();
 		}else{
 			estado = "Incorrecta";
+			this.setState({estado:estado});
+			this.setState({color:"red"});
 		}
-		console.log(estado);
-		console.log(tiempo);
+
+		
 		if(estado  === "Correcta"){
 
 			this.setState({
@@ -119,8 +126,8 @@ class Pregunta extends Component{
 			})
 			for (var i = 0; i < 4; i++) {
 				if(this.props.correcta !== this.state.lista[i]){
-					var opbtn = "opbtn"+(1+i);
-					this.setState({[opbtn]:0})	
+					var opbtn = "displaybtn"+(1+i);
+					this.setState({[opbtn]:"none"})	
 				}
 
 			}
@@ -139,10 +146,10 @@ class Pregunta extends Component{
 					})
 					this.setState({["btn"+(1+i)]:green})
 				}else{
-					opbtn = "opbtn"+(1+i);
-					var Incorrecta = "op"+$btn;
+					opbtn = "displaybtn"+(1+i);
+					var Incorrecta = "display"+$btn;
 					if(opbtn !== Incorrecta){
-						this.setState({[opbtn]:0})
+						this.setState({[opbtn]:"none"})
 					}
 					
 				}
@@ -167,7 +174,7 @@ class Pregunta extends Component{
 			clearInterval(this.timer);
 			return res.json();
 		}).then(nose=>{
-				this.setState({volver:true})
+			this.setState({volver:true})
 
 		}).catch( err => {
 			console.log( "Error: "+err );
@@ -207,10 +214,11 @@ class Pregunta extends Component{
 			<div className="progress" style={{animationPlayState: this.state.animation}}></div>
 			<br></br>
 			<div className="respuestas">
-			<button className="button" style={{background: this.state.btn1 , opacity: this.state.opbtn1,pointerEvents : this.state.evbtn1}} id="0" onClick={()=>{this.conexion(this.state.lista[0],"btn1")}} type="button"><font className="txtRespuestas">{this.state.lista[0]}</font></button><br></br>
-			<button className="button" style={{background: this.state.btn2 , opacity: this.state.opbtn2,pointerEvents : this.state.evbtn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
-			<button className="button" style={{background: this.state.btn3 , opacity: this.state.opbtn3,pointerEvents : this.state.evbtn3}}  onClick={()=>{this.conexion(this.state.lista[2],"btn3")}} type="button"><font className="txtRespuestas">{this.state.lista[2]}</font></button><br></br>
-			<button className="button" style={{background: this.state.btn4 , opacity: this.state.opbtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn1 , display: this.state.displaybtn1,pointerEvents : this.state.evbtn1}} id="0" onClick={()=>{this.conexion(this.state.lista[0],"btn1")}} type="button"><font className="txtRespuestas">{this.state.lista[0]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn2 , display: this.state.displaybtn2,pointerEvents : this.state.evbtn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn3 , display: this.state.displaybtn3,pointerEvents : this.state.evbtn3}}  onClick={()=>{this.conexion(this.state.lista[2],"btn3")}} type="button"><font className="txtRespuestas">{this.state.lista[2]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn4 , display: this.state.displaybtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
+			<font className="estado" style={{color: this.state.color}}>{this.state.estado}</font>
 			</div>
 			</div>
 			<div>

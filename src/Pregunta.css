@@ -1,6 +1,6 @@
 
 /* [Pregunta] ============================================= */
-
+@import url('https://fonts.googleapis.com/css?family=Sigmar+One');
 @media screen and (max-width: 660px) {
   .ContenedorPregunta{  
     position: absolute;
@@ -16,6 +16,9 @@
     box-shadow: none !important;
 
 
+  }
+  .estado{
+    font-size: 30px;
   }
   .volver{
     position: absolute;
@@ -109,6 +112,8 @@
   color:black;
 }
 .button {
+  display: block;
+  margin: 0 auto;
   background-color: white;
   color: black;
   border: 2px solid black; 
@@ -117,6 +122,12 @@
   margin-bottom:5px;
   transition:opacity 1s linear;
 
+}
+.estado{
+  display: block;
+  margin: 0 auto;
+  font-family: 'Sigmar One', cursive;
+  font-size: 50px;
 }
 .volver {
   border: 2px solid black; 

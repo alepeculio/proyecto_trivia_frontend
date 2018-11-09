@@ -24,11 +24,14 @@ class PreguntaDuelo extends Component{
 			btn3: "white",
 			btn4: "white",
 			animation: "running",
-			opbtn1: 1,
-			opbtn2: 1,
-			opbtn3: 1,
-			opbtn4: 1,
-			evbtn1: "auto"
+			displaybtn1: "block",
+			displaybtn2: "block",
+			displaybtn3: "block",
+			displaybtn4: "block",
+			evbtn1: "auto",
+			estado:"",
+			color: "",
+			siguiente:false
 		}
 		this.inicio(props.id_Pregunta);
 
@@ -41,7 +44,7 @@ class PreguntaDuelo extends Component{
 		pts.innerHTML = "Puntuación: " + nuevo + " pts.";
 	}
 
-	tickContador () {
+	/*	tickContador () {
 		if(this.state.contador === 1){
 			clearInterval(this.timer);
 			this.setState({
@@ -53,7 +56,7 @@ class PreguntaDuelo extends Component{
 		}else{
 			this.setState({contador: (this.state.contador - 1)})
 		}
-	}
+	}*/
 	tickCronometro () {
 		if(this.state.cronometro === 1){
 			this.setState({cronometro: (this.state.cronometro - 1)})
@@ -68,8 +71,8 @@ class PreguntaDuelo extends Component{
 	}
 
 	startTimer () {
-		/*clearInterval(this.timer)
-		this.timer = setInterval(this.tickContador.bind(this), 1000)*/
+		clearInterval(this.timer)
+		this.timer = setInterval(this.tickCronometro.bind(this), 1000)
 		this.setState({inicio: true});
 	}
 
@@ -85,8 +88,12 @@ class PreguntaDuelo extends Component{
 		let tiempo = this.state.cronometro;
 		if(this.props.correcta === $var ){
 			estado = "Correcta";
+			this.setState({estado:estado});
+			this.setState({color:"green"});
 		}else{
 			estado = "Incorrecta";
+			this.setState({estado:estado});
+			this.setState({color:"red"});
 		}
 		if(estado  === "Correcta"){
 			this.setState({
@@ -94,8 +101,8 @@ class PreguntaDuelo extends Component{
 			})
 			for (var i = 0; i < 4; i++) {
 				if(this.props.correcta !== this.state.lista[i]){
-					var opbtn = "opbtn"+(1+i);
-					this.setState({[opbtn]:0})	
+					var opbtn = "displaybtn"+(1+i);
+					this.setState({[opbtn]:"none"})	
 				}
 
 			}
@@ -114,25 +121,28 @@ class PreguntaDuelo extends Component{
 					})
 					this.setState({["btn"+(1+i)]:green})
 				}else{
-					opbtn = "opbtn"+(1+i);
-					var Incorrecta = "op"+$btn;
+					opbtn = "displaybtn"+(1+i);
+					var Incorrecta = "display"+$btn;
 					if(opbtn !== Incorrecta){
-						this.setState({[opbtn]:0})
+						this.setState({[opbtn]:"none"})
 					}
 					
 				}
 
 			}
 		}
+		this.setState({siguiente:true});
 
-		this.props.termino(estado,t-tiempo);
 
 	}
 	volver(){
 		document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 		this.props.funcion();
 	}
-
+	siguiente(){
+		this.props.termino(this.state.estado,t-this.state.cronometro);
+		this.setState({siguiente:false})
+	}
 	render(){
 
 		if(this.state.inicio === false){
@@ -146,9 +156,10 @@ class PreguntaDuelo extends Component{
 			display: this.state.shown ? "block" : "none"
 		};
 		
-		var hidden = {
-			display: this.state.shown ? "none" : "block"
-		}
+		var siguiente = {
+			display: this.state.siguiente ? "block" : "none"
+		};
+
 
 		return(
 			<div id="contenedor">
@@ -161,11 +172,14 @@ class PreguntaDuelo extends Component{
 			</div>
 			<div className="progress" style={{animationPlayState: this.state.animation}}></div>
 			<br></br>
-			<button className="button" style={{background: this.state.btn1 , opacity: this.state.opbtn1,pointerEvents : this.state.evbtn1}} id="0" onClick={()=>{this.conexion(this.state.lista[0],"btn1")}} type="button"><font className="txtRespuestas">{this.state.lista[0]}</font></button><br></br>
-			<button className="button" style={{background: this.state.btn2 , opacity: this.state.opbtn2,pointerEvents : this.state.evbtn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
-			<button className="button" style={{background: this.state.btn3 , opacity: this.state.opbtn3,pointerEvents : this.state.evbtn3}}  onClick={()=>{this.conexion(this.state.lista[2],"btn3")}} type="button"><font className="txtRespuestas">{this.state.lista[2]}</font></button><br></br>
-			<button className="button" style={{background: this.state.btn4 , opacity: this.state.opbtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn1 , display: this.state.displaybtn1,pointerEvents : this.state.evbtn1}} id="0" onClick={()=>{this.conexion(this.state.lista[0],"btn1")}} type="button"><font className="txtRespuestas">{this.state.lista[0]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn2 , display: this.state.displaybtn2,pointerEvents : this.state.evbtn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn3 , display: this.state.displaybtn3,pointerEvents : this.state.evbtn3}}  onClick={()=>{this.conexion(this.state.lista[2],"btn3")}} type="button"><font className="txtRespuestas">{this.state.lista[2]}</font></button><br></br>
+			<button className="button" style={{background: this.state.btn4 , display: this.state.displaybtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
 			</div>
+			<font className="estado" style={{color: this.state.color}}>{this.state.estado}</font>
+			<button className="volver" onClick={()=>{this.siguiente()}} style={siguiente}>Siguiente</button>
+
 			</div>
 
 
