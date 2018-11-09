@@ -48,7 +48,7 @@ class App extends Component {
 					usuarios[i].querySelector( '.nombre' ).innerHTML = rank[i].nombre;
 					usuarios[i].querySelector( '.puntaje' ).innerHTML = rank[i].puntaje;
 				}
-		} );
+			} );
 	}
 
 	obtenerUsuario(){
@@ -195,7 +195,7 @@ class App extends Component {
 				if(usuario === 'cargando')
 					return null;
 				else if(usuario !== '' && usuario.tipo === 'Admin')
-					return <div className="menu-admin"><Suscripciones usuario={usuario} /><Preguntas /></div>;
+					return <div className="menu-admin"><Suscripciones usuario={usuario} /><Preguntas /> <div className="btnResetear"><button onClick={this.resetear.bind(this)}>Resetear</button></div></div>;
 				else
 					return  <Redirect to='/inicio' />;
 
@@ -205,6 +205,29 @@ class App extends Component {
 			</Router>
 			</div>
 			);
+	}
+
+	resetear(e){
+		let usuario = this.state.usuario;
+		if(window.confirm('¿Está seguro de que desea eliminar las preguntas respondidas y mano a mano?')){
+			fetch( properties.ip+properties.puerto+'/usuarios/reset', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'text/plain; charset=utf-8'
+				},
+				body: JSON.stringify( {
+					correo: usuario.correo,
+					pass: usuario.pass
+				} )
+			} ).then( res => {
+				console.log(res);
+				alert('Datos eliminados');
+			} ).catch( err => {
+				console.log(err);
+				alert('Hubo un error al eliminar los datos')
+			});
+		}
+	
 	}
 }
 
@@ -219,7 +242,7 @@ class App extends Component {
 		</div>
 		</div>
 		);
-};*/
+	};*/
 
-export default App;
+	export default App;
 
