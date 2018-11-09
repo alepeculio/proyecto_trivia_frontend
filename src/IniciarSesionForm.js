@@ -6,6 +6,8 @@ import {properties} from './properties.js'
 const iniciarSesionURL = properties.ip+properties.puerto+'/usuarios/authLogin';
 const meURL = properties.ip+properties.puerto+'/usuarios/authMe';
 
+const enviarPass = properties.ip+properties.puerto+'/usuarios/enviarPass';
+
 class IniciarSesionForm extends Component{
 	constructor(){
 		super();
@@ -84,6 +86,46 @@ class IniciarSesionForm extends Component{
 
 	}
 
+	enviarPass() {
+		let correo = document.querySelector( '#cambiarCorreo' );
+		let errEnviarPass = document.querySelector( '#errEnviarPass' );
+
+		if ( correo === undefined )
+			return;
+
+		if ( correo.value === '' ) {
+			errEnviarPass.innerHTML = 'Ingrese su correo'
+			errEnviarPass.style.display = 'block';
+			errEnviarPass.classList.remove( 'correcto' );
+		} else {
+			fetch( enviarPass, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				},
+				body: JSON.stringify( {
+					correo: 'rosasjorge1701@gmail.com'
+				} )
+			} ).then( res => {
+				return res.json();
+			} ).then( res => {
+				if ( res.Mensaje !== undefined ) {
+					errEnviarPass.innerHTML = 'Contraseña enviada'
+					errEnviarPass.style.display = 'block';
+					errEnviarPass.classList.add( 'correcto' );
+				} else {
+					errEnviarPass.innerHTML = 'No se pudo enviar una contraseña'
+					errEnviarPass.style.display = 'block';
+					errEnviarPass.classList.remove( 'correcto' );
+				}
+			} ).catch( err => {
+				errEnviarPass.innerHTML = 'No se pudo enviar una contraseña'
+				errEnviarPass.style.display = 'block';
+				errEnviarPass.classList.remove( 'correcto' );
+			} );
+		}
+	}
+
 	render(){
 		let error;
 		let boton;
@@ -116,6 +158,14 @@ class IniciarSesionForm extends Component{
 			<input required type="password" name="pass"/>
 			{error}
 			{boton}
+			</form>
+			<hr/>
+			<h3>Olvidé mi contraseña</h3>
+			<form method="POST">
+			<label>Correo</label>
+			<input required type="email" name="correo" id="cambiarCorreo" />
+			<span className="error" id="errEnviarPass" style = { { display: 'none' } }>Correo o contraseña incorrectos</span>
+			<button id="btnCambioPass" type="button" onClick = { () => { this.enviarPass() } }>Enviar contraseña temporal</button>
 			</form>
 			</div>
 			);

@@ -246,3 +246,7 @@
 	color: rgb(158, 23, 23);
 	font-weight: bold;
 }
+
+.cambioPass span.correcto {
+	color: rgb(15, 112, 80);
+}
