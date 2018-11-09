@@ -60,7 +60,7 @@ class Pregunta extends Component{
 	tickCronometro () {
 		if(this.state.cronometro === 1){
 			this.setState({cronometro: (this.state.cronometro - 1)})
-			this.conexion("");
+			this.conexion("tiempo");
 
 			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 
@@ -113,9 +113,20 @@ class Pregunta extends Component{
 			this.setState({color:"green"});
 			this.aumentarPuntuacion();
 		}else{
-			estado = "Incorrecta";
-			this.setState({estado:estado});
-			this.setState({color:"red"});
+			if($var === "tiempo"){
+				estado = "Incorrecta";
+				for (var i = 0; i < 4; i++) {
+					var opbtn = "displaybtn"+(1+i);
+					this.setState({[opbtn]:"none"})	
+
+				}
+				this.setState({estado:"Tiempo agotado"});
+				this.setState({color:"orange"});
+			}else{
+				estado = "Incorrecta";
+				this.setState({estado:estado});
+				this.setState({color:"red"});
+			}
 		}
 
 		

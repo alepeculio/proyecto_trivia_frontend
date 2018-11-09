@@ -139,7 +139,7 @@ class PreguntaDuelo extends Component{
 		document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 		this.props.funcion();
 	}
-	siguiente(){
+	siguiente(){	
 		this.props.termino(this.state.estado,t-this.state.cronometro);
 		this.setState({siguiente:false})
 	}

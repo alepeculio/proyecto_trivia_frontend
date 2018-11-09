@@ -106,8 +106,7 @@ class UsuariosListado extends Component{
 
 	termino(estado,tiempo){
 		this.setState({pregunta: null});
-		console.log("Estado"+estado);
-		console.log("Tiempo"+tiempo);
+
 		if(estado ==="Correcta"){
 			this.setState({estado:this.state.estado+1});
 		}
