@@ -134,6 +134,7 @@ class UsuariosListado extends Component{
 						return res.json();
 					}).then(data => {
 						console.log(data);
+						this.obtenerUsuarios();
 						document.querySelector( '.usuarios_ranking' ).removeAttribute('hidden');
 						this.setState({shown:false});
 					}).catch(err => {

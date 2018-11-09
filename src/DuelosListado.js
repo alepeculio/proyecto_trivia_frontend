@@ -11,7 +11,7 @@ const duelosPropiosListaURL = properties.ip+properties.puerto+'/usuarios/listarR
 class DuelosListado extends Component{
 	constructor(){
 		super();
-		this.state = {shown: false};
+		this.state = {shown: false,recargar:false};
 	}
 
 	obtenerDuelos(){
@@ -34,7 +34,7 @@ class DuelosListado extends Component{
 			}else{
 				let duelos = data.duelos.map(d => {
 					return(
-						<Duelo key={d.id} duelo ={d} />
+						<Duelo key={d.id} duelo ={d} actualizarDuelos={this.actualizarDuelos.bind(this)}/>
 						);
 				});
 				this.setState({duelos: duelos});
@@ -47,6 +47,10 @@ class DuelosListado extends Component{
 	}
 
 	componentDidMount(){
+		this.obtenerDuelos();
+	}
+
+	actualizarDuelos(){
 		this.obtenerDuelos();
 	}
 

@@ -95,7 +95,7 @@ class Duelo extends Component{
 					return res.json();
 				}).then(data => {
 					console.log(data);
-					alert(data);
+					this.props.actualizarDuelos();
 				}).catch(err => {
 					console.log(err);
 				});
@@ -138,7 +138,7 @@ class Duelo extends Component{
 				console.log(data.Error);
 			}else{
 				alert(data.Mensaje);
-				console.log("OK", data.Mensaje);
+				this.props.actualizarDuelos();
 			}})
 		.catch(err => {
 			console.log(err);

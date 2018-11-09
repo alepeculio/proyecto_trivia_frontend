@@ -3,61 +3,6 @@
 	--button-padding-top:8px;
 	--button-padding-left:10px;
 	--font-size:16px;
-	--puntaje-right:250px;
-}
-
-@media screen and (max-width: 1000px) {
-  .usuariosDuelo{
-    width: 500px;
-    margin: 0 auto !important;
-  }
-
-  :root{
-    --img-dimension:40px;
-    --button-padding-top:7px;
-    --button-padding-left:10px;
-    --font-size:12px;
-    --puntaje-right:200px;
-  }
-}
-
-@media screen and (max-width: 650px) {
-	.usuariosDuelo{
-		width: 350px;
-    margin: 0 auto !important;
-  }
-
-  :root{
-    --img-dimension:30px;
-    --button-padding-top:5px;
-    --button-padding-left: 3px;
-    --font-size:12px;
-    --puntaje-right: 160px;
-  }
-}
-
-@media screen and (max-width: 350px) {
-	.usuariosDuelo{
-		width: 300px;
-    margin: 0 auto !important;
-    background-color: unset;
-    border: unset;
-    border-radius: unset;
-    min-height: unset;
-    -webkit-box-shadow: unset;
-    -moz-box-shadow: unset;
-    box-shadow: unset;
-  }
-
-  .contenedor {
-    padding: 25px 0 0 0;
-  }
-
-  body {
-    background-image: none;
-    background: rgba(66,160,255,1);
-  }
-
 }
 
 .contenedorDuelo{
@@ -285,5 +230,65 @@
 
 .usuariosDuelo .SinSuscripcion button:disabled{
   background-color: rgb(47, 93, 42);
+}
+
+
+
+@media screen and (max-width: 1000px) and (min-width: 651px) {
+  .usuariosDuelo{
+    width: 500px;
+    margin: 0 auto !important;
+  }
+
+  :root{
+    --img-dimension:40px;
+    --button-padding-top:7px;
+    --button-padding-left:10px;
+    --font-size:12px;
+  }
+}
+
+@media screen and (max-width: 650px) and (min-width: 351px) {
+  .usuariosDuelo{
+    width: 350px;
+    margin: 0 auto !important;
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
+    min-height: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
+  }
+
+  :root{
+    --img-dimension:30px;
+    --button-padding-top:5px;
+    --button-padding-left: 3px;
+    --font-size:12px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+
+  :root {
+    --img-dimension:30px;
+    --button-padding-top:5px;
+    --button-padding-left: 3px;
+    --font-size:12px;
+  }
+
+  .usuariosDuelo{
+    width: 300px;
+    margin: 0 auto !important;
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
+    min-height: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
+  }
+
 }
 
