@@ -52,7 +52,19 @@
     height: 40px !important;
     margin-right: 0px;
   }
+
+
+  .usuarios_ranking .usuario .medalla{
+    right: 80px !important;
+  }
+
 }
+
+  .usuarios_ranking .usuario .medalla{
+    position: absolute;
+    right: 100px;
+    background-color:rgba(0,0,0,.06);
+  }
 
 .usuarios_ranking.inicio {
   border-top: 1px solid white;
@@ -79,8 +91,6 @@
   text-align: left;
   position: relative;
   display: block;
-  -webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
   box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
@@ -96,70 +106,6 @@
   background-color: #e6e6e6;
 }
 
-
-.usuarios_ranking :nth-child(1){
-  background-color: #EDAF3A;
-}
-
-.usuarios_ranking :nth-child(1):hover{
-  background-color: #e99f16;
-}
-
-.usuarios_ranking :nth-child(2){
-  background-color: #C6C6C6;
-}
-
-.usuarios_ranking :nth-child(2):hover{
-  background-color: #b3b3b3;
-}
-
-.usuarios_ranking :nth-child(3){
-  background-color: #C37D55;
-}
-
-.usuarios_ranking :nth-child(3):hover{
-  background-color: #aa643c;
-}
-
-.usuarios_ranking :nth-child(4){
-  background-color: #AA64D7;
-}
-
-.usuarios_ranking :nth-child(4):hover{
-  background-color: #9855C3;
-}
-
-.usuarios_ranking :nth-child(5){
-  background-color: #5EC490;
-}
-
-.usuarios_ranking :nth-child(5):hover{
-  background-color: #4DB27F;
-}
-
-.usuarios_ranking :nth-child(6){
-  background-color: #F74444;
-}
-
-.usuarios_ranking :nth-child(6):hover{
-  background-color: #DF3535;
-}
-
-.usuarios_ranking :nth-child(7){
-  background-color: #41EA25;
-}
-
-.usuarios_ranking :nth-child(7):hover{
-  background-color: #3DD324;
-}
-
-.usuarios_ranking :nth-child(8){
-  background-color: #FE66EE;
-}
-
-.usuarios_ranking :nth-child(8):hover{
-  background-color: #F84CE6;
-}
 .usuarios_ranking .usuario img{
   width:var(--img-dimension);
   height: var(--img-dimension);
@@ -176,14 +122,11 @@
   left: calc(var(--img-dimension) + 20px);
   border-radius: 5px;
   padding:5px;
-  /*border-top: 1px solid rgba(0,0,0,.4);
-  border-left: 1px solid rgba(0,0,0,.4);
-  box-shadow: 2px 2px rgba(0,0,0,.4);*/
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
   border-left: 2px solid rgba(255, 255, 255, 0.3);
-  background-color: rgba(256,256,256,.7);
+  background-color:rgba(0,0,0,.06);
 }
 
 .usuarios_ranking .usuario .puntaje{
@@ -194,14 +137,11 @@
   font-size: 20px;
   border-radius: 5px;
   padding:5px;
-  /*border-top: 1px solid rgba(0,0,0,.4);
-  border-left: 1px solid rgba(0,0,0,.4);
-  box-shadow: 2px 2px rgba(0,0,0,.4);*/
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
   border-left: 2px solid rgba(255, 255, 255, 0.3);
-  background-color: rgba(256,256,256,.7);
+  background-color:rgba(0,0,0,.06);
   text-shadow: 0 0 .5px blue;
 }
 
@@ -218,7 +158,6 @@
   color:grey;
   font-size: 14px;
   font-family: Helvetica;
-  /*box-shadow: 3px 3px #9f9494;*/
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
