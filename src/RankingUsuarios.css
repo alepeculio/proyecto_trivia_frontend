@@ -10,8 +10,7 @@
   color: white;
   padding: 20px 20px 10px 20px;
   border: 1px solid white;
-  border-radius:15px;;
-
+  border-radius:15px;
   min-height: 100vh;
   box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
 }
@@ -38,11 +37,11 @@
 
   .usuarios_ranking .usuario .nombre {
     margin: 0px !important;
-    margin-left: -20px !important;
+    margin-left: -15px !important;
   }
 
   .usuarios_ranking .usuario .puntaje {
-    width: 40px;
+    width: 55px;
     margin-top: 5px;
     margin-right: -5px;
     font-size: 14px !important;
@@ -83,13 +82,15 @@
   -webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
   box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
-
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
   border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+.usuarios_ranking font{
+  background: none !important;
+}
 
 .usuarios_ranking .usuario:hover{
   background-color: #e6e6e6;
@@ -203,39 +204,7 @@
   background-color: rgba(256,256,256,.7);
   text-shadow: 0 0 .5px blue;
 }
-.retar{
-  position: absolute;
-  top:calc(50% - 20px);
-  right:150px;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 5px;
-  padding:5px;
-  border-bottom: 2px solid  rgba(0,0,0,.3);
-  border-right: 2px solid rgba(0,0,0,.3);
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
-  border-left: 2px solid rgba(255, 255, 255, 0.3);
-  background-color: rgba(256,256,256,.7);
-  text-shadow: 0 0 .5px blue;
-}
-.usuarios_ranking .cargando{
-  background-color: white;
-  color:black;
-  margin-bottom: 10px;
-  padding: 10px 8px;
-  border-radius: 5px;
-  text-align: left;
-  position: relative;
-  text-align: center;
-  color:grey;
-  font-size: 14px;
-  font-family: Helvetica;
-  /*box-shadow: 3px 3px #9f9494;*/
-  border-bottom: 2px solid  rgba(0,0,0,.3);
-  border-right: 2px solid rgba(0,0,0,.3);
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
-  border-left: 2px solid rgba(255, 255, 255, 0.3);
-}
+
 
 .usuariosDuelo .cargando{
   background-color: white;

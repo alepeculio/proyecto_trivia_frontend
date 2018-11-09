@@ -36,6 +36,14 @@ header{
   .expandir {
     margin-top: -59px !important;
   }
+
+  .expandir.mostrar {
+    height: 10px !important;
+  }
+
+  .no-logueado .iniciar-sesion.boton {
+    margin-top: 0px !important;
+  }
 }
 
 header .header-titulo{
@@ -295,7 +303,7 @@ header .expandir.mostrar{
      height: 0
    }
    to{
-     height: var(--altura);
+     height: calc(var(--altura) / 2.5);
    }
  }
 

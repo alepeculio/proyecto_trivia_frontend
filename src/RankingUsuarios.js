@@ -40,7 +40,7 @@ class RankingUsuarios extends Component{
 			}else{
 				let usuariosNormales = false;
 				let usuarios = data.usuarios.map(u => {
-					if(u.tipo !== 'Admin'){
+					if(u.tipo !== 'Admin' && u.tipo !== 'SinSuscripcion' ){
 						usuariosNormales = true;
 						return(<Usuario key={u.id} usuario = {u}/>);
 					}
