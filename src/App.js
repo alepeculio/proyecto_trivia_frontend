@@ -84,6 +84,14 @@ class App extends Component {
 		} );
 	}
 
+	ocultarCoso() {
+		let ocultar = document.querySelector( 'header .expandir' );
+
+		if ( ocultar !== undefined && ocultar !== null ) {
+			ocultar.classList.remove( 'mostrar' );
+		}
+	}
+
 	mostrarMensaje( titulo, mensaje ) {
 		if ( this.mensajes != undefined )
 			this.mensajes.current.agregarMensaje( {
@@ -159,6 +167,7 @@ class App extends Component {
 			<Header usuario = { usuario } cerrarSesion = { this.cerrarSesion.bind( this ) } />
 
 			<Route exact path="/" render={() => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if(usuario === 'cargando')
 					return null;
@@ -168,6 +177,7 @@ class App extends Component {
 					return <Redirect to='/ranking' />;
 			}} />
 			<Route exact path="/inicio" component = { () => {
+				this.ocultarCoso();
 				socket.emit( 'sub-ranking' );
 				let usuario = localStorage.getItem('usuario_logueado');
 				if(usuario !== null && usuario !== undefined){
@@ -177,6 +187,7 @@ class App extends Component {
 			} } />
 
 			<Route path="/iniciarSesion" render={ (props) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				let mensaje;
 				if(props.location.pathname === '/iniciarSesion/registro_ok')
@@ -189,11 +200,13 @@ class App extends Component {
 			}} />
 
 			<Route path="/registrarse" render={ (props) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				return ( <RegistrarUsuarioForm usuario = { usuario } /> );
 			} } />
 
 			<Route path = "/ranking" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'sub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
@@ -204,6 +217,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/preguntas" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
@@ -214,6 +228,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/duelos" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
@@ -223,6 +238,7 @@ class App extends Component {
 					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } /> </div> </div> );
 			} } />
 			<Route path = "/usuarios" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
@@ -233,6 +249,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/perfil" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if(usuario === 'cargando')
 					return null;

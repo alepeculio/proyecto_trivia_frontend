@@ -33,8 +33,7 @@ class UsuarioLista extends Component{
 			<div className="usuario" >
 			<img src={usuario.img} alt="Imagen usuario"/>
 			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
-			<button className="Retar" onClick={this.retarUsuario.bind(this)}>Retar</button>
-			<span className="puntaje">{usuario.puntaje} pts.</span>
+			<button className="Retar" onClick={this.retarUsuario.bind(this)}></button>
 			</div>
 
 

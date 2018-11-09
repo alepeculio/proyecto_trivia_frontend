@@ -221,7 +221,7 @@ class UsuariosListado extends Component{
 		var aux ={display: "block"};
 
 		return(
-			<div >
+			<div>
 			<div style={shown} >
 			{this.state.pregunta}
 			</div>
