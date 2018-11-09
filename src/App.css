@@ -195,27 +195,27 @@ body {
   border-top: 5px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
-}*/
+  }*/
 
-.padre {
-  text-align: center;
-}
-
-.contenedor {
-  padding-top: 80px;
-}
-
-@media only screen and (max-width: 660px) {
-  .contenedor {
-    padding-top: 215px;
+  .padre {
+    text-align: center;
   }
-}
 
-.contenedor2 {
-  width: 50%;
+  .contenedor {
+    padding-top: 80px;
+  }
 
-  margin-top: 30px;
-}
+  @media only screen and (max-width: 660px) {
+    .contenedor {
+      padding-top: 215px;
+    }
+  }
+
+  .contenedor2 {
+    width: 50%;
+
+    margin-top: 30px;
+  }
 /*
 #pdLista table tr td:nth-child(3).correcta {
   color: rgb(25, 200, 25);
@@ -231,37 +231,58 @@ body {
   border-top: 2px solid rgba(255, 255, 255, .3);
   border-bottom: 2px solid rgba(0, 0, 0, .3);
   border-right: 2px solid rgba(0, 0, 0, .3);
-}*/
+  }*/
 
-/* [Fin preguntas diarias] ============================================= */
+  /* [Fin preguntas diarias] ============================================= */
 
-.menu-admin .suscripciones {
-  width: 350px;
-  float: left;
-  background-color: rgba(1, 1, 1, .5);
-  color: white;
-}
-
-.menu-admin .preguntas {
-  width: calc(calc(100% - 350px) - 65px);
-  background-color: rgba(1, 1, 1, .5);
-  color: white;
-}
-
-@media only screen and (max-width: 900px) {
   .menu-admin .suscripciones {
-    width: calc(100% - 40px);
+    width: 350px;
+    float: left;
+    background-color: rgba(1, 1, 1, .5);
+    color: white;
   }
 
   .menu-admin .preguntas {
-    width: calc(100% - 40px);
-    margin-top: -20px;
+    width: calc(calc(100% - 350px) - 65px);
+    background-color: rgba(1, 1, 1, .5);
+    color: white;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .menu-admin .suscripciones {
+      width: calc(100% - 40px);
+    }
+
+    .menu-admin .preguntas {
+      width: calc(100% - 40px);
+      margin-top: -20px;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+   .contenedor2{
+    width: 100%;
+    text-align: center;
   }
 }
 
-@media only screen and (max-width: 800px) {
- .contenedor2{
-  width: 100%;
-  text-align: center;
- }
+.btnResetear{
+  margin-top:-40px;
+  margin-left: 30px;
+  float: left;
+}
+
+.btnResetear button{
+  background-color: #951a1a;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
