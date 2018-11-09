@@ -77,6 +77,11 @@ class App extends Component {
 				}
 			}
 		} );
+
+		socket.on( 'desconectar', () => {
+			alert( 'Conexión detectada desde otro dispositivo, desconectando...' );
+			this.cerrarSesion();
+		} );
 	}
 
 	obtenerUsuario(){
