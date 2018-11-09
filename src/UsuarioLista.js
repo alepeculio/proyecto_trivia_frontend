@@ -19,8 +19,6 @@ class UsuarioLista extends Component{
 			btns[i].disabled = true;
 		}
 
-		e.target.innerHTML = "Cargando";
-
 		let retador = localStorage.getItem("usuario_id");
 		let retado = this.props.usuario.id;
 		this.props.retar(retador,retado);
