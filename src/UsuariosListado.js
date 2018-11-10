@@ -78,7 +78,16 @@ class UsuariosListado extends Component{
 			} )
 		} ).then( res => {
 			return res.json();
-		} ).then( preguntas => {	
+		} ).then( preguntas => {
+
+			if(preguntas.Mensaje !== undefined){
+				let btns = document.getElementsByClassName("Retar");
+
+				for(let i=0; i < btns.length; i++) {
+					btns[i].disabled = false;
+				}
+			}	
+
 			var primera = preguntas[0];
 			var b = <Pregunta
 			pregunta = {primera.pregunta}
@@ -95,7 +104,7 @@ class UsuariosListado extends Component{
 				this.setState({pregunta: b});
 				this.setState({preguntas:preguntas});
 				this.setState({retado:retado});
-				document.querySelector( '.usuarios_ranking' ).setAttribute( 'hidden', true );
+				document.querySelector( '.usuarios_duelos' ).setAttribute( 'hidden', true );
 
 			});
 
@@ -134,14 +143,14 @@ class UsuariosListado extends Component{
 						return res.json();
 					}).then(data => {
 						console.log(data);
-
+						
 						let btns = document.getElementsByClassName("Retar");
 						for(let i=0; i < btns.length; i++){
 							btns[i].disabled = false;
 						}
 						
 						this.obtenerUsuarios();
-						document.querySelector( '.usuarios_ranking' ).removeAttribute('hidden');
+						document.querySelector( '.usuarios_duelos' ).removeAttribute('hidden');
 						this.setState({shown:false});
 					}).catch(err => {
 						console.log(err);
@@ -164,37 +173,37 @@ class UsuariosListado extends Component{
 			});});
 
 
-	}
-	componentDidMount(){
-		this.obtenerUsuarios();
-	}
+		}
+		componentDidMount(){
+			this.obtenerUsuarios();
+		}
 
 
-	solicitarSuscripcion(e){
-		let btn = e.target;
-		let u = this.props.usuario;
-		btn.disabled = true;
-		fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			} 
-		} ).then (res => {
-			console.log(res);
+		solicitarSuscripcion(e){
+			let btn = e.target;
+			let u = this.props.usuario;
+			btn.disabled = true;
+			fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				} 
+			} ).then (res => {
+				console.log(res);
 
-		} ).catch( err => {
-			btn.disabled = false;
-			console.log( 'Error: ' + err );
-		} );
-	}
+			} ).catch( err => {
+				btn.disabled = false;
+				console.log( 'Error: ' + err );
+			} );
+		}
 
-	render(){
-		let usuarios = this.state.usuarios;
+		render(){
+			let usuarios = this.state.usuarios;
 
-		if ( this.props.usuario === "cargando" )
-			return null;
-		else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
-			return(
+			if ( this.props.usuario === "cargando" )
+				return null;
+			else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
+				return(
 				<div className="usuarios_ranking">
 				<div className="SinSuscripcion">
 				<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
@@ -203,24 +212,24 @@ class UsuariosListado extends Component{
 				</div>
 				</div>
 				);
-		}
+			}
 
-		if(usuarios === undefined){
-			usuarios = <div className="cargando">Cargando...</div>
-		}else if(usuarios === ''){
-			usuarios = <div className="cargando">No hay usuarios</div>
-		}
+			if(usuarios === undefined){
+				usuarios = <div className="cargando">Cargando...</div>
+			}else if(usuarios === ''){
+				usuarios = <div className="cargando">No hay usuarios</div>
+			}
 
-		let clase = 'usuarios_listado';
-		if(this.props.location.pathname === '/inicio'){
-			clase += ' inicio';
-		};
-		var shown = {
-			display: this.state.shown ? "block" : "none"
-		};
-		var aux ={display: "block"};
+			let clase = 'usuarios_listado';
+			if(this.props.location.pathname === '/inicio'){
+				clase += ' inicio';
+			};
+			var shown = {
+				display: this.state.shown ? "block" : "none"
+			};
+			var aux ={display: "block"};
 
-		return(
+			return(
 			<div >
 			<div style={shown} >
 			{this.state.pregunta}
