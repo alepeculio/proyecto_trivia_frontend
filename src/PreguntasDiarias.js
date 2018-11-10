@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import Pregunta from './Pregunta';
 import './PreguntasDiarias.css';
@@ -83,7 +82,7 @@ class PreguntasDiarias extends Component {
 			} ).catch( err => {
 				console.log( err );
 				console.log( 'Reintentando...' );
-				setTimeout( generarPreguntaDiaria ( posicion, categoria ), 10000 );
+				setTimeout( this.generarPreguntaDiaria ( posicion, categoria ), 10000 );
 			} );
 		}
 
@@ -194,8 +193,9 @@ class PreguntasDiarias extends Component {
 			} else {
 				return (
 					<div id="pdLista">
+
 					{this.state.pregunta}
-					<table id="pdTabla" >
+					<table id="pdTabla"  >
 					<tbody>
 					{ this.state.preguntas.map( p => {
 						return (

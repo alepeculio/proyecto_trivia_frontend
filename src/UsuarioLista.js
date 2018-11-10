@@ -12,6 +12,13 @@ class UsuarioLista extends Component{
 
 	retarUsuario(e){
 		e.preventDefault();
+		
+		let btns = document.getElementsByClassName("Retar");
+
+		for(let i=0; i < btns.length; i++) {
+			btns[i].disabled = true;
+		}
+
 		let retador = localStorage.getItem("usuario_id");
 		let retado = this.props.usuario.id;
 		this.props.retar(retador,retado);
@@ -24,8 +31,7 @@ class UsuarioLista extends Component{
 			<div className="usuario" >
 			<img src={usuario.img} alt="Imagen usuario"/>
 			<span className="nombre">{usuario.nombre} {usuario.apellido}</span>
-			<button className="Retar" onClick={this.retarUsuario.bind(this)}>Retar</button>
-			<span className="puntaje">{usuario.puntaje} pts.</span>
+			<button className="Retar" onClick={this.retarUsuario.bind(this)}></button>
 			</div>
 
 

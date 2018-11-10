@@ -65,6 +65,23 @@ class App extends Component {
 						usus = document.querySelectorAll( '.usuarios_ranking .usuario' );
 					}
 
+					let medalla = usus[i].querySelector( '.medalla' );
+
+					if ( medalla !== undefined && medalla !== null ) {
+						if ( i == 0 ) {
+							medalla.src = require( './medalla-de-oro.png' );
+							medalla.style.display = 'inline-block';
+						} else if ( i == 1 ) {
+							medalla.src = require( './medalla-de-plata.png' );
+							medalla.style.display = 'inline-block';
+						} else if ( i == 2 ) {
+							medalla.src = require( './medalla-de-bronce.png' );
+							medalla.style.display = 'inline-block';
+						} else {
+							medalla.style.display = 'none';
+						}
+					}
+
 					usus[i].href = '/perfil/' + ranking[i].correo;
 					usus[i].querySelector( 'img' ).src = ranking[i].img;
 					usus[i].querySelector( '.nombre' ).innerHTML = ranking[i].nombre + ' ' + ranking[i].apellido;
@@ -82,6 +99,14 @@ class App extends Component {
 			alert( 'Conexión detectada desde otro dispositivo, desconectando...' );
 			this.cerrarSesion();
 		} );
+	}
+
+	ocultarCoso() {
+		let ocultar = document.querySelector( 'header .expandir' );
+
+		if ( ocultar !== undefined && ocultar !== null ) {
+			ocultar.classList.remove( 'mostrar' );
+		}
 	}
 
 	mostrarMensaje( titulo, mensaje ) {
@@ -159,6 +184,7 @@ class App extends Component {
 			<Header usuario = { usuario } cerrarSesion = { this.cerrarSesion.bind( this ) } />
 
 			<Route exact path="/" render={() => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if(usuario === 'cargando')
 					return null;
@@ -168,6 +194,7 @@ class App extends Component {
 					return <Redirect to='/ranking' />;
 			}} />
 			<Route exact path="/inicio" component = { () => {
+				this.ocultarCoso();
 				socket.emit( 'sub-ranking' );
 				let usuario = localStorage.getItem('usuario_logueado');
 				if(usuario !== null && usuario !== undefined){
@@ -177,6 +204,7 @@ class App extends Component {
 			} } />
 
 			<Route path="/iniciarSesion" render={ (props) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				let mensaje;
 				if(props.location.pathname === '/iniciarSesion/registro_ok')
@@ -189,11 +217,13 @@ class App extends Component {
 			}} />
 
 			<Route path="/registrarse" render={ (props) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				return ( <RegistrarUsuarioForm usuario = { usuario } /> );
 			} } />
 
 			<Route path = "/ranking" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'sub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
@@ -204,6 +234,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/preguntas" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
@@ -214,6 +245,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/duelos" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
@@ -223,6 +255,7 @@ class App extends Component {
 					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } /> </div> </div> );
 			} } />
 			<Route path = "/usuarios" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
@@ -233,6 +266,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/perfil" render = { ( props ) => {
+				this.ocultarCoso();
 				socket.emit( 'unsub-ranking' );
 				if(usuario === 'cargando')
 					return null;
@@ -262,15 +296,16 @@ class App extends Component {
 
 	resetear(e){
 		let usuario = this.state.usuario;
+		console.log( usuario );
 		if(window.confirm('¿Está seguro de que desea eliminar las preguntas respondidas y mano a mano?')){
 			fetch( properties.ip+properties.puerto+'/usuarios/reset', {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'text/plain; charset=utf-8'
+					'Content-Type': 'application/json; charset=utf-8'
 				},
 				body: JSON.stringify( {
 					correo: usuario.correo,
-					pass: usuario.pass
+					id: usuario.id
 				} )
 			} ).then( res => {
 				if(res.statusText === 'OK')

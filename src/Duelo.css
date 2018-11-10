@@ -1,312 +1,299 @@
+:root{
+	--img-dimension:60px;
+	--button-padding-top:8px;
+	--button-padding-left:10px;
+	--font-size:16px;
+}
+
 .contenedorDuelo{
-	background-color: #EDAF3A;
-	color:black;
-	margin-bottom: 10px;
-	padding: 3px 8px;
-	border-radius: 5px;
-	text-align: left;
-	position: relative;
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
-	-webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
-	box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
-	border: 2px solid white;
-	display: flex;
-	align-items: center;
-	justify-content: left ;
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
+ background-color: #EDAF3A;
+ color:black;
+ margin-bottom: 10px;
+ padding: 3px 8px;
+ border-radius: 5px;
+ text-align: left;
+ position: relative;
+ border-bottom: 2px solid  rgba(0,0,0,.3);
+ border-right: 2px solid rgba(0,0,0,.3);
+ border-top: 2px solid rgba(255, 255, 255, 0.3);
+ border-left: 2px solid rgba(255, 255, 255, 0.3);
+ -webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+ -moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+ box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+ border: 2px solid white;
+ display: flex;
+ align-items: center;
+ justify-content: left ;
+ border-bottom: 2px solid  rgba(0,0,0,.3);
+ border-right: 2px solid rgba(0,0,0,.3);
+ border-top: 2px solid rgba(255, 255, 255, 0.3);
+ border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .contenedorDuelo:hover{
-	background-color: #D7A037;
+ background-color: #D7A037;
 }
+
+.contenedorDuelo.P{
+  background-color: #C6C6C6 !important;
+} 
 
 .cont{
-	margin: 20px 200px .7px 200px;
-	background-color: rgba(66, 160, 255, 1);
-	color: white;
-	border: 1px solid white;
-	border-radius: 15px;
-	-webkit-transition-property: width;
-	-o-transition-property: width;
-	transition-property: width;
-	-webkit-transition-duration: .5s;
-	-o-transition-duration: .5s;
-	transition-duration: .5s;
-	-webkit-transition-timing-function: ease-in;
-	-o-transition-timing-function: ease-in;
-	transition-timing-function: ease-in;
-	padding: 15px 25px;
-	color: black;
-	-webkit-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
-	-moz-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
-	box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
-}
-
-.P{
-	background-color: #21C23C;
-}
-
-.P:hover{
-	background-color: #1FB238;
-}
-
-.react-css-collapse-transition {
-	transition: height 250ms cubic-bezier(.4, 0, .2, 1);
+ margin: 20px 200px .7px 200px;
+ background-color: rgba(66, 160, 255, 1);
+ color: white;
+ border: 1px solid white;
+ border-radius: 15px;
+ -webkit-transition-property: width;
+ -o-transition-property: width;
+ transition-property: width;
+ -webkit-transition-duration: .5s;
+ -o-transition-duration: .5s;
+ transition-duration: .5s;
+ -webkit-transition-timing-function: ease-in;
+ -o-transition-timing-function: ease-in;
+ transition-timing-function: ease-in;
+ padding: 15px 25px;
+ color: black;
+ -webkit-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+ -moz-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+ box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
 }
 
 .imgUser{
-	border: 1px solid #21C23C;	
-	display:block;
-	margin:auto;
-}
-
-.P .imgUser{
-	border: 1px solid #FFBA33;	
-	display:block;
-	margin:auto;
-}
-
-.contImg{
-	margin-right: 10px;
-	margin-left: 10px;
-}
-
-.contInfo{
-	width: 250px;
-	text-align: left;
+ width:var(--img-dimension);
+ height: var(--img-dimension);
+ border-radius: 100%;
+ border-top: 1px solid rgba(255,255,255,.3);
+ border-left: 1px solid rgba(255,255,255,.3);
+ box-shadow: 2px 2px rgba(0,0,0,.3);
 }
 
 .usuariosDuelo{
-	margin: 20px 200px .7px 200px;
-	background-color: rgba(66, 160, 255, 1);
-	color: white;
-	padding: 20px 20px 10px 20px;
-	border: 1px solid white;
-	border-radius: 15px;
-	transition-property: width;
-	transition-duration: .5s;
-	transition-timing-function: ease-in;
-	min-height: 100vh;
-	-webkit-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
-	-moz-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
-	box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+ margin: 20px 200px .7px 200px;
+ background-color: rgba(66, 160, 255, 1);
+ color: white;
+ padding: 20px 20px 10px 20px;
+ border: 1px solid white;
+ border-radius: 15px;
+ transition-property: width;
+ transition-duration: .5s;
+ transition-timing-function: ease-in;
+ min-height: 100vh;
+ -webkit-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+ -moz-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+ box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
 }
 
-.retar{
-	position: absolute;
-	top:calc(50% - 20px);
-	right:150px;
-	font-weight: bold;
-	font-size: 20px;
-	border-radius: 5px;
-	padding:5px;
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
-	background-color: rgba(256,256,256,.7);
-	text-shadow: 0 0 .5px blue;
-}
-
-.usuarios_ranking .cargando{
-	background-color: white;
-	color:black;
-	margin-bottom: 10px;
-	padding: 10px 8px;
-	border-radius: 5px;
-	text-align: left;
-	position: relative;
-	text-align: center;
-	color:grey;
-	font-size: 14px;
-	font-family: Helvetica;
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.buttons{
-	margin-left: 80px;
-}
-
-.buttonP{
-	margin-left: 120px;
-}
-
-.buttons button {
-	margin-right: 5px;
-	margin-left: 5px;
-}
-
-.Aceptar{
-	background-color: #4CAF50; /* Green */
-	border: none;
-	border-radius: 8px;
-	color: white;
-	padding: 8px 10px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.Cancelar{
-	background-color: #f44336;
-	border: none;
-	color: white;
-	border-radius: 8px;
-	padding: 8px 10px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin-left:3px;
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
+.contenedorDuelo span{
+  font-weight: bold;
+  font-size: var(--font-size);
+  position: absolute;
+  top: calc(50% - 15px);
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(256,256,256,.7);
 }
 
 .contenedorDuelo .nombre{
-	left: calc(var(--img-dimension) + 20px);
-	border-radius: 5px;
-	padding:5px;
+ left: calc(var(--img-dimension) + 20px);
+ border-radius: 5px;
+ padding:5px;
 }
-.contenedorDuelo .puntaje {
-	right: var(--puntaje-right);
-	border-radius: 5px;
-	padding:5px;
+
+.usuarios_ranking .cargando{
+ background-color: white;
+ color:black;
+ margin-bottom: 10px;
+ padding: 10px 8px;
+ border-radius: 5px;
+ text-align: left;
+ position: relative;
+ text-align: center;
+ color:grey;
+ font-size: 14px;
+ font-family: Helvetica;
+ border-bottom: 2px solid  rgba(0,0,0,.3);
+ border-right: 2px solid rgba(0,0,0,.3);
+ border-top: 2px solid rgba(255, 255, 255, 0.3);
+ border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
+
+.buttons{
+ position: absolute;
+ right: 10px;
+}
+
+.buttons button {
+ margin-left: 5px;
+}
+
+.Aceptar{
+ background-color: #4CAF50; /* Green */
+ border: none;
+ border-radius: 8px;
+ color: white;
+ padding: var(--button-padding-top) var(--button-padding-left);
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: var(--font-size);
+ border-bottom: 2px solid  rgba(0,0,0,.3);
+ border-right: 2px solid rgba(0,0,0,.3);
+ border-top: 2px solid rgba(255, 255, 255, 0.3);
+ border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
 
 
 .Retar{
-	background-color: #4CAF50; /* Green */
-	border: none;
-	border-radius: 8px;
-	color: white;
-	padding: var(--button-padding-top) var(--button-padding-left);
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: var(--font-size);
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
-	position: absolute;
-	right: 50px;
+  border: none;
+  border-radius: 8px;
+  padding: var(--button-padding-top) var(--button-padding-left);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  position: absolute;
+  top: calc(50% - 20px);
+  right: 10px;
+
+  width: 45px;
+  height: 45px;
+  border-radius: 1000px;
+  margin-top: -3.5px;
+
+  background-color: lightgrey !important;
+
+  background-image: url('espada.png') !important;
+  background-position: center !important; 
+  background-repeat: no-repeat !important; 
+  background-size: 30px 30px !important; 
+}
+.Retar:hover {
+ background-color: grey !important;
+}
+
+.Cancelar{
+ background-color: #f44336;
+ border: none;
+ color: white;
+ border-radius: 8px;
+ padding: var(--button-padding-top) var(--button-padding-left);
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: var(--font-size);
+ margin-left:3px;
+ border-bottom: 2px solid  rgba(0,0,0,.3);
+ border-right: 2px solid rgba(0,0,0,.3);
+ border-top: 2px solid rgba(255, 255, 255, 0.3);
+ border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .Aceptar:hover {
-	background-color: #368938;
+ background-color: #368938;
 }
 
 .Cancelar:hover {
 	background-color: #CB291D;
 }
 
-.CancelarP{
-	background-color: #f44336;
-	border: none;
-	border-radius: 8px;
-	color: white;
-	padding: 8px 10px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin-left:3px;
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.CancelarP:hover {
-	background-color: #CB291D;
-}
-
-@media only screen and (max-width: 886px) {
-	
-	body {
-		background-image: none;
-		background: rgba(66,160,255,1);
-	}
-
-	.buttons{
-		margin-left: unset;
-	}
-
-	.Aceptar {
-		font-size: 12px;
-	}
-
-	.Cancelar {
-		font-size: 12px;
-		padding: 8px 8px;
-	}
-
-	.usuariosDuelo{
-		margin: 0;
-		background-color: unset;
-		border: unset;
-		border-radius: unset;
-		transition-property: width;
-		transition-duration: .5s;
-		transition-timing-function: ease-in;
-		min-height: unset;
-		-webkit-box-shadow: unset;
-		-moz-box-shadow: unset;
-		box-shadow: unset;
-	}
-
-	.contenedor{
-		padding: 25px 0 0 0;
-	}
-
-
-}
-
 .usuariosDuelo .SinSuscripcion{
-	background-color: white;
-	border-radius: 10px;
-	padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .usuariosDuelo .SinSuscripcion p{
-	font-size: 1.2em;
-	color:black;
+  font-size: 1.2em;
+  color:black;
 }
 
 .usuariosDuelo .SinSuscripcion button{
-	padding: 10px;
-	border-radius: 5px;
-	border: none;
-	font-weight: bold;
-	cursor: pointer;
-	color:white;
-	background-color: rgb(19, 123, 9);
-	display: inline-block;
-	margin-top:10px;
-	border-bottom: 2px solid  rgba(0,0,0,.3);
-	border-right: 2px solid rgba(0,0,0,.3);
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color:white;
+  background-color: rgb(19, 123, 9);
+  display: inline-block;
+  margin-top:10px;
+  border-bottom: 2px solid  rgba(0,0,0,.3);
+  border-right: 2px solid rgba(0,0,0,.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .usuariosDuelo .SinSuscripcion button:disabled{
-	background-color: rgb(47, 93, 42);
+  background-color: rgb(47, 93, 42);
 }
 
+
+
+@media screen and (max-width: 1000px) and (min-width: 651px) {
+  .usuariosDuelo{
+
+  }
+
+  :root{
+    --img-dimension:40px;
+    --button-padding-top:7px;
+    --button-padding-left:10px;
+    --font-size:12px;
+  }
+}
+
+@media screen and (max-width: 650px) and (min-width: 351px) {
+  .usuariosDuelo{
+
+  box-sizing: border-box;
+  width: 100vw; 
+  height: 100vh;
+  margin: 0 !important;
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
+    min-height: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
+  }
+
+  :root{
+    --img-dimension:30px;
+    --button-padding-top:5px;
+    --button-padding-left: 3px;
+    --font-size:12px;
+  }
+}
+
+
+@media screen and (max-width: 350px) {
+
+  :root{
+    --img-dimension:30px;
+    --button-padding-top:5px;
+    --button-padding-left: 3px;
+    --font-size:12px;
+  }
+
+  .usuariosDuelo{
+    width: 300px;
+    margin: 0 auto !important;
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
+    min-height: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
+  }
+
+}
