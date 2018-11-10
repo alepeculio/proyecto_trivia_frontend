@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import Duelo from './Duelo';
+import DueloPropio from './DueloPropio';
 import { withRouter } from "react-router-dom";
 import {properties} from './properties.js';
 import './RankingUsuarios.css';
@@ -11,7 +12,7 @@ const duelosPropiosListaURL = properties.ip+properties.puerto+'/usuarios/listarR
 class DuelosListado extends Component{
 	constructor(){
 		super();
-		this.state = {shown: false,recargar:false};
+		this.state = {shown: false};
 	}
 
 	obtenerDuelos(){
@@ -46,12 +47,46 @@ class DuelosListado extends Component{
 		});
 	}
 
+	obtenerDuelosPropios(){
+		let id = localStorage.getItem("usuario_id");
+		fetch(duelosPropiosListaURL+id,{
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/json; charset=utf-8'
+			},
+		})
+		.then(response => {
+			return response.json();
+		})
+		.then(data => {
+			if(data.Error !== undefined){
+				console.log(data.Error);
+				this.setState({duelosPropios: ''});
+			}else if(data.Mensaje !== undefined){
+				this.setState({duelosPropios: ''});
+			}else{
+				let duelosPropios = data.duelos.map(d => {
+					return(
+						<DueloPropio key={d.id} duelo ={d} />
+						);
+				});
+				this.setState({duelosPropios: duelosPropios});
+			}})
+		.catch(err => {
+			console.log(err);
+			console.log('Reintentando...');
+			setTimeout( this.obtenerDuelosPropios.bind(this) , 10000);
+		});
+	}
+
 	componentDidMount(){
 		this.obtenerDuelos();
+		this.obtenerDuelosPropios();
 	}
 
 	actualizarDuelos(){
 		this.obtenerDuelos();
+		this.obtenerDuelosPropios();
 	}
 
 	solicitarSuscripcion(e){
@@ -75,19 +110,20 @@ class DuelosListado extends Component{
 	render(){
 		let clase = 'usuariosDuelo';
 		let duelos = this.state.duelos;
+		let duelosPropios = this.state.duelosPropios;
 
 		if ( this.props.usuario === "cargando" )
 			return null;
 		else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
 			return(
 				<div className="usuariosDuelo">
-					<div className="SinSuscripcion">
-						<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
-						<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
-						<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
-					</div>
+				<div className="SinSuscripcion">
+				<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
+				<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
+				<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
 				</div>
-			);
+				</div>
+				);
 		}
 
 
@@ -105,11 +141,12 @@ class DuelosListado extends Component{
 			display: this.state.shown ? "block" : "none",
 			visibility : this.state.visibility ? "visible" : "hidden"
 		};
-	
+
 		
 		return(
 			<div className={clase}>
 			{duelos}
+			{duelosPropios}
 			</div>
 			);
 

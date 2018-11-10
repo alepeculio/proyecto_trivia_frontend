@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import UsuarioLista from './UsuarioLista';
-import './RankingUsuarios.css';
+import './UsuariosListado.css';
 import { withRouter } from "react-router-dom";
 
 import Pregunta from './preguntaDuelo';
@@ -134,6 +134,12 @@ class UsuariosListado extends Component{
 						return res.json();
 					}).then(data => {
 						console.log(data);
+
+						let btns = document.getElementsByClassName("Retar");
+						for(let i=0; i < btns.length; i++){
+							btns[i].disabled = false;
+						}
+						
 						this.obtenerUsuarios();
 						document.querySelector( '.usuarios_ranking' ).removeAttribute('hidden');
 						this.setState({shown:false});
@@ -158,63 +164,63 @@ class UsuariosListado extends Component{
 			});});
 
 
-		}
-		componentDidMount(){
-			this.obtenerUsuarios();
-		}
+	}
+	componentDidMount(){
+		this.obtenerUsuarios();
+	}
 
 
-		solicitarSuscripcion(e){
-			let btn = e.target;
-			let u = this.props.usuario;
-			btn.disabled = true;
-			fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json; charset=utf-8'
-				} 
-			} ).then (res => {
-				console.log(res);
+	solicitarSuscripcion(e){
+		let btn = e.target;
+		let u = this.props.usuario;
+		btn.disabled = true;
+		fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			} 
+		} ).then (res => {
+			console.log(res);
 
-			} ).catch( err => {
-				btn.disabled = false;
-				console.log( 'Error: ' + err );
-			} );
-		}
+		} ).catch( err => {
+			btn.disabled = false;
+			console.log( 'Error: ' + err );
+		} );
+	}
 
-		render(){
-			let usuarios = this.state.usuarios;
+	render(){
+		let usuarios = this.state.usuarios;
 
-			if ( this.props.usuario === "cargando" )
+		if ( this.props.usuario === "cargando" )
 			return null;
-			else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
-				return(
-					<div className="usuarios_ranking">
-						<div className="SinSuscripcion">
-							<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
-							<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
-							<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
-						</div>
-					</div>
-				);
-			}
-
-			if(usuarios === undefined){
-				usuarios = <div className="cargando">Cargando...</div>
-			}else if(usuarios === ''){
-				usuarios = <div className="cargando">No hay usuarios</div>
-			}
-
-			let clase = 'usuarios_ranking';
-			if(this.props.location.pathname === '/inicio'){
-				clase += ' inicio';
-			};
-			var shown = {
-				display: this.state.shown ? "block" : "none"
-			};
-			var aux ={display: "block"};
-
+		else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
 			return(
+				<div className="usuarios_ranking">
+				<div className="SinSuscripcion">
+				<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
+				<p>El costo de la misma es de $50, con vigencia hasta la finalización de esta semana.</p>
+				<button onClick={this.solicitarSuscripcion.bind(this)}>Obtener suscripción</button>
+				</div>
+				</div>
+				);
+		}
+
+		if(usuarios === undefined){
+			usuarios = <div className="cargando">Cargando...</div>
+		}else if(usuarios === ''){
+			usuarios = <div className="cargando">No hay usuarios</div>
+		}
+
+		let clase = 'usuarios_listado';
+		if(this.props.location.pathname === '/inicio'){
+			clase += ' inicio';
+		};
+		var shown = {
+			display: this.state.shown ? "block" : "none"
+		};
+		var aux ={display: "block"};
+
+		return(
 			<div >
 			<div style={shown} >
 			{this.state.pregunta}

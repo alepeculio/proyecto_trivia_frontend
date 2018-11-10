@@ -34,6 +34,10 @@
  background-color: #D7A037;
 }
 
+.contenedorDuelo.P{
+  background-color: #C6C6C6 !important;
+} 
+
 .cont{
  margin: 20px 200px .7px 200px;
  background-color: rgba(66, 160, 255, 1);
@@ -99,22 +103,6 @@
  padding:5px;
 }
 
-.retar{
- position: absolute;
- top:calc(50% - 20px);
- right:150px;
- font-weight: bold;
- font-size: var(--font-size);
- border-radius: 5px;
- padding:5px;
- border-bottom: 2px solid  rgba(0,0,0,.3);
- border-right: 2px solid rgba(0,0,0,.3);
- border-top: 2px solid rgba(255, 255, 255, 0.3);
- border-left: 2px solid rgba(255, 255, 255, 0.3);
- background-color: rgba(256,256,256,.7);
- text-shadow: 0 0 .5px blue;
-}
-
 .usuarios_ranking .cargando{
  background-color: white;
  color:black;
@@ -159,7 +147,7 @@
 }
 
 .Retar{
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50  !important; /* Green */
   border: none;
   border-radius: 8px;
   color: white;
@@ -167,13 +155,18 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: var(--font-size);
+  font-size: 16px;
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
   border-left: 2px solid rgba(255, 255, 255, 0.3);
   position: absolute;
-  right: 50px;
+  top: calc(50% - 20px);
+  right: 90px;
+}
+
+.Retar:hover {
+ background-color: #008000 !important;
 }
 
 .Cancelar{
@@ -237,7 +230,7 @@
 @media screen and (max-width: 1000px) and (min-width: 651px) {
   .usuariosDuelo{
     width: 500px;
-    margin: 0 auto !important;
+    margin: 25px 200px .7px 200px;
   }
 
   :root{
@@ -271,7 +264,7 @@
 
 @media screen and (max-width: 350px) {
 
-  :root {
+  :root{
     --img-dimension:30px;
     --button-padding-top:5px;
     --button-padding-left: 3px;
