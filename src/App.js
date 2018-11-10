@@ -49,6 +49,47 @@ class App extends Component {
 					usuarios[i].querySelector( '.puntaje' ).innerHTML = rank[i].puntaje;
 				}
 		} );
+
+		socket.on( 'nuevo-ranking', ( ranking ) => {
+			for ( let i = 0; i < ranking.length; i++ )
+				console.log( ranking[i].nombre + ' ' + ranking[i].puntaje );
+
+			let usus = document.querySelectorAll( '.usuarios_ranking .usuario' );
+			if ( usus.length > 0 ) {
+				let i;
+
+				for ( i = 0; i < ranking.length; i++ ) {
+					if ( usus[i] === undefined ) {
+						let copia = usus[i - 1].cloneNode( true );
+						document.querySelector( '.usuarios_ranking' ).appendChild( copia );
+						usus = document.querySelectorAll( '.usuarios_ranking .usuario' );
+					}
+
+					usus[i].href = '/perfil/' + ranking[i].correo;
+					usus[i].querySelector( 'img' ).src = ranking[i].img;
+					usus[i].querySelector( '.nombre' ).innerHTML = ranking[i].nombre + ' ' + ranking[i].apellido;
+					usus[i].querySelector( '.puntaje' ).innerHTML = ranking[i].puntaje + ' pts.';
+				}
+
+				while ( i < usus.length ) {
+					usus[i].remove();
+					i++;
+				}
+			}
+		} );
+
+		socket.on( 'desconectar', () => {
+			alert( 'Conexión detectada desde otro dispositivo, desconectando...' );
+			this.cerrarSesion();
+		} );
+	}
+
+	mostrarMensaje( titulo, mensaje ) {
+		if ( this.mensajes != undefined )
+			this.mensajes.current.agregarMensaje( {
+				titulo: titulo,
+				conetenido: contenido
+			} );
 	}
 
 	obtenerUsuario(){
@@ -118,6 +159,7 @@ class App extends Component {
 			<Header usuario = { usuario } cerrarSesion = { this.cerrarSesion.bind( this ) } />
 
 			<Route exact path="/" render={() => {
+				socket.emit( 'unsub-ranking' );
 				if(usuario === 'cargando')
 					return null;
 				else if(usuario === '')
@@ -126,6 +168,7 @@ class App extends Component {
 					return <Redirect to='/ranking' />;
 			}} />
 			<Route exact path="/inicio" component = { () => {
+				socket.emit( 'sub-ranking' );
 				let usuario = localStorage.getItem('usuario_logueado');
 				if(usuario !== null && usuario !== undefined){
 					return ( <Redirect to='/ranking' /> );
@@ -134,6 +177,7 @@ class App extends Component {
 			} } />
 
 			<Route path="/iniciarSesion" render={ (props) => {
+				socket.emit( 'unsub-ranking' );
 				let mensaje;
 				if(props.location.pathname === '/iniciarSesion/registro_ok')
 					mensaje = <Mensaje mensaje='Bienvenido, inicie sesión para continuar.'/>;
@@ -144,9 +188,13 @@ class App extends Component {
 					</div>);
 			}} />
 
-			<Route path="/registrarse" render={ (props) => <RegistrarUsuarioForm usuario = { usuario } /> } />
+			<Route path="/registrarse" render={ (props) => {
+				socket.emit( 'unsub-ranking' );
+				return ( <RegistrarUsuarioForm usuario = { usuario } /> );
+			} } />
 
 			<Route path = "/ranking" render = { ( props ) => {
+				socket.emit( 'sub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
 				else if(usuario.tipo === 'Admin')
@@ -156,6 +204,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/preguntas" render = { ( props ) => {
+				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
 				else if(usuario.tipo === 'Admin')
@@ -165,6 +214,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/duelos" render = { ( props ) => {
+				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
 				else if(usuario.tipo === 'Admin')
@@ -173,6 +223,7 @@ class App extends Component {
 					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } /> </div> </div> );
 			} } />
 			<Route path = "/usuarios" render = { ( props ) => {
+				socket.emit( 'unsub-ranking' );
 				if ( usuario === '' )
 					return ( <Redirect to='/inicio' /> );
 				else if(usuario.tipo === 'Admin')
@@ -182,6 +233,7 @@ class App extends Component {
 			} } />
 
 			<Route path = "/perfil" render = { ( props ) => {
+				socket.emit( 'unsub-ranking' );
 				if(usuario === 'cargando')
 					return null;
 				else if(usuario === '')
@@ -192,10 +244,11 @@ class App extends Component {
 			} } />
 
 			<Route path = "/admin" render = { (props) => {
+				socket.emit( 'unsub-ranking' );
 				if(usuario === 'cargando')
 					return null;
 				else if(usuario !== '' && usuario.tipo === 'Admin')
-					return <div className="menu-admin"><Suscripciones usuario={usuario} /><Preguntas /></div>;
+					return <div className="menu-admin"><Suscripciones usuario={usuario} /><Preguntas /> <div className="btnResetear"><button onClick={this.resetear.bind(this)}>Resetear</button></div></div>;
 				else
 					return  <Redirect to='/inicio' />;
 
@@ -205,6 +258,31 @@ class App extends Component {
 			</Router>
 			</div>
 			);
+	}
+
+	resetear(e){
+		let usuario = this.state.usuario;
+		if(window.confirm('¿Está seguro de que desea eliminar las preguntas respondidas y mano a mano?')){
+			fetch( properties.ip+properties.puerto+'/usuarios/reset', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'text/plain; charset=utf-8'
+				},
+				body: JSON.stringify( {
+					correo: usuario.correo,
+					pass: usuario.pass
+				} )
+			} ).then( res => {
+				if(res.statusText = 'OK')
+					alert('Datos eliminados');
+				else
+					alert('Falla al eliminar los datos');
+			} ).catch( err => {
+				console.log(err);
+				alert('Hubo un error al eliminar los datos')
+			});
+		}
+	
 	}
 }
 
@@ -219,7 +297,7 @@ class App extends Component {
 		</div>
 		</div>
 		);
-};*/
+	};*/
 
-export default App;
+	export default App;
 

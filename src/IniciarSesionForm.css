@@ -30,8 +30,14 @@
   }
 }
 
-.iniciar_sesion_form h2{
+.iniciar_sesion_form h2,
+.iniciar_sesion_form h3{
   text-align:left;
+}
+
+.iniciar_sesion_form hr,
+.iniciar_sesion_form h3 {
+  margin-top: 25px;
 }
 
 .iniciar_sesion_form *{
@@ -96,3 +102,12 @@
 }
 
 /*FIN [Iniciar sesion formulario] ==========================================================*/
+
+
+#btnCambioPass {
+  background-color: #3a8dc4;
+}
+
+#errEnviarPass.correcto {
+  color: rgb(15, 112, 80);
+}

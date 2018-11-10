@@ -3,6 +3,7 @@ import { withRouter, Redirect} from "react-router-dom";
 import './Perfil.css';
 import {properties} from './properties.js'
 const obtenerUsuarioURL = properties.ip+properties.puerto+'/usuarios/obtener?correo=';
+const cambiarPass = properties.ip+properties.puerto+'/usuarios/actualizarPass';
 
 class Perfil extends Component{
 	constructor(){
@@ -55,6 +56,66 @@ class Perfil extends Component{
 		this.setUsuario(nextProps.usuario);
 	}
 
+	cambiarPass() {
+		let passAnterior = document.querySelector( '#passAnterior' );
+		let pass1 = document.querySelector( '#pass1' );
+		let pass2 = document.querySelector( '#pass2' );
+
+		if ( pass1 === undefined || pass2 === undefined || passAnterior === undefined )
+			return;
+
+		let msjCambioPass = document.querySelector( '#msjCambioPass' );
+
+		if ( pass1.value === '' || passAnterior.value === '' ) {
+			if ( msjCambioPass === undefined )
+				alert( 'Ingrese todos los campos' );
+			else {
+				msjCambioPass.innerHTML = 'Ingrese todos los campos';
+				msjCambioPass.classList.remove( 'correcto' );
+			}
+		} else if ( pass1.value !== pass2.value ) {
+
+			if ( msjCambioPass === undefined )
+				alert( 'Las contraseñas no coinciden' );
+			else {
+				msjCambioPass.innerHTML = 'Las contraseñas no coinciden';
+				msjCambioPass.classList.remove( 'correcto' );
+			}
+		} else {
+			fetch( cambiarPass, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				},
+				body: JSON.stringify( {
+					correo: this.state.usuario.correo,
+					anterior: passAnterior.value,
+					newpass: pass1.value
+				} )
+			} ).then( res => {
+				return res.json();
+			} ).then( res => {
+				console.log( res );
+				if ( res.Mensaje !== undefined ) {
+					if ( res.Mensaje === 'si' ) {
+						msjCambioPass.innerHTML = 'Contraseña cambiada!';
+						msjCambioPass.classList.add( 'correcto' );
+					} else {
+						msjCambioPass.innerHTML = 'Contraseña actual incorrecta';
+						msjCambioPass.classList.remove( 'correcto' );
+					}
+				} else {
+					msjCambioPass.innerHTML = 'Fallo al cambiar contraseña';
+					msjCambioPass.classList.remove( 'correcto' );
+				}
+			} ).catch( err => {
+				console.log( err );
+				msjCambioPass.innerHTML = 'Fallo al cambiar contraseña';
+				msjCambioPass.classList.remove( 'correcto' );
+			} );
+		}
+	}
+
 	render(){
 		let u = this.state.usuario;
 
@@ -82,6 +143,34 @@ class Perfil extends Component{
 			break;
 		}
 
+		let cambioPass = '';
+
+		if ( this.state.privado ) {
+			cambioPass =
+			<div className = "cambioPass">
+				<h3>Cambiar contraseña</h3>
+				<form>
+					<label>
+						Contraseña actual
+						<input type="password" name="passAnterior" id="passAnterior" placeholder="Contraseña anterior" required />
+					</label>
+					<div className="sep"></div>
+					<label>
+						Nueva contraseña
+						<input type="password" name="pass1" id="pass1" required placeholder="Nueva contraseña" />
+					</label>
+					<div className="sep"></div>
+					<label>
+						Nueva contraseña
+						<input type="password" name="pass2" id="pass2" required placeholder="Nueva contraseña" />
+					</label>
+					<div className="sep"></div>
+					<button type="button" onClick = { () => { this.cambiarPass() } }>Confirmar</button>
+					<span id="msjCambioPass"></span>
+				</form>
+			</div>;
+		}
+
 
 		return (
 			<div className="perfil">
@@ -97,8 +186,9 @@ class Perfil extends Component{
 						<span className="tipo">{suscripcion}</span>
 					</div>
 				</div>
+				{ cambioPass }
 			</div>
-			);
+		);
 	}
 }
 

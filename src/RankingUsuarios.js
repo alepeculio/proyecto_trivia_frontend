@@ -39,10 +39,14 @@ class RankingUsuarios extends Component{
 				this.setState({usuarios: ''});
 			}else{
 				let usuariosNormales = false;
-				let usuarios = data.usuarios.map(u => {
-					if(u.tipo !== 'Admin'){
+				let usuarios = data.usuarios.map((u, i) => {
+					if(u.tipo !== 'Admin' && u.tipo !== 'SinSuscripcion' ){
 						usuariosNormales = true;
-						return(<Usuario key={u.id} usuario = {u}/>);
+						let posicion;
+						if(i == 0 || i == 1 || i == 2)
+							posicion = i;
+
+						return(<Usuario key={u.id} posicion={posicion} usuario = {u}/>);
 					}
 				});
 				if(usuariosNormales){
