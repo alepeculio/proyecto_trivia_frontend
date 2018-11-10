@@ -57,68 +57,12 @@
 }
 
 
-.usuarios_listado :nth-child(1){
-  background-color: #EDAF3A;
+.usuarios_listado .usuario{
+  background-color: #EDAF3A !important;
 }
 
-.usuarios_listado :nth-child(1):hover{
-  background-color: #e99f16;
-}
-
-.usuarios_listado :nth-child(2){
-  background-color: #C6C6C6;
-}
-
-.usuarios_listado :nth-child(2):hover{
-  background-color: #b3b3b3;
-}
-
-.usuarios_listado :nth-child(3){
-  background-color: #C37D55;
-}
-
-.usuarios_listado :nth-child(3):hover{
-  background-color: #aa643c;
-}
-
-.usuarios_listado :nth-child(4){
-  background-color: #AA64D7;
-}
-
-.usuarios_listado :nth-child(4):hover{
-  background-color: #9855C3;
-}
-
-.usuarios_listado :nth-child(5){
-  background-color: #5EC490;
-}
-
-.usuarios_listado :nth-child(5):hover{
-  background-color: #4DB27F;
-}
-
-.usuarios_listado :nth-child(6){
-  background-color: #F74444;
-}
-
-.usuarios_listado :nth-child(6):hover{
-  background-color: #DF3535;
-}
-
-.usuarios_listado :nth-child(7){
-  background-color: #41EA25;
-}
-
-.usuarios_listado :nth-child(7):hover{
-  background-color: #3DD324;
-}
-
-.usuarios_listado :nth-child(8){
-  background-color: #FE66EE;
-}
-
-.usuarios_listado :nth-child(8):hover{
-  background-color: #F84CE6;
+.usuarios_listado .usuario:hover{
+  background-color: #e99f16 !important;
 }
 
 .usuarios_listado .usuario img{
@@ -230,8 +174,8 @@
 @media screen and (max-width: 1000px) and (min-width: 651px) {
 
   .usuarios_listado{
-    width: 500px;
-    margin: 20px 120px .7px 120px;
+    width: 90vw !important;
+    margin: 10px auto !important;
     padding: 20px 20px 10px 20px;
     min-height: 100vh;
   }
@@ -247,12 +191,14 @@
 @media screen and (max-width: 650px) and (min-width: 351px) {
 
   .usuarios_listado{
-    width: 450px;
+    width: 100vw !important;
     margin: 0 auto !important;
     background-color: unset;
     min-height: 100vh !important;
     border: unset;
     border-radius: unset;
+
+    padding: 10px 20px 10px 10px;
     min-height: unset;
     -webkit-box-shadow: unset;
     -moz-box-shadow: unset;
@@ -265,6 +211,13 @@
     --button-padding-left: 3px;
     --font-size:12px;
   }
+}
+
+
+
+.usuarios_listado .puntaje {
+  font-size: 12px !important;
+  margin-top: 7px;
 }
 
 @media screen and (max-width: 350px) {
@@ -283,6 +236,7 @@
     border: unset;
     border-radius: unset;
     min-height: unset;
+    padding: 10px 20px 10px 10px;
     -webkit-box-shadow: unset;
     -moz-box-shadow: unset;
     box-shadow: unset;

@@ -176,8 +176,9 @@ class PreguntaDuelo extends Component{
 			<button className="button" style={{background: this.state.btn2 , display: this.state.displaybtn2,pointerEvents : this.state.evbtn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
 			<button className="button" style={{background: this.state.btn3 , display: this.state.displaybtn3,pointerEvents : this.state.evbtn3}}  onClick={()=>{this.conexion(this.state.lista[2],"btn3")}} type="button"><font className="txtRespuestas">{this.state.lista[2]}</font></button><br></br>
 			<button className="button" style={{background: this.state.btn4 , display: this.state.displaybtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
-			</div>
 			<font className="estado" style={{color: this.state.color}}>{this.state.estado}</font>
+			</div>
+			
 			<button className="volver" onClick={()=>{this.siguiente()}} style={siguiente}>Siguiente</button>
 
 			</div>

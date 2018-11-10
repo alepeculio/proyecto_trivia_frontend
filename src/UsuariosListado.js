@@ -104,7 +104,7 @@ class UsuariosListado extends Component{
 				this.setState({pregunta: b});
 				this.setState({preguntas:preguntas});
 				this.setState({retado:retado});
-				document.querySelector( '.usuarios_duelos' ).setAttribute( 'hidden', true );
+				document.querySelector( '.usuarios_listado' ).setAttribute( 'hidden', true );
 
 			});
 
@@ -148,7 +148,7 @@ class UsuariosListado extends Component{
 						}
 						
 						this.obtenerUsuarios();
-						document.querySelector( '.usuarios_duelos' ).removeAttribute('hidden');
+						document.querySelector( '.usuarios_listado' ).removeAttribute('hidden');
 						this.setState({shown:false});
 					}).catch(err => {
 						console.log(err);
@@ -212,23 +212,23 @@ class UsuariosListado extends Component{
 				);
 			}
 
-			if(usuarios === undefined){
-				usuarios = <div className="cargando">Cargando...</div>
-			}else if(usuarios === ''){
-				usuarios = <div className="cargando">No hay usuarios</div>
-			}
+		if(usuarios === undefined){
+			usuarios = <div className="cargando">Cargando...</div>
+		}else if(usuarios === ''){
+			usuarios = <div className="cargando">No hay usuarios</div>
+		}
 
-			let clase = 'usuarios_listado';
-			if(this.props.location.pathname === '/inicio'){
-				clase += ' inicio';
-			};
-			var shown = {
-				display: this.state.shown ? "block" : "none"
-			};
-			var aux ={display: "block"};
+		let clase = 'usuarios_listado';
+		if(this.props.location.pathname === '/inicio'){
+			clase += ' inicio';
+		};
+		var shown = {
+			display: this.state.shown ? "block" : "none"
+		};
+		var aux ={display: "block"};
 
-			return(
-			<div >
+		return(
+			<div>
 			<div style={shown} >
 			{this.state.pregunta}
 			</div>

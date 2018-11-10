@@ -15,6 +15,10 @@
   box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
 }
 
+.usuarios_ranking .usuario .puntaje {
+  text-align: center !important;  
+}
+
 @media screen and (max-width: 660px) {
   .usuarios_ranking {
     padding: 15px 8px 15px 5px !important;
@@ -37,7 +41,7 @@
 
   .usuarios_ranking .usuario .nombre {
     margin: 0px !important;
-    margin-left: -15px !important;
+    margin-left: 0 !important;
   }
 
   .usuarios_ranking .usuario .puntaje {

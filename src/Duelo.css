@@ -146,27 +146,37 @@
  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+
+
 .Retar{
-  background-color: #4CAF50  !important; /* Green */
   border: none;
   border-radius: 8px;
-  color: white;
   padding: var(--button-padding-top) var(--button-padding-left);
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
   border-bottom: 2px solid  rgba(0,0,0,.3);
   border-right: 2px solid rgba(0,0,0,.3);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
   border-left: 2px solid rgba(255, 255, 255, 0.3);
   position: absolute;
   top: calc(50% - 20px);
-  right: 90px;
-}
+  right: 10px;
 
+  width: 45px;
+  height: 45px;
+  border-radius: 1000px;
+  margin-top: -3.5px;
+
+  background-color: lightgrey !important;
+
+  background-image: url('espada.png') !important;
+  background-position: center !important; 
+  background-repeat: no-repeat !important; 
+  background-size: 30px 30px !important; 
+}
 .Retar:hover {
- background-color: #008000 !important;
+ background-color: grey !important;
 }
 
 .Cancelar{
@@ -229,8 +239,7 @@
 
 @media screen and (max-width: 1000px) and (min-width: 651px) {
   .usuariosDuelo{
-    width: 500px;
-    margin: 25px 200px .7px 200px;
+
   }
 
   :root{
@@ -243,8 +252,11 @@
 
 @media screen and (max-width: 650px) and (min-width: 351px) {
   .usuariosDuelo{
-    width: 350px;
-    margin: 0 auto !important;
+
+  box-sizing: border-box;
+  width: 100vw; 
+  height: 100vh;
+  margin: 0 !important;
     background-color: unset;
     border: unset;
     border-radius: unset;
@@ -261,6 +273,7 @@
     --font-size:12px;
   }
 }
+
 
 @media screen and (max-width: 350px) {
 
@@ -283,6 +296,6 @@
     box-shadow: unset;
   }
 
-}
 
+}
 
