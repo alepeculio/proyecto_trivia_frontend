@@ -82,7 +82,7 @@ class PreguntasDiarias extends Component {
 			} ).catch( err => {
 				console.log( err );
 				console.log( 'Reintentando...' );
-				setTimeout( generarPreguntaDiaria ( posicion, categoria ), 10000 );
+				setTimeout( this.generarPreguntaDiaria ( posicion, categoria ), 10000 );
 			} );
 		}
 

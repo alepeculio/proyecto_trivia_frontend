@@ -1,32 +1,56 @@
 
 /* [Pregunta] ============================================= */
 @import url('https://fonts.googleapis.com/css?family=Sigmar+One');
-@media screen and (max-width: 660px) {
-  .ContenedorPregunta{  
-    position: absolute;
-    top: 20%;
-    transform: translateY(-50%);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 97% !important;
-    background-color: rgba(66, 160, 255, 1) !important;
+
+
+@media screen and (max-width: 1000px) and (min-width: 651px) {
+  .contenedor {
+    padding-top: 35px !important;
+
+
+  } 
+  .volver {
+
+    padding: 15px 40px !important;
+    margin-bottom: 30px !important;
+
+  }
+
+
+}
+
+@media screen and (max-width: 650px) and (min-width: 351px) {
+  .contenedor {
+    padding-top: 100px !important;
     border:none !important;
+
+  } 
+  #pdLista{
+    width: 350px;
+    margin: 0 auto !important;
+    background-color: none !important;
+    border: none !important;
+    border-radius: none !important;
+    min-height: none;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
-    box-shadow: none !important;
-
 
   }
-  .estado{
-    font-size: 30px;
+  .volver {
+    border: 2px solid black; 
+    border-radius: 4px;
+    padding: 15px 40px !important;
+    margin: 70% auto !important;
+    color: white;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
   }
-  .volver{
-    position: absolute;
-    top: 80%;
-    transform: translateY(-50%);
-    left: 50%;
-    transform: translateX(-50%);
+  body{
+    background-image: none;
   }
+
 
 
 }
@@ -34,8 +58,6 @@
 .ContenedorPregunta{
   width: 70%;
   margin: 0 auto;
-
-
 }
 
 .cabezera{
@@ -48,10 +70,7 @@
 
 
 }
-.respuestas{
 
-
-}
 
 .circulo{
   border:2px solid red;

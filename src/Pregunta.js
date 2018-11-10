@@ -231,8 +231,6 @@ class Pregunta extends Component{
 			<button className="button" style={{background: this.state.btn4 , display: this.state.displaybtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
 			<font className="estado" style={{color: this.state.color}}>{this.state.estado}</font>
 			</div>
-			</div>
-			<div>
 			<button className="volver" onClick={()=>{this.volver()}} style={hidden}>&laquo; Volver</button>
 			</div>
 			</div>
@@ -240,8 +238,8 @@ class Pregunta extends Component{
 
 
 			);	
+		}
+
 	}
 
-}
-
-export default Pregunta;
+	export default Pregunta;
