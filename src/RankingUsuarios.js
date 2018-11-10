@@ -4,7 +4,7 @@ import Usuario from './Usuario';
 import './RankingUsuarios.css';
 import { withRouter } from "react-router-dom";
 import {properties} from './properties.js'
-const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/listar?cantidad=';
+const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/listarRanking?cantidad=';
 
 
 class RankingUsuarios extends Component{
@@ -40,14 +40,14 @@ class RankingUsuarios extends Component{
 			}else{
 				let usuariosNormales = false;
 				let usuarios = data.usuarios.map((u, i) => {
-					if ( u.tipo !== 'Admin' && u.tipo != 'SinSuscripcion' ) {
+					//if ( u.tipo !== 'Admin' && u.tipo != 'SinSuscripcion' ) {
 						usuariosNormales = true;
 						let posicion;
 						if(i == 0 || i == 1 || i == 2)
 							posicion = i;
 
 						return(<Usuario key={u.id} posicion={posicion} usuario = {u}/>);
-					}
+					//}
 				});
 				if(usuariosNormales){
 					this.setState({usuarios: usuarios});	
