@@ -104,7 +104,7 @@ class UsuariosListado extends Component{
 				this.setState({pregunta: b});
 				this.setState({preguntas:preguntas});
 				this.setState({retado:retado});
-				document.querySelector( '.usuarios_duelos' ).setAttribute( 'hidden', true );
+				document.querySelector( '.usuarios_listado' ).setAttribute( 'hidden', true );
 
 			});
 
@@ -148,7 +148,7 @@ class UsuariosListado extends Component{
 						}
 						
 						this.obtenerUsuarios();
-						document.querySelector( '.usuarios_duelos' ).removeAttribute('hidden');
+						document.querySelector( '.usuarios_listado' ).removeAttribute('hidden');
 						this.setState({shown:false});
 					}).catch(err => {
 						console.log(err);

@@ -65,6 +65,23 @@ class App extends Component {
 						usus = document.querySelectorAll( '.usuarios_ranking .usuario' );
 					}
 
+					let medalla = usus[i].querySelector( '.medalla' );
+
+					if ( medalla !== undefined && medalla !== null ) {
+						if ( i == 0 ) {
+							medalla.src = require( './medalla-de-oro.png' );
+							medalla.style.display = 'inline-block';
+						} else if ( i == 1 ) {
+							medalla.src = require( './medalla-de-plata.png' );
+							medalla.style.display = 'inline-block';
+						} else if ( i == 2 ) {
+							medalla.src = require( './medalla-de-bronce.png' );
+							medalla.style.display = 'inline-block';
+						} else {
+							medalla.style.display = 'none';
+						}
+					}
+
 					usus[i].href = '/perfil/' + ranking[i].correo;
 					usus[i].querySelector( 'img' ).src = ranking[i].img;
 					usus[i].querySelector( '.nombre' ).innerHTML = ranking[i].nombre + ' ' + ranking[i].apellido;
@@ -279,18 +296,19 @@ class App extends Component {
 
 	resetear(e){
 		let usuario = this.state.usuario;
+		console.log( usuario );
 		if(window.confirm('¿Está seguro de que desea eliminar las preguntas respondidas y mano a mano?')){
 			fetch( properties.ip+properties.puerto+'/usuarios/reset', {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'text/plain; charset=utf-8'
+					'Content-Type': 'application/json; charset=utf-8'
 				},
 				body: JSON.stringify( {
 					correo: usuario.correo,
-					pass: usuario.pass
+					id: usuario.id
 				} )
 			} ).then( res => {
-				if(res.statusText = 'OK')
+				if(res.statusText === 'OK')
 					alert('Datos eliminados');
 				else
 					alert('Falla al eliminar los datos');
