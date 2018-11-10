@@ -273,7 +273,7 @@ class App extends Component {
 					pass: usuario.pass
 				} )
 			} ).then( res => {
-				if(res.statusText = 'OK')
+				if(res.statusText === 'OK')
 					alert('Datos eliminados');
 				else
 					alert('Falla al eliminar los datos');
