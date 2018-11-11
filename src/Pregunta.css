@@ -42,9 +42,9 @@
     padding: 15px 40px !important;
     margin: 70% auto !important;
     color: white;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
+    box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
 
   }
   body{
@@ -64,9 +64,6 @@
   border: 2px solid black;
   border-radius: 3px;
   background: white; 
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 
 
 }
@@ -78,6 +75,7 @@
   border-radius: 50%;
 
 }
+
 .animacion{
   width: 100px;
   height: 100px;
@@ -85,6 +83,7 @@
   opacity:1;
   
 }
+
 .animacion:hover{
   opacity: 0;
 }
@@ -92,10 +91,11 @@
 .progress{
   height: 10px;
   content:"";
-  width: 100%;
   animation-duration: 15s;
   animation-name: barra;
   animation-timing-function: linear;
+  border-radius: 100px;
+  width:100%;
 
 }
 @keyframes barra {

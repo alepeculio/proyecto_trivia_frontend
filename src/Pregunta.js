@@ -233,6 +233,7 @@ class Pregunta extends Component{
 			</div>
 			<button className="volver" onClick={()=>{this.volver()}} style={hidden}>&laquo; Volver</button>
 			</div>
+			
 			</div>
 
 
