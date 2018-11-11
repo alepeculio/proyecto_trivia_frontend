@@ -34,6 +34,8 @@ class Duelo extends Component{
 		e.preventDefault();
 		let retado = localStorage.getItem("usuario_id"); 
 
+		this.props.dueloAceptado( this.props.duelo.id, retado );
+
 		fetch( properties.ip+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
 
 			method: 'POST',
@@ -47,7 +49,7 @@ class Duelo extends Component{
 		} ).then( res => {
 			return res.json();
 		} ).then( preguntas => {
-			if(preguntas.lenght !== 0){
+			if(preguntas.length !== 0){
 				let primera = preguntas[0];
 				let b = <PreguntaDuelo
 				pregunta = {primera.pregunta}
@@ -79,7 +81,7 @@ class Duelo extends Component{
 		this.setState({cont:this.state.cont+1},()=>{
 			
 			if(this.state.cont == 3){
-
+				this.props.dueloFinalizado( this.state.cant_correctas, this.state.tiempo, this.props.duelo.id, localStorage.getItem( 'usuario_id' ) );
 				fetch(finalizarDueloURL, {
 					method: 'POST',
 					headers: {

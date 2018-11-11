@@ -17,9 +17,9 @@
  border-right: 2px solid rgba(0,0,0,.3);
  border-top: 2px solid rgba(255, 255, 255, 0.3);
  border-left: 2px solid rgba(255, 255, 255, 0.3);
- -webkit-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
- -moz-box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
- box-shadow: 8px 8px 3px 0px rgba(0,0,0,0.75);
+ -webkit-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
+ -moz-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
+ box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
  border: 2px solid white;
  display: flex;
  align-items: center;
@@ -55,9 +55,9 @@
  transition-timing-function: ease-in;
  padding: 15px 25px;
  color: black;
- -webkit-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
- -moz-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
- box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+ -webkit-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
+ -moz-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
+ box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
 }
 
 .imgUser{
@@ -80,9 +80,9 @@
  transition-duration: .5s;
  transition-timing-function: ease-in;
  min-height: 100vh;
- -webkit-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
- -moz-box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
- box-shadow: 10px 10px 18px 1px rgba(0,0,0,0.75);
+ -webkit-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
+ -moz-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
+ box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
 }
 
 .contenedorDuelo span{
@@ -253,10 +253,10 @@
 @media screen and (max-width: 650px) and (min-width: 351px) {
   .usuariosDuelo{
 
-  box-sizing: border-box;
-  width: 100vw; 
-  height: 100vh;
-  margin: 0 !important;
+    box-sizing: border-box;
+    width: 100vw; 
+    height: 100vh;
+    margin: 0 !important;
     background-color: unset;
     border: unset;
     border-radius: unset;
@@ -296,4 +296,6 @@
     box-shadow: unset;
   }
 
+
 }
+
