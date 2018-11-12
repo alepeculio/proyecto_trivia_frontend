@@ -18,7 +18,6 @@ class UsuarioLista extends Component{
 		for(let i=0; i < btns.length; i++) {
 			btns[i].disabled = true;
 		}
-
 		let retador = localStorage.getItem("usuario_id");
 		let retado = this.props.usuario.id;
 		this.props.retar(retador,retado);
@@ -36,7 +35,7 @@ class UsuarioLista extends Component{
 
 
 			);
+		}
 	}
-}
 
-export default UsuarioLista;
+	export default UsuarioLista;

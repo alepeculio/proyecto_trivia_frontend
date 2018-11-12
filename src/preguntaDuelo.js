@@ -5,7 +5,7 @@ import './Pregunta.css';
 
 let green = '#11EA20';
 let red = '#F81010';
-let t = 15;
+let t = 1500;
 
 class PreguntaDuelo extends Component{
 
@@ -34,10 +34,6 @@ class PreguntaDuelo extends Component{
 			siguiente:false
 		}
 		this.inicio(props.id_Pregunta);
-		window.onbeforeunload = function() {
-			return "Dude, are you sure you want to leave? Think of the kittens!";
-		}
-
 
 	}
 
@@ -62,21 +58,21 @@ class PreguntaDuelo extends Component{
 		}
 	}*/
 	tickCronometro () {
-		if(this.state.cronometro === 1){
-			this.setState({cronometro: (this.state.cronometro - 1)})
+		if(this.state.cronometro === 10){
+			this.setState({cronometro: (this.state.cronometro - 10)})
 			this.conexion("");
 
 			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 
 		}else{
-			this.setState({cronometro: (this.state.cronometro - 1)})
+			this.setState({cronometro: (this.state.cronometro - 10)})
 		}
 
 	}
 
 	startTimer () {
 		clearInterval(this.timer)
-		this.timer = setInterval(this.tickCronometro.bind(this), 1000)
+		this.timer = setInterval(this.tickCronometro.bind(this), 100)
 		this.setState({inicio: true});
 	}
 
@@ -144,6 +140,7 @@ class PreguntaDuelo extends Component{
 		this.props.funcion();
 	}
 	siguiente(){	
+		console.log(t-this.state.cronometro);
 		this.props.termino(this.state.estado,t-this.state.cronometro);
 		this.setState({siguiente:false})
 	}

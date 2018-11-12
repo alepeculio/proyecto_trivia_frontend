@@ -26,6 +26,12 @@
   } 
   #pregunta {
     padding-top: 35px !important;
+    border:none !important;
+
+  } 
+  .estado{
+    font-size: 40px !important;
+    margin: 0 auto !important;
   }
   #pdLista{
     width: 350px;
@@ -42,7 +48,7 @@
     border: 2px solid black; 
     border-radius: 4px;
     padding: 15px 40px !important;
-    margin: 70% auto !important;
+    margin: 80px auto !important;
     color: white;
     -webkit-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);
     -moz-box-shadow: 13px -14px 21px -5px rgba(0,0,0,0.75);

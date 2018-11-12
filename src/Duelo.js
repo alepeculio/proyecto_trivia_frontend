@@ -21,13 +21,8 @@ class Duelo extends Component{
 			cant_correctas: 0,
 			tiempo: 0,
 			cont: 0,
-			respondiendo: false
+			respondiendo: false,
 		};
-	}
-
-	componentDidMount(){
-		this.setState({respondiendo: false});
-		this.props.actualizarDuelos();
 	}
 
 	handleClickCancelar(e){
@@ -35,9 +30,12 @@ class Duelo extends Component{
 
 		let btnsCancelar = document.getElementsByClassName("Cancelar");
 
-		for(let j=0; j < btnsCancelar.lenght;i++){btnsCancelar[j].disabled = true;}
+		let retado = localStorage.getItem("usuario_id"); 
 
-			let retado = localStorage.getItem("usuario_id"); 
+		for(let j=0; j < btnsCancelar.lenght;i++){
+			btnsCancelar[j].disabled = true;
+		}
+
 		this.cancelarDuelo(this.props.duelo.id,retado);
 	}
 
@@ -46,14 +44,17 @@ class Duelo extends Component{
 
 		let btnAceptar = document.getElementsByClassName("Aceptar");
 
-		for(let i=0; i < btnAceptar.lenght; i++) btnAceptar[i].disabled = true;
+		for(let i=0; i < btnAceptar.lenght; i++) {
+			btnAceptar[i].disabled = true;
+		}
 
+		let btnCancelar = document.getElementsByClassName("Cancelar");
 
-			let btnCancelar = document.getElementsByClassName("Cancelar");
+		for(let i=0; i < btnCancelar.lenght; i++) {
+			btnCancelar[i].disabled = true;
+		}
 
-		for(let i=0; i < btnCancelar.lenght; i++) btnCancelar[i].disabled = true;
-
-			let retado = localStorage.getItem("usuario_id"); 
+		let retado = localStorage.getItem("usuario_id"); 
 
 		this.props.dueloAceptado( this.props.duelo.id, retado );
 
@@ -70,24 +71,23 @@ class Duelo extends Component{
 		} ).then( res => {
 			return res.json();
 		} ).then( preguntas => {
-			this.setState({respondiendo: true}, () => {
-				if(preguntas.lenght !== 0){
-					let primera = preguntas[0];
-					let b = <PreguntaDuelo
-					pregunta = {primera.pregunta}
-					correcta = {primera.respuestas[0]}
-					respuesta1 = {primera.respuestas[0]}
-					respuesta2 = {primera.respuestas[1]}
-					respuesta3 = {primera.respuestas[2]}
-					respuesta4 = {primera.respuestas[3]}
-					id_Pregunta = {primera._id}
-					mostrar= {true}
-					termino = {this.termino.bind(this)}
-					/>
-					this.setState({pregunta: b});
-					this.setState({preguntas:preguntas});
-				}
-			});
+			this.setState({respondiendo: true});
+			if(preguntas.lenght !== 0){
+				let primera = preguntas[0];
+				let b = <PreguntaDuelo
+				pregunta = {primera.pregunta}
+				correcta = {primera.respuestas[0]}
+				respuesta1 = {primera.respuestas[0]}
+				respuesta2 = {primera.respuestas[1]}
+				respuesta3 = {primera.respuestas[2]}
+				respuesta4 = {primera.respuestas[3]}
+				id_Pregunta = {primera._id}
+				mostrar= {true}
+				termino = {this.termino.bind(this)}
+				/>
+				this.setState({pregunta: b});
+				this.setState({preguntas:preguntas});
+			}
 		});
 	}
 
@@ -122,14 +122,19 @@ class Duelo extends Component{
 
 					let btnAceptar = document.getElementsByClassName("Aceptar");
 
-					for(let i=0; i < btnAceptar.lenght; i++) {btnAceptar[i].disabled = false;}
+					for(let i=0; i < btnAceptar.lenght; i++) {
+						btnAceptar[i].disabled = false;
+					}
 
-						
-						let btnCancelar = document.getElementsByClassName("Cancelar");
+					let btnCancelar = document.getElementsByClassName("Cancelar");
 
-					for(let i=0; i < btnCancelar.lenght; i++) btnCancelar[i].disabled = true;
-						
-						this.props.actualizarDuelos();
+					for(let i=0; i < btnCancelar.lenght; i++){
+						btnCancelar[i].disabled = true;	
+					}
+		
+					this.setState({respondiendo: false});
+					
+
 				}).catch(err => {
 					console.log(err);
 				});
@@ -170,52 +175,52 @@ class Duelo extends Component{
 
 			let btnsCancelar = document.getElementsByClassName("Cancelar");
 
-			for(let i=0;i<btnsCancelar.lenght;i++){btnsCancelar[i].disabled = false;}
-
-				if(data.Error !== undefined){
-					alert(data.Error);
-					console.log(data.Error);
-				}else{
-					alert(data.Mensaje);
-					this.props.actualizarDuelos();
-				}})
-				.catch(err => {
-					console.log(err);
-					console.log('Reintentando...');
-					setTimeout( this.cancelarDuelo.bind(this) , 10000);
-				});
-			}	
-
-			render(){
-				let duelo = this.props.duelo;
-
-				var shown = {
-					display:"block"
-				};
-
-				let mostrarDuelos;
-
-				if(this.state.respondiendo == false){
-					mostrarDuelos = <div id="duelo" className="contenedorDuelo" >
-					<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
-					<span className="nombre">{duelo.nombre} {duelo.apellido} </span>
-
-					<div className="buttons">
-					<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
-					<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
-					</div>
-					</div>
-				}else{
-					mostrarDuelos = ""
-				}
-
-				return(
-				<div>
-				{this.state.pregunta}
-				{mostrarDuelos}
-				</div>
-				);
+			for(let i=0;i<btnsCancelar.lenght;i++){
+				btnsCancelar[i].disabled = false;
 			}
+
+			if(data.Error !== undefined){
+				alert(data.Error);
+				console.log(data.Error);
+			}else{
+				alert(data.Mensaje);
+				this.props.actualizarDuelos();
+			}})
+		.catch(err => {
+			console.log(err);
+			console.log('Reintentando...');
+			setTimeout( this.cancelarDuelo.bind(this) , 10000);
+		});
+	}	
+
+	render(){
+		let duelo = this.props.duelo;
+
+		var shown = {
+			display:"block"
+		};
+
+		if(!this.state.respondiendo){
+			this.props.actualizarDuelos();
 		}
 
-export default Duelo;
+		let asd = <div id="duelo" className="contenedorDuelo" >
+		<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
+		<span className="nombre">{duelo.nombre} {duelo.apellido} </span>
+
+		<div className="buttons">
+		<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
+		<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
+		</div>
+		</div>;
+
+		return(
+			<div>
+			{this.state.pregunta}
+			{!this.state.respondiendo && asd}
+			</div>
+			);
+		}
+	}
+
+	export default Duelo;

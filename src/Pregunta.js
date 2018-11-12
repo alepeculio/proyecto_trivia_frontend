@@ -5,7 +5,7 @@ import { properties } from './properties.js'
 
 let green = '#11EA20';
 let red = '#F81010';
-let t = 15;
+let t = 1500;
 class Pregunta extends Component{
 
 
@@ -58,14 +58,15 @@ class Pregunta extends Component{
 	}
 	*/
 	tickCronometro () {
-		if(this.state.cronometro === 1){
-			this.setState({cronometro: (this.state.cronometro - 1)})
+		if(this.state.cronometro === 10){
+			this.setState({cronometro: (this.state.cronometro - 10)})
 			this.conexion("tiempo");
 
 			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 
 		}else{
-			this.setState({cronometro: (this.state.cronometro - 1)})
+			this.setState({cronometro: (this.state.cronometro - 10)})
+
 		}
 
 	}
@@ -73,7 +74,7 @@ class Pregunta extends Component{
 
 	startTimer () {
 		clearInterval(this.timer)
-		this.timer = setInterval(this.tickCronometro.bind(this), 1000)	
+		this.timer = setInterval(this.tickCronometro.bind(this), 100)	
 		this.setState({inicio: true});
 	}
 
@@ -105,8 +106,10 @@ class Pregunta extends Component{
 		})
 
 		let estado;
+		console.log(t);
+		console.log(this.state.cronometro);
 		let tiempo = t-this.state.cronometro;
-
+		console.log(tiempo);
 		if(this.props.correcta === $var ){
 			estado = "Correcta";
 			this.setState({estado:estado});
