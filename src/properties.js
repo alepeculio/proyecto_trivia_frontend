@@ -1,5 +1,5 @@
 export const properties = {
-	ip: "https://triviatip.herokuapp.com",
+	ip: "https://triviatipserver.herokuapp.com",
 	puerto: "",
 	socket: ""
 };
