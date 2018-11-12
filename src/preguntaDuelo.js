@@ -83,6 +83,7 @@ class PreguntaDuelo extends Component{
 		this.setState({
 			animation: "paused"
 		})
+		clearInterval(this.timer);
 
 		let estado;
 		let tiempo = this.state.cronometro;
@@ -140,7 +141,7 @@ class PreguntaDuelo extends Component{
 		this.props.funcion();
 	}
 	siguiente(){	
-		console.log(t-this.state.cronometro);
+		
 		this.props.termino(this.state.estado,t-this.state.cronometro);
 		this.setState({siguiente:false})
 	}

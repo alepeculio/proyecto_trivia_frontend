@@ -106,10 +106,8 @@ class Pregunta extends Component{
 		})
 
 		let estado;
-		console.log(t);
-		console.log(this.state.cronometro);
 		let tiempo = t-this.state.cronometro;
-		console.log(tiempo);
+
 		if(this.props.correcta === $var ){
 			estado = "Correcta";
 			this.setState({estado:estado});
