@@ -99,6 +99,18 @@ class App extends Component {
 			alert( 'Conexión detectada desde otro dispositivo, desconectando...' );
 			this.cerrarSesion();
 		} );
+
+		window.onbeforeunload = ( e ) => {
+			console.log( 'Refrescar' );
+		};
+	}
+
+	dueloAceptado ( retador, retado ) {
+		socket.emit( 'duelo-aceptado', retador, retado );
+	}
+
+	dueloFinalizado ( correctas, tiempo, retador, retado ) {
+		socket.emit( 'duelo-finalizado', correctas, tiempo, retador, retado );
 	}
 
 	ocultarCoso() {
@@ -252,7 +264,7 @@ class App extends Component {
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } /> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } dueloAceptado = { this.dueloAceptado.bind( this ) } dueloFinalizado = { this.dueloFinalizado.bind( this ) } /> </div> </div> );
 			} } />
 			<Route path = "/usuarios" render = { ( props ) => {
 				this.ocultarCoso();

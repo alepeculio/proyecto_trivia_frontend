@@ -35,7 +35,7 @@ class DuelosListado extends Component{
 			}else{
 				let duelos = data.duelos.map(d => {
 					return(
-						<Duelo key={d.id} duelo ={d} actualizarDuelos={this.actualizarDuelos.bind(this)}/>
+						<Duelo key={d.id} duelo ={d} actualizarDuelos={this.actualizarDuelos.bind(this)} dueloAceptado = { this.props.dueloAceptado } dueloFinalizado = { this.props.dueloFinalizado } />
 						);
 				});
 				this.setState({duelos: duelos});

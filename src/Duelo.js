@@ -55,6 +55,8 @@ class Duelo extends Component{
 
 			let retado = localStorage.getItem("usuario_id"); 
 
+		this.props.dueloAceptado( this.props.duelo.id, retado );
+
 		fetch( properties.ip+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
 
 			method: 'POST',
@@ -101,7 +103,7 @@ class Duelo extends Component{
 		this.setState({cont:this.state.cont+1},()=>{
 			
 			if(this.state.cont == 3){
-
+				this.props.dueloFinalizado( this.state.cant_correctas, this.state.tiempo, this.props.duelo.id, localStorage.getItem( 'usuario_id' ) );
 				fetch(finalizarDueloURL, {
 					method: 'POST',
 					headers: {
@@ -177,43 +179,43 @@ class Duelo extends Component{
 					alert(data.Mensaje);
 					this.props.actualizarDuelos();
 				}})
-		.catch(err => {
-			console.log(err);
-			console.log('Reintentando...');
-			setTimeout( this.cancelarDuelo.bind(this) , 10000);
-		});
-	}	
+				.catch(err => {
+					console.log(err);
+					console.log('Reintentando...');
+					setTimeout( this.cancelarDuelo.bind(this) , 10000);
+				});
+			}	
 
-	render(){
-		let duelo = this.props.duelo;
+			render(){
+				let duelo = this.props.duelo;
 
-		var shown = {
-			display:"block"
-		};
+				var shown = {
+					display:"block"
+				};
 
-		let mostrarDuelos;
+				let mostrarDuelos;
 
-		if(this.state.respondiendo == false){
-			mostrarDuelos = <div id="duelo" className="contenedorDuelo" >
-			<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
-			<span className="nombre">{duelo.nombre} {duelo.apellido} </span>
+				if(this.state.respondiendo == false){
+					mostrarDuelos = <div id="duelo" className="contenedorDuelo" >
+					<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
+					<span className="nombre">{duelo.nombre} {duelo.apellido} </span>
 
-			<div className="buttons">
-			<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
-			<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
-			</div>
-			</div>
-		}else{
-			mostrarDuelos = ""
+					<div className="buttons">
+					<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
+					<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
+					</div>
+					</div>
+				}else{
+					mostrarDuelos = ""
+				}
+
+				return(
+				<div>
+				{this.state.pregunta}
+				{mostrarDuelos}
+				</div>
+				);
+			}
 		}
 
-		return(
-			<div>
-			{this.state.pregunta}
-			{mostrarDuelos}
-			</div>
-			);
-		}
-	}
-
-	export default Duelo;
+export default Duelo;
