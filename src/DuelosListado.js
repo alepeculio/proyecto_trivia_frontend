@@ -12,7 +12,19 @@ const duelosPropiosListaURL = properties.ip+properties.puerto+'/usuarios/listarR
 class DuelosListado extends Component{
 	constructor(){
 		super();
-		this.state = {shown: false};
+		this.state = {shown: false,
+			resp: false};
+
+		this.ocultar = React.createRef();
+	}
+
+	dueloAceptado ( r1, r2 ) {
+		this.props.dueloAceptado( r1, r2 );
+		this.setState( { resp: true } );
+	}
+
+	dueloFinalizado ( r1, r2 ) {
+		this.props.dueloFinalizado( r1, r2 );
 	}
 
 	obtenerDuelos(){
@@ -35,7 +47,7 @@ class DuelosListado extends Component{
 			}else{
 				let duelos = data.duelos.map(d => {
 					return(
-						<Duelo key={d.id} duelo ={d} actualizarDuelos={this.actualizarDuelos.bind(this)} dueloAceptado = { this.props.dueloAceptado } dueloFinalizado = { this.props.dueloFinalizado } />
+						<Duelo ref = { this.ocultar } resp = { this.state.resp } key={d.id} duelo ={d} actualizarDuelos={this.actualizarDuelos.bind(this)} dueloAceptado = { this.dueloAceptado.bind( this ) } dueloFinalizado = { this.dueloFinalizado.bind( this ) } />
 						);
 				});
 				this.setState({duelos: duelos});
