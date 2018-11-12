@@ -20,19 +20,43 @@ class Duelo extends Component{
 			preguntas: null,
 			cant_correctas: 0,
 			tiempo: 0,
-			cont: 0
+			cont: 0,
+			respondiendo: false,
 		};
 	}
 
 	handleClickCancelar(e){
 		e.preventDefault();
+
+		let btnsCancelar = document.getElementsByClassName("Cancelar");
+
 		let retado = localStorage.getItem("usuario_id"); 
+
+		for(let j=0; j < btnsCancelar.lenght;i++){
+			btnsCancelar[j].disabled = true;
+		}
+
 		this.cancelarDuelo(this.props.duelo.id,retado);
 	}
 
 	handleClickAceptar(e){
 		e.preventDefault();
+
+		let btnAceptar = document.getElementsByClassName("Aceptar");
+
+		for(let i=0; i < btnAceptar.lenght; i++) {
+			btnAceptar[i].disabled = true;
+		}
+
+		let btnCancelar = document.getElementsByClassName("Cancelar");
+
+		for(let i=0; i < btnCancelar.lenght; i++) {
+			btnCancelar[i].disabled = true;
+		}
+
 		let retado = localStorage.getItem("usuario_id"); 
+
+		this.props.dueloAceptado( this.props.duelo.id, retado );
 
 		fetch( properties.ip+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
 
@@ -47,7 +71,7 @@ class Duelo extends Component{
 		} ).then( res => {
 			return res.json();
 		} ).then( preguntas => {
-
+			this.setState({respondiendo: true});
 			if(preguntas.lenght !== 0){
 				let primera = preguntas[0];
 				let b = <PreguntaDuelo
@@ -61,7 +85,6 @@ class Duelo extends Component{
 				mostrar= {true}
 				termino = {this.termino.bind(this)}
 				/>
-				document.querySelector( '.contenedorDuelo' ).setAttribute( 'hidden', true );
 				this.setState({pregunta: b});
 				this.setState({preguntas:preguntas});
 			}
@@ -80,7 +103,7 @@ class Duelo extends Component{
 		this.setState({cont:this.state.cont+1},()=>{
 			
 			if(this.state.cont == 3){
-
+				this.props.dueloFinalizado( this.state.cant_correctas, this.state.tiempo, this.props.duelo.id, localStorage.getItem( 'usuario_id' ) );
 				fetch(finalizarDueloURL, {
 					method: 'POST',
 					headers: {
@@ -96,7 +119,22 @@ class Duelo extends Component{
 					return res.json();
 				}).then(data => {
 					console.log(data);
-					this.props.actualizarDuelos();
+
+					let btnAceptar = document.getElementsByClassName("Aceptar");
+
+					for(let i=0; i < btnAceptar.lenght; i++) {
+						btnAceptar[i].disabled = false;
+					}
+
+					let btnCancelar = document.getElementsByClassName("Cancelar");
+
+					for(let i=0; i < btnCancelar.lenght; i++){
+						btnCancelar[i].disabled = true;	
+					}
+		
+					this.setState({respondiendo: false});
+					
+
 				}).catch(err => {
 					console.log(err);
 				});
@@ -134,6 +172,13 @@ class Duelo extends Component{
 			return response.json();
 		})
 		.then(data => {
+
+			let btnsCancelar = document.getElementsByClassName("Cancelar");
+
+			for(let i=0;i<btnsCancelar.lenght;i++){
+				btnsCancelar[i].disabled = false;
+			}
+
 			if(data.Error !== undefined){
 				alert(data.Error);
 				console.log(data.Error);
@@ -147,29 +192,35 @@ class Duelo extends Component{
 			setTimeout( this.cancelarDuelo.bind(this) , 10000);
 		});
 	}	
-	
+
 	render(){
 		let duelo = this.props.duelo;
 
 		var shown = {
 			display:"block"
 		};
+
+		if(!this.state.respondiendo){
+			this.props.actualizarDuelos();
+		}
+
+		let asd = <div id="duelo" className="contenedorDuelo" >
+		<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
+		<span className="nombre">{duelo.nombre} {duelo.apellido} </span>
+
+		<div className="buttons">
+		<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
+		<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
+		</div>
+		</div>;
+
 		return(
 			<div>
 			{this.state.pregunta}
-			<div id="duelo" className="contenedorDuelo" >
-			<img className="imgUser" src={duelo.img} alt="Imagen usuario"/>
-			<span className="nombre">{duelo.nombre} {duelo.apellido} </span>
-
-			<div className="buttons">
-			<button className="Aceptar" onClick={this.handleClickAceptar.bind(this)}>Aceptar</button>
-			<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
-			</div>
-			
-			</div>
+			{!this.state.respondiendo && asd}
 			</div>
 			);
+		}
 	}
-}
 
-export default Duelo;
+	export default Duelo;

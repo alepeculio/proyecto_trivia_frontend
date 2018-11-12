@@ -30,8 +30,6 @@ class UsuariosListado extends Component{
 		};
 	}	
 
-
-
 	obtenerUsuarios(){
 		let id = localStorage.getItem("usuario_id");
 

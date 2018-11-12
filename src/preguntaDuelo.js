@@ -5,7 +5,7 @@ import './Pregunta.css';
 
 let green = '#11EA20';
 let red = '#F81010';
-let t = 15;
+let t = 1500;
 
 class PreguntaDuelo extends Component{
 
@@ -58,21 +58,21 @@ class PreguntaDuelo extends Component{
 		}
 	}*/
 	tickCronometro () {
-		if(this.state.cronometro === 1){
-			this.setState({cronometro: (this.state.cronometro - 1)})
+		if(this.state.cronometro === 10){
+			this.setState({cronometro: (this.state.cronometro - 10)})
 			this.conexion("");
 
 			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 
 		}else{
-			this.setState({cronometro: (this.state.cronometro - 1)})
+			this.setState({cronometro: (this.state.cronometro - 10)})
 		}
 
 	}
 
 	startTimer () {
 		clearInterval(this.timer)
-		this.timer = setInterval(this.tickCronometro.bind(this), 1000)
+		this.timer = setInterval(this.tickCronometro.bind(this), 100)
 		this.setState({inicio: true});
 	}
 
