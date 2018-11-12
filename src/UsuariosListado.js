@@ -19,7 +19,7 @@ class UsuariosListado extends Component{
 
 		super(props);
 		this.state = {
-			preguntas:null,
+			preguntas:"",
 			pregunta : null,
 			estado: 0,
 			tiempo: 0,
@@ -100,13 +100,15 @@ class UsuariosListado extends Component{
 			mostrar = {true}
 			termino={this.termino.bind(this)}
 			/>
-			this.setState({shown:true},()=>{
+			this.setState({shown:true});
+			console.log("Y"+this.state.preguntas);
+			this.setState({preguntas:preguntas},()=>{
 				this.setState({pregunta: b});
-				this.setState({preguntas:preguntas});
 				this.setState({retado:retado});
 				document.querySelector( '.usuarios_listado' ).setAttribute( 'hidden', true );
 
 			});
+			
 
 		}).catch(function(err){
 			console.log(err);
@@ -146,15 +148,20 @@ class UsuariosListado extends Component{
 						for(let i=0; i < btns.length; i++){
 							btns[i].disabled = false;
 						}
+						this.setState({preguntas:""},()=>{
+							this.setState({contador:0});
+							this.setState({shown:false});
+							this.obtenerUsuarios();
+							document.querySelector( '.usuarios_listado' ).removeAttribute('hidden');
+						});
+
 						
-						this.obtenerUsuarios();
-						document.querySelector( '.usuarios_listado' ).removeAttribute('hidden');
-						this.setState({shown:false});
 					}).catch(err => {
 						console.log(err);
 					});
 				}else{
 					var siguiente = this.state.preguntas[this.state.contador];
+					console.log(siguiente);
 					var b = <Pregunta
 					pregunta = {siguiente.pregunta}
 					correcta = {siguiente.respuestas[0]}
@@ -171,37 +178,37 @@ class UsuariosListado extends Component{
 			});});
 
 
-		}
-		componentDidMount(){
-			this.obtenerUsuarios();
-		}
+	}
+	componentDidMount(){
+		this.obtenerUsuarios();
+	}
 
 
-		solicitarSuscripcion(e){
-			let btn = e.target;
-			let u = this.props.usuario;
-			btn.disabled = true;
-			fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json; charset=utf-8'
-				} 
-			} ).then (res => {
-				console.log(res);
+	solicitarSuscripcion(e){
+		let btn = e.target;
+		let u = this.props.usuario;
+		btn.disabled = true;
+		fetch( properties.ip+properties.puerto+'/usuarios/solicitar?id='+u.id+'&correo='+u.correo+'&nombre='+u.nombre+' '+u.apellido, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			} 
+		} ).then (res => {
+			console.log(res);
 
-			} ).catch( err => {
-				btn.disabled = false;
-				console.log( 'Error: ' + err );
-			} );
-		}
+		} ).catch( err => {
+			btn.disabled = false;
+			console.log( 'Error: ' + err );
+		} );
+	}
 
-		render(){
-			let usuarios = this.state.usuarios;
+	render(){
+		let usuarios = this.state.usuarios;
 
-			if ( this.props.usuario === "cargando" )
-				return null;
-			else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
-				return(
+		if ( this.props.usuario === "cargando" )
+			return null;
+		else if ( this.props.usuario.tipo === undefined || this.props.usuario.tipo === "SinSuscripcion" ) {
+			return(
 				<div className="usuarios_ranking">
 				<div className="SinSuscripcion">
 				<p>Actualmente no posees una suscripción, puedes acceder a una cliqueando el botón de debajo.</p>
@@ -210,7 +217,7 @@ class UsuariosListado extends Component{
 				</div>
 				</div>
 				);
-			}
+		}
 
 		if(usuarios === undefined){
 			usuarios = <div className="cargando">Cargando...</div>
@@ -229,7 +236,7 @@ class UsuariosListado extends Component{
 
 		return(
 			<div>
-			<div style={shown} >
+			<div style={shown} id="pdLista" >
 			{this.state.pregunta}
 			</div>
 			<div className={clase} >

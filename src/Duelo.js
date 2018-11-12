@@ -47,6 +47,7 @@ class Duelo extends Component{
 		} ).then( res => {
 			return res.json();
 		} ).then( preguntas => {
+
 			if(preguntas.lenght !== 0){
 				let primera = preguntas[0];
 				let b = <PreguntaDuelo

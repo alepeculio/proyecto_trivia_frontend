@@ -34,10 +34,6 @@ class PreguntaDuelo extends Component{
 			siguiente:false
 		}
 		this.inicio(props.id_Pregunta);
-		window.onbeforeunload = function() {
-			return "Dude, are you sure you want to leave? Think of the kittens!";
-		}
-
 
 	}
 
@@ -144,6 +140,7 @@ class PreguntaDuelo extends Component{
 		this.props.funcion();
 	}
 	siguiente(){	
+		console.log(t-this.state.cronometro);
 		this.props.termino(this.state.estado,t-this.state.cronometro);
 		this.setState({siguiente:false})
 	}
