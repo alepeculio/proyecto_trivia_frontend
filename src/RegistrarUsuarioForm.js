@@ -34,13 +34,20 @@ class RegistrarUsuarioForm extends Component{
 			return;
 		}
 
+		let tamanio = Math.ceil(event.target.img.files[0].size / 1024);
+		if(tamanio > 50){
+			this.setState({registrandote:false, error: 'La imagen supera los 50Kb.'});
+			return;
+		}
+
+
 		const datos = new FormData();
 		datos.append('correo', event.target.correo.value);
 		datos.append('nombre',event.target.nombre.value);
 		datos.append('apellido', event.target.apellido.value);
 		datos.append('pass', pass);
 		datos.append('img', event.target.img.files[0]);
-
+		
 		fetch(registrarUsuarioURL,{
 			method: 'POST',
 			body: datos
@@ -90,17 +97,17 @@ class RegistrarUsuarioForm extends Component{
 			<div className="registrar_usuario_form">
 			<h2>Registrarse</h2>
 			<form method="post" encType="multipart/form-data" onSubmit = {this.registrarUsuario.bind(this)}>
-			<label>Correo</label>
+			<label>Correo*</label>
 			<input autoFocus required type="email" name="correo"/>
-			<label>Nombre</label>
+			<label>Nombre*</label>
 			<input required type="text" name="nombre"/>
-			<label>Apellido</label>
+			<label>Apellido*</label>
 			<input required type="text" name="apellido"/>
-			<label>Contraseña</label>
+			<label>Contraseña*</label>
 			<input required type="password" name="pass"/>
-			<label>Confirmar contraseña</label>
+			<label>Confirmar contraseña*</label>
 			<input required type="password" name="confPass"/>
-			<label>Imagen</label>
+			<label>Imagen (max 50Kb)</label>
 			<input type="file" name="img"/>
 			{error}
 			{boton}
