@@ -99,18 +99,14 @@ class App extends Component {
 			alert( 'Conexión detectada desde otro dispositivo, desconectando...' );
 			this.cerrarSesion();
 		} );
-
-		window.onbeforeunload = ( e ) => {
-			console.log( 'Refrescar' );
-		};
 	}
 
 	dueloAceptado ( retador, retado ) {
-		socket.emit( 'duelo-aceptado', retador, retado );
+		// socket.emit( 'duelo-aceptado', retador, retado );
 	}
 
 	dueloFinalizado ( correctas, tiempo, retador, retado ) {
-		socket.emit( 'duelo-finalizado', correctas, tiempo, retador, retado );
+		// socket.emit( 'duelo-finalizado', correctas, tiempo, retador, retado );
 	}
 
 	ocultarCoso() {

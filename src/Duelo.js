@@ -202,7 +202,7 @@ class Duelo extends Component{
 	}	
 
 	render(){
-		console.log( this.props.resp );
+		console.log( 'ASD' );
 
 		let duelo = this.props.duelo;
 
@@ -223,9 +223,6 @@ class Duelo extends Component{
 		<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
 		</div>
 		</div>;
-
-		if ( this.props.resp )
-			asd = '';
 
 		return(
 			<div>
