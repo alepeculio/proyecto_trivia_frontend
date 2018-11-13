@@ -141,8 +141,7 @@ class PreguntaDuelo extends Component{
 		this.props.funcion();
 	}
 	siguiente(){	
-		
-		this.props.termino(this.state.estado,t-this.state.cronometro);
+		this.props.termino(this.state.estado,t-this.state.cronometro,this.props.duelo);
 		this.setState({siguiente:false})
 	}
 	render(){

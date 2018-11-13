@@ -102,11 +102,11 @@ class App extends Component {
 	}
 
 	dueloAceptado ( retador, retado ) {
-		// socket.emit( 'duelo-aceptado', retador, retado );
+		socket.emit( 'duelo-aceptado', retador, retado );
 	}
 
 	dueloFinalizado ( correctas, tiempo, retador, retado ) {
-		// socket.emit( 'duelo-finalizado', correctas, tiempo, retador, retado );
+		socket.emit( 'duelo-finalizado', correctas, tiempo, retador, retado );
 	}
 
 	ocultarCoso() {

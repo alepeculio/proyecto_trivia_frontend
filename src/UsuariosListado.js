@@ -147,10 +147,11 @@ class UsuariosListado extends Component{
 							btns[i].disabled = false;
 						}
 						this.setState({preguntas:""},()=>{
-							this.setState({contador:0});
+							window.location.reload();
+							/*this.setState({contador:0});
 							this.setState({shown:false});
 							this.obtenerUsuarios();
-							document.querySelector( '.usuarios_listado' ).removeAttribute('hidden');
+							document.querySelector( '.usuarios_listado' ).removeAttribute('hidden');*/
 						});
 
 						

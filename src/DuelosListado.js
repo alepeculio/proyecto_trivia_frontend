@@ -5,24 +5,29 @@ import DueloPropio from './DueloPropio';
 import { withRouter } from "react-router-dom";
 import {properties} from './properties.js';
 import './RankingUsuarios.css';
+import PreguntaDuelo from './preguntaDuelo';
 
 const duelosListaURL = properties.ip+properties.puerto+'/usuarios/listarRetos?id=';
 const duelosPropiosListaURL = properties.ip+properties.puerto+'/usuarios/listarRetosPropios?id=';
+const cancelarURL = properties.ip+properties.puerto+'/usuarios/cancelarReto';
+const obtenerPreguntasDueloURL = properties.ip+properties.puerto+'/preguntas/obtenerPreguntasDuelo';
+const finalizarDueloURL = properties.ip+properties.puerto+'/usuarios/finalizarDuelo';
 
 class DuelosListado extends Component{
 	constructor(){
 		super();
-		this.state = {shown: false};
 
-		this.ocultar = React.createRef();
-	}
+		this.state = {
+			preguntaB:null, 
+			color: "white",
+			preguntas: null,
+			cant_correctas: 0,
+			tiempo: 0,
+			cont: 0,
+			respondiendo: false,
+			shown: false
+		};
 
-	dueloAceptado ( r1, r2 ) {
-		this.props.dueloAceptado( r1, r2 );
-	}
-
-	dueloFinalizado ( r1, r2 ) {
-		this.props.dueloFinalizado( r1, r2 );
 	}
 
 	obtenerDuelos(){
@@ -45,7 +50,8 @@ class DuelosListado extends Component{
 			}else{
 				let duelos = data.duelos.map(d => {
 					return(
-						<Duelo key={d.id} duelo ={d} actualizarDuelos={this.actualizarDuelos.bind(this)} dueloAceptado = { this.dueloAceptado.bind( this ) } dueloFinalizado = { this.dueloFinalizado.bind( this ) } />
+						<Duelo Aceptar={this.Aceptar.bind(this)} key={d.id} duelo ={d} actualizarDuelos={this.actualizarDuelos.bind(this)} dueloAceptado = { this.props.dueloAceptado } dueloFinalizado = { this.props.dueloFinalizado } />
+
 						);
 				});
 				this.setState({duelos: duelos});
@@ -88,8 +94,100 @@ class DuelosListado extends Component{
 			setTimeout( this.obtenerDuelosPropios.bind(this) , 10000);
 		});
 	}
+	Aceptar(DueloID){
+		let retado = localStorage.getItem("usuario_id"); 
+		document.querySelector(".Listado").setAttribute("hidden",true);		
+		this.props.dueloAceptado(DueloID, retado );
+		fetch(obtenerPreguntasDueloURL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			},
+			body: JSON.stringify( {
+				ID_retado: retado,
+				ID_retador: DueloID
+			} )
+		} ).then( res => {
+
+			return res.json();
+		} ).then( preguntas => {
+			this.setState({respondiendo: true});
+			if(preguntas.lenght !== 0){
+				let primera = preguntas[0];
+				let b = <PreguntaDuelo
+				pregunta = {primera.pregunta}
+				correcta = {primera.respuestas[0]}
+				respuesta1 = {primera.respuestas[0]}
+				respuesta2 = {primera.respuestas[1]}
+				respuesta3 = {primera.respuestas[2]}
+				respuesta4 = {primera.respuestas[3]}
+				id_Pregunta = {primera._id}
+				mostrar= {true}
+				duelo = {DueloID}
+				termino = {this.termino.bind(this)}
+				/>
+				this.setState({pregunta: b});
+				this.setState({preguntas:preguntas});
+			}
+		}).catch(err =>{
+			
+		});
+	}
+	termino(estado,tiempo,DueloID){
+		this.setState({pregunta: null});
+
+		if(estado=="Correcta"){
+			this.setState({cant_correctas:this.state.cant_correctas+1});
+		}
+
+		this.setState({tiempo:this.state.tiempo+tiempo});
+
+		this.setState({cont:this.state.cont+1},()=>{
+			
+			if(this.state.cont == 3){
+
+				this.props.dueloFinalizado( this.state.cant_correctas, this.state.tiempo,DueloID, localStorage.getItem( 'usuario_id' ) );
+				fetch(finalizarDueloURL, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json; charset=utf-8'
+					},
+					body: JSON.stringify( {
+						ID_retador: DueloID,
+						ID_retado: localStorage.getItem("usuario_id"),
+						cant_correctas: this.state.cant_correctas,
+						tiempo: this.state.tiempo
+					} )
+				} ).then(res=>{
+					return res.json();
+				}).then(data => {
+					this.setState({respondiendo: false});
+					window.location.reload();
+				}).catch(err => {
+					console.log(err);
+				});
+			}else{
+				var siguiente = this.state.preguntas[this.state.cont];
+				var b = <PreguntaDuelo
+				pregunta = {siguiente.pregunta}
+				correcta = {siguiente.respuestas[0]}
+				respuesta1 = {siguiente.respuestas[0]}
+				respuesta2 = {siguiente.respuestas[1]}
+				respuesta3 = {siguiente.respuestas[2]}
+				respuesta4 = {siguiente.respuestas[3]}
+				id_Pregunta = {siguiente._id}
+				mostrar = {true}
+				duelo = {DueloID}
+				termino={this.termino.bind(this)}
+				/>
+				this.setState({pregunta: b});
+			}
+		});
+
+	}
 
 	componentDidMount(){
+
 		this.obtenerDuelos();
 		this.obtenerDuelosPropios();
 	}
@@ -152,15 +250,20 @@ class DuelosListado extends Component{
 			visibility : this.state.visibility ? "visible" : "hidden"
 		};
 
-		
+
 		return(
 			<div className={clase}>
+			<div className="pregunta">
+			{this.state.pregunta}
+			</div>
+			<div className="Listado">
 			{duelos}
 			{duelosPropios}
 			</div>
+			</div>
 			);
 
+		}
 	}
-}
 
-export default withRouter( DuelosListado );
+	export default withRouter( DuelosListado );

@@ -41,129 +41,11 @@ class Duelo extends Component{
 
 	handleClickAceptar(e){
 		e.preventDefault();
+		this.props.Aceptar(this.props.duelo.id);
 
-		let btnAceptar = document.getElementsByClassName("Aceptar");
-
-		for(let i=0; i < btnAceptar.lenght; i++) {
-			btnAceptar[i].disabled = true;
-		}
-
-		let btnCancelar = document.getElementsByClassName("Cancelar");
-
-		for(let i=0; i < btnCancelar.lenght; i++) {
-			btnCancelar[i].disabled = true;
-		}
-
-		let retado = localStorage.getItem("usuario_id"); 
-
-		this.props.dueloAceptado( this.props.duelo.id, retado );
-
-		fetch( properties.ip+properties.puerto+'/preguntas/obtenerPreguntasDuelo', {
-
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			},
-			body: JSON.stringify( {
-				ID_retado: retado,
-				ID_retador: this.props.duelo.id
-			} )
-		} ).then( res => {
-			return res.json();
-		} ).then( preguntas => {
-			this.setState({respondiendo: true});
-			if(preguntas.lenght !== 0){
-				let primera = preguntas[0];
-				let b = <PreguntaDuelo
-				pregunta = {primera.pregunta}
-				correcta = {primera.respuestas[0]}
-				respuesta1 = {primera.respuestas[0]}
-				respuesta2 = {primera.respuestas[1]}
-				respuesta3 = {primera.respuestas[2]}
-				respuesta4 = {primera.respuestas[3]}
-				id_Pregunta = {primera._id}
-				mostrar= {true}
-				termino = {this.termino.bind(this)}
-				/>
-				this.setState({pregunta: b});
-				this.setState({preguntas:preguntas});
-			}
-		});
-	}
-
-	ocultar() {
-		this.setState({respondiendo: true});
-	}
-
-	mostrar() {
-		this.setState({respondiendo: false});
-	}
-
-	termino(estado,tiempo){
-		this.setState({pregunta: null});
-
-		if(estado=="Correcta"){
-			this.setState({cant_correctas:this.state.cant_correctas+1});
-		}
-
-		this.setState({tiempo:this.state.tiempo+tiempo});
-
-		this.setState({cont:this.state.cont+1},()=>{
-			
-			if(this.state.cont == 3){
-				this.props.dueloFinalizado( this.state.cant_correctas, this.state.tiempo, this.props.duelo.id, localStorage.getItem( 'usuario_id' ) );
-				fetch(finalizarDueloURL, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json; charset=utf-8'
-					},
-					body: JSON.stringify( {
-						ID_retador: this.props.duelo.id,
-						ID_retado: localStorage.getItem("usuario_id"),
-						cant_correctas: this.state.cant_correctas,
-						tiempo: this.state.tiempo
-					} )
-				} ).then(res=>{
-					return res.json();
-				}).then(data => {
-					console.log(data);
-
-					let btnAceptar = document.getElementsByClassName("Aceptar");
-
-					for(let i=0; i < btnAceptar.lenght; i++) {
-						btnAceptar[i].disabled = false;
-					}
-
-					let btnCancelar = document.getElementsByClassName("Cancelar");
-
-					for(let i=0; i < btnCancelar.lenght; i++){
-						btnCancelar[i].disabled = true;	
-					}
-		
-					this.setState({respondiendo: false});
-					
-
-				}).catch(err => {
-					console.log(err);
-				});
-			}else{
-				var siguiente = this.state.preguntas[this.state.cont];
-				var b = <PreguntaDuelo
-				pregunta = {siguiente.pregunta}
-				correcta = {siguiente.respuestas[0]}
-				respuesta1 = {siguiente.respuestas[0]}
-				respuesta2 = {siguiente.respuestas[1]}
-				respuesta3 = {siguiente.respuestas[2]}
-				respuesta4 = {siguiente.respuestas[3]}
-				id_Pregunta = {siguiente._id}
-				mostrar = {true}
-				termino={this.termino.bind(this)}
-				/>
-				this.setState({pregunta: b});
-			}
-		});
 
 	}
+
 
 	cancelarDuelo(retador,retado){
 		fetch(cancelarURL,{
@@ -202,8 +84,6 @@ class Duelo extends Component{
 	}	
 
 	render(){
-		console.log( 'ASD' );
-
 		let duelo = this.props.duelo;
 
 		var shown = {
@@ -211,7 +91,7 @@ class Duelo extends Component{
 		};
 
 		if(!this.state.respondiendo){
-			this.props.actualizarDuelos();
+			//this.props.actualizarDuelos();
 		}
 
 		let asd = <div id="duelo" className="contenedorDuelo" >
@@ -226,7 +106,6 @@ class Duelo extends Component{
 
 		return(
 			<div>
-			{this.state.pregunta}
 			{!this.state.respondiendo && asd}
 			</div>
 			);
