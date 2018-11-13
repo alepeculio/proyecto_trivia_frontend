@@ -58,6 +58,7 @@ class Pregunta extends Component{
 	}
 	*/
 	tickCronometro () {
+		console.log(this.state.cronometro);
 		if(this.state.cronometro === 10){
 			this.setState({cronometro: (this.state.cronometro - 10)})
 			this.conexion("tiempo");
@@ -101,6 +102,7 @@ class Pregunta extends Component{
 		} );
 	}
 	conexion($var,$btn){
+		clearInterval(this.timer);
 		this.setState({
 			animation: "paused"
 		})
@@ -183,7 +185,7 @@ class Pregunta extends Component{
 			} )
 
 		} ).then(res => {
-			clearInterval(this.timer);
+			
 			return res.json();
 		}).then(nose=>{
 			this.setState({volver:true})
