@@ -16,6 +16,7 @@ const finalizarDueloURL = properties.ip+properties.puerto+'/usuarios/finalizarDu
 class DuelosListado extends Component{
 	constructor(){
 		super();
+
 		this.state = {
 			preguntaB:null, 
 			color: "white",
@@ -50,6 +51,7 @@ class DuelosListado extends Component{
 				let duelos = data.duelos.map(d => {
 					return(
 						<Duelo Aceptar={this.Aceptar.bind(this)} key={d.id} duelo ={d} actualizarDuelos={this.actualizarDuelos.bind(this)} dueloAceptado = { this.props.dueloAceptado } dueloFinalizado = { this.props.dueloFinalizado } />
+
 						);
 				});
 				this.setState({duelos: duelos});

@@ -21,7 +21,11 @@
 
 @media screen and (max-width: 650px) and (min-width: 351px) {
   .contenedor {
-    padding-top: 50px !important;
+    border:none !important;
+
+  } 
+  #pregunta {
+    padding-top: 35px !important;
     border:none !important;
 
   } 

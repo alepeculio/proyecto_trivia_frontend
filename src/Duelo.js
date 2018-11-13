@@ -42,9 +42,9 @@ class Duelo extends Component{
 	handleClickAceptar(e){
 		e.preventDefault();
 		this.props.Aceptar(this.props.duelo.id);
-		
-	}
 
+
+	}
 
 
 	cancelarDuelo(retador,retado){
@@ -84,6 +84,8 @@ class Duelo extends Component{
 	}	
 
 	render(){
+		console.log( this.props.resp );
+
 		let duelo = this.props.duelo;
 
 		var shown = {
@@ -103,6 +105,9 @@ class Duelo extends Component{
 		<button className="Cancelar" onClick={this.handleClickCancelar.bind(this)}>Cancelar</button>
 		</div>
 		</div>;
+
+		if ( this.props.resp )
+			asd = '';
 
 		return(
 			<div>

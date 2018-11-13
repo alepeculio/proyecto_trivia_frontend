@@ -207,10 +207,9 @@ body {
 
   @media only screen and (max-width: 660px) {
     .contenedor {
-      padding-top: 215px;
+      padding-top: 35px;
     }
   }
-
   .contenedor2 {
     width: 50%;
 
