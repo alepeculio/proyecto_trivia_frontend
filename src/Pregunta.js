@@ -5,7 +5,7 @@ import { properties } from './properties.js'
 
 let green = '#11EA20';
 let red = '#F81010';
-let t = 15;
+let t = 1500;
 class Pregunta extends Component{
 
 
@@ -58,14 +58,16 @@ class Pregunta extends Component{
 	}
 	*/
 	tickCronometro () {
-		if(this.state.cronometro === 1){
-			this.setState({cronometro: (this.state.cronometro - 1)})
+		console.log(this.state.cronometro);
+		if(this.state.cronometro === 10){
+			this.setState({cronometro: (this.state.cronometro - 10)})
 			this.conexion("tiempo");
 
 			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 
 		}else{
-			this.setState({cronometro: (this.state.cronometro - 1)})
+			this.setState({cronometro: (this.state.cronometro - 10)})
+
 		}
 
 	}
@@ -73,7 +75,7 @@ class Pregunta extends Component{
 
 	startTimer () {
 		clearInterval(this.timer)
-		this.timer = setInterval(this.tickCronometro.bind(this), 1000)	
+		this.timer = setInterval(this.tickCronometro.bind(this), 100)	
 		this.setState({inicio: true});
 	}
 
@@ -100,6 +102,7 @@ class Pregunta extends Component{
 		} );
 	}
 	conexion($var,$btn){
+		clearInterval(this.timer);
 		this.setState({
 			animation: "paused"
 		})
@@ -182,7 +185,7 @@ class Pregunta extends Component{
 			} )
 
 		} ).then(res => {
-			clearInterval(this.timer);
+			
 			return res.json();
 		}).then(nose=>{
 			this.setState({volver:true})
@@ -231,17 +234,16 @@ class Pregunta extends Component{
 			<button className="button" style={{background: this.state.btn4 , display: this.state.displaybtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
 			<font className="estado" style={{color: this.state.color}}>{this.state.estado}</font>
 			</div>
-			</div>
-			<div>
 			<button className="volver" onClick={()=>{this.volver()}} style={hidden}>&laquo; Volver</button>
 			</div>
+			
 			</div>
 
 
 
 			);	
+		}
+
 	}
 
-}
-
-export default Pregunta;
+	export default Pregunta;

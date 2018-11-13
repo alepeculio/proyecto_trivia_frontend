@@ -101,6 +101,14 @@ class App extends Component {
 		} );
 	}
 
+	dueloAceptado ( retador, retado ) {
+		socket.emit( 'duelo-aceptado', retador, retado );
+	}
+
+	dueloFinalizado ( correctas, tiempo, retador, retado ) {
+		socket.emit( 'duelo-finalizado', correctas, tiempo, retador, retado );
+	}
+
 	ocultarCoso() {
 		let ocultar = document.querySelector( 'header .expandir' );
 
@@ -252,7 +260,7 @@ class App extends Component {
 				else if(usuario.tipo === 'Admin')
 					return <Redirect to='/admin' />
 				else
-					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } /> </div> </div> );
+					return ( <div className = "padre"> <div className = "contenedor"> <Duelos usuario = { usuario } dueloAceptado = { this.dueloAceptado.bind( this ) } dueloFinalizado = { this.dueloFinalizado.bind( this ) } /> </div> </div> );
 			} } />
 			<Route path = "/usuarios" render = { ( props ) => {
 				this.ocultarCoso();

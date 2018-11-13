@@ -5,7 +5,7 @@ import './Pregunta.css';
 
 let green = '#11EA20';
 let red = '#F81010';
-let t = 15;
+let t = 1500;
 
 class PreguntaDuelo extends Component{
 
@@ -58,21 +58,21 @@ class PreguntaDuelo extends Component{
 		}
 	}*/
 	tickCronometro () {
-		if(this.state.cronometro === 1){
-			this.setState({cronometro: (this.state.cronometro - 1)})
+		if(this.state.cronometro === 10){
+			this.setState({cronometro: (this.state.cronometro - 10)})
 			this.conexion("");
 
 			//document.querySelector( '#contenedor' ).setAttribute( 'hidden', true );
 
 		}else{
-			this.setState({cronometro: (this.state.cronometro - 1)})
+			this.setState({cronometro: (this.state.cronometro - 10)})
 		}
 
 	}
 
 	startTimer () {
 		clearInterval(this.timer)
-		this.timer = setInterval(this.tickCronometro.bind(this), 1000)
+		this.timer = setInterval(this.tickCronometro.bind(this), 100)
 		this.setState({inicio: true});
 	}
 
@@ -83,6 +83,7 @@ class PreguntaDuelo extends Component{
 		this.setState({
 			animation: "paused"
 		})
+		clearInterval(this.timer);
 
 		let estado;
 		let tiempo = this.state.cronometro;
@@ -140,7 +141,7 @@ class PreguntaDuelo extends Component{
 		this.props.funcion();
 	}
 	siguiente(){	
-		this.props.termino(this.state.estado,t-this.state.cronometro);
+		this.props.termino(this.state.estado,t-this.state.cronometro,this.props.duelo);
 		this.setState({siguiente:false})
 	}
 	render(){
@@ -176,8 +177,9 @@ class PreguntaDuelo extends Component{
 			<button className="button" style={{background: this.state.btn2 , display: this.state.displaybtn2,pointerEvents : this.state.evbtn2}}  onClick={()=>{this.conexion(this.state.lista[1],"btn2")}}  type="button"><font className="txtRespuestas">{this.state.lista[1]}</font></button><br></br>
 			<button className="button" style={{background: this.state.btn3 , display: this.state.displaybtn3,pointerEvents : this.state.evbtn3}}  onClick={()=>{this.conexion(this.state.lista[2],"btn3")}} type="button"><font className="txtRespuestas">{this.state.lista[2]}</font></button><br></br>
 			<button className="button" style={{background: this.state.btn4 , display: this.state.displaybtn4,pointerEvents : this.state.evbtn4}}  onClick={()=>{this.conexion(this.state.lista[3],"btn4")}} type="button"><font className="txtRespuestas">{this.state.lista[3]}</font></button><br></br>
-			</div>
 			<font className="estado" style={{color: this.state.color}}>{this.state.estado}</font>
+			</div>
+			
 			<button className="volver" onClick={()=>{this.siguiente()}} style={siguiente}>Siguiente</button>
 
 			</div>

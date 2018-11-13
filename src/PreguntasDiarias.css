@@ -40,21 +40,6 @@
 }
 
 @media screen and (max-width: 660px) {
-  #pdLista {
-    margin: 0px !important;
-    box-shadow: none;
-    border-radius: 0 !important;
-    border: none !important;
-
-    padding: 0px;
-
-    font-size: 14px;
-  }
-
-  .contenedor {
-    padding-top: 35px !important;
-    background-color: rgba(66, 160, 255, 1);
-  }
 
   #pdLista table {
     width: 95% !important;

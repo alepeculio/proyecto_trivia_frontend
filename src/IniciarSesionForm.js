@@ -104,7 +104,7 @@ class IniciarSesionForm extends Component{
 					'Content-Type': 'application/json; charset=utf-8'
 				},
 				body: JSON.stringify( {
-					correo: 'rosasjorge1701@gmail.com'
+					correo: correo.value
 				} )
 			} ).then( res => {
 				return res.json();

@@ -13,7 +13,7 @@ class Duelos extends Component{
 	render(){
 		return(
 			<div>
-			<DuelosListado usuario={this.props.usuario} />
+			<DuelosListado usuario={this.props.usuario} dueloAceptado = { this.props.dueloAceptado.bind( this ) } dueloFinalizado = { this.props.dueloFinalizado.bind( this ) } />
 			</div>
 			);	
 		}
