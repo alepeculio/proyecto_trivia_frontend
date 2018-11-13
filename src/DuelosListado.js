@@ -20,7 +20,6 @@ class DuelosListado extends Component{
 
 	dueloAceptado ( r1, r2 ) {
 		this.props.dueloAceptado( r1, r2 );
-		this.setState( { resp: true } );
 	}
 
 	dueloFinalizado ( r1, r2 ) {
