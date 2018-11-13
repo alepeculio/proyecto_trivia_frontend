@@ -48,7 +48,7 @@ class PreguntasDiarias extends Component {
 			let items = document.querySelectorAll( '#pdLista table tr' );
 			items[posicion - 1].querySelector( '.pdEstado' ).innerHTML = 'Respondiendo...';
 			items[posicion - 1].querySelector( '.pdEstado' ).removeAttribute( 'hidden' );
-			items[posicion - 1].querySelector( '.pdResponder' ).setAttribute( 'hidden', true );
+			items[posicion - 1].querySelector( '.pdResponder' ).remove();
 
 
 			let usuario_id = localStorage.getItem( 'usuario_id' );
@@ -113,7 +113,7 @@ class PreguntasDiarias extends Component {
 
 				for ( let i = 0; i < this.state.cantPregs; i++ ) {
 					items[i].querySelector( '.pdEstado' ).removeAttribute( 'hidden' );
-					items[i].querySelector( '.pdResponder' ).setAttribute( 'hidden', true );
+					// items[i].querySelector( '.pdResponder' ).setAttribute( 'hidden', true );
 
 					let pregEncontrada = false;
 
@@ -138,10 +138,15 @@ class PreguntasDiarias extends Component {
 						}
 					}
 
+					let btnResp = items[i].querySelector( '.pdResponder' );
+
 					if ( !pregEncontrada ) {
 						items[i].querySelector( '.pdEstado' ).setAttribute( 'hidden', true );
-						items[i].querySelector( '.pdResponder' ).removeAttribute( 'hidden' );
-					}
+						if ( btnResp )
+							btnResp.removeAttribute( 'hidden' );
+					} else
+						if ( btnResp )
+							btnResp.remove();
 				}
 			} ).catch( err => {
 				console.log( 'Error: ' + err );
