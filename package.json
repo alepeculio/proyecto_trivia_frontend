@@ -13,7 +13,7 @@
     "socket.io": "^2.1.1"
   },
   "scripts": {
-    "start": "serve -s build -l %PORT%",
+    "start": "echo $PORT && serve -s build -l $PORT",
     "build": "react-scripts build && DEL build\\static\\js\\*.map",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
