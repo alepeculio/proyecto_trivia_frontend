@@ -99,7 +99,7 @@
 .progress{
   height: 10px;
   content:"";
-  animation-duration: 15s;
+  animation-duration: 10s;
   animation-name: barra;
   animation-timing-function: linear;
   border-radius: 100px;
