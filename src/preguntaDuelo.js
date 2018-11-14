@@ -5,7 +5,7 @@ import './Pregunta.css';
 
 let green = '#11EA20';
 let red = '#F81010';
-let t = 1500;
+let t = 1000;
 
 class PreguntaDuelo extends Component{
 
