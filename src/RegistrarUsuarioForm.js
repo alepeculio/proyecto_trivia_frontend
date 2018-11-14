@@ -34,11 +34,18 @@ class RegistrarUsuarioForm extends Component{
 			return;
 		}
 
-		let tamanio = Math.ceil(event.target.img.files[0].size / 1024);
-		if(tamanio > 50){
-			this.setState({registrandote:false, error: 'La imagen supera los 50Kb.'});
-			return;
+		console.log( 'A' );
+		if ( event.target.img.files[0] ) {
+			console.log( 'B' );
+			let tamanio = Math.ceil(event.target.img.files[0].size / 1024);
+			if(tamanio > 50){
+				console.log( 'C' );
+				this.setState({registrandote:false, error: 'La imagen supera los 50Kb.'});
+				return;
+			}
 		}
+
+		console.log( 'D' );
 
 
 		const datos = new FormData();
