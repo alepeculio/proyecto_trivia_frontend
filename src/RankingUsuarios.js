@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Usuario from './Usuario';
 import './RankingUsuarios.css';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link, Route } from "react-router-dom";
 import {properties} from './properties.js'
 const usuariosListaURL = properties.ip+properties.puerto+'/usuarios/listarRanking?cantidad=';
 
@@ -83,6 +83,7 @@ class RankingUsuarios extends Component{
 		return(
 			<div className={clase}>	
 			{usuarios}
+			<Link  to={"/ganadores"}>Ganadores de la semana anterior</Link>
 			</div>
 			);
 		

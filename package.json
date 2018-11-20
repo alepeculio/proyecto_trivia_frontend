@@ -15,7 +15,7 @@
   "scripts": {
     "start": "serve -s build -l $PORT",
     "build": "react-scripts build && DEL build\\static\\js\\*.map",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts start",
     "eject": "react-scripts eject"
   }
 }
