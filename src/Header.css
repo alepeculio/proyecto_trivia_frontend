@@ -123,6 +123,7 @@ header .logueado .puntuacion{
   font-weight: 600;
 }
 
+.boton-ganadores,
 header .boton{
  position: absolute;
  right: 4px;
@@ -144,14 +145,36 @@ header .boton{
  border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+
+.boton-ganadores {
+  position: unset;
+}
+
 header .boton.segundo{
   right: 101px;
+}
+
+.inicio3 {
+  margin-top: 120px !important;
+}
+
+@media screen and (max-width: 660px) {
+  .inicio3.ganadores {
+    margin-top: 20px !important;
+  }
+}
+
+.boton-ganadores {
+  background-color: #037c12;
 }
 
 header .boton.iniciar-sesion{
  background-color: rgb(158, 23, 23);
 }
 
+.boton-ganadores:hover {
+  background-color: #0a9b1c;
+}
 header .boton.iniciar-sesion:hover{
  background-color: rgb(109, 16, 16);
 }

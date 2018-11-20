@@ -16,6 +16,7 @@ import UsuariosListado from './UsuariosListado';
 import Suscripciones from './Suscripciones';
 import Preguntas from './Preguntas';
 import Mensajes from './Mensajes';
+import Ganadores from './Ganadores';
 
 import {properties} from './properties.js'
 
@@ -295,6 +296,12 @@ class App extends Component {
 					return  <Redirect to='/inicio' />;
 
 			} } />
+
+
+			<Route path = "/ganadores" render = { ( props ) => {
+					return <Ganadores/>;
+			} } />
+
 			<Mensajes ref = { this.mensajes }/>
 			</div>
 			</Router>
